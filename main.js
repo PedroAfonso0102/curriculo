@@ -387,20 +387,74 @@ window.setLanguage = setLanguage;
 window.toggleSidebar = toggleSidebar;
 window.toggleDesktopSidebar = toggleDesktopSidebar;
 
-// Sidebar Toggle Logic
+// Sidebar Toggle Logic (Spring Animation)
 function toggleSidebar() {
     const sidebar = document.querySelector('.doc-sidebar');
     const overlay = document.querySelector('.sidebar-overlay');
     const isOpen = sidebar.classList.contains('open');
+
+    // Only apply physics on mobile where sidebar is off-canvas (transform used)
+    const isMobile = window.innerWidth <= 900;
     
+    if (!isMobile) {
+        // Desktop toggles usually just change state, but here we might want to animate width?
+        // Current CSS handles desktop collapsed state via body class.
+        // So this function is primarily for the mobile overlay menu.
+        return;
+    }
+
     if (isOpen) {
+        // Close
         sidebar.classList.remove('open');
         overlay.classList.remove('active');
         document.body.style.overflow = '';
+
+        // Animate out (0 -> -100%)
+        // We need to manually drive the transform because CSS transition is removed/overridden if we want physics
+        // Actually, let's use the SpringSystem to drive a CSS variable or direct transform
+
+        // Reset to current computed style if interrupted?
+        // For simplicity, we animate from 0% to -100%
+
+        if (window.springSystem) {
+             window.springSystem.animate(
+                'sidebar-mobile',
+                0, // Current X (0%)
+                -100, // Target X (-100%)
+                { stiffness: 400, damping: 35 },
+                (val) => {
+                    sidebar.style.transform = `translateX(${val}%)`;
+                    overlay.style.opacity = Math.max(0, 1 - (Math.abs(val)/100));
+                },
+                () => {
+                    sidebar.style.transform = ''; // Reset to CSS class control
+                    overlay.style.opacity = '';
+                }
+            );
+        }
+
     } else {
+        // Open
         sidebar.classList.add('open');
         overlay.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        document.body.style.overflow = 'hidden';
+
+        if (window.springSystem) {
+             window.springSystem.animate(
+                'sidebar-mobile',
+                -100, // Start (-100%)
+                0, // Target (0%)
+                { stiffness: 300, damping: 30 },
+                (val) => {
+                    sidebar.style.transform = `translateX(${val}%)`;
+                    overlay.style.opacity = Math.max(0, 1 - (Math.abs(val)/100));
+                },
+                () => {
+                    sidebar.style.transform = '';
+                    overlay.style.opacity = '';
+                }
+            );
+        }
     }
 }
 
@@ -515,68 +569,81 @@ function setupScrollSpy(rootSelector = '#resume-view') {
 /*
  * Helper to animate elements out before hiding them,
  * and animate elements in after showing them.
+ * UPDATED: Uses Physics (Spring System) for HIG Compliance.
  */
 function animateTransition(hideElement, showElement, onComplete) {
-    // Helper to execute switch immediately if no animation is needed/possible
-    const immediateSwitch = () => {
-        if (hideElement) {
-            hideElement.style.display = 'none';
-            hideElement.classList.remove('anim-fade-out');
-        }
-        if (showElement) {
-            showElement.style.display = 'block';
-            showElement.classList.remove('anim-fade-in');
-        }
-        if (onComplete) onComplete();
-    };
-
     if (!hideElement || !showElement) {
-        immediateSwitch();
+        if (hideElement) hideElement.style.display = 'none';
+        if (showElement) showElement.style.display = 'block';
+        if (onComplete) onComplete();
         return;
     }
 
-    // Check if animations are enabled/supported
     const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (isReducedMotion) {
-        immediateSwitch();
+    if (isReducedMotion || !window.springSystem) {
+        hideElement.style.display = 'none';
+        showElement.style.display = 'block';
+        if (onComplete) onComplete();
         return;
     }
 
-    // Safety timeout in case animationend never fires
-    const safetyTimer = setTimeout(() => {
-        console.warn('Animation timeout - forcing transition');
-        handleOutEnd();
-    }, 300); // Slightly longer than CSS animation (0.2s)
+    // 1. Animate Out (Slide Down + Fade Out)
+    // Spring: stiffness: 300, damping: 30 (Quick snap out)
+    hideElement.style.opacity = '1';
+    hideElement.style.transform = 'translateY(0) scale(1)';
 
-    // 1. Animate Out
-    hideElement.classList.add('anim-fade-out');
+    // We can't easily animate layout properties with this simple spring system without absolute positioning,
+    // so we will animate opacity and transform.
 
-    const handleOutEnd = () => {
-        clearTimeout(safetyTimer);
-        hideElement.classList.remove('anim-fade-out');
-        hideElement.style.display = 'none';
-        hideElement.removeEventListener('animationend', handleOutEnd);
+    const outId = `anim-out-${hideElement.id || Math.random()}`;
 
+    // Use a Promise to handle the chain
+    const animateOut = new Promise((resolve) => {
+        window.springSystem.animate(
+            outId,
+            0, // Start (0 displacement)
+            20, // End (20px down)
+            { stiffness: 400, damping: 30, mass: 1, precision: 0.1 },
+            (val) => {
+                // Map val (0 -> 20) to opacity (1 -> 0)
+                const opacity = 1 - (val / 20);
+                hideElement.style.opacity = Math.max(0, opacity);
+                hideElement.style.transform = `translateY(${val}px) scale(${1 - (val/1000)})`;
+            },
+            () => {
+                hideElement.style.display = 'none';
+                resolve();
+            }
+        );
+    });
+
+    animateOut.then(() => {
         // 2. Switch
         showElement.style.display = 'block';
-        showElement.classList.add('anim-fade-in');
+        showElement.style.opacity = '0';
+        showElement.style.transform = 'translateY(20px)';
 
-        // Safety timer for in-animation
-        const inSafetyTimer = setTimeout(() => {
-            handleInEnd();
-        }, 400); // Slightly longer than CSS animation (0.3s)
+        // 3. Animate In (Slide Up + Fade In)
+        const inId = `anim-in-${showElement.id || Math.random()}`;
 
-        // 3. Animate In
-        const handleInEnd = () => {
-            clearTimeout(inSafetyTimer);
-            showElement.classList.remove('anim-fade-in');
-            showElement.removeEventListener('animationend', handleInEnd);
-            if (onComplete) onComplete();
-        };
-        showElement.addEventListener('animationend', handleInEnd);
-    };
-
-    hideElement.addEventListener('animationend', handleOutEnd);
+        window.springSystem.animate(
+            inId,
+            20, // Start (20px down)
+            0,  // End (0px)
+            { stiffness: 250, damping: 25, mass: 1 }, // Slightly softer landing
+            (val) => {
+                const opacity = 1 - (val / 20);
+                showElement.style.opacity = Math.max(0, opacity);
+                showElement.style.transform = `translateY(${val}px)`;
+            },
+            () => {
+                // Clean up styles
+                showElement.style.transform = '';
+                showElement.style.opacity = '';
+                if (onComplete) onComplete();
+            }
+        );
+    });
 }
 
 // Playground Tab Switching Logic
