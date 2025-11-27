@@ -15,340 +15,261 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <!-- SVG Sprite System -->
-    <svg style="display: none;">
-        <symbol id="icon-theme" viewBox="0 0 24 24">
-            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
-        </symbol>
-        <symbol id="icon-location" viewBox="0 0 24 24">
-            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
-        </symbol>
-        <symbol id="icon-phone" viewBox="0 0 24 24">
-            <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.44-5.15-3.75-6.59-6.59l1.97-1.57c.26-.26.35-.65.24-1.01A11.36 11.36 0 019.96 4.3c0-.55-.45-1-1-1H4.3c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-4.66c.01-.55-.44-1-.99-1z" />
-        </symbol>
-        <symbol id="icon-mail" viewBox="0 0 24 24">
-            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
-        </symbol>
-        <symbol id="icon-github" viewBox="0 0 24 24">
-            <path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48 0-.24-.01-.88-.01-1.73-2.78.6-3.37-1.34-3.37-1.34-.45-1.15-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1.01.07 1.53 1.04 1.53 1.04.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02.8-.22 1.65-.33 2.5-.33.85 0 1.7.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.94.36.31.68.92.68 1.85 0 1.34-.01 2.42-.01 2.75 0 .27.18.58.69.48A10.01 10.01 0 0 0 22 12c0-5.52-4.48-10-10-10z" />
-        </symbol>
-        <symbol id="icon-linkedin" viewBox="0 0 24 24">
-            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-        </symbol>
-        <symbol id="icon-fluid" viewBox="0 0 24 24">
-            <path d="M12 2C9 6 6 8 6 11a6 6 0 0012 0c0-3-3-5-6-9z"/>
-        </symbol>
-        <symbol id="icon-gravity" viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="3"/>
-            <path d="M2 12a10 10 0 0020 0" fill="none" stroke="#000" stroke-width="0"/>
-        </symbol>
-        <symbol id="icon-pendulum" viewBox="0 0 24 24">
-            <path d="M12 2v6"/>
-            <circle cx="12" cy="12" r="2"/>
-            <path d="M12 14v6"/>
-        </symbol>
-        <symbol id="icon-wave" viewBox="0 0 24 24">
-            <path d="M2 12c4-8 8 8 12 0s8 8 12 0"/>
-        </symbol>
-    </svg>
 
     <a class="skip-link" href="#main-content">Pular para o conteúdo</a>
 
-    <!-- Mobile Menu Button -->
-    <button class="menu-toggle" aria-label="Abrir menu" onclick="toggleSidebar()">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="3" y1="12" x2="21" y2="12"></line>
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <line x1="3" y1="18" x2="21" y2="18"></line>
-        </svg>
-    </button>
-
-    <!-- Sidebar Overlay -->
-    <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
-
-    <nav class="doc-sidebar">
-        <div class="sidebar-header">
-            <span class="doc-title">Currículo</span>
-            <button class="sidebar-toggle" onclick="toggleDesktopSidebar()" aria-label="Alternar menu">
-                <!-- Icon for Open State (Chevron Left) -->
-                <svg class="icon icon-collapse" viewBox="0 0 24 24">
-                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-                </svg>
-                <!-- Icon for Closed State (List/Menu) -->
-                <svg class="icon icon-expand" viewBox="0 0 24 24">
-                    <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
-                </svg>
-            </button>
+    <!-- Global Glass Navbar -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <i class="ph ph-apple-logo" style="font-size: 24px;"></i> <!-- Placeholder Icon, or use Initials -->
+            Pedro Afonso
         </div>
         
-        <div class="sidebar-section">
-            <div class="sidebar-label">Páginas</div>
-            <button class="sidebar-item active" data-view="resume" onclick="switchView('resume')">
-                <svg class="sidebar-icon" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
-                <span>Currículo</span>
-            </button>
-            <button class="sidebar-item" data-view="playground" onclick="switchView('playground')">
-                <svg class="sidebar-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-                <span>Playground</span>
+        <div class="nav-actions">
+            <button class="btn-pill active" data-view="resume" onclick="switchView('resume')">Currículo</button>
+            <button class="btn-pill" data-view="playground" onclick="switchView('playground')">Playground</button>
+
+            <div style="width: 1px; height: 24px; background: var(--border); margin: 0 8px;"></div>
+
+            <div class="lang-toggle" role="group" aria-label="Language Selection">
+                <button class="lang-btn active" onclick="setLanguage('pt')">PT</button>
+                <button class="lang-btn" onclick="setLanguage('en')">EN</button>
+                <button class="lang-btn" onclick="setLanguage('es')">ES</button>
+            </div>
+
+            <button class="theme-toggle btn-icon" aria-label="Alternar modo noturno">
+                <i class="ph ph-moon"></i>
             </button>
         </div>
 
-        <div class="sidebar-section" id="outline-section">
-            <div class="sidebar-label">Neste documento</div>
-            <div class="outline-list">
-                <!-- Populated by JS -->
-            </div>
-        </div>
+        <!-- Mobile Menu Toggle (Simplified) -->
+        <button class="menu-toggle" onclick="toggleSidebar()">
+            <i class="ph ph-list"></i>
+        </button>
     </nav>
 
-    <div class="content-wrapper">
-        <main id="resume-view" class="container" role="main">
-            <div class="top-bar" role="navigation" aria-label="Controles de idioma e tema">
-                <div class="lang-toggle" role="group" aria-label="Language Selection">
-                    <button class="lang-btn active" onclick="setLanguage('pt')" aria-label="Mudar para Português">PT</button>
-                    <button class="lang-btn" onclick="setLanguage('en')" aria-label="Switch to English">EN</button>
-                    <button class="lang-btn" onclick="setLanguage('es')" aria-label="Cambiar a Español">ES</button>
+    <!-- Resume View -->
+    <main id="resume-view" class="app-layout" role="main">
+
+        <!-- Left Column: Profile & Contact -->
+        <aside class="profile-column">
+            <div class="card-apple profile-card">
+                <div class="profile-avatar">
+                    <i class="ph ph-user"></i>
                 </div>
-    
-                <div style="display:flex; align-items:center; gap:0.5rem;">
-                    <button class="theme-btn theme-toggle" aria-label="Alternar modo noturno" title="Alternar modo noturno">
-                        <svg class="icon" aria-hidden="true">
-                            <use href="#icon-theme"></use>
-                        </svg>
-                    </button>
+                <h1>Pedro Afonso</h1>
+                <div class="role" data-i18n="role">Gestão Comercial & Desenvolvimento Digital</div>
+                <div class="role-badge">Open to Work</div>
+
+                <div class="contact-list">
+                    <div class="contact-item">
+                        <i class="ph ph-map-pin"></i>
+                        <span>Campinas, SP</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="ph ph-phone"></i>
+                        <a href="tel:+5519994418294">+55 19 99441-8294</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="ph ph-envelope-simple"></i>
+                        <a href="mailto:pedro.app1@proton.me">pedro.app1@proton.me</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="ph ph-github-logo"></i>
+                        <a href="https://github.com/PedroAfonso0102" target="_blank">PedroAfonso0102</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="ph ph-linkedin-logo"></i>
+                        <a href="https://www.linkedin.com/in/pedro-afonso-d-69b617100/" target="_blank">Pedro Afonso</a>
+                    </div>
                 </div>
             </div>
+        </aside>
 
-            <header>
-            <h1>Pedro Afonso Pinheiro de Paula</h1>
-            <div class="role" data-i18n="role">Gestão Comercial & Desenvolvimento Digital</div>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <!-- Location Icon -->
-                    <svg class="icon">
-                        <use href="#icon-location"></use>
-                    </svg>
-                    <span>Campinas, SP</span>
-                </div>
-                <div class="contact-item">
-                    <!-- Phone Icon -->
-                    <svg class="icon">
-                        <use href="#icon-phone"></use>
-                    </svg>
-                    <a href="tel:+5519994418294" title="Ligar">+55 19 99441-8294</a>
-                </div>
-                <div class="contact-item">
-                    <!-- Mail Icon -->
-                    <svg class="icon">
-                        <use href="#icon-mail"></use>
-                    </svg>
-                    <a href="mailto:pedro.app1@proton.me" title="Enviar email">pedro.app1@proton.me</a>
-                </div>
-                <div class="contact-item">
-                    <!-- GitHub Icon -->
-                    <svg class="icon">
-                        <use href="#icon-github"></use>
-                    </svg>
-                    <a href="https://github.com/PedroAfonso0102" target="_blank" rel="noopener" title="Perfil no GitHub">PedroAfonso0102</a>
-                </div>
-                <div class="contact-item">
-                    <!-- LinkedIn Icon -->
-                    <svg class="icon" aria-hidden="true">
-                        <use href="#icon-linkedin"></use>
-                    </svg>
-                    <a href="https://www.linkedin.com/in/pedro-afonso-d-69b617100/" target="_blank" rel="noopener" title="Perfil no LinkedIn" aria-label="LinkedIn">Pedro Afonso</a>
-                </div>
-            </div>
-        </header>
+        <!-- Right Column: Content Stream -->
+        <div class="content-area">
 
-        <section>
-            <h2 data-i18n="section_summary">Resumo</h2>
-            <p class="item-content" data-i18n="summary_text">
-                Profissional com atuação híbrida em Gestão Comercial e Desenvolvimento Digital. Combino experiência prática em vendas consultivas de alto valor com competência técnica em desenvolvimento web e produção audiovisual. Foco em execução: utilizo dados para qualificar leads, crio ferramentas digitais para otimizar processos e produzo conteúdo visual para suporte direto a vendas. Orientado a eficiência operacional e resultados financeiros.
-            </p>
-        </section>
+            <!-- Summary -->
+            <article class="card-apple">
+                <h2 data-i18n="section_summary">Resumo</h2>
+                <p data-i18n="summary_text">
+                    Profissional com atuação híbrida em Gestão Comercial e Desenvolvimento Digital. Combino experiência prática em vendas consultivas de alto valor com competência técnica em desenvolvimento web e produção audiovisual. Foco em execução: utilizo dados para qualificar leads, crio ferramentas digitais para otimizar processos e produzo conteúdo visual para suporte direto a vendas. Orientado a eficiência operacional e resultados financeiros.
+                </p>
+            </article>
 
-        <section>
-            <h2 data-i18n="section_experience">Experiência Profissional</h2>
+            <!-- Experience -->
+            <div>
+                <h2 style="margin-left: 12px; margin-bottom: 16px;" data-i18n="section_experience">Experiência Profissional</h2>
 
-            <div class="item">
-                <div class="item-header">
-                    <span class="item-title" data-i18n="job1_title">Analista de Vendas e Processos</span>
-                    <span class="item-date">2023</span>
-                </div>
-                <span class="item-subtitle">Wise Inteligência Imobiliária (Operação BTG Pactual)</span>
-                <ul class="details-list">
-                    <li data-i18n="job1_desc1"><strong>Vendas Consultivas:</strong> Gestão integral do ciclo de vendas de imóveis com ticket médio entre R$ 120k e R$ 2.5M, com atuação em ativos acima de R$ 13M.</li>
-                    <li data-i18n="job1_desc2"><strong>Qualificação de Leads:</strong> Uso de análise de dados para filtragem de oportunidades no CRM, aumentando a taxa de conversão real do funil.</li>
-                    <li data-i18n="job1_desc3"><strong>Otimização de Rotina:</strong> Reestruturação de processos de follow-up e atendimento, reduzindo o tempo operacional gasto por cliente.</li>
-                </ul>
-            </div>
-
-            <div class="item">
-                <div class="item-header">
-                    <span class="item-title" data-i18n="job2_title">Fundador e Presidente</span>
-                    <span class="item-date">2022 – 2023</span>
-                </div>
-                <span class="item-subtitle">CARI PUCCAMP</span>
-                <ul class="details-list">
-                    <li data-i18n="job2_desc1"><strong>Gestão Institucional:</strong> Fundou e estruturou juridicamente a entidade, liderando uma equipe operacional de 30 membros.</li>
-                    <li data-i18n="job2_desc2"><strong>Controle Financeiro:</strong> Assumiu o caixa do zero e entregou a gestão com superávit líquido de +R$ 4.000 através de controle de custos e receita.</li>
-                    <li data-i18n="job2_desc3"><strong>Execução de Projetos:</strong> Organizou e supervisionou a execução de eventos e projetos acadêmicos com foco em viabilidade econômica.</li>
-                </ul>
-            </div>
-
-            <div class="item">
-                <div class="item-header">
-                    <span class="item-title" data-i18n="job3_title">Produtor Digital e Desenvolvedor</span>
-                    <span class="item-date">2020 – Atual</span>
-                </div>
-                <span class="item-subtitle" data-i18n="job3_company">Autônomo</span>
-                <ul class="details-list">
-                    <li data-i18n="job3_desc1"><strong>Projetos Web:</strong> Desenvolvimento de interfaces e landing pages (HTML/CSS/JS) focadas em conversão e performance.</li>
-                    <li data-i18n="job3_desc2"><strong>Produção Audiovisual:</strong> Edição e motion graphics (Premiere/After Effects) para comunicação corporativa e materiais de venda.</li>
-                    <li data-i18n="job3_desc4"></li>
-                    <li data-i18n="job3_desc3"><strong>Automação:</strong> Criação de scripts e ferramentas simples para automação de tarefas repetitivas e organização de fluxo de trabalho.</li>
-                </ul>
-            </div>
-
-            <div class="item">
-                <div class="item-header">
-                    <span class="item-title" data-i18n="job4_title">Assistente de Importação</span>
-                    <span class="item-date">2018 – 2019</span>
-                </div>
-                <span class="item-subtitle">INDISA</span>
-                <ul class="details-list">
-                    <li data-i18n="job4_desc1"><strong>Comércio Exterior:</strong> Operacionalização de processos de importação/exportação e gestão de relacionamento com cadeia de suprimentos internacional.</li>
-                </ul>
-            </div>
-        </section>
-
-        <section>
-            <h2 data-i18n="section_skills">Habilidades Técnicas</h2>
-            <div class="skills-grid">
-                <div class="skill-group">
-                    <h3 data-i18n="skill_cat1">Design e Audiovisual</h3>
-                    <ul class="skill-pills">
-                        <li class="skill-pill">Photoshop</li>
-                        <li class="skill-pill">Lightroom</li>
-                        <li class="skill-pill">Premiere Pro</li>
-                        <li class="skill-pill">After Effects</li>
-                        <li class="skill-pill">Motion Graphics</li>
+                <article class="card-apple">
+                    <div class="exp-header">
+                        <span class="exp-title" data-i18n="job1_title">Analista de Vendas e Processos</span>
+                        <span class="exp-date">2023</span>
+                    </div>
+                    <span class="exp-company">Wise Inteligência Imobiliária (Operação BTG Pactual)</span>
+                    <ul class="details-list">
+                        <li data-i18n="job1_desc1"><strong>Vendas Consultivas:</strong> Gestão integral do ciclo de vendas de imóveis com ticket médio entre R$ 120k e R$ 2.5M, com atuação em ativos acima de R$ 13M.</li>
+                        <li data-i18n="job1_desc2"><strong>Qualificação de Leads:</strong> Uso de análise de dados para filtragem de oportunidades no CRM, aumentando a taxa de conversão real do funil.</li>
+                        <li data-i18n="job1_desc3"><strong>Otimização de Rotina:</strong> Reestruturação de processos de follow-up e atendimento, reduzindo o tempo operacional gasto por cliente.</li>
                     </ul>
-                </div>
-                <div class="skill-group">
-                    <h3 data-i18n="skill_cat2">Negócios e Ferramentas</h3>
-                    <ul class="skill-pills">
-                        <li class="skill-pill">Excel (Dashboards)</li>
-                        <li class="skill-pill">CRM</li>
-                        <li class="skill-pill">Negociação B2B</li>
-                        <li class="skill-pill">HTML/CSS</li>
-                        <li class="skill-pill">JavaScript</li>
+                </article>
+
+                <article class="card-apple">
+                    <div class="exp-header">
+                        <span class="exp-title" data-i18n="job2_title">Fundador e Presidente</span>
+                        <span class="exp-date">2022 – 2023</span>
+                    </div>
+                    <span class="exp-company">CARI PUCCAMP</span>
+                    <ul class="details-list">
+                        <li data-i18n="job2_desc1"><strong>Gestão Institucional:</strong> Fundou e estruturou juridicamente a entidade, liderando uma equipe operacional de 30 membros.</li>
+                        <li data-i18n="job2_desc2"><strong>Controle Financeiro:</strong> Assumiu o caixa do zero e entregou a gestão com superávit líquido de +R$ 4.000 através de controle de custos e receita.</li>
+                        <li data-i18n="job2_desc3"><strong>Execução de Projetos:</strong> Organizou e supervisionou a execução de eventos e projetos acadêmicos com foco em viabilidade econômica.</li>
                     </ul>
-                </div>
-            </div>
-        </section>
+                </article>
 
-        <section>
-            <h2 data-i18n="section_education">Formação Acadêmica</h2>
-            <div class="item">
-                <div class="item-header">
-                    <span class="item-title" data-i18n="edu1_title">Relações Internacionais (Bacharelado)</span>
-                    <span class="item-date">2020 – Atual</span>
-                </div>
-                <span class="item-subtitle">PUC-Campinas</span>
-            </div>
-            <div class="item">
-                <div class="item-header">
-                    <span class="item-title" data-i18n="edu2_title">Técnico em Administração</span>
-                    <span class="item-date">2014 – 2016</span>
-                </div>
-                <span class="item-subtitle">ETEC Bento Quirino</span>
-            </div>
-        </section>
+                <article class="card-apple">
+                    <div class="exp-header">
+                        <span class="exp-title" data-i18n="job3_title">Produtor Digital e Desenvolvedor</span>
+                        <span class="exp-date">2020 – Atual</span>
+                    </div>
+                    <span class="exp-company" data-i18n="job3_company">Autônomo</span>
+                    <ul class="details-list">
+                        <li data-i18n="job3_desc1"><strong>Projetos Web:</strong> Desenvolvimento de interfaces e landing pages (HTML/CSS/JS) focadas em conversão e performance.</li>
+                        <li data-i18n="job3_desc2"><strong>Produção Audiovisual:</strong> Edição e motion graphics (Premiere/After Effects) para comunicação corporativa e materiais de venda.</li>
+                        <li data-i18n="job3_desc4"></li>
+                        <li data-i18n="job3_desc3"><strong>Automação:</strong> Criação de scripts e ferramentas simples para automação de tarefas repetitivas e organização de fluxo de trabalho.</li>
+                    </ul>
+                </article>
 
-        <section>
-            <h2 data-i18n="section_languages">Idiomas</h2>
-            
-            <div class="languages-grid">
-                <div class="lang-card">
-                    <span class="lang-name" data-i18n="lang1_name">Português</span>
-                    <span class="lang-details" data-i18n="lang1_details">Nativo</span>
-                </div>
-
-                <div class="lang-card">
-                    <span class="lang-name" data-i18n="lang2_name">Inglês</span>
-                    <span class="lang-details" data-i18n="lang2_details">Fluente (Vivência Internacional & Comércio Exterior)</span>
-                </div>
-
-                <div class="lang-card">
-                    <span class="lang-name" data-i18n="lang3_name">Espanhol</span>
-                    <span class="lang-details" data-i18n="lang3_details">Profissional (Foco em leitura, compreensão corporativa)</span>
-                </div>
-
-                <div class="lang-card">
-                    <span class="lang-name" data-i18n="lang4_name">Africâner</span>
-                    <span class="lang-details" data-i18n="lang4_details">Básico (Noções gerais)</span>
-                </div>
+                <article class="card-apple">
+                    <div class="exp-header">
+                        <span class="exp-title" data-i18n="job4_title">Assistente de Importação</span>
+                        <span class="exp-date">2018 – 2019</span>
+                    </div>
+                    <span class="exp-company">INDISA</span>
+                    <ul class="details-list">
+                        <li data-i18n="job4_desc1"><strong>Comércio Exterior:</strong> Operacionalização de processos de importação/exportação e gestão de relacionamento com cadeia de suprimentos internacional.</li>
+                    </ul>
+                </article>
             </div>
-        </section>
 
-        <section>
-            <h2 data-i18n="section_activities">Atividades Extracurriculares</h2>
-            <div class="item">
-                <div class="item-header">
-                    <span class="item-title">Rotary International</span>
-                    <span class="item-date">2015 – 2019</span>
+            <!-- Skills -->
+            <article class="card-apple">
+                <h2 data-i18n="section_skills">Habilidades Técnicas</h2>
+
+                <h3 data-i18n="skill_cat1" style="margin-top: 1rem; color: var(--text-secondary); text-transform: uppercase; font-size: 13px;">Design e Audiovisual</h3>
+                <div class="skills-container" style="margin-bottom: 24px;">
+                    <div class="skill-box"><i class="ph ph-paint-brush skill-icon"></i><span class="skill-name">Photoshop</span></div>
+                    <div class="skill-box"><i class="ph ph-camera skill-icon"></i><span class="skill-name">Lightroom</span></div>
+                    <div class="skill-box"><i class="ph ph-video skill-icon"></i><span class="skill-name">Premiere</span></div>
+                    <div class="skill-box"><i class="ph ph-film-strip skill-icon"></i><span class="skill-name">After Effects</span></div>
+                    <div class="skill-box"><i class="ph ph-magic-wand skill-icon"></i><span class="skill-name">Motion</span></div>
                 </div>
-                <ul class="details-list">
-                    <li data-i18n="act1_desc">Gestão estratégica de Imagem Pública e comunicação corporativa para o Interact e Rotaract Club.</li>
-                </ul>
-            </div>
-            <div class="item">
-                <div class="item-header">
-                    <span class="item-title" data-i18n="act2_title">Intercâmbio (Rotary Youth Exchange)</span>
-                    <span class="item-date">2017 – 2018</span>
+
+                <h3 data-i18n="skill_cat2" style="color: var(--text-secondary); text-transform: uppercase; font-size: 13px;">Negócios e Ferramentas</h3>
+                <div class="skills-container">
+                    <div class="skill-box"><i class="ph ph-file-xls skill-icon"></i><span class="skill-name">Excel</span></div>
+                    <div class="skill-box"><i class="ph ph-users-three skill-icon"></i><span class="skill-name">CRM</span></div>
+                    <div class="skill-box"><i class="ph ph-handshake skill-icon"></i><span class="skill-name">B2B Sales</span></div>
+                    <div class="skill-box"><i class="ph ph-code skill-icon"></i><span class="skill-name">HTML/CSS</span></div>
+                    <div class="skill-box"><i class="ph ph-file-js skill-icon"></i><span class="skill-name">JavaScript</span></div>
                 </div>
-                <ul class="details-list">
-                    <li data-i18n="act2_desc">África do Sul.</li>
-                </ul>
-            </div>
-        </section>
+            </article>
+
+            <!-- Education -->
+            <article class="card-apple">
+                <h2 data-i18n="section_education">Formação Acadêmica</h2>
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <span class="exp-title" data-i18n="edu1_title">Relações Internacionais (Bacharelado)</span>
+                        <span class="exp-date">2020 – Atual</span>
+                    </div>
+                    <span class="exp-company">PUC-Campinas</span>
+                </div>
+                <div class="exp-item" style="border:none;">
+                    <div class="exp-header">
+                        <span class="exp-title" data-i18n="edu2_title">Técnico em Administração</span>
+                        <span class="exp-date">2014 – 2016</span>
+                    </div>
+                    <span class="exp-company">ETEC Bento Quirino</span>
+                </div>
+            </article>
+
+            <!-- Languages -->
+            <article class="card-apple">
+                <h2 data-i18n="section_languages">Idiomas</h2>
+                <div class="lang-grid">
+                    <div class="lang-item">
+                        <span class="lang-name" data-i18n="lang1_name">Português</span>
+                        <span class="lang-details" data-i18n="lang1_details">Nativo</span>
+                    </div>
+                    <div class="lang-item">
+                        <span class="lang-name" data-i18n="lang2_name">Inglês</span>
+                        <span class="lang-details" data-i18n="lang2_details">Fluente</span>
+                    </div>
+                    <div class="lang-item">
+                        <span class="lang-name" data-i18n="lang3_name">Espanhol</span>
+                        <span class="lang-details" data-i18n="lang3_details">Profissional</span>
+                    </div>
+                    <div class="lang-item">
+                        <span class="lang-name" data-i18n="lang4_name">Africâner</span>
+                        <span class="lang-details" data-i18n="lang4_details">Básico</span>
+                    </div>
+                </div>
+            </article>
+
+             <!-- Activities -->
+            <article class="card-apple">
+                <h2 data-i18n="section_activities">Atividades Extracurriculares</h2>
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <span class="exp-title">Rotary International</span>
+                        <span class="exp-date">2015 – 2019</span>
+                    </div>
+                    <p data-i18n="act1_desc">Gestão estratégica de Imagem Pública e comunicação corporativa.</p>
+                </div>
+                <div class="exp-item" style="border:none;">
+                    <div class="exp-header">
+                        <span class="exp-title" data-i18n="act2_title">Intercâmbio (Rotary Youth Exchange)</span>
+                        <span class="exp-date">2017 – 2018</span>
+                    </div>
+                    <p data-i18n="act2_desc">África do Sul.</p>
+                </div>
+            </article>
+
+        </div>
     </main>
 
-    <div id="playground-view" class="container" style="display: none;">
-        <div class="top-bar" role="navigation" aria-label="Controles de idioma e tema">
-            <div class="lang-toggle" role="group" aria-label="Language Selection">
-                <button class="lang-btn active" onclick="setLanguage('pt')" aria-label="Mudar para Português">PT</button>
-                <button class="lang-btn" onclick="setLanguage('en')" aria-label="Switch to English">EN</button>
-                <button class="lang-btn" onclick="setLanguage('es')" aria-label="Cambiar a Español">ES</button>
+    <!-- Playground View -->
+    <div id="playground-view" class="app-layout" style="display: none;">
+        <!-- Left Column: Navigation/Info for Playground (Optional, can be empty or have controls) -->
+        <aside class="profile-column">
+            <div class="card-apple profile-card">
+                 <div class="profile-avatar" style="background: var(--accent); color: white;">
+                    <i class="ph ph-flask"></i>
+                </div>
+                <h1>Playground</h1>
+                <div class="role">Laboratório Digital</div>
+                <p style="font-size: 14px; margin-top: 1rem; color: var(--text-secondary);">
+                    Área dedicada a experimentações com Canvas API, simulações físicas e testes de interface.
+                </p>
             </div>
 
-            <div style="display:flex; align-items:center; gap:0.5rem;">
-                <button class="theme-btn theme-toggle" aria-label="Alternar modo noturno" title="Alternar modo noturno">
-                    <svg class="icon" aria-hidden="true">
-                        <use href="#icon-theme"></use>
-                    </svg>
-                </button>
+            <!-- Tab Navigation Vertical for Desktop -->
+            <div class="card-apple" style="padding: 16px; margin-top: 24px;">
+                 <button class="btn-pill active" onclick="switchPlaygroundTab('experiments')" data-i18n="tab_experiments" style="width: 100%; text-align: left; margin-bottom: 8px;">Experimentos</button>
+                 <button class="btn-pill" onclick="switchPlaygroundTab('comex')" data-i18n="tab_comex" style="width: 100%; text-align: left; margin-bottom: 8px;">Notícias ComEx</button>
+                 <button class="btn-pill" onclick="switchPlaygroundTab('international')" data-i18n="tab_international" style="width: 100%; text-align: left;">Notícias Internacionais</button>
             </div>
-        </div>
+        </aside>
 
-        <header>
-            <h1>Playground</h1>
-            <div class="role">Área de Testes e Experimentação</div>
-        </header>
-
-        <!-- Playground Tabs -->
-        <div class="playground-tabs">
-            <button class="pg-tab-btn active" onclick="switchPlaygroundTab('experiments')" data-i18n="tab_experiments">Experimentos</button>
-            <button class="pg-tab-btn" onclick="switchPlaygroundTab('comex')" data-i18n="tab_comex">Notícias ComEx</button>
-            <button class="pg-tab-btn" onclick="switchPlaygroundTab('international')" data-i18n="tab_international">Notícias Internacionais</button>
-        </div>
+        <div class="content-area">
 
         <!-- Dashboard Grid (Tab Content: Experiments) -->
         <div id="tab-experiments" class="pg-tab-content active">
@@ -511,7 +432,7 @@
                 <p class="item-content" data-i18n="tab_intl_desc">Em breve: Feed de notícias internacionais.</p>
             </section>
         </div>
-    </div> <!-- End content-wrapper -->
+    </div> <!-- End playground-view -->
 
     <script src="js/experiments.js"></script>
     <script src="main.js"></script>

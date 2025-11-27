@@ -174,7 +174,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (persist) {
             localStorage.setItem('theme', isDark ? 'dark' : 'light');
         }
-        themeToggleBtns.forEach(btn => btn.setAttribute('aria-pressed', isDark ? 'true' : 'false'));
+        themeToggleBtns.forEach(btn => {
+            btn.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+            // Update Icon
+            const icon = btn.querySelector('i');
+            if (icon) {
+                icon.className = isDark ? 'ph ph-sun' : 'ph ph-moon';
+            }
+        });
         window.dispatchEvent(new CustomEvent('themechange', { detail: { isDark } }));
     };
 
@@ -200,9 +207,6 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.setAttribute('aria-pressed', btn.classList.contains('active') ? 'true' : 'false');
     });
 
-    // Initialize Sidebar Logic
-    generateOutline('#resume-view');
-    setupScrollSpy('#resume-view');
     // Initialize language based on active button or browser preference
     const activeLangBtn = document.querySelector('.lang-btn.active');
     const initialLang = activeLangBtn ? activeLangBtn.textContent.toLowerCase() : (navigator.language ? navigator.language.slice(0,2) : 'pt');
@@ -214,8 +218,8 @@ function switchView(viewName) {
     const resumeView = document.getElementById('resume-view');
     const playgroundView = document.getElementById('playground-view');
     
-    // Update Sidebar Buttons using data-view attribute
-    document.querySelectorAll('.sidebar-item').forEach(btn => {
+    // Update Navbar Buttons
+    document.querySelectorAll('[data-view]').forEach(btn => {
         btn.classList.remove('active');
         if (btn.getAttribute('data-view') === viewName) {
             btn.classList.add('active');
@@ -233,9 +237,11 @@ function switchView(viewName) {
                 window.Experiments.stopCurrent();
             }
         }
-        const selector = isResume ? '#resume-view' : '#playground-view';
-        generateOutline(selector);
-        setTimeout(() => setupScrollSpy(selector), 100);
+        // Mobile Menu close logic if open
+        const navbar = document.querySelector('.navbar');
+        if (navbar && navbar.classList.contains('open')) {
+            toggleSidebar();
+        }
     });
 }
 
@@ -353,9 +359,6 @@ function initExperimentLogic(type, view) {
             bound.push({ el: ctrl, handler });
         });
         view._expBound = bound;
-
-        generateOutline('#playground-view');
-        setupScrollSpy('#playground-view');
 }
 
 function closeExperiment() {
@@ -374,8 +377,6 @@ function closeExperiment() {
                 activeView._expBound = null;
             }
         }
-        generateOutline('#playground-view');
-        setupScrollSpy('#playground-view');
     });
 }
 
@@ -385,132 +386,39 @@ window.closeExperiment = closeExperiment;
 window.switchView = switchView;
 window.setLanguage = setLanguage;
 window.toggleSidebar = toggleSidebar;
-window.toggleDesktopSidebar = toggleDesktopSidebar;
+window.switchPlaygroundTab = switchPlaygroundTab;
 
-// Sidebar Toggle Logic
+// Sidebar Toggle Logic (Mobile)
 function toggleSidebar() {
-    const sidebar = document.querySelector('.doc-sidebar');
-    const overlay = document.querySelector('.sidebar-overlay');
-    const isOpen = sidebar.classList.contains('open');
+    const navbar = document.querySelector('.navbar');
+    // Toggle class on navbar to show/hide nav-actions
+    navbar.classList.toggle('open');
     
-    if (isOpen) {
-        sidebar.classList.remove('open');
-        overlay.classList.remove('active');
-        document.body.style.overflow = '';
-    } else {
-        sidebar.classList.add('open');
-        overlay.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    // Toggle Icon (List <-> X)
+    const btn = document.querySelector('.menu-toggle i');
+    if (btn) {
+        if (navbar.classList.contains('open')) {
+            btn.classList.remove('ph-list');
+            btn.classList.add('ph-x');
+        } else {
+            btn.classList.remove('ph-x');
+            btn.classList.add('ph-list');
+        }
     }
 }
 
-function toggleDesktopSidebar() {
-    const isCollapsed = document.body.classList.toggle('sidebar-collapsed');
-    localStorage.setItem('sidebar-collapsed', isCollapsed ? 'true' : 'false');
+// Close mobile menu when clicking outside
+document.addEventListener('click', (e) => {
+    const navbar = document.querySelector('.navbar');
+    const toggle = document.querySelector('.menu-toggle');
     
-    // Trigger resize event for canvas experiments to adjust
-    setTimeout(() => {
-        window.dispatchEvent(new Event('resize'));
-    }, 300);
-}
-
-// Close sidebar when clicking a link on mobile
-document.addEventListener('DOMContentLoaded', () => {
-    // Restore Sidebar State (Default to collapsed if not set)
-    const storedSidebarState = localStorage.getItem('sidebar-collapsed');
-    
-    // If 'true' OR null (first visit), collapse it.
-    if (storedSidebarState === 'true' || storedSidebarState === null) {
-        document.body.classList.add('sidebar-collapsed');
-    } else {
-        document.body.classList.remove('sidebar-collapsed');
+    if (navbar && navbar.classList.contains('open')) {
+        if (!navbar.contains(e.target) && !toggle.contains(e.target)) {
+            toggleSidebar();
+        }
     }
-
-    // ...existing code...
-    
-    // Close sidebar on link click (mobile)
-    const sidebarLinks = document.querySelectorAll('.sidebar-item, .outline-item');
-    sidebarLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            if (window.innerWidth <= 900) {
-                const sidebar = document.querySelector('.doc-sidebar');
-                if (sidebar.classList.contains('open')) {
-                    toggleSidebar();
-                }
-            }
-        });
-    });
 });
 
-// Outline Generation Logic
-function generateOutline(rootSelector = '#resume-view') {
-    const outlineList = document.querySelector('.outline-list');
-    const root = document.querySelector(rootSelector);
-    if (!outlineList || !root) return;
-    const sections = Array.from(root.querySelectorAll('h2')).filter(section => section.offsetParent !== null);
-    
-    outlineList.innerHTML = ''; // Clear existing
-
-    if (!sections.length) {
-        const empty = document.createElement('div');
-        empty.className = 'outline-empty';
-        empty.textContent = 'Sem seções disponíveis.';
-        outlineList.appendChild(empty);
-        return;
-    }
-
-    sections.forEach((section, index) => {
-        if (!section.id) {
-            section.id = `${rootSelector.replace('#', '')}-section-${index}`;
-        }
-
-        const link = document.createElement('a');
-        link.className = 'outline-item';
-        link.textContent = section.textContent;
-        link.href = `#${section.id}`;
-        
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            section.scrollIntoView({ behavior: 'smooth' });
-        });
-
-        outlineList.appendChild(link);
-    });
-}
-
-// Scroll Spy Logic (Highlight active section in outline)
-function setupScrollSpy(rootSelector = '#resume-view') {
-    const sections = Array.from(document.querySelectorAll(`${rootSelector} h2`)).filter(section => section.offsetParent !== null);
-    const outlineItems = document.querySelectorAll('.outline-item');
-
-    if (!sections.length || !outlineItems.length) {
-        return;
-    }
-
-    const observerOptions = {
-        root: null,
-        rootMargin: '-10% 0px -80% 0px', // Trigger when section is near top
-        threshold: 0
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Remove active class from all
-                outlineItems.forEach(item => item.classList.remove('active'));
-                
-                // Add active class to corresponding link
-                const id = entry.target.id;
-                const activeLink = document.querySelector(`.outline-item[href="#${id}"]`);
-                if (activeLink) {
-                    activeLink.classList.add('active');
-                }
-            }
-        });
-    }, observerOptions);
-
-    sections.forEach(section => observer.observe(section));
-}
 
 /*
  * Helper to animate elements out before hiding them,
@@ -544,7 +452,7 @@ function animateTransition(hideElement, showElement, onComplete) {
 
     // Safety timeout in case animationend never fires
     const safetyTimer = setTimeout(() => {
-        console.warn('Animation timeout - forcing transition');
+        // console.warn('Animation timeout - forcing transition');
         handleOutEnd();
     }, 300); // Slightly longer than CSS animation (0.2s)
 
@@ -581,17 +489,17 @@ function animateTransition(hideElement, showElement, onComplete) {
 
 // Playground Tab Switching Logic
 function switchPlaygroundTab(tabId) {
-    // 1. Update Buttons
-    const buttons = document.querySelectorAll('.pg-tab-btn');
+    // 1. Update Buttons (now in the side column of playground)
+    const buttons = document.querySelectorAll('#playground-view .btn-pill');
     buttons.forEach(btn => {
-        // Simple logic: if onclick contains the tabId, it's the active one
-        // A robust way is to check the tab index or passed argument match
-        // But here we can just check the onclick string or add data-tab attribute
-        // Let's rely on the order or check the onclick attribute content
-        if (btn.getAttribute('onclick').includes(tabId)) {
+        // Check if button onClick contains tabId
+        if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(tabId)) {
             btn.classList.add('active');
         } else {
-            btn.classList.remove('active');
+            // Only remove active if it's one of the tab buttons, not unrelated buttons
+            if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes('switchPlaygroundTab')) {
+                btn.classList.remove('active');
+            }
         }
     });
 
@@ -604,10 +512,6 @@ function switchPlaygroundTab(tabId) {
     const target = document.getElementById(`tab-${tabId}`);
     if (target) {
         target.classList.add('active');
-        
-        // Update Sidebar Outline for the new tab
-        generateOutline('#playground-view');
-        setTimeout(() => setupScrollSpy('#playground-view'), 100);
     }
 }
 
