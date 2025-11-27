@@ -99,7 +99,7 @@ const translations = {
         summary_text: "Profesional con enfoque híbrido en Gestión Comercial y Desarrollo Digital. Combino experiencia práctica en ventas consultivas de alto valor con competencia técnica en desarrollo web y producción audiovisual. Enfoque en ejecución: utilizo datos para calificar leads, creo herramientas digitales para optimizar procesos y produzco contenido visual para soporte directo a ventas. Orientado a la eficiencia operativa y resultados financieros.",
         section_experience: "Experiencia Profesional",
         job1_title: "Analista de Ventas y Procesos",
-        job1_desc1: "<strong>Ventas Consultivas:</strong> Gestión integral del ciclo de ventas de inmuebles con ticket medio entre R$ 120k y R$ 2.5M, actuando en activos superiores a R$ 13M.",
+        job1_desc1: "<strong>Ventas Consultivas:</strong> Gestión integral del ciclo de ventas de inmuebles con ticket medio entre R$ 120k e R$ 2.5M, actuando en activos superiores a R$ 13M.",
         job1_desc2: "<strong>Calificación de Leads:</strong> Uso de análisis de datos para filtrado de oportunidades en CRM, aumentando la tasa de conversión real del embudo.",
         job1_desc3: "<strong>Optimización de Rutina:</strong> Reestructuración de procesos de seguimiento y atención, reduciendo el tiempo operativo gastado por cliente.",
         job2_title: "Fundador y Presidente",
@@ -168,6 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const applyTheme = (isDark, persist = false) => {
         htmlElement.classList.toggle('dark', isDark);
+        htmlElement.classList.toggle('light', !isDark);
         if (persist) {
             localStorage.setItem('theme', isDark ? 'dark' : 'light');
         }
@@ -243,9 +244,9 @@ function debounce(fn, wait) {
 
 // Experiment Logic
 function openExperiment(type) {
-    const dashboard = document.getElementById('playground-dashboard');
     const container = document.getElementById('experiment-container');
-    const views = document.querySelectorAll('.experiment-view');
+    const dashboard = document.getElementById('playground-dashboard');
+    const views = document.querySelectorAll('.experiment-wrapper');
     const targetView = document.getElementById(`${type}-view`);
 
     if (!targetView) return;
@@ -254,7 +255,7 @@ function openExperiment(type) {
     animateTransition(dashboard, container, () => {
         // Ensure only target view is visible within container
         views.forEach(v => v.style.display = 'none');
-        targetView.style.display = 'block';
+        targetView.style.display = 'grid'; // Grid layout for experiment view
 
         // Start the experiment logic
         initExperimentLogic(type, targetView);
@@ -273,7 +274,7 @@ function initExperimentLogic(type, view) {
 
         const readOptions = () => {
             const opts = {};
-            const controls = view.querySelectorAll('.exp-control');
+            const controls = view.querySelectorAll('input[type=range]');
             controls.forEach(ctrl => {
                 const name = ctrl.name;
                 let val = ctrl.value;
@@ -284,7 +285,7 @@ function initExperimentLogic(type, view) {
                 }
                 opts[name] = val;
                 // update label if exists
-                const label = view.querySelector(`#${type}-${name}-label`) || view.querySelector(`#${type}-${name}-label`);
+                const label = view.querySelector(`#${type}-${name}-label`);
                 if (label) label.textContent = formatVal(val);
             });
             return opts;
@@ -320,7 +321,7 @@ function initExperimentLogic(type, view) {
             view._expBound.forEach(b => b.el.removeEventListener('input', b.handler));
         }
         const bound = [];
-        view.querySelectorAll('.exp-control').forEach(ctrl => {
+        view.querySelectorAll('input[type=range]').forEach(ctrl => {
             const handler = debounce(() => {
                 const opts = readOptions();
                 // If the experiment supports live updates, prefer setOptions
@@ -398,13 +399,8 @@ function toggleSidebar() {
 }
 
 function toggleDesktopSidebar() {
-    const isCollapsed = document.body.classList.toggle('sidebar-collapsed');
-    localStorage.setItem('sidebar-collapsed', isCollapsed ? 'true' : 'false');
-    
-    // Trigger resize event for canvas experiments to adjust
-    setTimeout(() => {
-        window.dispatchEvent(new Event('resize'));
-    }, 300);
+    // Deprecated for the new design (fixed sidebar), but kept if logic is reused or for mobile overlay logic
+    console.warn("Desktop sidebar toggle is deprecated in the new layout.");
 }
 
 // Close sidebar when clicking a link on mobile
@@ -412,15 +408,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Restore Sidebar State (Default to collapsed if not set)
     const storedSidebarState = localStorage.getItem('sidebar-collapsed');
     
-    // If 'true' OR null (first visit), collapse it.
-    if (storedSidebarState === 'true' || storedSidebarState === null) {
-        document.body.classList.add('sidebar-collapsed');
-    } else {
-        document.body.classList.remove('sidebar-collapsed');
-    }
+    // Removed old "sidebar-collapsed" logic as the design is now fixed width
 
-    // ...existing code...
-    
     // Close sidebar on link click (mobile)
     const sidebarLinks = document.querySelectorAll('.sidebar-item, .outline-item');
     sidebarLinks.forEach(link => {
@@ -446,9 +435,9 @@ function generateOutline(rootSelector = '#resume-view') {
 
     if (!sections.length) {
         const empty = document.createElement('div');
-        empty.className = 'outline-empty';
-        empty.textContent = 'Sem seções disponíveis.';
-        outlineList.appendChild(empty);
+        // empty.className = 'outline-empty';
+        // empty.textContent = 'Sem seções disponíveis.';
+        // outlineList.appendChild(empty);
         return;
     }
 
@@ -481,7 +470,7 @@ function setupScrollSpy(rootSelector = '#resume-view') {
     }
 
     const observerOptions = {
-        root: null,
+        root: document.querySelector('.content-wrapper'), // Use the scrollable area
         rootMargin: '-10% 0px -80% 0px', // Trigger when section is near top
         threshold: 0
     };
@@ -574,13 +563,9 @@ function animateTransition(hideElement, showElement, onComplete) {
 
 // Playground Tab Switching Logic
 function switchPlaygroundTab(tabId) {
-    // 1. Update Buttons
-    const buttons = document.querySelectorAll('.pg-tab-btn');
+    // 1. Update Buttons (Segmented Control)
+    const buttons = document.querySelectorAll('.segment');
     buttons.forEach(btn => {
-        // Simple logic: if onclick contains the tabId, it's the active one
-        // A robust way is to check the tab index or passed argument match
-        // But here we can just check the onclick string or add data-tab attribute
-        // Let's rely on the order or check the onclick attribute content
         if (btn.getAttribute('onclick').includes(tabId)) {
             btn.classList.add('active');
         } else {
@@ -589,7 +574,7 @@ function switchPlaygroundTab(tabId) {
     });
 
     // 2. Show/Hide Content
-    const contents = document.querySelectorAll('.pg-tab-content');
+    const contents = document.querySelectorAll('.pg-content');
     contents.forEach(content => {
         content.classList.remove('active');
     });
@@ -597,10 +582,11 @@ function switchPlaygroundTab(tabId) {
     const target = document.getElementById(`tab-${tabId}`);
     if (target) {
         target.classList.add('active');
-        
-        // Update Sidebar Outline for the new tab
-        generateOutline('#playground-view');
-        setTimeout(() => setupScrollSpy('#playground-view'), 100);
+        // Update Sidebar Outline for the new tab (Wait for DOM update)
+        setTimeout(() => {
+            generateOutline('#playground-view');
+            setupScrollSpy('#playground-view');
+        }, 50);
     }
 }
 
