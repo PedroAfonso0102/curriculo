@@ -2,67 +2,85 @@
 const servicesData = [
     {
         id: 'landing-page',
-        title: 'Landing Page',
-        price: 'R$ 2.500',
-        deadline: '10 dias úteis',
-        description: 'Página de alta conversão focada em um único objetivo (venda, captura de lead, etc). Design persuasivo e otimizado.',
-        included: ['Design Exclusivo', 'Copywriting Básico', 'Integração com Email Mkt', 'Otimização Mobile'],
-        notIncluded: ['Domínio e Hospedagem', 'Gestão de Tráfego'],
+        titleKey: 'service_landing_title',
+        priceKey: 'hire_price_consult', // Changed to match "Sob Consulta" or fixed price? Original was R$ 2.500.
+        // Wait, original prices were specific. I need to keep them or add keys for them.
+        // For simplicity and consistency, I will use specific keys or just keep price hardcoded if it's universal currency?
+        // Currency format varies (R$ 2.500 vs R$ 2,500). Let's use keys or format.
+        // Actually, for "Translate every other page", I should probably translate price format if needed, but numbers are numbers.
+        // "R$" is BRL. If user switches to EN, maybe they want USD?
+        // The prompt didn't ask for currency conversion. I will stick to BRL but maybe the label "R$ 2.500" is fine.
+        // However, "Sob Consulta", "Mensal", "Por hora" need translation.
+        // I will use keys for the text parts of price/deadline.
+        priceDisplay: 'R$ 2.500',
+        deadlineDisplay: '10 dias úteis', // This needs translation. "10 business days"
+        // I will use a deadlineKey and params? Or just deadlineKey for the unit?
+        // Let's use `deadlineKey: 'hire_day_unit'`, `deadlineValue: 10`.
+        // But some are "Variável".
+        // Let's use specific keys for the full string or construct it.
+        // Construct: `${10} ${t('hire_day_unit')}`.
+        deadlineValue: '10',
+        deadlineUnitKey: 'hire_day_unit',
+
+        descriptionKey: 'service_landing_desc',
+        includedKeys: ['service_landing_inc1', 'service_landing_inc2', 'service_landing_inc3', 'service_landing_inc4'],
+        notIncludedKeys: ['service_landing_exc1', 'service_landing_exc2'],
         type: 'contract',
         gradient: 'linear-gradient(135deg, #FF9A9E 0%, #FECFEF 100%)'
     },
     {
         id: 'ecommerce-basico',
-        title: 'E-commerce Básico',
-        price: 'R$ 4.500',
-        deadline: '20 dias úteis',
-        description: 'Loja virtual completa para pequenos negócios. Gestão de produtos, estoque e pagamentos integrados.',
-        included: ['Até 50 produtos', 'Integração PagSeguro/Stripe', 'Cálculo de Frete', 'Painel Administrativo'],
-        notIncluded: ['Cadastro de todos os produtos', 'Fotografia de produtos'],
+        titleKey: 'service_ecommerce_title',
+        priceDisplay: 'R$ 4.500',
+        deadlineValue: '20',
+        deadlineUnitKey: 'hire_day_unit',
+        descriptionKey: 'service_ecommerce_desc',
+        includedKeys: ['service_ecommerce_inc1', 'service_ecommerce_inc2', 'service_ecommerce_inc3', 'service_ecommerce_inc4'],
+        notIncludedKeys: ['service_ecommerce_exc1', 'service_ecommerce_exc2'],
         type: 'contract',
         gradient: 'linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)'
     },
     {
         id: 'app-web',
-        title: 'Aplicação Web',
-        price: 'Sob Consulta',
-        deadline: 'Variável',
-        description: 'Sistemas web complexos, dashboards, áreas de membros ou ferramentas SaaS personalizadas.',
-        included: ['Arquitetura de Banco de Dados', 'API RESTful', 'Frontend React/Vue', 'Painel Admin'],
-        notIncluded: ['App Nativo (iOS/Android)'],
+        titleKey: 'service_app_title',
+        priceDisplayKey: 'hire_price_consult',
+        deadlineDisplayKey: 'hire_dead_variable',
+        descriptionKey: 'service_app_desc',
+        includedKeys: ['service_app_inc1', 'service_app_inc2', 'service_app_inc3', 'service_app_inc4'],
+        notIncludedKeys: ['service_app_exc1'],
         type: 'contract',
         gradient: 'linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%)'
     },
     {
         id: 'consultoria-ux',
-        title: 'Consultoria UX/UI',
-        price: 'R$ 300/h',
-        deadline: 'Por hora',
-        description: 'Análise heurística, testes de usabilidade ou redesign de interfaces para melhorar a experiência do usuário.',
-        included: ['Relatório de Melhorias', 'Wireframes de Sugestão', 'Reunião de Alinhamento'],
-        notIncluded: ['Implementação (Code)'],
+        titleKey: 'service_ux_title',
+        priceDisplayKey: 'hire_price_hour',
+        deadlineDisplayKey: 'hire_dead_hour',
+        descriptionKey: 'service_ux_desc',
+        includedKeys: ['service_ux_inc1', 'service_ux_inc2', 'service_ux_inc3'],
+        notIncludedKeys: ['service_ux_exc1'],
         type: 'schedule',
         gradient: 'linear-gradient(135deg, #fccb90 0%, #d57eeb 100%)'
     },
     {
         id: 'mentoria-audiovisual',
-        title: 'Mentoria Audiovisual',
-        price: 'R$ 200/h',
-        deadline: 'Sessão 1h',
-        description: 'Orientação de carreira, análise técnica e direção de projetos audiovisuais.',
-        included: ['Análise de Portfólio/Reel', 'Direção de Arte & Roteiro', 'Feedback de Edição'],
-        notIncluded: ['Desenvolvimento de projetos completos'],
+        titleKey: 'service_mentor_title',
+        priceDisplayKey: 'hire_price_hour_mentor',
+        deadlineDisplayKey: 'hire_dead_session',
+        descriptionKey: 'service_mentor_desc',
+        includedKeys: ['service_mentor_inc1', 'service_mentor_inc2', 'service_mentor_inc3'],
+        notIncludedKeys: ['service_mentor_exc1'],
         type: 'schedule',
         gradient: 'linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%)'
     },
     {
         id: 'freelance-fixo',
-        title: 'Freelance Fixo',
-        price: 'Mensal',
-        deadline: 'Recorrente',
-        description: 'Alocação de horas mensais para manutenção, pequenas melhorias ou suporte contínuo em seus projetos.',
-        included: ['Prioridade no atendimento', 'Relatório de horas', 'Manutenção preventiva'],
-        notIncluded: ['Novos projetos grandes'],
+        titleKey: 'service_freelance_title',
+        priceDisplayKey: 'hire_price_monthly',
+        deadlineDisplayKey: 'hire_dead_recur',
+        descriptionKey: 'service_freelance_desc',
+        includedKeys: ['service_freelance_inc1', 'service_freelance_inc2', 'service_freelance_inc3'],
+        notIncludedKeys: ['service_freelance_exc1'],
         type: 'contract',
         gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)'
     }
@@ -82,6 +100,27 @@ const HireMe = {
     },
 
     // --- UTILS ---
+    t(key) {
+        const lang = document.documentElement.lang || 'pt';
+        if (window.translations && window.translations[lang] && window.translations[lang][key]) {
+            return window.translations[lang][key];
+        }
+        return key; // Fallback
+    },
+
+    getServicePrice(service) {
+        if (service.priceDisplayKey) return this.t(service.priceDisplayKey);
+        return service.priceDisplay || '';
+    },
+
+    getServiceDeadline(service) {
+        if (service.deadlineDisplayKey) return this.t(service.deadlineDisplayKey);
+        if (service.deadlineUnitKey && service.deadlineValue) {
+            return `${service.deadlineValue} ${this.t(service.deadlineUnitKey)}`;
+        }
+        return service.deadlineDisplay || '';
+    },
+
     getNextBusinessDays(daysCount) {
         const days = [];
         let current = new Date();
@@ -99,27 +138,69 @@ const HireMe = {
     },
 
     formatDateDisplay(date) {
+        const lang = document.documentElement.lang || 'pt';
         const dd = String(date.getDate()).padStart(2, '0');
         const mm = String(date.getMonth() + 1).padStart(2, '0');
-        const weekDays = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
-        return `${dd}/${mm} - ${weekDays[date.getDay()]}`;
+
+        let weekDay = '';
+        if (lang === 'pt') {
+            const weekDays = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
+            weekDay = weekDays[date.getDay()];
+        } else if (lang === 'es') {
+             const weekDays = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+             weekDay = weekDays[date.getDay()];
+        } else {
+             const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+             weekDay = weekDays[date.getDay()];
+        }
+
+        return `${dd}/${mm} - ${weekDay}`;
     },
 
     sendToWhatsApp() {
-        const service = this.state.selectedService.title;
+        const serviceName = this.t(this.state.selectedService.titleKey);
         const name = this.state.formData.clientName || 'Cliente';
         let msg = '';
 
-        if (this.state.selectedService.type === 'contract') {
-             // Budget/Form Flow
-             const budget = this.state.formData.budget || 'N/A';
-             const deadline = this.state.formData.deadline || 'N/A';
-             msg = `Olá! Meu nome é ${name}. Gostaria de solicitar um orçamento para *${service}*.\nOrçamento: ${budget}\nPrazo: ${deadline}`;
+        const lang = document.documentElement.lang || 'pt';
+
+        // Simple localization for WhatsApp message structure (could be improved, but keeping it simple)
+        // I'll stick to PT for the *recipient* (Pedro) since it's his WhatsApp,
+        // BUT it's better if the message is in the user's language or Pedro's?
+        // Usually, the message is sent FROM the user. If the user speaks English, they send in English.
+        // Pedro seems to speak EN/ES.
+
+        if (lang === 'en') {
+             if (this.state.selectedService.type === 'contract') {
+                 const budget = this.state.formData.budget || 'N/A';
+                 const deadline = this.state.formData.deadline || 'N/A';
+                 msg = `Hello! My name is ${name}. I would like to request a quote for *${serviceName}*.\nBudget: ${budget}\nDeadline: ${deadline}`;
+            } else {
+                const date = this.state.formData.date || 'N/A';
+                const time = this.state.formData.time || 'N/A';
+                msg = `Hello! My name is ${name}. I would like to schedule a *${serviceName}* for ${date} at ${time}.`;
+            }
+        } else if (lang === 'es') {
+             if (this.state.selectedService.type === 'contract') {
+                 const budget = this.state.formData.budget || 'N/A';
+                 const deadline = this.state.formData.deadline || 'N/A';
+                 msg = `¡Hola! Mi nombre es ${name}. Me gustaría solicitar un presupuesto para *${serviceName}*.\nPresupuesto: ${budget}\nPlazo: ${deadline}`;
+            } else {
+                const date = this.state.formData.date || 'N/A';
+                const time = this.state.formData.time || 'N/A';
+                msg = `¡Hola! Mi nombre es ${name}. Me gustaría agendar una *${serviceName}* para el día ${date} a las ${time}.`;
+            }
         } else {
-            // Schedule Flow
-            const date = this.state.formData.date || 'N/A';
-            const time = this.state.formData.time || 'N/A';
-            msg = `Olá! Meu nome é ${name}. Gostaria de agendar uma *${service}* para dia ${date} às ${time}.`;
+            // PT
+            if (this.state.selectedService.type === 'contract') {
+                 const budget = this.state.formData.budget || 'N/A';
+                 const deadline = this.state.formData.deadline || 'N/A';
+                 msg = `Olá! Meu nome é ${name}. Gostaria de solicitar um orçamento para *${serviceName}*.\nOrçamento: ${budget}\nPrazo: ${deadline}`;
+            } else {
+                const date = this.state.formData.date || 'N/A';
+                const time = this.state.formData.time || 'N/A';
+                msg = `Olá! Meu nome é ${name}. Gostaria de agendar uma *${serviceName}* para dia ${date} às ${time}.`;
+            }
         }
 
         const encodedMsg = encodeURIComponent(msg);
@@ -133,20 +214,18 @@ const HireMe = {
 
     renderCatalog() {
         this.state.currentStep = 'catalog';
-        // Note: Using 'services-grid' which is a grid layout.
-        // Inline styles for gradient cover are kept as they are data-driven content.
         this.container.innerHTML = `
             <header class="hire-header">
-                <h1>Me Contrate</h1>
-                <div class="role">Escolha o serviço ideal para o seu momento</div>
+                <h1>${this.t('hire_header_title')}</h1>
+                <div class="role">${this.t('hire_role')}</div>
             </header>
             <div class="services-grid">
                 ${servicesData.map(service => `
                     <div class="service-card" onclick="HireMe.openDetails('${service.id}')">
                         <div class="service-card-cover" style="background: ${service.gradient}"></div>
                         <div class="service-info">
-                            <h3>${service.title}</h3>
-                            <p class="service-price">${service.price}</p>
+                            <h3>${this.t(service.titleKey)}</h3>
+                            <p class="service-price">${this.getServicePrice(service)}</p>
                         </div>
                     </div>
                 `).join('')}
@@ -162,40 +241,40 @@ const HireMe = {
 
         const detailsHTML = `
             <div class="details-view fade-in">
-                <button class="back-link" onclick="HireMe.renderCatalog()">← Voltar</button>
+                <button class="back-link" onclick="HireMe.renderCatalog()">${this.t('hire_back')}</button>
                 <div class="details-content">
                     <div class="details-header-cover" style="background: ${service.gradient};"></div>
-                    <h2>${service.title}</h2>
+                    <h2>${this.t(service.titleKey)}</h2>
                     <div class="details-meta">
                         <div class="meta-item">
-                            <span class="label">Investimento</span>
-                            <span class="value">${service.price}</span>
+                            <span class="label">${this.t('hire_invest')}</span>
+                            <span class="value">${this.getServicePrice(service)}</span>
                         </div>
                         <div class="meta-item">
-                            <span class="label">Prazo Estimado</span>
-                            <span class="value">${service.deadline}</span>
+                            <span class="label">${this.t('hire_deadline')}</span>
+                            <span class="value">${this.getServiceDeadline(service)}</span>
                         </div>
                     </div>
-                    <p class="body-text">${service.description}</p>
+                    <p class="body-text">${this.t(service.descriptionKey)}</p>
                     
                     <div class="details-lists">
                         <div class="list-group">
-                            <h3>O que está incluso</h3>
+                            <h3>${this.t('hire_included')}</h3>
                             <ul>
-                                ${service.included.map(item => `<li><span class="check-icon">✓</span> ${item}</li>`).join('')}
+                                ${service.includedKeys.map(key => `<li><span class="check-icon">✓</span> ${this.t(key)}</li>`).join('')}
                             </ul>
                         </div>
                         <div class="list-group">
-                            <h3>O que não está incluso</h3>
+                            <h3>${this.t('hire_not_included')}</h3>
                             <ul>
-                                ${service.notIncluded.map(item => `<li><span class="cross-icon">×</span> ${item}</li>`).join('')}
+                                ${service.notIncludedKeys.map(key => `<li><span class="cross-icon">×</span> ${this.t(key)}</li>`).join('')}
                             </ul>
                         </div>
                     </div>
 
                     <div class="details-actions">
                         <button class="cta-btn" onclick="HireMe.proceedFromDetails()">
-                            ${service.type === 'contract' ? 'Solicitar Orçamento' : 'Ver Horários'}
+                            ${service.type === 'contract' ? this.t('hire_btn_budget') : this.t('hire_btn_schedule')}
                         </button>
                     </div>
                 </div>
@@ -216,26 +295,26 @@ const HireMe = {
         this.state.currentStep = 'form';
         this.container.innerHTML = `
             <div class="form-view fade-in">
-                <button class="back-link" onclick="HireMe.openDetails('${this.state.selectedService.id}')">← Voltar</button>
-                <h2>Formulário de Qualificação</h2>
+                <button class="back-link" onclick="HireMe.openDetails('${this.state.selectedService.id}')">${this.t('hire_back')}</button>
+                <h2>${this.t('hire_form_title')}</h2>
                 <form onsubmit="HireMe.handleFormSubmit(event)" class="hire-form">
                     <div class="form-group">
-                        <label>Seu Nome</label>
-                        <input type="text" name="clientName" placeholder="Seu nome completo" required>
+                        <label>${this.t('hire_form_name')}</label>
+                        <input type="text" name="clientName" placeholder="${this.t('hire_form_name')}" required>
                     </div>
                     <div class="form-group">
-                        <label>Qual o orçamento disponível?</label>
-                        <input type="text" name="budget" placeholder="Ex: R$ 5.000" required>
+                        <label>${this.t('hire_form_budget')}</label>
+                        <input type="text" name="budget" placeholder="Ex: 5000" required>
                     </div>
                     <div class="form-group">
-                        <label>Qual o prazo ideal?</label>
-                        <input type="text" name="deadline" placeholder="Ex: 30 dias" required>
+                        <label>${this.t('hire_form_deadline')}</label>
+                        <input type="text" name="deadline" placeholder="Ex: 30 days" required>
                     </div>
                     <div class="form-group">
-                        <label>Link do projeto atual (se houver)?</label>
+                        <label>${this.t('hire_form_link')}</label>
                         <input type="url" name="link" placeholder="https://exemplo.com">
                     </div>
-                    <button type="submit" class="cta-btn">Enviar via WhatsApp</button>
+                    <button type="submit" class="cta-btn">${this.t('hire_form_submit')}</button>
                 </form>
             </div>
         `;
@@ -255,7 +334,6 @@ const HireMe = {
         // Simple List of Days
         const daysHTML = days.map((date, index) => {
             const dateStr = this.formatDateDisplay(date);
-            // Store ISO date in data attribute or simple string
             const simpleDate = `${date.getDate()}/${date.getMonth() + 1}`;
             return `
                 <button class="date-selector-btn" onclick="HireMe.selectDate('${simpleDate}', this)">
@@ -266,28 +344,28 @@ const HireMe = {
 
         this.container.innerHTML = `
             <div class="schedule-view fade-in">
-                <button class="back-link" onclick="HireMe.openDetails('${this.state.selectedService.id}')">← Voltar</button>
-                <h2>Escolha uma Data</h2>
-                <p class="body-text" style="margin-bottom: 1rem;">Selecione um dia de preferência. Confirmaremos o horário exato pelo WhatsApp.</p>
+                <button class="back-link" onclick="HireMe.openDetails('${this.state.selectedService.id}')">${this.t('hire_back')}</button>
+                <h2>${this.t('hire_schedule_title')}</h2>
+                <p class="body-text" style="margin-bottom: 1rem;">${this.t('hire_schedule_desc')}</p>
 
                 <div class="form-group" style="margin-bottom: 2rem;">
-                     <label>Seu Nome</label>
-                     <input type="text" id="scheduleName" placeholder="Seu nome completo" required>
+                     <label>${this.t('hire_form_name')}</label>
+                     <input type="text" id="scheduleName" placeholder="${this.t('hire_form_name')}" required>
                 </div>
 
                 <div class="schedule-list">
-                    <label style="display:block; margin-bottom: 8px; font-weight: 500; color: var(--text-secondary);">Próximos Dias Úteis</label>
+                    <label style="display:block; margin-bottom: 8px; font-weight: 500; color: var(--text-secondary);">${this.t('hire_schedule_next')}</label>
                     <div id="days-container">
                         ${daysHTML}
                     </div>
                 </div>
 
                 <div id="time-selection" style="display:none; margin-top: 2rem;">
-                    <label style="display:block; margin-bottom: 8px; font-weight: 500; color: var(--text-secondary);">Período Preferido</label>
+                    <label style="display:block; margin-bottom: 8px; font-weight: 500; color: var(--text-secondary);">${this.t('hire_schedule_period')}</label>
                     <div class="slots-grid">
-                        <button class="slot-btn" onclick="HireMe.confirmSchedule('Manhã (09h - 12h)')">Manhã</button>
-                        <button class="slot-btn" onclick="HireMe.confirmSchedule('Tarde (13h - 18h)')">Tarde</button>
-                        <button class="slot-btn" onclick="HireMe.confirmSchedule('Noite (19h - 21h)')">Noite</button>
+                        <button class="slot-btn" onclick="HireMe.confirmSchedule('${this.t('hire_period_morning')} (09h - 12h)')">${this.t('hire_period_morning')}</button>
+                        <button class="slot-btn" onclick="HireMe.confirmSchedule('${this.t('hire_period_afternoon')} (13h - 18h)')">${this.t('hire_period_afternoon')}</button>
+                        <button class="slot-btn" onclick="HireMe.confirmSchedule('${this.t('hire_period_night')} (19h - 21h)')">${this.t('hire_period_night')}</button>
                     </div>
                 </div>
             </div>
@@ -324,9 +402,9 @@ const HireMe = {
         this.container.innerHTML = `
             <div class="confirmation-view fade-in">
                 <div class="success-icon">✓</div>
-                <h2>Solicitação Iniciada!</h2>
-                <p class="body-text">Você foi redirecionado para o WhatsApp. Caso a janela não tenha aberto, verifique seu bloqueador de pop-ups.</p>
-                <button class="cta-btn" onclick="HireMe.renderCatalog()" style="margin-top: 2rem;">Voltar ao Início</button>
+                <h2>${this.t('hire_conf_title')}</h2>
+                <p class="body-text">${this.t('hire_conf_desc')}</p>
+                <button class="cta-btn" onclick="HireMe.renderCatalog()" style="margin-top: 2rem;">${this.t('hire_conf_btn')}</button>
             </div>
         `;
     }

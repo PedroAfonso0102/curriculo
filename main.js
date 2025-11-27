@@ -1,5 +1,5 @@
 // Translations & Content
-const translations = {
+window.translations = {
     pt: {
         role: "Gestão Comercial & Desenvolvimento Digital",
         section_summary: "Resumo",
@@ -46,7 +46,105 @@ const translations = {
         tab_comex_title: "Notícias ComEx",
         tab_comex_desc: "Em breve: Feed de notícias sobre Comércio Exterior.",
         tab_intl_title: "Notícias Internacionais",
-        tab_intl_desc: "Em breve: Feed de notícias internacionais."
+        tab_intl_desc: "Em breve: Feed de notícias internacionais.",
+        // Playground Controls
+        ctrl_resolution: "Resolução",
+        ctrl_viscosity: "Viscosidade",
+        ctrl_emit_strength: "Força de Emissão",
+        ctrl_gravity: "Gravidade",
+        ctrl_particles: "Partículas",
+        ctrl_mass1: "Massa 1",
+        ctrl_mass2: "Massa 2",
+        ctrl_length1: "Comprimento 1",
+        ctrl_length2: "Comprimento 2",
+        ctrl_damping: "Amortecimento",
+        ctrl_g: "Gravidade (G)",
+        ctrl_terms: "Termos",
+        ctrl_speed: "Velocidade",
+        ctrl_amplitude: "Amplitude",
+        // Hire Me - General
+        hire_header_title: "Me Contrate",
+        hire_role: "Escolha o serviço ideal para o seu momento",
+        hire_back: "← Voltar",
+        hire_invest: "Investimento",
+        hire_deadline: "Prazo Estimado",
+        hire_included: "O que está incluso",
+        hire_not_included: "O que não está incluso",
+        hire_btn_budget: "Solicitar Orçamento",
+        hire_btn_schedule: "Ver Horários",
+        hire_form_title: "Formulário de Qualificação",
+        hire_form_name: "Seu Nome",
+        hire_form_budget: "Qual o orçamento disponível?",
+        hire_form_deadline: "Qual o prazo ideal?",
+        hire_form_link: "Link do projeto atual (se houver)?",
+        hire_form_submit: "Enviar via WhatsApp",
+        hire_schedule_title: "Escolha uma Data",
+        hire_schedule_desc: "Selecione um dia de preferência. Confirmaremos o horário exato pelo WhatsApp.",
+        hire_schedule_next: "Próximos Dias Úteis",
+        hire_schedule_period: "Período Preferido",
+        hire_period_morning: "Manhã",
+        hire_period_afternoon: "Tarde",
+        hire_period_night: "Noite",
+        hire_conf_title: "Solicitação Iniciada!",
+        hire_conf_desc: "Você foi redirecionado para o WhatsApp. Caso a janela não tenha aberto, verifique seu bloqueador de pop-ups.",
+        hire_conf_btn: "Voltar ao Início",
+        // Hire Me - Services
+        service_landing_title: "Landing Page",
+        service_landing_desc: "Página de alta conversão focada em um único objetivo (venda, captura de lead, etc). Design persuasivo e otimizado.",
+        service_landing_inc1: "Design Exclusivo",
+        service_landing_inc2: "Copywriting Básico",
+        service_landing_inc3: "Integração com Email Mkt",
+        service_landing_inc4: "Otimização Mobile",
+        service_landing_exc1: "Domínio e Hospedagem",
+        service_landing_exc2: "Gestão de Tráfego",
+
+        service_ecommerce_title: "E-commerce Básico",
+        service_ecommerce_desc: "Loja virtual completa para pequenos negócios. Gestão de produtos, estoque e pagamentos integrados.",
+        service_ecommerce_inc1: "Até 50 produtos",
+        service_ecommerce_inc2: "Integração PagSeguro/Stripe",
+        service_ecommerce_inc3: "Cálculo de Frete",
+        service_ecommerce_inc4: "Painel Administrativo",
+        service_ecommerce_exc1: "Cadastro de todos os produtos",
+        service_ecommerce_exc2: "Fotografia de produtos",
+
+        service_app_title: "Aplicação Web",
+        service_app_desc: "Sistemas web complexos, dashboards, áreas de membros ou ferramentas SaaS personalizadas.",
+        service_app_inc1: "Arquitetura de Banco de Dados",
+        service_app_inc2: "API RESTful",
+        service_app_inc3: "Frontend React/Vue",
+        service_app_inc4: "Painel Admin",
+        service_app_exc1: "App Nativo (iOS/Android)",
+
+        service_ux_title: "Consultoria UX/UI",
+        service_ux_desc: "Análise heurística, testes de usabilidade ou redesign de interfaces para melhorar a experiência do usuário.",
+        service_ux_inc1: "Relatório de Melhorias",
+        service_ux_inc2: "Wireframes de Sugestão",
+        service_ux_inc3: "Reunião de Alinhamento",
+        service_ux_exc1: "Implementação (Code)",
+
+        service_mentor_title: "Mentoria Audiovisual",
+        service_mentor_desc: "Orientação de carreira, análise técnica e direção de projetos audiovisuais.",
+        service_mentor_inc1: "Análise de Portfólio/Reel",
+        service_mentor_inc2: "Direção de Arte & Roteiro",
+        service_mentor_inc3: "Feedback de Edição",
+        service_mentor_exc1: "Desenvolvimento de projetos completos",
+
+        service_freelance_title: "Freelance Fixo",
+        service_freelance_desc: "Alocação de horas mensais para manutenção, pequenas melhorias ou suporte contínuo em seus projetos.",
+        service_freelance_inc1: "Prioridade no atendimento",
+        service_freelance_inc2: "Relatório de horas",
+        service_freelance_inc3: "Manutenção preventiva",
+        service_freelance_exc1: "Novos projetos grandes",
+
+        hire_price_consult: "Sob Consulta",
+        hire_price_hour: "R$ 300/h",
+        hire_price_hour_mentor: "R$ 200/h",
+        hire_price_monthly: "Mensal",
+        hire_dead_variable: "Variável",
+        hire_dead_hour: "Por hora",
+        hire_dead_session: "Sessão 1h",
+        hire_dead_recur: "Recorrente",
+        hire_day_unit: "dias úteis"
     },
     en: {
         role: "Commercial Management & Digital Development",
@@ -94,7 +192,105 @@ const translations = {
         tab_comex_title: "ComEx News",
         tab_comex_desc: "Coming soon: Foreign Trade news feed.",
         tab_intl_title: "International News",
-        tab_intl_desc: "Coming soon: International news feed."
+        tab_intl_desc: "Coming soon: International news feed.",
+        // Playground Controls
+        ctrl_resolution: "Resolution",
+        ctrl_viscosity: "Viscosity",
+        ctrl_emit_strength: "Emit Strength",
+        ctrl_gravity: "Gravity",
+        ctrl_particles: "Particles",
+        ctrl_mass1: "Mass 1",
+        ctrl_mass2: "Mass 2",
+        ctrl_length1: "Length 1",
+        ctrl_length2: "Length 2",
+        ctrl_damping: "Damping",
+        ctrl_g: "Gravity (G)",
+        ctrl_terms: "Terms",
+        ctrl_speed: "Speed",
+        ctrl_amplitude: "Amplitude",
+        // Hire Me - General
+        hire_header_title: "Hire Me",
+        hire_role: "Choose the ideal service for your moment",
+        hire_back: "← Back",
+        hire_invest: "Investment",
+        hire_deadline: "Estimated Time",
+        hire_included: "What's included",
+        hire_not_included: "What's not included",
+        hire_btn_budget: "Request Quote",
+        hire_btn_schedule: "See Schedule",
+        hire_form_title: "Qualification Form",
+        hire_form_name: "Your Name",
+        hire_form_budget: "What is your budget?",
+        hire_form_deadline: "What is the ideal deadline?",
+        hire_form_link: "Current project link (if any)?",
+        hire_form_submit: "Send via WhatsApp",
+        hire_schedule_title: "Pick a Date",
+        hire_schedule_desc: "Select a preferred day. We will confirm the exact time via WhatsApp.",
+        hire_schedule_next: "Next Business Days",
+        hire_schedule_period: "Preferred Period",
+        hire_period_morning: "Morning",
+        hire_period_afternoon: "Afternoon",
+        hire_period_night: "Night",
+        hire_conf_title: "Request Started!",
+        hire_conf_desc: "You were redirected to WhatsApp. If the window didn't open, check your pop-up blocker.",
+        hire_conf_btn: "Back to Home",
+        // Hire Me - Services
+        service_landing_title: "Landing Page",
+        service_landing_desc: "High conversion page focused on a single objective (sales, lead capture, etc). Persuasive and optimized design.",
+        service_landing_inc1: "Exclusive Design",
+        service_landing_inc2: "Basic Copywriting",
+        service_landing_inc3: "Email Mkt Integration",
+        service_landing_inc4: "Mobile Optimization",
+        service_landing_exc1: "Domain and Hosting",
+        service_landing_exc2: "Traffic Management",
+
+        service_ecommerce_title: "Basic E-commerce",
+        service_ecommerce_desc: "Complete online store for small businesses. Product, inventory, and payment management integrated.",
+        service_ecommerce_inc1: "Up to 50 products",
+        service_ecommerce_inc2: "PagSeguro/Stripe Integration",
+        service_ecommerce_inc3: "Shipping Calculation",
+        service_ecommerce_inc4: "Admin Panel",
+        service_ecommerce_exc1: "Registration of all products",
+        service_ecommerce_exc2: "Product photography",
+
+        service_app_title: "Web Application",
+        service_app_desc: "Complex web systems, dashboards, member areas, or custom SaaS tools.",
+        service_app_inc1: "Database Architecture",
+        service_app_inc2: "RESTful API",
+        service_app_inc3: "React/Vue Frontend",
+        service_app_inc4: "Admin Panel",
+        service_app_exc1: "Native App (iOS/Android)",
+
+        service_ux_title: "UX/UI Consulting",
+        service_ux_desc: "Heuristic analysis, usability tests, or interface redesign to improve user experience.",
+        service_ux_inc1: "Improvement Report",
+        service_ux_inc2: "Suggestion Wireframes",
+        service_ux_inc3: "Alignment Meeting",
+        service_ux_exc1: "Implementation (Code)",
+
+        service_mentor_title: "Audiovisual Mentorship",
+        service_mentor_desc: "Career guidance, technical analysis, and direction of audiovisual projects.",
+        service_mentor_inc1: "Portfolio/Reel Analysis",
+        service_mentor_inc2: "Art Direction & Script",
+        service_mentor_inc3: "Editing Feedback",
+        service_mentor_exc1: "Development of complete projects",
+
+        service_freelance_title: "Retainer Freelance",
+        service_freelance_desc: "Monthly hours allocation for maintenance, small improvements, or continuous support on your projects.",
+        service_freelance_inc1: "Priority support",
+        service_freelance_inc2: "Hour report",
+        service_freelance_inc3: "Preventive maintenance",
+        service_freelance_exc1: "New large projects",
+
+        hire_price_consult: "On Request",
+        hire_price_hour: "R$ 300/h",
+        hire_price_hour_mentor: "R$ 200/h",
+        hire_price_monthly: "Monthly",
+        hire_dead_variable: "Variable",
+        hire_dead_hour: "Per hour",
+        hire_dead_session: "1h Session",
+        hire_dead_recur: "Recurring",
+        hire_day_unit: "business days"
     },
     es: {
         role: "Gestión Comercial y Desarrollo Digital",
@@ -142,7 +338,105 @@ const translations = {
         tab_comex_title: "Noticias ComEx",
         tab_comex_desc: "Próximamente: Noticias sobre Comercio Exterior.",
         tab_intl_title: "Noticias Internacionales",
-        tab_intl_desc: "Próximamente: Noticias internacionales."
+        tab_intl_desc: "Próximamente: Noticias internacionales.",
+        // Playground Controls
+        ctrl_resolution: "Resolución",
+        ctrl_viscosity: "Viscosidad",
+        ctrl_emit_strength: "Fuerza de Emisión",
+        ctrl_gravity: "Gravedad",
+        ctrl_particles: "Partículas",
+        ctrl_mass1: "Masa 1",
+        ctrl_mass2: "Masa 2",
+        ctrl_length1: "Longitud 1",
+        ctrl_length2: "Longitud 2",
+        ctrl_damping: "Amortiguación",
+        ctrl_g: "Gravedad (G)",
+        ctrl_terms: "Términos",
+        ctrl_speed: "Velocidad",
+        ctrl_amplitude: "Amplitud",
+        // Hire Me - General
+        hire_header_title: "Contrátame",
+        hire_role: "Elige el servicio ideal para tu momento",
+        hire_back: "← Volver",
+        hire_invest: "Inversión",
+        hire_deadline: "Plazo Estimado",
+        hire_included: "Qué está incluido",
+        hire_not_included: "Qué no está incluido",
+        hire_btn_budget: "Solicitar Presupuesto",
+        hire_btn_schedule: "Ver Horarios",
+        hire_form_title: "Formulario de Calificación",
+        hire_form_name: "Tu Nombre",
+        hire_form_budget: "¿Cuál es el presupuesto disponible?",
+        hire_form_deadline: "¿Cuál es el plazo ideal?",
+        hire_form_link: "¿Enlace del proyecto actual (si hay)?",
+        hire_form_submit: "Enviar vía WhatsApp",
+        hire_schedule_title: "Elige una Fecha",
+        hire_schedule_desc: "Selecciona un día de preferencia. Confirmaremos el horario exacto por WhatsApp.",
+        hire_schedule_next: "Próximos Días Hábiles",
+        hire_schedule_period: "Período Preferido",
+        hire_period_morning: "Mañana",
+        hire_period_afternoon: "Tarde",
+        hire_period_night: "Noche",
+        hire_conf_title: "¡Solicitud Iniciada!",
+        hire_conf_desc: "Has sido redirigido a WhatsApp. Si la ventana no se abrió, verifica tu bloqueador de ventanas emergentes.",
+        hire_conf_btn: "Volver al Inicio",
+        // Hire Me - Services
+        service_landing_title: "Landing Page",
+        service_landing_desc: "Página de alta conversión enfocada en un único objetivo (venta, captura de leads, etc). Diseño persuasivo y optimizado.",
+        service_landing_inc1: "Diseño Exclusivo",
+        service_landing_inc2: "Copywriting Básico",
+        service_landing_inc3: "Integración con Email Mkt",
+        service_landing_inc4: "Optimización Móvil",
+        service_landing_exc1: "Dominio y Alojamiento",
+        service_landing_exc2: "Gestión de Tráfico",
+
+        service_ecommerce_title: "E-commerce Básico",
+        service_ecommerce_desc: "Tienda virtual completa para pequeños negocios. Gestión de productos, inventario y pagos integrados.",
+        service_ecommerce_inc1: "Hasta 50 productos",
+        service_ecommerce_inc2: "Integración PagSeguro/Stripe",
+        service_ecommerce_inc3: "Cálculo de Envío",
+        service_ecommerce_inc4: "Panel Administrativo",
+        service_ecommerce_exc1: "Registro de todos los productos",
+        service_ecommerce_exc2: "Fotografía de productos",
+
+        service_app_title: "Aplicación Web",
+        service_app_desc: "Sistemas web complejos, paneles de control, áreas de miembros o herramientas SaaS personalizadas.",
+        service_app_inc1: "Arquitectura de Base de Datos",
+        service_app_inc2: "API RESTful",
+        service_app_inc3: "Frontend React/Vue",
+        service_app_inc4: "Panel Admin",
+        service_app_exc1: "App Nativo (iOS/Android)",
+
+        service_ux_title: "Consultoría UX/UI",
+        service_ux_desc: "Análisis heurístico, pruebas de usabilidad o rediseño de interfaces para mejorar la experiencia del usuario.",
+        service_ux_inc1: "Informe de Mejoras",
+        service_ux_inc2: "Wireframes de Sugerencia",
+        service_ux_inc3: "Reunión de Alineación",
+        service_ux_exc1: "Implementación (Código)",
+
+        service_mentor_title: "Mentoría Audiovisual",
+        service_mentor_desc: "Orientación de carrera, análisis técnico y dirección de proyectos audiovisuales.",
+        service_mentor_inc1: "Análisis de Portafolio/Reel",
+        service_mentor_inc2: "Dirección de Arte y Guion",
+        service_mentor_inc3: "Feedback de Edición",
+        service_mentor_exc1: "Desarrollo de proyectos completos",
+
+        service_freelance_title: "Freelance Fijo",
+        service_freelance_desc: "Asignación de horas mensuales para mantenimiento, pequeñas mejoras o soporte continuo en sus proyectos.",
+        service_freelance_inc1: "Prioridad en la atención",
+        service_freelance_inc2: "Informe de horas",
+        service_freelance_inc3: "Mantenimiento preventivo",
+        service_freelance_exc1: "Nuevos proyectos grandes",
+
+        hire_price_consult: "A Consultar",
+        hire_price_hour: "R$ 300/h",
+        hire_price_hour_mentor: "R$ 200/h",
+        hire_price_monthly: "Mensual",
+        hire_dead_variable: "Variable",
+        hire_dead_hour: "Por hora",
+        hire_dead_session: "Sesión 1h",
+        hire_dead_recur: "Recurrente",
+        hire_day_unit: "días hábiles"
     }
 };
 
@@ -159,10 +453,15 @@ function setLanguage(lang) {
     // Update text
     document.querySelectorAll('[data-i18n]').forEach(element => {
         const key = element.getAttribute('data-i18n');
-        if (translations[lang][key]) {
-            element.innerHTML = translations[lang][key];
+        if (window.translations[lang][key]) {
+            element.innerHTML = window.translations[lang][key];
         }
     });
+
+    // Update Hire Me View if active
+    if (window.HireMe && document.getElementById('hire-me-view').style.display !== 'none') {
+        window.HireMe.init();
+    }
 }
 
 // Mobile Menu Logic
@@ -224,7 +523,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize language
     const initialLang = navigator.language ? navigator.language.slice(0,2) : 'pt';
-    setLanguage(translations[initialLang] ? initialLang : 'pt');
+    setLanguage(window.translations[initialLang] ? initialLang : 'pt');
 });
 
 // View Switching Logic
