@@ -1,4 +1,426 @@
+// ============================================================================
+// Utility Functions - Funções utilitárias prototipadas para main.js
+// ============================================================================
+
+/**
+ * Módulo de gerenciamento de estado da aplicação
+ */
+const AppState = (() => {
+    let currentView = 'resume';
+    let currentLanguage = 'pt';
+    let isDarkMode = false;
+    let isMobileMenuOpen = false;
+
+    return {
+        /**
+         * Obtém a view atual
+         * @returns {string} Nome da view atual
+         */
+        getCurrentView() {
+            return currentView;
+        },
+
+        /**
+         * Define a view atual
+         * @param {string} view - Nome da view
+         */
+        setCurrentView(view) {
+            if (['resume', 'playground'].includes(view)) {
+                currentView = view;
+            }
+        },
+
+        /**
+         * Obtém o idioma atual
+         * @returns {string} Código do idioma
+         */
+        getCurrentLanguage() {
+            return currentLanguage;
+        },
+
+        /**
+         * Define o idioma atual
+         * @param {string} lang - Código do idioma
+         */
+        setCurrentLanguage(lang) {
+            if (['pt', 'en', 'es'].includes(lang)) {
+                currentLanguage = lang;
+            }
+        },
+
+        /**
+         * Verifica se o modo escuro está ativo
+         * @returns {boolean} Estado do modo escuro
+         */
+        isDark() {
+            return isDarkMode;
+        },
+
+        /**
+         * Define o estado do modo escuro
+         * @param {boolean} dark - Estado do modo escuro
+         */
+        setDarkMode(dark) {
+            isDarkMode = Boolean(dark);
+        },
+
+        /**
+         * Verifica se o menu mobile está aberto
+         * @returns {boolean} Estado do menu mobile
+         */
+        isMobileOpen() {
+            return isMobileMenuOpen;
+        },
+
+        /**
+         * Define o estado do menu mobile
+         * @param {boolean} open - Estado do menu
+         */
+        setMobileMenuOpen(open) {
+            isMobileMenuOpen = Boolean(open);
+        }
+    };
+})();
+
+/**
+ * Módulo de utilitários para DOM
+ */
+const DOMUtils = (() => {
+    /**
+     * Seleciona um elemento do DOM por seletor
+     * @param {string} selector - Seletor CSS
+     * @returns {Element|null} Elemento encontrado ou null
+     */
+    function $(selector) {
+        return document.querySelector(selector);
+    }
+
+    /**
+     * Seleciona todos os elementos do DOM por seletor
+     * @param {string} selector - Seletor CSS
+     * @returns {NodeList} Lista de elementos
+     */
+    function $$(selector) {
+        return document.querySelectorAll(selector);
+    }
+
+    /**
+     * Adiciona uma classe a um elemento
+     * @param {Element} element - Elemento do DOM
+     * @param {string} className - Nome da classe
+     */
+    function addClass(element, className) {
+        if (element && className) {
+            element.classList.add(className);
+        }
+    }
+
+    /**
+     * Remove uma classe de um elemento
+     * @param {Element} element - Elemento do DOM
+     * @param {string} className - Nome da classe
+     */
+    function removeClass(element, className) {
+        if (element && className) {
+            element.classList.remove(className);
+        }
+    }
+
+    /**
+     * Alterna uma classe em um elemento
+     * @param {Element} element - Elemento do DOM
+     * @param {string} className - Nome da classe
+     * @param {boolean} force - Forçar estado (opcional)
+     */
+    function toggleClass(element, className, force) {
+        if (element && className) {
+            element.classList.toggle(className, force);
+        }
+    }
+
+    /**
+     * Verifica se um elemento tem uma classe
+     * @param {Element} element - Elemento do DOM
+     * @param {string} className - Nome da classe
+     * @returns {boolean} Se o elemento tem a classe
+     */
+    function hasClass(element, className) {
+        return element && element.classList.contains(className);
+    }
+
+    /**
+     * Define um atributo em um elemento
+     * @param {Element} element - Elemento do DOM
+     * @param {string} attr - Nome do atributo
+     * @param {string} value - Valor do atributo
+     */
+    function setAttr(element, attr, value) {
+        if (element) {
+            element.setAttribute(attr, value);
+        }
+    }
+
+    /**
+     * Obtém o valor de um atributo
+     * @param {Element} element - Elemento do DOM
+     * @param {string} attr - Nome do atributo
+     * @returns {string|null} Valor do atributo
+     */
+    function getAttr(element, attr) {
+        return element ? element.getAttribute(attr) : null;
+    }
+
+    /**
+     * Define o estilo display de um elemento
+     * @param {Element} element - Elemento do DOM
+     * @param {string} display - Valor do display
+     */
+    function setDisplay(element, display) {
+        if (element) {
+            element.style.display = display;
+        }
+    }
+
+    /**
+     * Mostra um elemento (display: block)
+     * @param {Element} element - Elemento do DOM
+     */
+    function show(element) {
+        setDisplay(element, 'block');
+    }
+
+    /**
+     * Esconde um elemento (display: none)
+     * @param {Element} element - Elemento do DOM
+     */
+    function hide(element) {
+        setDisplay(element, 'none');
+    }
+
+    return {
+        $,
+        $$,
+        addClass,
+        removeClass,
+        toggleClass,
+        hasClass,
+        setAttr,
+        getAttr,
+        setDisplay,
+        show,
+        hide
+    };
+})();
+
+/**
+ * Módulo de armazenamento local
+ */
+const StorageUtils = (() => {
+    const PREFIX = 'curriculo_';
+
+    /**
+     * Salva um valor no localStorage
+     * @param {string} key - Chave do item
+     * @param {*} value - Valor a ser salvo
+     */
+    function save(key, value) {
+        try {
+            const serialized = JSON.stringify(value);
+            localStorage.setItem(PREFIX + key, serialized);
+        } catch (e) {
+            console.warn('Erro ao salvar no localStorage:', e);
+        }
+    }
+
+    /**
+     * Obtém um valor do localStorage
+     * @param {string} key - Chave do item
+     * @param {*} defaultValue - Valor padrão se não existir
+     * @returns {*} Valor armazenado ou valor padrão
+     */
+    function load(key, defaultValue = null) {
+        try {
+            const item = localStorage.getItem(PREFIX + key);
+            return item !== null ? JSON.parse(item) : defaultValue;
+        } catch (e) {
+            console.warn('Erro ao carregar do localStorage:', e);
+            return defaultValue;
+        }
+    }
+
+    /**
+     * Remove um item do localStorage
+     * @param {string} key - Chave do item
+     */
+    function remove(key) {
+        try {
+            localStorage.removeItem(PREFIX + key);
+        } catch (e) {
+            console.warn('Erro ao remover do localStorage:', e);
+        }
+    }
+
+    /**
+     * Verifica se um item existe no localStorage
+     * @param {string} key - Chave do item
+     * @returns {boolean} Se o item existe
+     */
+    function exists(key) {
+        return localStorage.getItem(PREFIX + key) !== null;
+    }
+
+    return {
+        save,
+        load,
+        remove,
+        exists
+    };
+})();
+
+/**
+ * Módulo de formatação de texto e dados
+ */
+const FormatUtils = (() => {
+    /**
+     * Formata uma data para o formato brasileiro
+     * @param {Date|string} date - Data a ser formatada
+     * @returns {string|null} Data formatada (DD/MM/AAAA) ou null se inválida
+     */
+    function formatDateBR(date) {
+        if (date === null || date === undefined || date === '') {
+            return null;
+        }
+        const d = new Date(date);
+        if (isNaN(d.getTime())) return null;
+        
+        const day = String(d.getDate()).padStart(2, '0');
+        const month = String(d.getMonth() + 1).padStart(2, '0');
+        const year = d.getFullYear();
+        
+        return `${day}/${month}/${year}`;
+    }
+
+    /**
+     * Formata um valor para moeda brasileira
+     * @param {number} value - Valor a ser formatado
+     * @returns {string} Valor formatado (R$ X.XXX,XX)
+     */
+    function formatCurrencyBRL(value) {
+        return new Intl.NumberFormat('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+        }).format(value);
+    }
+
+    /**
+     * Trunca um texto no tamanho especificado
+     * @param {string} text - Texto a ser truncado
+     * @param {number} maxLength - Tamanho máximo
+     * @param {string} suffix - Sufixo a adicionar (padrão: '...')
+     * @returns {string} Texto truncado
+     */
+    function truncate(text, maxLength, suffix = '...') {
+        if (!text || text.length <= maxLength) return text;
+        return text.substring(0, maxLength - suffix.length) + suffix;
+    }
+
+    /**
+     * Capitaliza a primeira letra de uma string
+     * @param {string} str - String a ser capitalizada
+     * @returns {string} String com primeira letra maiúscula
+     */
+    function capitalize(str) {
+        if (!str) return '';
+        return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+    }
+
+    /**
+     * Remove acentos de uma string
+     * @param {string} str - String com acentos
+     * @returns {string} String sem acentos
+     */
+    function removeAccents(str) {
+        if (!str) return '';
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    }
+
+    return {
+        formatDateBR,
+        formatCurrencyBRL,
+        truncate,
+        capitalize,
+        removeAccents
+    };
+})();
+
+/**
+ * Módulo de validação de dados
+ */
+const ValidationUtils = (() => {
+    /**
+     * Valida um endereço de email
+     * @param {string} email - Email a ser validado
+     * @returns {boolean} Se o email é válido
+     */
+    function isValidEmail(email) {
+        if (!email) return false;
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+    }
+
+    /**
+     * Valida um número de telefone brasileiro
+     * @param {string} phone - Telefone a ser validado
+     * @returns {boolean} Se o telefone é válido
+     */
+    function isValidPhoneBR(phone) {
+        if (!phone) return false;
+        const cleaned = phone.replace(/\D/g, '');
+        return cleaned.length === 10 || cleaned.length === 11;
+    }
+
+    /**
+     * Verifica se uma string não está vazia
+     * @param {string} str - String a ser verificada
+     * @returns {boolean} Se a string não está vazia
+     */
+    function isNotEmpty(str) {
+        return str !== null && str !== undefined && String(str).trim().length > 0;
+    }
+
+    /**
+     * Verifica se um valor é um número válido
+     * @param {*} value - Valor a ser verificado
+     * @returns {boolean} Se o valor é um número
+     */
+    function isNumber(value) {
+        return typeof value === 'number' && !isNaN(value) && isFinite(value);
+    }
+
+    /**
+     * Verifica se um valor está dentro de um intervalo
+     * @param {number} value - Valor a ser verificado
+     * @param {number} min - Valor mínimo
+     * @param {number} max - Valor máximo
+     * @returns {boolean} Se o valor está no intervalo
+     */
+    function isInRange(value, min, max) {
+        return isNumber(value) && value >= min && value <= max;
+    }
+
+    return {
+        isValidEmail,
+        isValidPhoneBR,
+        isNotEmpty,
+        isNumber,
+        isInRange
+    };
+})();
+
+// ============================================================================
 // Translations & Content
+// ============================================================================
+
 const translations = {
     pt: {
         role: "Gestão Comercial & Desenvolvimento Digital",
@@ -469,3 +891,10 @@ window.switchView = switchView;
 window.setLanguage = setLanguage;
 window.switchPlaygroundTab = switchPlaygroundTab;
 window.toggleMobileMenu = toggleMobileMenu;
+
+// Utility Modules Exports
+window.AppState = AppState;
+window.DOMUtils = DOMUtils;
+window.StorageUtils = StorageUtils;
+window.FormatUtils = FormatUtils;
+window.ValidationUtils = ValidationUtils;
