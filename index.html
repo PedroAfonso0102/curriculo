@@ -375,82 +375,106 @@
             </button>
             
             <div id="fluid-view" class="experiment-view" style="display:none;">
-                <h2>Fluid Simulation</h2>
-                <canvas id="fluidCanvas"></canvas>
-                <p class="caption">Clique e arraste para interagir com o fluido.</p>
-                <div class="exp-controls">
-                    <label>Resolution: <span class="val" id="fluid-resolution-label">128</span></label>
-                    <input class="exp-control" type="range" name="resolution" min="32" max="256" step="8" value="128">
+                <div class="exp-layout">
+                    <div class="exp-main">
+                        <h2>Fluid Simulation</h2>
+                        <canvas id="fluidCanvas"></canvas>
+                        <p class="caption">Clique e arraste para interagir com o fluido.</p>
+                    </div>
+                    <aside class="exp-sidebar">
+                        <div class="exp-controls">
+                            <label>Resolution: <span class="val" id="fluid-resolution-label">128</span></label>
+                            <input class="exp-control" type="range" name="resolution" min="32" max="256" step="8" value="128">
 
-                    <label>Viscosity: <span class="val" id="fluid-visc-label">0.00005</span></label>
-                    <input class="exp-control" type="range" name="visc" min="0" max="0.001" step="0.00001" value="0.00005">
+                            <label>Viscosity: <span class="val" id="fluid-visc-label">0.00005</span></label>
+                            <input class="exp-control" type="range" name="visc" min="0" max="0.001" step="0.00001" value="0.00005">
 
-                    <label>Diffusion: <span class="val" id="fluid-diff-label">0.00005</span></label>
-                    <input class="exp-control" type="range" name="diff" min="0" max="0.001" step="0.00001" value="0.00005">
+                            <label>Diffusion: <span class="val" id="fluid-diff-label">0.00005</span></label>
+                            <input class="exp-control" type="range" name="diff" min="0" max="0.001" step="0.00001" value="0.00005">
 
-                    <label>Emit Strength: <span class="val" id="fluid-emit-label">100</span></label>
-                    <input class="exp-control" type="range" name="emit" min="10" max="1000" step="10" value="100">
+                            <label>Emit Strength: <span class="val" id="fluid-emit-label">100</span></label>
+                            <input class="exp-control" type="range" name="emit" min="10" max="1000" step="10" value="100">
 
-                    <label>Decay (fade): <span class="val" id="fluid-decay-label">0.995</span></label>
-                    <input class="exp-control" type="range" name="decay" min="0.90" max="0.999" step="0.0001" value="0.995">
+                            <label>Decay (fade): <span class="val" id="fluid-decay-label">0.995</span></label>
+                            <input class="exp-control" type="range" name="decay" min="0.90" max="0.999" step="0.0001" value="0.995">
 
-                    <label>Time step: <span class="val" id="fluid-dt-label">0.1</span></label>
-                    <input class="exp-control" type="range" name="dt" min="0.01" max="0.5" step="0.01" value="0.1">
+                            <label>Time step: <span class="val" id="fluid-dt-label">0.1</span></label>
+                            <input class="exp-control" type="range" name="dt" min="0.01" max="0.5" step="0.01" value="0.1">
+                        </div>
+                    </aside>
                 </div>
             </div>
 
             <div id="gravity-view" class="experiment-view" style="display:none;">
-                <h2>Gravity System</h2>
-                <canvas id="gravityCanvas"></canvas>
-                <p class="caption">Clique e arraste para lançar novos corpos celestes.</p>
-                <div class="exp-controls">
-                    <label>Gravity Strength: <span class="val" id="gravity-G-label">0.5</span></label>
-                    <input class="exp-control" type="range" name="G" min="0" max="2" step="0.01" value="0.5">
+                <div class="exp-layout">
+                    <div class="exp-main">
+                        <h2>Gravity System</h2>
+                        <canvas id="gravityCanvas"></canvas>
+                        <p class="caption">Clique e arraste para lançar novos corpos celestes.</p>
+                    </div>
+                    <aside class="exp-sidebar">
+                        <div class="exp-controls">
+                            <label>Gravity Strength: <span class="val" id="gravity-G-label">0.5</span></label>
+                            <input class="exp-control" type="range" name="G" min="0" max="2" step="0.01" value="0.5">
 
-                    <label>Particle Count: <span class="val" id="gravity-particleCount-label">6</span></label>
-                    <input class="exp-control" type="range" name="particleCount" min="1" max="50" step="1" value="6">
+                            <label>Particle Count: <span class="val" id="gravity-particleCount-label">6</span></label>
+                            <input class="exp-control" type="range" name="particleCount" min="1" max="50" step="1" value="6">
 
-                    <label>Trail Fade: <span class="val" id="gravity-trailAlpha-label">0.2</span></label>
-                    <input class="exp-control" type="range" name="trailAlpha" min="0" max="1" step="0.01" value="0.2">
+                            <label>Trail Fade: <span class="val" id="gravity-trailAlpha-label">0.2</span></label>
+                            <input class="exp-control" type="range" name="trailAlpha" min="0" max="1" step="0.01" value="0.2">
+                        </div>
+                    </aside>
                 </div>
             </div>
 
             <div id="pendulum-view" class="experiment-view" style="display:none;">
-                <h2>Double Pendulum</h2>
-                <canvas id="pendulumCanvas"></canvas>
-                <div class="exp-controls">
-                    <label>Mass 1: <span class="val" id="pendulum-m1-label">10</span></label>
-                    <input class="exp-control" type="range" name="m1" min="1" max="40" step="1" value="10">
+                <div class="exp-layout">
+                    <div class="exp-main">
+                        <h2>Double Pendulum</h2>
+                        <canvas id="pendulumCanvas"></canvas>
+                    </div>
+                    <aside class="exp-sidebar">
+                        <div class="exp-controls">
+                            <label>Mass 1: <span class="val" id="pendulum-m1-label">10</span></label>
+                            <input class="exp-control" type="range" name="m1" min="1" max="40" step="1" value="10">
 
-                    <label>Mass 2: <span class="val" id="pendulum-m2-label">10</span></label>
-                    <input class="exp-control" type="range" name="m2" min="1" max="40" step="1" value="10">
+                            <label>Mass 2: <span class="val" id="pendulum-m2-label">10</span></label>
+                            <input class="exp-control" type="range" name="m2" min="1" max="40" step="1" value="10">
 
-                    <label>Length 1: <span class="val" id="pendulum-r1-label">100</span></label>
-                    <input class="exp-control" type="range" name="r1" min="50" max="220" step="1" value="100">
+                            <label>Length 1: <span class="val" id="pendulum-r1-label">100</span></label>
+                            <input class="exp-control" type="range" name="r1" min="50" max="220" step="1" value="100">
 
-                    <label>Length 2: <span class="val" id="pendulum-r2-label">100</span></label>
-                    <input class="exp-control" type="range" name="r2" min="50" max="220" step="1" value="100">
+                            <label>Length 2: <span class="val" id="pendulum-r2-label">100</span></label>
+                            <input class="exp-control" type="range" name="r2" min="50" max="220" step="1" value="100">
 
-                    <label>Damping: <span class="val" id="pendulum-damping-label">0.999</span></label>
-                    <input class="exp-control" type="range" name="damping" min="0.9" max="0.9999" step="0.0001" value="0.999">
+                            <label>Damping: <span class="val" id="pendulum-damping-label">0.999</span></label>
+                            <input class="exp-control" type="range" name="damping" min="0.9" max="0.9999" step="0.0001" value="0.999">
 
-                    <label>Gravity: <span class="val" id="pendulum-g-label">1</span></label>
-                    <input class="exp-control" type="range" name="g" min="0" max="5" step="0.1" value="1">
+                            <label>Gravity: <span class="val" id="pendulum-g-label">1</span></label>
+                            <input class="exp-control" type="range" name="g" min="0" max="5" step="0.1" value="1">
+                        </div>
+                    </aside>
                 </div>
             </div>
 
             <div id="fourier-view" class="experiment-view" style="display:none;">
-                <h2>Fourier Series</h2>
-                <canvas id="fourierCanvas"></canvas>
-                <div class="exp-controls">
-                    <label>Terms: <span class="val" id="fourier-maxTerms-label">5</span></label>
-                    <input class="exp-control" type="range" name="maxTerms" min="1" max="60" step="1" value="5">
+                <div class="exp-layout">
+                    <div class="exp-main">
+                        <h2>Fourier Series</h2>
+                        <canvas id="fourierCanvas"></canvas>
+                    </div>
+                    <aside class="exp-sidebar">
+                        <div class="exp-controls">
+                            <label>Terms: <span class="val" id="fourier-maxTerms-label">5</span></label>
+                            <input class="exp-control" type="range" name="maxTerms" min="1" max="60" step="1" value="5">
 
-                    <label>Speed: <span class="val" id="fourier-speed-label">0.02</span></label>
-                    <input class="exp-control" type="range" name="speed" min="0.005" max="0.1" step="0.001" value="0.02">
+                            <label>Speed: <span class="val" id="fourier-speed-label">0.02</span></label>
+                            <input class="exp-control" type="range" name="speed" min="0.005" max="0.1" step="0.001" value="0.02">
 
-                    <label>Amplitude: <span class="val" id="fourier-amplitude-label">50</span></label>
-                    <input class="exp-control" type="range" name="amplitude" min="10" max="200" step="1" value="50">
+                            <label>Amplitude: <span class="val" id="fourier-amplitude-label">50</span></label>
+                            <input class="exp-control" type="range" name="amplitude" min="10" max="200" step="1" value="50">
+                        </div>
+                    </aside>
                 </div>
             </div>
         </div>

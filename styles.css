@@ -856,3 +856,173 @@ html.dark .item:hover {
 
 .experiment-view .exp-controls { margin-top: 0.75rem; }
 .experiment-view h2 { font-size: 1.1rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+
+/* Form Controls (Custom Sliders) */
+input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+    background: transparent;
+    height: 32px;
+    cursor: pointer;
+    margin: 0;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+/* Thumb (Chrome, Safari, Edge) */
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: var(--primary);
+    border: 2px solid var(--bg-card); /* Inner ring effect */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    margin-top: -6px; /* center on track */
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+input[type=range]::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+
+/* Track (Chrome, Safari, Edge) */
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 4px;
+    cursor: pointer;
+    background: var(--border);
+    border-radius: 2px;
+}
+
+/* Focus styles */
+input[type=range]:focus::-webkit-slider-thumb {
+    box-shadow: 0 0 0 8px var(--primary-light);
+}
+
+/* Firefox Thumb */
+input[type=range]::-moz-range-thumb {
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: var(--primary);
+    border: 2px solid var(--bg-card);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    cursor: pointer;
+    transition: transform 0.1s ease;
+}
+
+/* Firefox Track */
+input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 4px;
+    cursor: pointer;
+    background: var(--border);
+    border-radius: 2px;
+}
+
+/* Experiment Layout (Grid) */
+.exp-layout {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 2rem;
+    align-items: start;
+}
+
+.exp-main {
+    min-width: 0; /* Prevents grid blowout */
+}
+
+.exp-sidebar {
+    position: sticky;
+    top: 1rem;
+}
+
+.exp-controls {
+    /* Refine existing class */
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-doc);
+}
+
+/* Mobile Responsive Experiment Layout */
+@media (max-width: 900px) {
+    .exp-layout {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .exp-sidebar {
+        position: static;
+    }
+
+    .exp-controls {
+        padding: 1rem;
+    }
+}
+
+/* View Transitions */
+.anim-fade-out {
+    animation: fadeOut 0.2s cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+.anim-fade-in {
+    animation: fadeIn 0.3s cubic-bezier(0, 0, 0.2, 1) forwards;
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; transform: translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateY(10px) scale(0.98); }
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(10px) scale(0.98); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Sidebar Refinement */
+.doc-sidebar {
+    background-color: var(--bg-body); /* Match body "desk" */
+    border-right: 1px solid transparent; /* Remove hard border */
+    /* Add a subtle shadow or gradient instead if needed */
+}
+
+/* Sidebar Header */
+.sidebar-header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Sidebar Items */
+.sidebar-item {
+    font-size: 0.95rem; /* Slightly larger text */
+    border-radius: 0 50px 50px 0; /* More rounded like pill */
+}
+
+.sidebar-item.active {
+    background-color: var(--primary-light);
+    color: var(--primary-dark);
+    font-weight: 600;
+}
+
+.outline-item {
+    border-left: 2px solid var(--border);
+    padding-left: 1rem;
+    margin-left: 1rem;
+}
+
+.outline-item.active {
+    border-left-color: var(--primary);
+    background-color: transparent; /* Remove background, keep border indicator */
+}
+
+/* Ensure container has distinct paper look */
+.container {
+    box-shadow: 0 0 16px rgba(0,0,0,0.08);
+}
