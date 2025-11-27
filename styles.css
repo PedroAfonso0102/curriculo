@@ -138,7 +138,7 @@ a, button, input {
 }
 
 .nav-link:hover {
-    color: var(--text-main);
+    color: var(--primary); /* Blue on hover */
 }
 
 .nav-link.active {
@@ -275,12 +275,14 @@ html.dark .nav-link.active {
     align-items: center;
 }
 
-.theme-btn:hover { color: var(--text-main); }
+.theme-btn:hover { color: var(--primary); }
 
 .icon {
     width: 16px;
     height: 16px;
-    fill: currentColor;
+    fill: currentColor; /* Most icons are filled */
+    display: block;
+    transition: color 0.2s ease;
 }
 
 /* ------------------------------------------------------------------
@@ -342,11 +344,20 @@ h1 {
 
 .contact-item {
     color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
 .contact-item a {
-    color: var(--primary);
+    color: var(--text-secondary); /* Text matches icon initially */
     text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.contact-item:hover a,
+.contact-item:hover .icon {
+    color: var(--primary); /* Hover turns both blue */
 }
 
 .contact-item a:hover {
@@ -465,7 +476,15 @@ section:first-of-type h2 {
     background-color: var(--bg-tag);
     padding: 4px 10px;
     border-radius: 6px; /* Tight radius */
-    /* No shadow */
+    border: 1px solid transparent;
+    cursor: default;
+    transition: all 0.2s ease;
+}
+
+.tag:hover {
+    background-color: var(--primary-light);
+    color: var(--primary);
+    border-color: rgba(0, 102, 204, 0.1);
 }
 
 /* Languages (List style) */
@@ -527,6 +546,16 @@ section:first-of-type h2 {
     border-bottom-color: var(--primary);
 }
 
+/* Playground Tab Content Handling */
+.pg-tab-content {
+    display: none;
+    animation: fadeIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.pg-tab-content.active {
+    display: block;
+}
+
 .experiments-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Small items */
@@ -553,22 +582,46 @@ section:first-of-type h2 {
     align-items: center;
     justify-content: center;
     margin-bottom: 8px;
-    transition: transform 0.2s ease, border-color 0.2s ease;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .app-item:hover .app-icon {
-    transform: translateY(-2px);
-    border-color: var(--text-tertiary);
-    background-color: var(--bg-subtle);
+    transform: translateY(-4px); /* Slightly more lift */
+    border-color: var(--primary);
+    background-color: var(--bg-body); /* Keep clean background */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* Subtle context shadow */
+}
+
+.app-item:hover .icon-lg {
+    color: var(--primary);
 }
 
 .icon-lg {
     width: 32px;
     height: 32px;
     color: var(--text-main);
+    /* Handle mixed icons (some fill, some stroke) */
+    fill: currentColor;
+    stroke: none;
+    transition: color 0.2s ease;
+}
+
+/* Exceptions for stroked icons if needed, based on ID */
+#icon-gravity path, #icon-pendulum path, #icon-wave path {
     stroke: currentColor;
     fill: none;
-    stroke-width: 1.5;
+    stroke-width: 2;
+}
+
+/* Fix for gravity circle which was filled in original */
+#icon-gravity circle {
+    fill: currentColor;
+    stroke: none;
+}
+/* Fix for pendulum circle */
+#icon-pendulum circle {
+    fill: currentColor;
+    stroke: none;
 }
 
 .app-info h3 {
