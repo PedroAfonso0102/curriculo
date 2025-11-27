@@ -296,12 +296,13 @@ html.dark .nav-link.active {
     width: 100%;
     max-width: 850px; /* Slightly wider for sheet look */
     margin: 40px auto;
-    padding: 40px 60px;
+    padding: 48px 64px; /* Google Docs standard-ish padding */
     min-height: calc(100vh - 130px); /* Adjust for header + margin */
 
     background-color: var(--bg-sheet);
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.04); /* Layered depth */
+    border: 1px solid rgba(0,0,0,0.02);
 }
 
 @media (max-width: 768px) {
@@ -330,28 +331,35 @@ html.dark .nav-link.active {
 /* Header Area */
 header.resume-header {
     margin-bottom: var(--space-xxl); /* 64px */
+    display: flex;
+    flex-direction: column;
 }
 
 h1 {
-    font-size: 28px;
+    font-size: 36px; /* Larger, more authoritative */
     font-weight: 700;
     color: var(--text-main);
-    margin-bottom: var(--space-xs);
-    letter-spacing: -0.02em;
-    line-height: 1.2;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 8px; /* Space between name and role */
 }
 
 .role {
-    font-size: 16px;
+    font-size: 18px;
+    font-weight: 500;
     color: var(--text-secondary);
-    margin-bottom: var(--space-md);
+    margin-bottom: 24px; /* Space before contact info */
+    letter-spacing: -0.01em;
 }
 
 .contact-info {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-md);
+    gap: 24px; /* More breathing room */
+    row-gap: 8px;
     font-size: 14px;
+    font-weight: 400;
+    color: var(--text-secondary);
 }
 
 .contact-item {
@@ -581,8 +589,11 @@ section:first-of-type h2 {
 
 #tab-experiments {
     min-height: 400px;
-    display: grid;
     place-items: center; /* Vertical and Horizontal Center */
+}
+
+#tab-experiments.active {
+    display: grid;
 }
 
 /* Ensure the grid itself is centered if it doesn't take full width */
