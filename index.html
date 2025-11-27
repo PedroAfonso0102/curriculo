@@ -8,9 +8,9 @@
 
     <!-- SEO & Social Sharing -->
     <meta name="description"
-        content="Currículo de Pedro Afonso Pinheiro de Paula - Gestão Comercial e Projetos Digitais.">
+        content="Currículo de Pedro Afonso Pinheiro de Paula - Gestão Comercial & Desenvolvimento Digital.">
     <meta property="og:title" content="Pedro Afonso Pinheiro de Paula - Currículo">
-    <meta property="og:description" content="Especialista em Gestão Comercial e Projetos Digitais.">
+    <meta property="og:description" content="Especialista em Gestão Comercial & Desenvolvimento Digital.">
     <meta property="og:type" content="website">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -83,11 +83,11 @@
         
         <div class="sidebar-section">
             <div class="sidebar-label">Páginas</div>
-            <button class="sidebar-item active" onclick="switchView('resume')">
+            <button class="sidebar-item active" data-view="resume" onclick="switchView('resume')">
                 <svg class="sidebar-icon" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
                 <span>Currículo</span>
             </button>
-            <button class="sidebar-item" onclick="switchView('playground')">
+            <button class="sidebar-item" data-view="playground" onclick="switchView('playground')">
                 <svg class="sidebar-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
                 <span>Playground</span>
             </button>
@@ -121,7 +121,7 @@
 
             <header>
             <h1>Pedro Afonso Pinheiro de Paula</h1>
-            <div class="role" data-i18n="role">Gestão Comercial e Projetos Digitais</div>
+            <div class="role" data-i18n="role">Gestão Comercial & Desenvolvimento Digital</div>
             <div class="contact-info">
                 <div class="contact-item">
                     <!-- Location Icon -->
@@ -164,7 +164,7 @@
         <section>
             <h2 data-i18n="section_summary">Resumo</h2>
             <p class="item-content" data-i18n="summary_text">
-                Profissional de Gestão Comercial e Projetos Digitais com vivência em vendas consultivas e liderança de equipes. Atualmente desenvolvo projetos autônomos e busco recolocação no mercado para somar resultados com minha expertise em negociação e criação de materiais estratégicos de venda.
+                Profissional com atuação híbrida em Gestão Comercial e Desenvolvimento Digital. Combino experiência prática em vendas consultivas de alto valor com competência técnica em desenvolvimento web e produção audiovisual. Foco em execução: utilizo dados para qualificar leads, crio ferramentas digitais para otimizar processos e produzo conteúdo visual para suporte direto a vendas. Orientado a eficiência operacional e resultados financeiros.
             </p>
         </section>
 
@@ -178,33 +178,35 @@
                 </div>
                 <span class="item-subtitle">Wise Inteligência Imobiliária (Operação BTG Pactual)</span>
                 <ul class="details-list">
-                    <li data-i18n="job1_desc1"><strong>Vendas Consultivas:</strong> Gestão do ciclo de vendas consultivas de ativos imobiliários de alto valor.</li>
-                    <li data-i18n="job1_desc2"><strong>Processos:</strong> Implementação de análise de dados para qualificação de leads e otimização do funil de vendas.</li>
+                    <li data-i18n="job1_desc1"><strong>Vendas Consultivas:</strong> Gestão integral do ciclo de vendas de imóveis com ticket médio entre R$ 120k e R$ 2.5M, com atuação em ativos acima de R$ 13M.</li>
+                    <li data-i18n="job1_desc2"><strong>Qualificação de Leads:</strong> Uso de análise de dados para filtragem de oportunidades no CRM, aumentando a taxa de conversão real do funil.</li>
+                    <li data-i18n="job1_desc3"><strong>Otimização de Rotina:</strong> Reestruturação de processos de follow-up e atendimento, reduzindo o tempo operacional gasto por cliente.</li>
                 </ul>
             </div>
 
             <div class="item">
                 <div class="item-header">
-                    <span class="item-title" data-i18n="job2_title">Presidente e Fundador</span>
+                    <span class="item-title" data-i18n="job2_title">Fundador e Presidente</span>
                     <span class="item-date">2022 – 2023</span>
                 </div>
-                <span class="item-subtitle">CARI PUCCAMP (Centro Acadêmico)</span>
+                <span class="item-subtitle">CARI PUCCAMP</span>
                 <ul class="details-list">
-                    <li data-i18n="job2_desc1"><strong>Gestão de Equipe:</strong> Liderança executiva de equipe multidisciplinar (30 membros). Definição de metas estratégicas e rotinas operacionais.</li>
-                    <li data-i18n="job2_desc2"><strong>Financeiro:</strong> Reestruturação financeira completa e captação estratégica de recursos, garantindo superávit operacional para a gestão seguinte.</li>
+                    <li data-i18n="job2_desc1"><strong>Gestão Institucional:</strong> Fundou e estruturou juridicamente a entidade, liderando uma equipe operacional de 30 membros.</li>
+                    <li data-i18n="job2_desc2"><strong>Controle Financeiro:</strong> Assumiu o caixa do zero e entregou a gestão com superávit líquido de +R$ 4.000 através de controle de custos e receita.</li>
+                    <li data-i18n="job2_desc3"><strong>Execução de Projetos:</strong> Organizou e supervisionou a execução de eventos e projetos acadêmicos com foco em viabilidade econômica.</li>
                 </ul>
             </div>
 
             <div class="item">
                 <div class="item-header">
-                    <span class="item-title" data-i18n="job3_title">Produtor Digital e Gestor de Projetos</span>
+                    <span class="item-title" data-i18n="job3_title">Produtor Digital e Desenvolvedor</span>
                     <span class="item-date">2020 – Atual</span>
                 </div>
                 <span class="item-subtitle" data-i18n="job3_company">Autônomo</span>
                 <ul class="details-list">
-                    <li data-i18n="job3_desc1"><strong>Projetos Web:</strong> Gestão e execução de projetos digitais end-to-end. Desenvolvimento de interfaces web focadas em performance e conversão.</li>
-                    <li data-i18n="job3_desc2"><strong>Mídia e Design:</strong> Produção audiovisual para eventos corporativos, incluindo cobertura e edição ágil (ex: Fórum Ambição 2030).</li>
-                    <li data-i18n="job3_desc3"><strong>Ferramentas:</strong> Criação de ferramentas de automação de processos para otimização de cálculos e rotinas.</li>
+                    <li data-i18n="job3_desc1"><strong>Projetos Web:</strong> Desenvolvimento de interfaces e landing pages (HTML/CSS/JS) focadas em conversão e performance.</li>
+                    <li data-i18n="job3_desc2"><strong>Produção Audiovisual:</strong> Edição e motion graphics (Premiere/After Effects) para comunicação corporativa e materiais de venda.</li>
+                    <li data-i18n="job3_desc3"><strong>Automação:</strong> Criação de scripts e ferramentas simples para automação de tarefas repetitivas e organização de fluxo de trabalho.</li>
                 </ul>
             </div>
 
@@ -335,12 +337,20 @@
             <div class="role">Área de Testes e Experimentação</div>
         </header>
 
-        <!-- Dashboard Grid -->
-        <div id="playground-dashboard">
-            <section>
-                <h2>Experimentos</h2>
-                <div class="experiments-grid">
-                    <div class="experiment-card" onclick="openExperiment('fluid')">
+        <!-- Playground Tabs -->
+        <div class="playground-tabs">
+            <button class="pg-tab-btn active" onclick="switchPlaygroundTab('experiments')" data-i18n="tab_experiments">Experimentos</button>
+            <button class="pg-tab-btn" onclick="switchPlaygroundTab('comex')" data-i18n="tab_comex">Notícias ComEx</button>
+            <button class="pg-tab-btn" onclick="switchPlaygroundTab('international')" data-i18n="tab_international">Notícias Internacionais</button>
+        </div>
+
+        <!-- Dashboard Grid (Tab Content: Experiments) -->
+        <div id="tab-experiments" class="pg-tab-content active">
+            <div id="playground-dashboard">
+                <section>
+                    <h2 data-i18n="tab_experiments">Experimentos</h2>
+                    <div class="experiments-grid">
+                        <div class="experiment-card" onclick="openExperiment('fluid')">
                         <div class="exp-info">
                             <h3>Fluid Simulation</h3>
                             <p>Simulação de fluidos interativa.</p>
@@ -358,23 +368,23 @@
                             <p>Pêndulo duplo caótico.</p>
                         </div>
                     </div>
-                    <div class="experiment-card" onclick="openExperiment('fourier')">
-                        <div class="exp-info">
-                            <h3>Fourier Series</h3>
-                            <p>Visualização de ondas quadradas.</p>
+                        <div class="experiment-card" onclick="openExperiment('fourier')">
+                            <div class="exp-info">
+                                <h3>Fourier Series</h3>
+                                <p>Visualização de ondas quadradas.</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
-        </div>
+                </section>
+            </div>
 
-        <!-- Experiment Views -->
-        <div id="experiment-container" style="display: none;">
-            <button class="back-btn" onclick="closeExperiment()">
-                ← Voltar para Dashboard
-            </button>
-            
-            <div id="fluid-view" class="experiment-view" style="display:none;">
+            <!-- Experiment Views (Nested in Tab) -->
+            <div id="experiment-container" style="display: none;">
+                <button class="back-btn" onclick="closeExperiment()">
+                    ← Voltar para Dashboard
+                </button>
+
+                <div id="fluid-view" class="experiment-view" style="display:none;">
                 <div class="exp-layout">
                     <div class="exp-main">
                         <h2>Fluid Simulation</h2>
@@ -457,28 +467,44 @@
                 </div>
             </div>
 
-            <div id="fourier-view" class="experiment-view" style="display:none;">
-                <div class="exp-layout">
-                    <div class="exp-main">
-                        <h2>Fourier Series</h2>
-                        <canvas id="fourierCanvas"></canvas>
-                    </div>
-                    <aside class="exp-sidebar">
-                        <div class="exp-controls">
-                            <label>Terms: <span class="val" id="fourier-maxTerms-label">5</span></label>
-                            <input class="exp-control" type="range" name="maxTerms" min="1" max="60" step="1" value="5">
-
-                            <label>Speed: <span class="val" id="fourier-speed-label">0.02</span></label>
-                            <input class="exp-control" type="range" name="speed" min="0.005" max="0.1" step="0.001" value="0.02">
-
-                            <label>Amplitude: <span class="val" id="fourier-amplitude-label">50</span></label>
-                            <input class="exp-control" type="range" name="amplitude" min="10" max="200" step="1" value="50">
+                <div id="fourier-view" class="experiment-view" style="display:none;">
+                    <div class="exp-layout">
+                        <div class="exp-main">
+                            <h2>Fourier Series</h2>
+                            <canvas id="fourierCanvas"></canvas>
                         </div>
-                    </aside>
+                        <aside class="exp-sidebar">
+                            <div class="exp-controls">
+                                <label>Terms: <span class="val" id="fourier-maxTerms-label">5</span></label>
+                                <input class="exp-control" type="range" name="maxTerms" min="1" max="60" step="1" value="5">
+
+                                <label>Speed: <span class="val" id="fourier-speed-label">0.02</span></label>
+                                <input class="exp-control" type="range" name="speed" min="0.005" max="0.1" step="0.001" value="0.02">
+
+                                <label>Amplitude: <span class="val" id="fourier-amplitude-label">50</span></label>
+                                <input class="exp-control" type="range" name="amplitude" min="10" max="200" step="1" value="50">
+                            </div>
+                        </aside>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+
+        <!-- Tab Content: ComEx -->
+        <div id="tab-comex" class="pg-tab-content">
+            <section>
+                <h2 data-i18n="tab_comex_title">Notícias ComEx</h2>
+                <p class="item-content" data-i18n="tab_comex_desc">Em breve: Feed de notícias sobre Comércio Exterior.</p>
+            </section>
+        </div>
+
+        <!-- Tab Content: International -->
+        <div id="tab-international" class="pg-tab-content">
+            <section>
+                <h2 data-i18n="tab_intl_title">Notícias Internacionais</h2>
+                <p class="item-content" data-i18n="tab_intl_desc">Em breve: Feed de notícias internacionais.</p>
+            </section>
+        </div>
     </div> <!-- End content-wrapper -->
 
     <script src="js/experiments.js"></script>

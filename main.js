@@ -1,20 +1,22 @@
 const translations = {
     pt: {
-        role: "Gestão Comercial e Projetos Digitais",
+        role: "Gestão Comercial & Desenvolvimento Digital",
         section_summary: "Resumo",
-        summary_text: "Profissional de Gestão Comercial e Projetos Digitais com vivência em vendas consultivas e liderança de equipes. Atualmente desenvolvo projetos autônomos e busco recolocação no mercado para somar resultados com minha expertise em negociação e criação de materiais estratégicos de venda.",
+        summary_text: "Profissional com atuação híbrida em Gestão Comercial e Desenvolvimento Digital. Combino experiência prática em vendas consultivas de alto valor com competência técnica em desenvolvimento web e produção audiovisual. Foco em execução: utilizo dados para qualificar leads, crio ferramentas digitais para otimizar processos e produzo conteúdo visual para suporte direto a vendas. Orientado a eficiência operacional e resultados financeiros.",
         section_experience: "Experiencia Profissional",
         job1_title: "Analista de Vendas e Processos",
-        job1_desc1: "<strong>Vendas Consultivas:</strong> Gestão do ciclo de vendas consultivas de ativos imobiliários de alto valor.",
-        job1_desc2: "<strong>Processos:</strong> Implementação de análise de dados para qualificação de leads e otimização do funil de vendas.",
-        job2_title: "Presidente e Fundador",
-        job2_desc1: "<strong>Gestão de Equipe:</strong> Liderança executiva de equipe multidisciplinar (30 membros). Definição de metas estratégicas e rotinas operacionais.",
-        job2_desc2: "<strong>Financeiro:</strong> Reestruturação financeira completa e captação estratégica de recursos, garantindo superávit operacional para a gestão seguinte.",
-        job3_title: "Produtor Digital e Gestor de Projetos",
+        job1_desc1: "<strong>Vendas Consultivas:</strong> Gestão integral do ciclo de vendas de imóveis com ticket médio entre R$ 120k e R$ 2.5M, com atuação em ativos acima de R$ 13M.",
+        job1_desc2: "<strong>Qualificação de Leads:</strong> Uso de análise de dados para filtragem de oportunidades no CRM, aumentando a taxa de conversão real do funil.",
+        job1_desc3: "<strong>Otimização de Rotina:</strong> Reestruturação de processos de follow-up e atendimento, reduzindo o tempo operacional gasto por cliente.",
+        job2_title: "Fundador e Presidente",
+        job2_desc1: "<strong>Gestão Institucional:</strong> Fundou e estruturou juridicamente a entidade, liderando uma equipe operacional de 30 membros.",
+        job2_desc2: "<strong>Controle Financeiro:</strong> Assumiu o caixa do zero e entregou a gestão com superávit líquido de +R$ 4.000 através de controle de custos e receita.",
+        job2_desc3: "<strong>Execução de Projetos:</strong> Organizou e supervisionou a execução de eventos e projetos acadêmicos com foco em viabilidade econômica.",
+        job3_title: "Produtor Digital e Desenvolvedor",
         job3_company: "Autônomo",
-        job3_desc1: "<strong>Projetos Web:</strong> Gestão e execução de projetos digitais end-to-end. Desenvolvimento de interfaces web focadas em performance e conversão.",
-        job3_desc2: "<strong>Mídia e Design:</strong> Produção audiovisual para eventos corporativos, incluindo cobertura e edição ágil (ex: Fórum Ambição 2030).",
-        job3_desc3: "<strong>Ferramentas:</strong> Criação de ferramentas de automação de processos para otimização de cálculos e rotinas.",
+        job3_desc1: "<strong>Projetos Web:</strong> Desenvolvimento de interfaces e landing pages (HTML/CSS/JS) focadas em conversão e performance.",
+        job3_desc2: "<strong>Produção Audiovisual:</strong> Edição e motion graphics (Premiere/After Effects) para comunicação corporativa e materiais de venda.",
+        job3_desc3: "<strong>Automação:</strong> Criação de scripts e ferramentas simples para automação de tarefas repetitivas e organização de fluxo de trabalho.",
         job4_title: "Assistente de Importação",
         job4_desc1: "<strong>Comércio Exterior:</strong> Operacionalização de processos de importação/exportação e gestão de relacionamento com cadeia de suprimentos internacional.",
         section_skills: "Habilidades Técnicas",
@@ -35,24 +37,33 @@ const translations = {
         section_activities: "Atividades Extracurriculares",
         act1_desc: "Gestão estratégica de Imagem Pública e comunicação corporativa para o Interact e Rotaract Club.",
         act2_title: "Intercâmbio (Rotary Youth Exchange)",
-        act2_desc: "África do Sul."
+        act2_desc: "África do Sul.",
+        tab_experiments: "Experimentos",
+        tab_comex: "Notícias ComEx",
+        tab_international: "Notícias Internacionais",
+        tab_comex_title: "Notícias ComEx",
+        tab_comex_desc: "Em breve: Feed de notícias sobre Comércio Exterior.",
+        tab_intl_title: "Notícias Internacionais",
+        tab_intl_desc: "Em breve: Feed de notícias internacionais."
     },
     en: {
-        role: "Commercial Management & Digital Projects",
+        role: "Commercial Management & Digital Development",
         section_summary: "Summary",
-        summary_text: "Professional with experience in Commercial Management and Digital Projects, including consultative sales and team leadership. Currently working as a freelancer, I am actively seeking new opportunities in the corporate market to leverage my skills in sales strategy and digital content creation.",
+        summary_text: "Hybrid professional in Commercial Management and Digital Development. I combine practical experience in high-value consultative sales with technical competence in web development and audiovisual production. Focus on execution: I use data to qualify leads, build digital tools to optimize processes, and produce visual content for direct sales support. Oriented towards operational efficiency and financial results.",
         section_experience: "Professional Experience",
-        job1_title: "Sales and Process Analyst",
-        job1_desc1: "<strong>Consultative Sales:</strong> Management of consultative sales cycles for high-value real estate assets.",
-        job1_desc2: "<strong>Processes:</strong> Implementation of data analysis for lead qualification and sales funnel optimization.",
-        job2_title: "President and Founder",
-        job2_desc1: "<strong>Team Management:</strong> Executive leadership of a multidisciplinary team (30 members). Definition of strategic goals and operational routines.",
-        job2_desc2: "<strong>Financial:</strong> Complete financial restructuring and strategic fundraising, ensuring operational surplus for the next management.",
-        job3_title: "Digital Producer and Project Manager",
+        job1_title: "Sales & Process Analyst",
+        job1_desc1: "<strong>Consultative Sales:</strong> Full management of the sales cycle for real estate assets ranging from R$ 120k to R$ 2.5M, handling assets exceeding R$ 13M.",
+        job1_desc2: "<strong>Lead Qualification:</strong> Use of data analysis for opportunity filtering in CRM, increasing the funnel's actual conversion rate.",
+        job1_desc3: "<strong>Routine Optimization:</strong> Restructuring of follow-up and service processes, reducing operational time spent per client.",
+        job2_title: "Founder & President",
+        job2_desc1: "<strong>Institutional Management:</strong> Founded and legally structured the entity, leading an operational team of 30 members.",
+        job2_desc2: "<strong>Financial Control:</strong> Started with zero cash flow and delivered the tenure with a net surplus of +R$ 4,000 through cost and revenue control.",
+        job2_desc3: "<strong>Project Execution:</strong> Organized and supervised the execution of events and academic projects focusing on economic viability.",
+        job3_title: "Digital Producer & Developer",
         job3_company: "Freelance",
-        job3_desc1: "<strong>Web Projects:</strong> Management and execution of end-to-end digital projects. Development of performance-focused web interfaces.",
-        job3_desc2: "<strong>Media & Design:</strong> Audiovisual production for corporate events, including coverage and agile editing (e.g., Ambition 2030 Forum).",
-        job3_desc3: "<strong>Tools:</strong> Creation of process automation tools for calculation and routine optimization.",
+        job3_desc1: "<strong>Web Projects:</strong> Development of interfaces and landing pages (HTML/CSS/JS) focused on conversion and performance.",
+        job3_desc2: "<strong>Audiovisual Production:</strong> Editing and motion graphics (Premiere/After Effects) for corporate communication and sales materials.",
+        job3_desc3: "<strong>Automation:</strong> Creation of scripts and simple tools for automating repetitive tasks and organizing workflows.",
         job4_title: "Import Assistant",
         job4_desc1: "<strong>Foreign Trade:</strong> Operationalization of import/export processes and relationship management with the international supply chain.",
         section_skills: "Technical Skills",
@@ -73,24 +84,33 @@ const translations = {
         section_activities: "Extracurricular Activities",
         act1_desc: "Strategic management of Public Image and corporate communication for Interact and Rotaract Club.",
         act2_title: "Exchange Program (Rotary Youth Exchange)",
-        act2_desc: "South Africa."
+        act2_desc: "South Africa.",
+        tab_experiments: "Experiments",
+        tab_comex: "ComEx News",
+        tab_international: "International News",
+        tab_comex_title: "ComEx News",
+        tab_comex_desc: "Coming soon: Foreign Trade news feed.",
+        tab_intl_title: "International News",
+        tab_intl_desc: "Coming soon: International news feed."
     },
     es: {
-        role: "Gestión Comercial y Proyectos Digitales",
+        role: "Gestión Comercial y Desarrollo Digital",
         section_summary: "Resumen",
-        summary_text: "Profesional con experiencia en Gestión Comercial y Proyectos Digitales, incluyendo ventas consultivas y liderazgo de equipos. Actualmente trabajo como autónomo, pero busco activamente nuevas oportunidades en el mercado corporativo para aplicar mis habilidades en estrategia comercial y creación de contenido digital.",
+        summary_text: "Profesional con enfoque híbrido en Gestión Comercial y Desarrollo Digital. Combino experiencia práctica en ventas consultivas de alto valor con competencia técnica en desarrollo web y producción audiovisual. Enfoque en ejecución: utilizo datos para calificar leads, creo herramientas digitales para optimizar procesos y produzco contenido visual para soporte directo a ventas. Orientado a la eficiencia operativa y resultados financieros.",
         section_experience: "Experiencia Profesional",
         job1_title: "Analista de Ventas y Procesos",
-        job1_desc1: "<strong>Ventas Consultivas:</strong> Gestão del ciclo de ventas consultivas de ativos imobiliarios de alto valor.",
-        job1_desc2: "<strong>Procesos:</strong> Implementación de análisis de dados para calificación de leads y optimización del embudo de ventas.",
-        job2_title: "Presidente y Fundador",
-        job2_desc1: "<strong>Gestión de Equipo:</strong> Liderazgo executivo de equipo multidisciplinario (30 membros). Definición de metas estratégicas e rutinas operativas.",
-        job2_desc2: "<strong>Financiero:</strong> Reestructuración financiera completa y captación estratégica de recursos, garantizando superávit operativo para la gestión siguiente.",
-        job3_title: "Productor Digital y Gestor de Proyectos",
+        job1_desc1: "<strong>Ventas Consultivas:</strong> Gestión integral del ciclo de ventas de inmuebles con ticket medio entre R$ 120k y R$ 2.5M, actuando en activos superiores a R$ 13M.",
+        job1_desc2: "<strong>Calificación de Leads:</strong> Uso de análisis de datos para filtrado de oportunidades en CRM, aumentando la tasa de conversión real del embudo.",
+        job1_desc3: "<strong>Optimización de Rutina:</strong> Reestructuración de procesos de seguimiento y atención, reduciendo el tiempo operativo gastado por cliente.",
+        job2_title: "Fundador y Presidente",
+        job2_desc1: "<strong>Gestión Institucional:</strong> Fundó y estructuró legalmente la entidad, liderando un equipo operativo de 30 miembros.",
+        job2_desc2: "<strong>Control Financiero:</strong> Asumió la caja desde cero y entregó la gestión con un superávit neto de +R$ 4.000 a través del control de costos e ingresos.",
+        job2_desc3: "<strong>Ejecución de Proyectos:</strong> Organizó y supervisó la ejecución de eventos y proyectos académicos con enfoque en viabilidad económica.",
+        job3_title: "Productor Digital y Desarrollador",
         job3_company: "Autónomo",
-        job3_desc1: "<strong>Proyectos Web:</strong> Gestión y ejecución de proyectos digitales end-to-end. Desarrollo de interfaces web enfocadas en rendimiento y conversión.",
-        job3_desc2: "<strong>Medios y Diseño:</strong> Producción audiovisual para eventos corporativos, incluyendo cobertura y edición ágil (ej: Foro Ambición 2030).",
-        job3_desc3: "<strong>Herramientas:</strong> Creación de herramientas de automatización de procesos para optimización de cálculos y rutinas.",
+        job3_desc1: "<strong>Proyectos Web:</strong> Desarrollo de interfaces y landing pages (HTML/CSS/JS) enfocadas en conversión y rendimiento.",
+        job3_desc2: "<strong>Producción Audiovisual:</strong> Edición y motion graphics (Premiere/After Effects) para comunicación corporativa y materiales de venta.",
+        job3_desc3: "<strong>Automatización:</strong> Creación de scripts y herramientas simples para la automatización de tareas repetitivas y organización del flujo de trabajo.",
         job4_title: "Asistente de Importación",
         job4_desc1: "<strong>Comercio Exterior:</strong> Operacionalização de processos de importação/exportação e gestão de relações com a cadeia de suprimento internacional.",
         section_skills: "Habilidades Técnicas",
@@ -111,7 +131,14 @@ const translations = {
         section_activities: "Actividades Extracurriculares",
         act1_desc: "Gestión estratégica de Imagen Pública y comunicación corporativa para Interact y Rotaract Club.",
         act2_title: "Intercambio (Rotary Youth Exchange)",
-        act2_desc: "Sudáfrica."
+        act2_desc: "Sudáfrica.",
+        tab_experiments: "Experimentos",
+        tab_comex: "Noticias ComEx",
+        tab_international: "Noticias Internacionales",
+        tab_comex_title: "Noticias ComEx",
+        tab_comex_desc: "Próximamente: Noticias sobre Comercio Exterior.",
+        tab_intl_title: "Noticias Internacionales",
+        tab_intl_desc: "Próximamente: Noticias internacionales."
     }
 };
 
@@ -180,10 +207,10 @@ function switchView(viewName) {
     const resumeView = document.getElementById('resume-view');
     const playgroundView = document.getElementById('playground-view');
     
-    // Update Sidebar Buttons
+    // Update Sidebar Buttons using data-view attribute
     document.querySelectorAll('.sidebar-item').forEach(btn => {
         btn.classList.remove('active');
-        if (btn.textContent.trim().toLowerCase().includes(viewName)) {
+        if (btn.getAttribute('data-view') === viewName) {
             btn.classList.add('active');
         }
     });
@@ -194,8 +221,10 @@ function switchView(viewName) {
 
     // Use transition helper
     animateTransition(hideEl, showEl, () => {
-        if (isResume && Experiments) {
-            Experiments.stopCurrent();
+        if (isResume && window.Experiments) {
+            if (typeof window.Experiments.stopCurrent === 'function') {
+                window.Experiments.stopCurrent();
+            }
         }
         const selector = isResume ? '#resume-view' : '#playground-view';
         generateOutline(selector);
@@ -499,3 +528,34 @@ function animateTransition(hideElement, showElement, onComplete) {
 
     hideElement.addEventListener('animationend', handleOutEnd);
 }
+
+// Playground Tab Switching Logic
+function switchPlaygroundTab(tabId) {
+    // 1. Update Buttons
+    const buttons = document.querySelectorAll('.pg-tab-btn');
+    buttons.forEach(btn => {
+        // Simple logic: if onclick contains the tabId, it's the active one
+        // A robust way is to check the tab index or passed argument match
+        // But here we can just check the onclick string or add data-tab attribute
+        // Let's rely on the order or check the onclick attribute content
+        if (btn.getAttribute('onclick').includes(tabId)) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+
+    // 2. Show/Hide Content
+    const contents = document.querySelectorAll('.pg-tab-content');
+    contents.forEach(content => {
+        content.classList.remove('active');
+    });
+
+    const target = document.getElementById(`tab-${tabId}`);
+    if (target) {
+        target.classList.add('active');
+    }
+}
+
+// Expose to global scope
+window.switchPlaygroundTab = switchPlaygroundTab;
