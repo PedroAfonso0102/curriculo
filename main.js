@@ -84,7 +84,7 @@ const translations = {
         job1_desc1: "<strong>Ventas Consultivas:</strong> Gestão del ciclo de ventas consultivas de ativos imobiliarios de alto valor.",
         job1_desc2: "<strong>Procesos:</strong> Implementación de análisis de dados para calificación de leads y optimización del embudo de ventas.",
         job2_title: "Presidente y Fundador",
-        job2_desc1: "<strong>Gestión de Equipo:</strong> Liderazgo ejecutivo de equipo multidisciplinario (30 miembros). Definición de metas estratégicas y rutinas operativas.",
+        job2_desc1: "<strong>Gestión de Equipo:</strong> Liderazgo executivo de equipo multidisciplinario (30 membros). Definición de metas estratégicas e rutinas operativas.",
         job2_desc2: "<strong>Financiero:</strong> Reestructuración financiera completa y captación estratégica de recursos, garantizando superávit operativo para la gestión siguiente.",
         job3_title: "Productor Digital y Gestor de Proyectos",
         job3_company: "Autónomo",
@@ -345,6 +345,7 @@ window.closeExperiment = closeExperiment;
 window.switchView = switchView;
 window.setLanguage = setLanguage;
 window.toggleSidebar = toggleSidebar;
+window.toggleDesktopSidebar = toggleDesktopSidebar;
 
 // Sidebar Toggle Logic
 function toggleSidebar() {
@@ -361,6 +362,14 @@ function toggleSidebar() {
         overlay.classList.add('active');
         document.body.style.overflow = 'hidden'; // Prevent background scrolling
     }
+}
+
+function toggleDesktopSidebar() {
+    document.body.classList.toggle('sidebar-collapsed');
+    // Trigger resize event for canvas experiments to adjust
+    setTimeout(() => {
+        window.dispatchEvent(new Event('resize'));
+    }, 300);
 }
 
 // Close sidebar when clicking a link on mobile
