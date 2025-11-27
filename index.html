@@ -16,592 +16,31 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            /* Modern Color Palette */
-            --primary: #2563eb;
-            --primary-dark: #1e40af;
-            --primary-light: #dbeafe;
-            
-            --text-main: #0f172a;
-            --text-secondary: #334155;
-            --text-light: #64748b;
-            
-            --bg-body: #f8fafc;
-            --bg-card: #ffffff;
-            --border: #e2e8f0;
-            
-            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-            
-            --radius-md: 0.5rem;
-            --radius-lg: 0.75rem;
-            --radius-full: 9999px;
-            
-            --transition-base: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* Skip link for keyboard users */
-        .skip-link {
-            position: absolute;
-            left: -999px;
-            top: auto;
-            width: 1px;
-            height: 1px;
-            overflow: hidden;
-            clip: rect(0 0 0 0);
-            white-space: nowrap;
-        }
-
-        .skip-link:focus,
-        .skip-link:active {
-            position: fixed;
-            left: 1rem;
-            top: 1rem;
-            width: auto;
-            height: auto;
-            padding: 0.75rem 1.25rem;
-            background: var(--primary);
-            color: #fff;
-            border-radius: var(--radius-md);
-            z-index: 9999;
-            text-decoration: none;
-            box-shadow: var(--shadow-lg);
-            font-weight: 600;
-        }
-
-        /* Visible focus for keyboard users */
-        :focus-visible {
-            outline: 2px solid var(--primary);
-            outline-offset: 2px;
-            border-radius: 4px;
-        }
-
-        /* Respect reduced motion preference */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                transition: none !important;
-                animation: none !important;
-            }
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background-color: var(--bg-body);
-            color: var(--text-main);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-            padding: 3rem 1.5rem;
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 850px;
-            margin: 0 auto;
-            background-color: var(--bg-card);
-            padding: 4rem;
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-md);
-            border: 1px solid var(--border);
-        }
-
-        /* Header & Nav */
-        .top-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .lang-toggle {
-            display: flex;
-            background: var(--bg-body);
-            padding: 0.25rem;
-            border-radius: var(--radius-md);
-            border: 1px solid var(--border);
-            gap: 0.125rem;
-        }
-
-        .theme-btn {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            padding: 0.5rem;
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-light);
-            transition: var(--transition-base);
-        }
-
-        .theme-btn:hover {
-            color: var(--text-main);
-            border-color: var(--text-light);
-            background-color: var(--bg-body);
-        }
-
-        .lang-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: var(--text-light);
-            padding: 0.375rem 0.75rem;
-            border-radius: calc(var(--radius-md) - 2px);
-            font-size: 0.875rem;
-            font-weight: 600;
-            transition: var(--transition-base);
-        }
-
-        .lang-btn:hover {
-            color: var(--text-main);
-            background-color: rgba(0,0,0,0.03);
-        }
-
-        .lang-btn.active {
-            color: var(--primary);
-            background-color: var(--bg-card);
-            box-shadow: var(--shadow-sm);
-        }
-
-        /* Tooltip Styles: apply to language cards in the Languages section */
-        .lang-item {
-            position: relative;
-        }
-
-        .lang-item[data-tooltip]:hover::after {
-            content: attr(data-tooltip);
-            position: absolute;
-            top: -0.5rem;
-            left: 50%;
-            transform: translate(-50%, -100%);
-            background-color: var(--text-main);
-            color: var(--bg-card);
-            padding: 0.5rem 0.75rem;
-            border-radius: var(--radius-md);
-            font-size: 0.85rem;
-            white-space: normal;
-            width: max-content;
-            max-width: 320px;
-            text-align: left;
-            z-index: 60;
-            box-shadow: var(--shadow-lg);
-            opacity: 0;
-            animation: fadeIn 0.2s forwards;
-            pointer-events: none;
-            font-weight: 400;
-            line-height: 1.4;
-        }
-
-        .lang-item[data-tooltip]:hover::before {
-            content: '';
-            position: absolute;
-            top: 0.25rem;
-            left: 50%;
-            transform: translate(-50%, -100%);
-            border: 6px solid transparent;
-            border-top-color: var(--text-main);
-            opacity: 0;
-            animation: fadeIn 0.2s forwards;
-        }
-
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
-
-        header {
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--text-main);
-            letter-spacing: -0.03em;
-            margin-bottom: 0.75rem;
-            line-height: 1.1;
-        }
-
-        .role {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            font-weight: 500;
-            margin-bottom: 2rem;
-            letter-spacing: -0.01em;
-        }
-
-        .contact-info {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem 2rem;
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 0.625rem;
-        }
-
-        .icon {
-            width: 20px;
-            height: 20px;
-            color: var(--text-light);
-            flex-shrink: 0;
-        }
-
-        /* Interactive Links */
-        .contact-item a {
-            color: inherit;
-            text-decoration: none;
-            position: relative;
-            transition: var(--transition-base);
-            padding-bottom: 1px;
-            border-bottom: 1px solid transparent;
-        }
-
-        .contact-item a:hover {
-            color: var(--primary);
-            border-bottom-color: var(--primary);
-        }
-
-        /* Sections */
-        section {
-            margin-bottom: 3.5rem;
-        }
-
-        section:last-child {
-            margin-bottom: 0;
-        }
-
-        h2 {
-            font-size: 0.875rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--text-light);
-            font-weight: 700;
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        h2::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background-color: var(--border);
-        }
-
-        /* Experience & Education Items */
-        .item {
-            margin-bottom: 2.5rem;
-            position: relative;
-            padding-left: 1.5rem;
-            border-left: 2px solid transparent;
-            transition: var(--transition-base);
-        }
-
-        .item:hover {
-            border-left-color: var(--primary-light);
-        }
-
-        .item:last-child {
-            margin-bottom: 0;
-        }
-
-        .item-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 0.375rem;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-        }
-
-        .item-title {
-            font-size: 1.125rem;
-            font-weight: 700;
-            color: var(--text-main);
-            letter-spacing: -0.01em;
-        }
-
-        .item-subtitle {
-            font-size: 1rem;
-            color: var(--primary);
-            font-weight: 500;
-            margin-bottom: 0.75rem;
-            display: block;
-        }
-
-        .item-date {
-            font-size: 0.875rem;
-            color: var(--text-light);
-            font-feature-settings: "tnum";
-            font-variant-numeric: tabular-nums;
-            white-space: nowrap;
-            background: var(--bg-body);
-            padding: 0.25rem 0.625rem;
-            border-radius: var(--radius-md);
-            font-weight: 500;
-        }
-
-        .item-content {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            line-height: 1.7;
-        }
-
-        ul.details-list {
-            list-style: none;
-            margin-top: 1rem;
-        }
-
-        ul.details-list li {
-            position: relative;
-            padding-left: 1.5rem;
-            margin-bottom: 0.75rem;
-            color: var(--text-secondary);
-            font-size: 1rem;
-        }
-
-        ul.details-list li:last-child {
-            margin-bottom: 0;
-        }
-
-        ul.details-list li::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 0.65em;
-            width: 6px;
-            height: 6px;
-            background-color: var(--primary);
-            border-radius: 50%;
-            opacity: 0.8;
-        }
-
-        /* Skills Grid - Modern Pills */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .skill-group h3 {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 1.25rem;
-            color: var(--text-main);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .skill-pills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            list-style: none;
-        }
-
-        .skill-pill {
-            font-size: 0.9rem;
-            background-color: var(--bg-body);
-            color: var(--text-secondary);
-            padding: 0.375rem 1rem;
-            border-radius: var(--radius-full);
-            border: 1px solid transparent;
-            transition: var(--transition-base);
-            font-weight: 500;
-        }
-
-        .skill-pill:hover {
-            background-color: var(--primary-light);
-            color: var(--primary-dark);
-            transform: translateY(-1px);
-        }
-
-        /* Languages */
-        .languages-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 2rem;
-        }
-
-        .lang-item {
-            display: flex;
-            flex-direction: column;
-            padding: 1rem;
-            background: var(--bg-body);
-            border-radius: var(--radius-md);
-            border: 1px solid transparent;
-            transition: var(--transition-base);
-        }
-
-        .lang-item:hover {
-            border-color: var(--border);
-            transform: translateY(-2px);
-        }
-
-        .lang-name {
-            font-weight: 700;
-            font-size: 1rem;
-            color: var(--text-main);
-            margin-bottom: 0.25rem;
-        }
-
-        .lang-level {
-            font-size: 0.875rem;
-            color: var(--text-light);
-        }
-
-        /* Print Styles */
-        @media print {
-            body {
-                background: white;
-                padding: 0;
-                color: black;
-            }
-
-            .container {
-                box-shadow: none;
-                padding: 0;
-                max-width: 100%;
-                border: none;
-            }
-
-            .top-bar, .skip-link {
-                display: none;
-            }
-
-            .item {
-                border-left: none;
-                padding-left: 0;
-                margin-bottom: 1.5rem;
-                page-break-inside: avoid;
-            }
-
-            .item-date {
-                background: none;
-                padding: 0;
-                color: #666;
-                border: 1px solid #eee;
-                padding: 2px 8px;
-            }
-
-            .skill-pill {
-                border: 1px solid #ddd;
-                background: none;
-                color: black;
-            }
-
-            a {
-                text-decoration: none;
-                color: black;
-            }
-            
-            h2 {
-                margin-bottom: 1rem;
-                border-bottom: 2px solid #eee;
-                padding-bottom: 0.5rem;
-            }
-            
-            h2::after {
-                display: none;
-            }
-        }
-
-        @media (max-width: 640px) {
-            body {
-                padding: 1rem;
-            }
-
-            .container {
-                padding: 2rem 1.5rem;
-            }
-
-            h1 {
-                font-size: 2rem;
-            }
-
-            .item-header {
-                flex-direction: column;
-                gap: 0.25rem;
-            }
-
-            .contact-info {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .languages-list {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        /* Dark theme overrides (applies when `html` has class `dark`) */
-        html.dark {
-            --primary: #60a5fa;
-            --primary-dark: #93c5fd;
-            --primary-light: rgba(96, 165, 250, 0.1);
-            
-            --text-main: #f8fafc;
-            --text-secondary: #cbd5e1;
-            --text-light: #94a3b8;
-            
-            --bg-body: #0f172a;
-            --bg-card: #1e293b;
-            --border: #334155;
-            
-            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
-            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.3);
-        }
-
-        /* Dark mode specific element adjustments */
-        html.dark .item-date,
-        html.dark .skill-pill,
-        html.dark .lang-item,
-        html.dark .lang-toggle {
-            background-color: rgba(255, 255, 255, 0.03);
-        }
-
-        html.dark .lang-btn.active {
-            background-color: var(--primary);
-            color: #0f172a;
-        }
-
-        html.dark .skill-pill:hover {
-            background-color: var(--primary-light);
-            border-color: var(--primary);
-            color: var(--primary);
-        }
-        
-        html.dark .theme-btn:hover {
-            background-color: rgba(255,255,255,0.05);
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
+    <!-- SVG Sprite System -->
+    <svg style="display: none;">
+        <symbol id="icon-theme" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+        </symbol>
+        <symbol id="icon-location" viewBox="0 0 24 24">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+        </symbol>
+        <symbol id="icon-phone" viewBox="0 0 24 24">
+            <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.44-5.15-3.75-6.59-6.59l1.97-1.57c.26-.26.35-.65.24-1.01A11.36 11.36 0 019.96 4.3c0-.55-.45-1-1-1H4.3c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-4.66c.01-.55-.44-1-.99-1z" />
+        </symbol>
+        <symbol id="icon-mail" viewBox="0 0 24 24">
+            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+        </symbol>
+        <symbol id="icon-github" viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48 0-.24-.01-.88-.01-1.73-2.78.6-3.37-1.34-3.37-1.34-.45-1.15-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1.01.07 1.53 1.04 1.53 1.04.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02.8-.22 1.65-.33 2.5-.33.85 0 1.7.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.94.36.31.68.92.68 1.85 0 1.34-.01 2.42-.01 2.75 0 .27.18.58.69.48A10.01 10.01 0 0 0 22 12c0-5.52-4.48-10-10-10z" />
+        </symbol>
+        <symbol id="icon-linkedin" viewBox="0 0 24 24">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+        </symbol>
+    </svg>
 
     <a class="skip-link" href="#main-content">Pular para o conteúdo</a>
 
@@ -615,8 +54,8 @@
 
             <div style="display:flex; align-items:center; gap:0.5rem;">
                 <button id="theme-toggle" class="theme-btn" aria-label="Alternar modo noturno" title="Alternar modo noturno">
-                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+                    <svg class="icon" aria-hidden="true">
+                        <use href="#icon-theme"></use>
                     </svg>
                 </button>
             </div>
@@ -628,36 +67,36 @@
             <div class="contact-info">
                 <div class="contact-item">
                     <!-- Location Icon -->
-                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                    <svg class="icon">
+                        <use href="#icon-location"></use>
                     </svg>
                     <span>Campinas, SP</span>
                 </div>
                 <div class="contact-item">
                     <!-- Phone Icon -->
-                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.44-5.15-3.75-6.59-6.59l1.97-1.57c.26-.26.35-.65.24-1.01A11.36 11.36 0 019.96 4.3c0-.55-.45-1-1-1H4.3c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-4.66c.01-.55-.44-1-.99-1z" />
+                    <svg class="icon">
+                        <use href="#icon-phone"></use>
                     </svg>
                     <a href="tel:+5519994418294" title="Ligar">+55 19 99441-8294</a>
                 </div>
                 <div class="contact-item">
                     <!-- Mail Icon -->
-                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                    <svg class="icon">
+                        <use href="#icon-mail"></use>
                     </svg>
                     <a href="mailto:pedro.app1@proton.me" title="Enviar email">pedro.app1@proton.me</a>
                 </div>
                 <div class="contact-item">
                     <!-- GitHub Icon -->
-                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48 0-.24-.01-.88-.01-1.73-2.78.6-3.37-1.34-3.37-1.34-.45-1.15-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1.01.07 1.53 1.04 1.53 1.04.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02.8-.22 1.65-.33 2.5-.33.85 0 1.7.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.94.36.31.68.92.68 1.85 0 1.34-.01 2.42-.01 2.75 0 .27.18.58.69.48A10.01 10.01 0 0 0 22 12c0-5.52-4.48-10-10-10z" />
+                    <svg class="icon">
+                        <use href="#icon-github"></use>
                     </svg>
                     <a href="https://github.com/PedroAfonso0102" target="_blank" rel="noopener" title="Perfil no GitHub">PedroAfonso0102</a>
                 </div>
                 <div class="contact-item">
                     <!-- LinkedIn Icon -->
-                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    <svg class="icon" aria-hidden="true">
+                        <use href="#icon-linkedin"></use>
                     </svg>
                     <a href="https://www.linkedin.com/in/pedro-afonso-d-69b617100/" target="_blank" rel="noopener" title="Perfil no LinkedIn" aria-label="LinkedIn">Pedro Afonso</a>
                 </div>
@@ -769,22 +208,26 @@
 
         <section>
             <h2 data-i18n="section_languages">Idiomas</h2>
-            <div class="languages-list">
-                <div class="lang-item" data-tooltip="Nativo — falo e escrevo com domínio; uso diário em atividades profissionais (vendas, gestão e produção de conteúdo).">
+            
+            <div class="languages-grid">
+                <div class="lang-card">
                     <span class="lang-name" data-i18n="lang1_name">Português</span>
-                    <span class="lang-level" data-i18n="lang1_level">Nativo</span>
+                    <span class="lang-details" data-i18n="lang1_details">Nativo</span>
                 </div>
-                <div class="lang-item" data-tooltip="Fluente — aprendido de forma autodidata e por intercâmbio cultural na África do Sul; leitura prática em estudos de Relações Internacionais. Uso prático em Comércio Exterior e comunicação internacional">
+
+                <div class="lang-card">
                     <span class="lang-name" data-i18n="lang2_name">Inglês</span>
-                    <span class="lang-level" data-i18n="lang2_level">Fluente</span>
+                    <span class="lang-details" data-i18n="lang2_details">Fluente (Vivência Internacional & Comércio Exterior)</span>
                 </div>
-                <div class="lang-item" data-tooltip="Intermediário/avançado — boa leitura e compreensão; aprendido por convívio e estudos; comunicação oral básica e boa compreensão em contextos profissionais.">
+
+                <div class="lang-card">
                     <span class="lang-name" data-i18n="lang3_name">Espanhol</span>
-                    <span class="lang-level" data-i18n="lang3_level">Intermediário</span>
+                    <span class="lang-details" data-i18n="lang3_details">Profissional (Foco em leitura e compreensão corporativa)</span>
                 </div>
-                <div class="lang-item" data-tooltip="Contato durante intercâmbio na África do Sul; compreensão média e comunicação básica.">
+
+                <div class="lang-card">
                     <span class="lang-name" data-i18n="lang4_name">Africâner</span>
-                    <span class="lang-level" data-i18n="lang4_level">Básico</span>
+                    <span class="lang-details" data-i18n="lang4_details">Básico (Noções gerais)</span>
                 </div>
             </div>
         </section>
@@ -812,170 +255,7 @@
         </section>
     </main>
 
-    <script>
-        const translations = {
-            pt: {
-                role: "Gestão Comercial e Projetos Digitais",
-                section_summary: "Resumo",
-                summary_text: "Profissional de Gestão Comercial e Projetos Digitais com vivência em vendas consultivas e liderança de equipes. Atualmente desenvolvo projetos autônomos e busco recolocação no mercado para somar resultados com minha expertise em negociação e criação de materiais estratégicos de venda.",
-                section_experience: "Experiência Profissional",
-                job1_title: "Analista de Vendas e Processos",
-                job1_desc1: "<strong>Vendas Consultivas:</strong> Gestão do ciclo de vendas consultivas de ativos imobiliários de alto valor.",
-                job1_desc2: "<strong>Processos:</strong> Implementação de análise de dados para qualificação de leads e otimização do funil de vendas.",
-                job2_title: "Presidente e Fundador",
-                job2_desc1: "<strong>Gestão de Equipe:</strong> Liderança executiva de equipe multidisciplinar (30 membros). Definição de metas estratégicas e rotinas operacionais.",
-                job2_desc2: "<strong>Financeiro:</strong> Reestruturação financeira completa e captação estratégica de recursos, garantindo superávit operacional para a gestão seguinte.",
-                job3_title: "Produtor Digital e Gestor de Projetos",
-                job3_company: "Autônomo",
-                job3_desc1: "<strong>Projetos Web:</strong> Gestão e execução de projetos digitais end-to-end. Desenvolvimento de interfaces web focadas em performance e conversão.",
-                job3_desc2: "<strong>Mídia e Design:</strong> Produção audiovisual para eventos corporativos, incluindo cobertura e edição ágil (ex: Fórum Ambição 2030).",
-                job3_desc3: "<strong>Ferramentas:</strong> Criação de ferramentas de automação de processos para otimização de cálculos e rotinas.",
-                job4_title: "Assistente de Importação",
-                job4_desc1: "<strong>Comércio Exterior:</strong> Operacionalização de processos de importação/exportação e gestão de relacionamento com cadeia de suprimentos internacional.",
-                section_skills: "Habilidades Técnicas",
-                skill_cat1: "Design e Audiovisual",
-                skill_cat2: "Negócios e Ferramentas",
-                section_education: "Formação Acadêmica",
-                edu1_title: "Relações Internacionais (Bacharelado)",
-                edu2_title: "Técnico em Administração",
-                section_languages: "Idiomas",
-                lang1_name: "Português",
-                lang1_level: "Nativo",
-                lang2_name: "Inglês",
-                lang2_level: "Fluente",
-                lang3_name: "Espanhol",
-                lang3_level: "Intermediário",
-                lang4_name: "Africâner",
-                lang4_level: "Básico",
-                section_activities: "Atividades Extracurriculares",
-                act1_desc: "Gestão estratégica de Imagem Pública e comunicação corporativa para o Interact e Rotaract Club.",
-                act2_title: "Intercâmbio (Rotary Youth Exchange)",
-                act2_desc: "África do Sul."
-            },
-            en: {
-                role: "Commercial Management & Digital Projects",
-                section_summary: "Summary",
-                summary_text: "Professional with experience in Commercial Management and Digital Projects, including consultative sales and team leadership. Currently working as a freelancer, I am actively seeking new opportunities in the corporate market to leverage my skills in sales strategy and digital content creation.",
-                section_experience: "Professional Experience",
-                job1_title: "Sales and Process Analyst",
-                job1_desc1: "<strong>Consultative Sales:</strong> Management of consultative sales cycles for high-value real estate assets.",
-                job1_desc2: "<strong>Processes:</strong> Implementation of data analysis for lead qualification and sales funnel optimization.",
-                job2_title: "President and Founder",
-                job2_desc1: "<strong>Team Management:</strong> Executive leadership of a multidisciplinary team (30 members). Definition of strategic goals and operational routines.",
-                job2_desc2: "<strong>Financial:</strong> Complete financial restructuring and strategic fundraising, ensuring operational surplus for the next management.",
-                job3_title: "Digital Producer and Project Manager",
-                job3_company: "Freelance",
-                job3_desc1: "<strong>Web Projects:</strong> Management and execution of end-to-end digital projects. Development of performance-focused web interfaces.",
-                job3_desc2: "<strong>Media & Design:</strong> Audiovisual production for corporate events, including coverage and agile editing (e.g., Ambition 2030 Forum).",
-                job3_desc3: "<strong>Tools:</strong> Creation of process automation tools for calculation and routine optimization.",
-                job4_title: "Import Assistant",
-                job4_desc1: "<strong>Foreign Trade:</strong> Operationalization of import/export processes and relationship management with the international supply chain.",
-                section_skills: "Technical Skills",
-                skill_cat1: "Design & Audiovisual",
-                skill_cat2: "Business & Tools",
-                section_education: "Education",
-                edu1_title: "International Relations (Bachelor's)",
-                edu2_title: "Business Administration Technician",
-                section_languages: "Languages",
-                lang1_name: "Portuguese",
-                lang1_level: "Native",
-                lang2_name: "English",
-                lang2_level: "Fluent",
-                lang3_name: "Spanish",
-                lang3_level: "Intermediate",
-                lang4_name: "Afrikaans",
-                lang4_level: "Basic",
-                section_activities: "Extracurricular Activities",
-                act1_desc: "Strategic management of Public Image and corporate communication for Interact and Rotaract Club.",
-                act2_title: "Exchange Program (Rotary Youth Exchange)",
-                act2_desc: "South Africa."
-            },
-            es: {
-                role: "Gestión Comercial y Proyectos Digitales",
-                section_summary: "Resumen",
-                summary_text: "Profesional con experiencia en Gestión Comercial y Proyectos Digitales, incluyendo ventas consultivas y liderazgo de equipos. Actualmente trabajo como autónomo, pero busco activamente nuevas oportunidades en el mercado corporativo para aplicar mis habilidades en estrategia comercial y creación de contenido digital.",
-                section_experience: "Experiencia Profesional",
-                job1_title: "Analista de Ventas y Procesos",
-                job1_desc1: "<strong>Ventas Consultivas:</strong> Gestão del ciclo de ventas consultivas de ativos imobiliarios de alto valor.",
-                job1_desc2: "<strong>Procesos:</strong> Implementación de análisis de datos para calificación de leads e optimización del embudo de ventas.",
-                job2_title: "Presidente y Fundador",
-                job2_desc1: "<strong>Gestión de Equipo:</strong> Liderazgo ejecutivo de equipo multidisciplinario (30 miembros). Definición de metas estratégicas y rutinas operativas.",
-                job2_desc2: "<strong>Financiero:</strong> Reestructuración financiera completa y captación estratégica de recursos, garantizando superávit operativo para la gestión siguiente.",
-                job3_title: "Productor Digital y Gestor de Proyectos",
-                job3_company: "Autónomo",
-                job3_desc1: "<strong>Proyectos Web:</strong> Gestión y ejecución de proyectos digitales end-to-end. Desarrollo de interfaces web enfocadas en rendimiento y conversión.",
-                job3_desc2: "<strong>Medios y Diseño:</strong> Producción audiovisual para eventos corporativos, incluyendo cobertura y edición ágil (ej: Foro Ambición 2030).",
-                job3_desc3: "<strong>Herramientas:</strong> Creación de herramientas de automatización de procesos para optimización de cálculos y rutinas.",
-                job4_title: "Asistente de Importación",
-                job4_desc1: "<strong>Comercio Exterior:</strong> Operacionalización de processos de importação/exportação e gestão de relações com a cadeia de suprimento internacional.",
-                section_skills: "Habilidades Técnicas",
-                skill_cat1: "Diseño y Audiovisual",
-                skill_cat2: "Negocios y Herramientas",
-                section_education: "Formación Académica",
-                edu1_title: "Relaciones Internacionales (Licenciatura)",
-                edu2_title: "Técnico em Administração",
-                section_languages: "Idiomas",
-                lang1_name: "Portugués",
-                lang1_level: "Nativo",
-                lang2_name: "Inglés",
-                lang2_level: "Fluido",
-                lang3_name: "Español",
-                lang3_level: "Intermedio",
-                lang4_name: "Afrikáans",
-                lang4_level: "Básico",
-                section_activities: "Actividades Extracurriculares",
-                act1_desc: "Gestión estratégica de Imagen Pública y comunicación corporativa para Interact y Rotaract Club.",
-                act2_title: "Intercambio (Rotary Youth Exchange)",
-                act2_desc: "Sudáfrica."
-            }
-        };
-
-        function setLanguage(lang) {
-            document.documentElement.lang = lang;
-
-            // Update buttons
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                const isActive = btn.textContent.toLowerCase() === lang;
-                btn.classList.toggle('active', isActive);
-                btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-            });
-
-            // Update text
-            document.querySelectorAll('[data-i18n]').forEach(element => {
-                const key = element.getAttribute('data-i18n');
-                if (translations[lang][key]) {
-                    element.innerHTML = translations[lang][key];
-                }
-            });
-        }
-
-        // Theme Toggle Logic
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const htmlElement = document.documentElement;
-
-        // Check for saved user preference
-        const currentTheme = localStorage.getItem('theme');
-        if (currentTheme === 'dark') {
-            htmlElement.classList.add('dark');
-        }
-
-        // Initialize theme button aria state
-        if (themeToggleBtn) {
-            themeToggleBtn.setAttribute('aria-pressed', htmlElement.classList.contains('dark') ? 'true' : 'false');
-        }
-
-        themeToggleBtn.addEventListener('click', () => {
-            htmlElement.classList.toggle('dark');
-            const isDark = htmlElement.classList.contains('dark');
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-            themeToggleBtn.setAttribute('aria-pressed', isDark ? 'true' : 'false');
-        });
-
-        // Ensure language buttons have correct aria-pressed on load
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.setAttribute('aria-pressed', btn.classList.contains('active') ? 'true' : 'false');
-        });
-    </script>
+    <script src="main.js"></script>
 </body>
 
 </html>
