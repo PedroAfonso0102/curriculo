@@ -1,3 +1,396 @@
+// ============================================================================
+// Utility Functions Module - Funções utilitárias prototipadas
+// ============================================================================
+
+/**
+ * Módulo de funções utilitárias para validação e manipulação de dados
+ */
+const ExperimentUtils = (() => {
+    /**
+     * Valida e limita um valor numérico dentro de um intervalo
+     * @param {number} value - Valor a ser validado
+     * @param {number} min - Valor mínimo permitido
+     * @param {number} max - Valor máximo permitido
+     * @param {number} defaultValue - Valor padrão se inválido
+     * @returns {number} Valor validado
+     */
+    function clamp(value, min, max, defaultValue = min) {
+        if (typeof value !== 'number' || isNaN(value)) {
+            return defaultValue;
+        }
+        return Math.max(min, Math.min(max, value));
+    }
+
+    /**
+     * Interpola linearmente entre dois valores
+     * @param {number} start - Valor inicial
+     * @param {number} end - Valor final
+     * @param {number} t - Fator de interpolação (0-1)
+     * @returns {number} Valor interpolado
+     */
+    function lerp(start, end, t) {
+        return start + (end - start) * clamp(t, 0, 1);
+    }
+
+    /**
+     * Mapeia um valor de um intervalo para outro
+     * @param {number} value - Valor a mapear
+     * @param {number} inMin - Mínimo do intervalo de entrada
+     * @param {number} inMax - Máximo do intervalo de entrada
+     * @param {number} outMin - Mínimo do intervalo de saída
+     * @param {number} outMax - Máximo do intervalo de saída
+     * @returns {number} Valor mapeado
+     */
+    function mapRange(value, inMin, inMax, outMin, outMax) {
+        return ((value - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
+    }
+
+    /**
+     * Calcula a distância entre dois pontos
+     * @param {number} x1 - Coordenada X do primeiro ponto
+     * @param {number} y1 - Coordenada Y do primeiro ponto
+     * @param {number} x2 - Coordenada X do segundo ponto
+     * @param {number} y2 - Coordenada Y do segundo ponto
+     * @returns {number} Distância entre os pontos
+     */
+    function distance(x1, y1, x2, y2) {
+        const dx = x2 - x1;
+        const dy = y2 - y1;
+        return Math.sqrt(dx * dx + dy * dy);
+    }
+
+    /**
+     * Gera um número aleatório dentro de um intervalo
+     * @param {number} min - Valor mínimo
+     * @param {number} max - Valor máximo
+     * @returns {number} Número aleatório
+     */
+    function randomRange(min, max) {
+        return Math.random() * (max - min) + min;
+    }
+
+    /**
+     * Gera uma cor aleatória em formato hexadecimal
+     * @returns {string} Cor em formato #RRGGBB
+     */
+    function randomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+
+    /**
+     * Converte graus para radianos
+     * @param {number} degrees - Ângulo em graus
+     * @returns {number} Ângulo em radianos
+     */
+    function degreesToRadians(degrees) {
+        return degrees * (Math.PI / 180);
+    }
+
+    /**
+     * Converte radianos para graus
+     * @param {number} radians - Ângulo em radianos
+     * @returns {number} Ângulo em graus
+     */
+    function radiansToDegrees(radians) {
+        return radians * (180 / Math.PI);
+    }
+
+    return {
+        clamp,
+        lerp,
+        mapRange,
+        distance,
+        randomRange,
+        randomColor,
+        degreesToRadians,
+        radiansToDegrees
+    };
+})();
+
+/**
+ * Módulo de validação de parâmetros para experimentos
+ */
+const ExperimentValidator = (() => {
+    /**
+     * Valida parâmetros do experimento de fluidos
+     * @param {Object} options - Opções do experimento
+     * @returns {Object} Opções validadas
+     */
+    function validateFluidOptions(options = {}) {
+        return {
+            resolution: ExperimentUtils.clamp(options.resolution, 32, 256, 128),
+            iter: ExperimentUtils.clamp(options.iter, 1, 20, 4),
+            dt: ExperimentUtils.clamp(options.dt, 0.01, 1, 0.1),
+            diff: ExperimentUtils.clamp(options.diff, 0, 0.01, 0.00005),
+            visc: ExperimentUtils.clamp(options.visc, 0, 0.01, 0.00005),
+            emit: ExperimentUtils.clamp(options.emit, 10, 1000, 100),
+            decay: ExperimentUtils.clamp(options.decay, 0.9, 0.999, 0.995)
+        };
+    }
+
+    /**
+     * Valida parâmetros do experimento de gravidade
+     * @param {Object} options - Opções do experimento
+     * @returns {Object} Opções validadas
+     */
+    function validateGravityOptions(options = {}) {
+        return {
+            G: ExperimentUtils.clamp(options.G, 0, 5, 0.5),
+            particleCount: ExperimentUtils.clamp(options.particleCount, 1, 50, 6),
+            trailAlpha: ExperimentUtils.clamp(options.trailAlpha, 0.05, 0.5, 0.2)
+        };
+    }
+
+    /**
+     * Valida parâmetros do experimento de pêndulo duplo
+     * @param {Object} options - Opções do experimento
+     * @returns {Object} Opções validadas
+     */
+    function validatePendulumOptions(options = {}) {
+        return {
+            r1: ExperimentUtils.clamp(options.r1, 50, 250, 100),
+            r2: ExperimentUtils.clamp(options.r2, 50, 250, 100),
+            m1: ExperimentUtils.clamp(options.m1, 1, 50, 10),
+            m2: ExperimentUtils.clamp(options.m2, 1, 50, 10),
+            g: ExperimentUtils.clamp(options.g, 0, 5, 1),
+            damping: ExperimentUtils.clamp(options.damping, 0.9, 0.9999, 0.999)
+        };
+    }
+
+    /**
+     * Valida parâmetros do experimento de séries de Fourier
+     * @param {Object} options - Opções do experimento
+     * @returns {Object} Opções validadas
+     */
+    function validateFourierOptions(options = {}) {
+        return {
+            maxTerms: ExperimentUtils.clamp(options.maxTerms, 1, 100, 5),
+            speed: ExperimentUtils.clamp(options.speed, 0.001, 0.2, 0.02),
+            amplitude: ExperimentUtils.clamp(options.amplitude, 10, 200, 50)
+        };
+    }
+
+    return {
+        validateFluidOptions,
+        validateGravityOptions,
+        validatePendulumOptions,
+        validateFourierOptions
+    };
+})();
+
+/**
+ * Módulo de utilitários para canvas
+ */
+const CanvasUtils = (() => {
+    /**
+     * Inicializa um canvas com as dimensões corretas
+     * @param {HTMLCanvasElement} canvas - Elemento canvas
+     * @param {number} defaultWidth - Largura padrão
+     * @param {number} defaultHeight - Altura padrão
+     * @returns {CanvasRenderingContext2D|null} Contexto 2D ou null se falhar
+     */
+    function initCanvas(canvas, defaultWidth = 800, defaultHeight = 400) {
+        if (!canvas) return null;
+        
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return null;
+        
+        canvas.width = canvas.clientWidth || defaultWidth;
+        canvas.height = canvas.clientHeight || defaultHeight;
+        
+        return ctx;
+    }
+
+    /**
+     * Limpa o canvas completamente
+     * @param {CanvasRenderingContext2D} ctx - Contexto do canvas
+     * @param {HTMLCanvasElement} canvas - Elemento canvas
+     */
+    function clearCanvas(ctx, canvas) {
+        if (ctx && canvas) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+    }
+
+    /**
+     * Desenha um círculo no canvas
+     * @param {CanvasRenderingContext2D} ctx - Contexto do canvas
+     * @param {number} x - Coordenada X do centro
+     * @param {number} y - Coordenada Y do centro
+     * @param {number} radius - Raio do círculo
+     * @param {string} fillColor - Cor de preenchimento
+     * @param {string} strokeColor - Cor da borda (opcional)
+     * @param {number} lineWidth - Largura da borda (opcional)
+     */
+    function drawCircle(ctx, x, y, radius, fillColor, strokeColor = null, lineWidth = 1) {
+        if (!ctx) return;
+        
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, Math.PI * 2);
+        
+        if (fillColor) {
+            ctx.fillStyle = fillColor;
+            ctx.fill();
+        }
+        
+        if (strokeColor) {
+            ctx.strokeStyle = strokeColor;
+            ctx.lineWidth = lineWidth;
+            ctx.stroke();
+        }
+    }
+
+    /**
+     * Desenha uma linha no canvas
+     * @param {CanvasRenderingContext2D} ctx - Contexto do canvas
+     * @param {number} x1 - Coordenada X inicial
+     * @param {number} y1 - Coordenada Y inicial
+     * @param {number} x2 - Coordenada X final
+     * @param {number} y2 - Coordenada Y final
+     * @param {string} color - Cor da linha
+     * @param {number} lineWidth - Largura da linha
+     */
+    function drawLine(ctx, x1, y1, x2, y2, color, lineWidth = 1) {
+        if (!ctx) return;
+        
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.strokeStyle = color;
+        ctx.lineWidth = lineWidth;
+        ctx.stroke();
+    }
+
+    /**
+     * Desenha um caminho (path) a partir de um array de pontos
+     * @param {CanvasRenderingContext2D} ctx - Contexto do canvas
+     * @param {Array<{x: number, y: number}>} points - Array de pontos
+     * @param {string} color - Cor do caminho
+     * @param {number} lineWidth - Largura da linha
+     * @param {boolean} closePath - Se deve fechar o caminho
+     */
+    function drawPath(ctx, points, color, lineWidth = 1, closePath = false) {
+        if (!ctx || !points || points.length < 2) return;
+        
+        ctx.beginPath();
+        ctx.moveTo(points[0].x, points[0].y);
+        
+        for (let i = 1; i < points.length; i++) {
+            ctx.lineTo(points[i].x, points[i].y);
+        }
+        
+        if (closePath) {
+            ctx.closePath();
+        }
+        
+        ctx.strokeStyle = color;
+        ctx.lineWidth = lineWidth;
+        ctx.stroke();
+    }
+
+    /**
+     * Obtém as coordenadas do mouse/touch relativas ao canvas
+     * @param {HTMLCanvasElement} canvas - Elemento canvas
+     * @param {MouseEvent|Touch} event - Evento do mouse ou touch
+     * @returns {{x: number, y: number}} Coordenadas relativas
+     */
+    function getCanvasCoordinates(canvas, event) {
+        const rect = canvas.getBoundingClientRect();
+        return {
+            x: (event.clientX || event.pageX) - rect.left,
+            y: (event.clientY || event.pageY) - rect.top
+        };
+    }
+
+    return {
+        initCanvas,
+        clearCanvas,
+        drawCircle,
+        drawLine,
+        drawPath,
+        getCanvasCoordinates
+    };
+})();
+
+/**
+ * Módulo de gerenciamento de eventos
+ */
+const EventManager = (() => {
+    const listeners = new Map();
+
+    /**
+     * Adiciona um event listener e armazena para limpeza posterior
+     * @param {string} id - Identificador único do listener
+     * @param {EventTarget} target - Elemento alvo
+     * @param {string} eventType - Tipo do evento
+     * @param {Function} handler - Função handler
+     * @param {Object} options - Opções do addEventListener
+     */
+    function addListener(id, target, eventType, handler, options = {}) {
+        const key = `${id}-${eventType}`;
+        
+        // Remove listener existente se houver
+        removeListener(id, eventType);
+        
+        target.addEventListener(eventType, handler, options);
+        listeners.set(key, { target, eventType, handler, options });
+    }
+
+    /**
+     * Remove um event listener específico
+     * @param {string} id - Identificador do listener
+     * @param {string} eventType - Tipo do evento
+     */
+    function removeListener(id, eventType) {
+        const key = `${id}-${eventType}`;
+        const listener = listeners.get(key);
+        
+        if (listener) {
+            listener.target.removeEventListener(listener.eventType, listener.handler, listener.options);
+            listeners.delete(key);
+        }
+    }
+
+    /**
+     * Remove todos os listeners de um experimento
+     * @param {string} id - Identificador do experimento
+     */
+    function removeAllListeners(id) {
+        for (const [key, listener] of listeners.entries()) {
+            if (key.startsWith(id + '-')) {
+                listener.target.removeEventListener(listener.eventType, listener.handler, listener.options);
+                listeners.delete(key);
+            }
+        }
+    }
+
+    /**
+     * Limpa todos os listeners registrados
+     */
+    function clearAll() {
+        for (const listener of listeners.values()) {
+            listener.target.removeEventListener(listener.eventType, listener.handler, listener.options);
+        }
+        listeners.clear();
+    }
+
+    return {
+        addListener,
+        removeListener,
+        removeAllListeners,
+        clearAll
+    };
+})();
+
+// ============================================================================
+// ExperimentTheme Module - Módulo de temas para experimentos
+// ============================================================================
+
 const ExperimentTheme = (() => {
     const read = () => {
         const styles = getComputedStyle(document.documentElement);
@@ -698,3 +1091,14 @@ const Experiments = {
         return instance;
     }
 };
+
+// ============================================================================
+// Global Exports - Exportação dos módulos para uso global
+// ============================================================================
+
+window.ExperimentUtils = ExperimentUtils;
+window.ExperimentValidator = ExperimentValidator;
+window.CanvasUtils = CanvasUtils;
+window.EventManager = EventManager;
+window.ExperimentTheme = ExperimentTheme;
+window.Experiments = Experiments;
