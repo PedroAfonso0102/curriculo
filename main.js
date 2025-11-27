@@ -183,22 +183,25 @@ function switchView(viewName) {
     // Update Sidebar Buttons
     document.querySelectorAll('.sidebar-item').forEach(btn => {
         btn.classList.remove('active');
-        if (btn.textContent.trim().toLowerCase().includes(viewName)) {
+        const target = btn.getAttribute('data-target');
+        if (target === viewName) {
             btn.classList.add('active');
         }
     });
 
     const isResume = viewName === 'resume';
-    resumeView.style.display = isResume ? 'block' : 'none';
-    playgroundView.style.display = isResume ? 'none' : 'block';
+    const hideEl = isResume ? playgroundView : resumeView;
+    const showEl = isResume ? resumeView : playgroundView;
 
-    if (isResume && Experiments) {
-        Experiments.stopCurrent();
-    }
-
-    const selector = isResume ? '#resume-view' : '#playground-view';
-    generateOutline(selector);
-    setTimeout(() => setupScrollSpy(selector), 100);
+    // Use transition helper
+    animateTransition(hideEl, showEl, () => {
+        if (isResume && Experiments) {
+            Experiments.stopCurrent();
+        }
+        const selector = isResume ? '#resume-view' : '#playground-view';
+        generateOutline(selector);
+        setTimeout(() => setupScrollSpy(selector), 100);
+    });
 }
 
 // Utility: debounce
@@ -215,18 +218,22 @@ function openExperiment(type) {
     const dashboard = document.getElementById('playground-dashboard');
     const container = document.getElementById('experiment-container');
     const views = document.querySelectorAll('.experiment-view');
-    
-    // Hide dashboard, show container
-    dashboard.style.display = 'none';
-    container.style.display = 'block';
-    
-    // Hide all views first
-    views.forEach(v => v.style.display = 'none');
-    
-    // Show specific view
-    const view = document.getElementById(`${type}-view`);
-    if (view) {
-        view.style.display = 'block';
+    const targetView = document.getElementById(`${type}-view`);
+
+    if (!targetView) return;
+
+    // Animate Dashboard -> Experiment Container
+    animateTransition(dashboard, container, () => {
+        // Ensure only target view is visible within container
+        views.forEach(v => v.style.display = 'none');
+        targetView.style.display = 'block';
+
+        // Start the experiment logic
+        initExperimentLogic(type, targetView);
+    });
+}
+
+function initExperimentLogic(type, view) {
         // Initialize experiment with options from controls
         const formatVal = (v) => {
             if (typeof v !== 'number') return v;
@@ -314,29 +321,27 @@ function openExperiment(type) {
 
         generateOutline('#playground-view');
         setupScrollSpy('#playground-view');
-    }
 }
 
 function closeExperiment() {
     const dashboard = document.getElementById('playground-dashboard');
     const container = document.getElementById('experiment-container');
     
-    // Capture active id so we can remove listeners, then stop experiment
-    const prevActive = Experiments ? Experiments.activeId : null;
-    if (Experiments) Experiments.stopCurrent();
-    if (prevActive) {
-        const activeView = document.getElementById(`${prevActive}-view`);
-        if (activeView && activeView._expBound) {
-            activeView._expBound.forEach(b => b.el.removeEventListener('input', b.handler));
-            activeView._expBound = null;
+    // Animate Container -> Dashboard
+    animateTransition(container, dashboard, () => {
+        // Capture active id so we can remove listeners, then stop experiment
+        const prevActive = Experiments ? Experiments.activeId : null;
+        if (Experiments) Experiments.stopCurrent();
+        if (prevActive) {
+            const activeView = document.getElementById(`${prevActive}-view`);
+            if (activeView && activeView._expBound) {
+                activeView._expBound.forEach(b => b.el.removeEventListener('input', b.handler));
+                activeView._expBound = null;
+            }
         }
-    }
-    
-    container.style.display = 'none';
-    dashboard.style.display = 'block';
-
-    generateOutline('#playground-view');
-    setupScrollSpy('#playground-view');
+        generateOutline('#playground-view');
+        setupScrollSpy('#playground-view');
+    });
 }
 
 // Make functions global for HTML access
@@ -458,4 +463,40 @@ function setupScrollSpy(rootSelector = '#resume-view') {
     }, observerOptions);
 
     sections.forEach(section => observer.observe(section));
+}
+
+/*
+ * Helper to animate elements out before hiding them,
+ * and animate elements in after showing them.
+ */
+function animateTransition(hideElement, showElement, onComplete) {
+    if (!hideElement || !showElement) {
+        if (hideElement) hideElement.style.display = 'none';
+        if (showElement) showElement.style.display = 'block';
+        if (onComplete) onComplete();
+        return;
+    }
+
+    // 1. Animate Out
+    hideElement.classList.add('anim-fade-out');
+
+    const handleOutEnd = () => {
+        hideElement.classList.remove('anim-fade-out');
+        hideElement.style.display = 'none';
+        hideElement.removeEventListener('animationend', handleOutEnd);
+
+        // 2. Switch
+        showElement.style.display = 'block';
+        showElement.classList.add('anim-fade-in');
+
+        // 3. Animate In
+        const handleInEnd = () => {
+            showElement.classList.remove('anim-fade-in');
+            showElement.removeEventListener('animationend', handleInEnd);
+            if (onComplete) onComplete();
+        };
+        showElement.addEventListener('animationend', handleInEnd);
+    };
+
+    hideElement.addEventListener('animationend', handleOutEnd);
 }
