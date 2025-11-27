@@ -398,7 +398,9 @@ function toggleSidebar() {
 }
 
 function toggleDesktopSidebar() {
-    document.body.classList.toggle('sidebar-collapsed');
+    const isCollapsed = document.body.classList.toggle('sidebar-collapsed');
+    localStorage.setItem('sidebar-collapsed', isCollapsed ? 'true' : 'false');
+    
     // Trigger resize event for canvas experiments to adjust
     setTimeout(() => {
         window.dispatchEvent(new Event('resize'));
@@ -407,6 +409,12 @@ function toggleDesktopSidebar() {
 
 // Close sidebar when clicking a link on mobile
 document.addEventListener('DOMContentLoaded', () => {
+    // Restore Sidebar State
+    const storedSidebarState = localStorage.getItem('sidebar-collapsed');
+    if (storedSidebarState === 'true') {
+        document.body.classList.add('sidebar-collapsed');
+    }
+
     // ...existing code...
     
     // Close sidebar on link click (mobile)
@@ -498,17 +506,42 @@ function setupScrollSpy(rootSelector = '#resume-view') {
  * and animate elements in after showing them.
  */
 function animateTransition(hideElement, showElement, onComplete) {
-    if (!hideElement || !showElement) {
-        if (hideElement) hideElement.style.display = 'none';
-        if (showElement) showElement.style.display = 'block';
+    // Helper to execute switch immediately if no animation is needed/possible
+    const immediateSwitch = () => {
+        if (hideElement) {
+            hideElement.style.display = 'none';
+            hideElement.classList.remove('anim-fade-out');
+        }
+        if (showElement) {
+            showElement.style.display = 'block';
+            showElement.classList.remove('anim-fade-in');
+        }
         if (onComplete) onComplete();
+    };
+
+    if (!hideElement || !showElement) {
+        immediateSwitch();
         return;
     }
+
+    // Check if animations are enabled/supported
+    const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (isReducedMotion) {
+        immediateSwitch();
+        return;
+    }
+
+    // Safety timeout in case animationend never fires
+    const safetyTimer = setTimeout(() => {
+        console.warn('Animation timeout - forcing transition');
+        handleOutEnd();
+    }, 300); // Slightly longer than CSS animation (0.2s)
 
     // 1. Animate Out
     hideElement.classList.add('anim-fade-out');
 
     const handleOutEnd = () => {
+        clearTimeout(safetyTimer);
         hideElement.classList.remove('anim-fade-out');
         hideElement.style.display = 'none';
         hideElement.removeEventListener('animationend', handleOutEnd);
@@ -517,8 +550,14 @@ function animateTransition(hideElement, showElement, onComplete) {
         showElement.style.display = 'block';
         showElement.classList.add('anim-fade-in');
 
+        // Safety timer for in-animation
+        const inSafetyTimer = setTimeout(() => {
+            handleInEnd();
+        }, 400); // Slightly longer than CSS animation (0.3s)
+
         // 3. Animate In
         const handleInEnd = () => {
+            clearTimeout(inSafetyTimer);
             showElement.classList.remove('anim-fade-in');
             showElement.removeEventListener('animationend', handleInEnd);
             if (onComplete) onComplete();
@@ -554,6 +593,10 @@ function switchPlaygroundTab(tabId) {
     const target = document.getElementById(`tab-${tabId}`);
     if (target) {
         target.classList.add('active');
+        
+        // Update Sidebar Outline for the new tab
+        generateOutline('#playground-view');
+        setTimeout(() => setupScrollSpy('#playground-view'), 100);
     }
 }
 
