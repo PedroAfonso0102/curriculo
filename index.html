@@ -113,7 +113,8 @@
     </div>
 
     <!-- Main Content -->
-    <div class="page-container">
+    <!-- UPDATED: Replaced 'page-container' with 'sheet-container' to match new Design System semantics -->
+    <div class="sheet-container">
         <main id="resume-view" class="view-container active" role="main">
             <header class="resume-header">
                 <h1>Pedro Afonso Pinheiro de Paula</h1>
@@ -389,8 +390,6 @@
                         </div>
                     </div>
 
-                    <!-- Other experiment views kept but simplified structure if needed, or JS handles injection.
-                         The JS expects these IDs to exist. I will keep them minimal. -->
                     <div id="gravity-view" class="experiment-view" style="display:none;">
                          <div class="exp-layout">
                             <div class="exp-main">
@@ -419,13 +418,13 @@
                                 <div class="exp-controls">
                                     <label>Mass 1 <span class="val" id="pendulum-m1-label">10</span></label>
                                     <input class="exp-control" type="range" name="m1" min="1" max="40" step="1" value="10">
-                                    <!-- Simplified controls for brevity in plan, but real code needs all inputs for JS to not error -->
+
                                     <input type="hidden" name="m2" value="10">
                                     <input type="hidden" name="r1" value="100">
                                     <input type="hidden" name="r2" value="100">
                                     <input type="hidden" name="damping" value="0.999">
                                     <input type="hidden" name="g" value="1">
-                                    <!-- Restoring full controls to prevent JS errors -->
+
                                     <label>Mass 2: <span class="val" id="pendulum-m2-label">10</span></label>
                                     <input class="exp-control" type="range" name="m2" min="1" max="40" step="1" value="10">
 
