@@ -15,7 +15,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -44,23 +44,23 @@
 
     <a class="skip-link" href="#main-content">Pular para o conteúdo</a>
 
-    <main id="main-content" class="container" role="main">
-        <div class="top-bar" role="navigation" aria-label="Controles de idioma e tema">
-            <div class="lang-toggle" role="group" aria-label="Language Selection">
-                <button class="lang-btn active" onclick="setLanguage('pt')" aria-label="Mudar para Português">PT</button>
-                <button class="lang-btn" onclick="setLanguage('en')" aria-label="Switch to English">EN</button>
-                <button class="lang-btn" onclick="setLanguage('es')" aria-label="Cambiar a Español">ES</button>
-            </div>
-
-            <div style="display:flex; align-items:center; gap:0.5rem;">
-                <button id="theme-toggle" class="theme-btn" aria-label="Alternar modo noturno" title="Alternar modo noturno">
-                    <svg class="icon" aria-hidden="true">
-                        <use href="#icon-theme"></use>
-                    </svg>
-                </button>
-            </div>
+    <div class="top-bar" role="navigation" aria-label="Controles de idioma e tema">
+        <div class="lang-toggle" role="group" aria-label="Language Selection">
+            <button class="lang-btn active" onclick="setLanguage('pt')" aria-label="Mudar para Português">PT</button>
+            <button class="lang-btn" onclick="setLanguage('en')" aria-label="Switch to English">EN</button>
+            <button class="lang-btn" onclick="setLanguage('es')" aria-label="Cambiar a Español">ES</button>
         </div>
 
+        <div style="display:flex; align-items:center; gap:0.5rem;">
+            <button id="theme-toggle" class="theme-btn" aria-label="Alternar modo noturno" title="Alternar modo noturno">
+                <svg class="icon" aria-hidden="true">
+                    <use href="#icon-theme"></use>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <main id="main-content" class="container" role="main">
         <header>
             <h1>Pedro Afonso Pinheiro de Paula</h1>
             <div class="role" data-i18n="role">Gestão Comercial e Projetos Digitais</div>
@@ -222,7 +222,7 @@
 
                 <div class="lang-card">
                     <span class="lang-name" data-i18n="lang3_name">Espanhol</span>
-                    <span class="lang-details" data-i18n="lang3_details">Profissional (Foco em leitura e compreensão corporativa)</span>
+                    <span class="lang-details" data-i18n="lang3_details">Profissional (Foco em leitura, compreensão corporativa)</span>
                 </div>
 
                 <div class="lang-card">
