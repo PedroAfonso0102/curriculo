@@ -74,9 +74,14 @@
     <nav class="doc-sidebar">
         <div class="sidebar-header">
             <span class="doc-title">Currículo</span>
-            <button class="sidebar-toggle" onclick="toggleDesktopSidebar()" aria-label="Recolher menu">
-                <svg class="icon" viewBox="0 0 24 24">
+            <button class="sidebar-toggle" onclick="toggleDesktopSidebar()" aria-label="Alternar menu">
+                <!-- Icon for Open State (Chevron Left) -->
+                <svg class="icon icon-collapse" viewBox="0 0 24 24">
                     <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                </svg>
+                <!-- Icon for Closed State (List/Menu) -->
+                <svg class="icon icon-expand" viewBox="0 0 24 24">
+                    <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
                 </svg>
             </button>
         </div>

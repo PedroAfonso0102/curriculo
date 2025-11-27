@@ -409,10 +409,14 @@ function toggleDesktopSidebar() {
 
 // Close sidebar when clicking a link on mobile
 document.addEventListener('DOMContentLoaded', () => {
-    // Restore Sidebar State
+    // Restore Sidebar State (Default to collapsed if not set)
     const storedSidebarState = localStorage.getItem('sidebar-collapsed');
-    if (storedSidebarState === 'true') {
+    
+    // If 'true' OR null (first visit), collapse it.
+    if (storedSidebarState === 'true' || storedSidebarState === null) {
         document.body.classList.add('sidebar-collapsed');
+    } else {
+        document.body.classList.remove('sidebar-collapsed');
     }
 
     // ...existing code...
