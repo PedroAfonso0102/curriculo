@@ -19,15 +19,28 @@
 
     <style>
         :root {
+            /* Modern Color Palette */
             --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --text-main: #111827;
-            --text-secondary: #374151;
-            --text-light: #6b7280;
-            --bg-body: #f3f4f6;
+            --primary-dark: #1e40af;
+            --primary-light: #dbeafe;
+            
+            --text-main: #0f172a;
+            --text-secondary: #334155;
+            --text-light: #64748b;
+            
+            --bg-body: #f8fafc;
             --bg-card: #ffffff;
-            --border: #e5e7eb;
-            --transition-speed: 0.15s;
+            --border: #e2e8f0;
+            
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-full: 9999px;
+            
+            --transition-base: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         /* Skip link for keyboard users */
@@ -49,20 +62,21 @@
             top: 1rem;
             width: auto;
             height: auto;
-            padding: 0.5rem 0.75rem;
+            padding: 0.75rem 1.25rem;
             background: var(--primary);
             color: #fff;
-            border-radius: 6px;
+            border-radius: var(--radius-md);
             z-index: 9999;
             text-decoration: none;
-            box-shadow: 0 6px 18px rgba(37,99,235,0.18);
+            box-shadow: var(--shadow-lg);
+            font-weight: 600;
         }
 
         /* Visible focus for keyboard users */
         :focus-visible {
-            outline: 3px solid rgba(37,99,235,0.18);
+            outline: 2px solid var(--primary);
             outline-offset: 2px;
-            border-radius: 6px;
+            border-radius: 4px;
         }
 
         /* Respect reduced motion preference */
@@ -72,6 +86,7 @@
                 animation: none !important;
             }
         }
+
         * {
             margin: 0;
             padding: 0;
@@ -79,21 +94,23 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
             background-color: var(--bg-body);
             color: var(--text-main);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
-            padding: 2rem 1rem;
+            padding: 3rem 1.5rem;
+            min-height: 100vh;
         }
 
         .container {
-            max-width: 800px;
+            max-width: 850px;
             margin: 0 auto;
             background-color: var(--bg-card);
-            padding: 3.5rem;
-            border-radius: 12px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+            padding: 4rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border);
         }
 
         /* Header & Nav */
@@ -101,34 +118,36 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 0.5rem;
+            gap: 1rem;
+            margin-bottom: 1rem;
         }
 
         .lang-toggle {
             display: flex;
-            background: #f9fafb;
+            background: var(--bg-body);
             padding: 0.25rem;
-            border-radius: 8px;
+            border-radius: var(--radius-md);
             border: 1px solid var(--border);
+            gap: 0.125rem;
         }
 
         .theme-btn {
-            background: none;
+            background: var(--bg-card);
             border: 1px solid var(--border);
-            padding: 0.35rem 0.6rem;
-            border-radius: 8px;
+            padding: 0.5rem;
+            border-radius: var(--radius-md);
             cursor: pointer;
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            justify-content: center;
             color: var(--text-light);
-            transition: all var(--transition-speed) ease;
+            transition: var(--transition-base);
         }
 
         .theme-btn:hover {
             color: var(--text-main);
-            border-color: rgba(0,0,0,0.06);
+            border-color: var(--text-light);
+            background-color: var(--bg-body);
         }
 
         .lang-btn {
@@ -136,62 +155,109 @@
             border: none;
             cursor: pointer;
             color: var(--text-light);
-            padding: 0.35rem 0.75rem;
-            border-radius: 6px;
-            font-size: 0.75rem;
+            padding: 0.375rem 0.75rem;
+            border-radius: calc(var(--radius-md) - 2px);
+            font-size: 0.875rem;
             font-weight: 600;
-            transition: all var(--transition-speed) ease;
+            transition: var(--transition-base);
         }
 
         .lang-btn:hover {
             color: var(--text-main);
+            background-color: rgba(0,0,0,0.03);
         }
 
         .lang-btn.active {
             color: var(--primary);
-            background-color: white;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            background-color: var(--bg-card);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Tooltip Styles: apply to language cards in the Languages section */
+        .lang-item {
+            position: relative;
+        }
+
+        .lang-item[data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            top: -0.5rem;
+            left: 50%;
+            transform: translate(-50%, -100%);
+            background-color: var(--text-main);
+            color: var(--bg-card);
+            padding: 0.5rem 0.75rem;
+            border-radius: var(--radius-md);
+            font-size: 0.85rem;
+            white-space: normal;
+            width: max-content;
+            max-width: 320px;
+            text-align: left;
+            z-index: 60;
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            animation: fadeIn 0.2s forwards;
+            pointer-events: none;
+            font-weight: 400;
+            line-height: 1.4;
+        }
+
+        .lang-item[data-tooltip]:hover::before {
+            content: '';
+            position: absolute;
+            top: 0.25rem;
+            left: 50%;
+            transform: translate(-50%, -100%);
+            border: 6px solid transparent;
+            border-top-color: var(--text-main);
+            opacity: 0;
+            animation: fadeIn 0.2s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
         }
 
         header {
             border-bottom: 1px solid var(--border);
-            padding-bottom: 2.5rem;
-            margin-bottom: 2.5rem;
+            padding-bottom: 3rem;
+            margin-bottom: 3rem;
         }
 
         h1 {
-            font-size: 2.25rem;
-            font-weight: 700;
+            font-size: 2.5rem;
+            font-weight: 800;
             color: var(--text-main);
-            letter-spacing: -0.025em;
-            margin-bottom: 0.5rem;
-            line-height: 1.2;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.75rem;
+            line-height: 1.1;
         }
 
         .role {
-            font-size: 1.125rem;
+            font-size: 1.25rem;
             color: var(--text-secondary);
             font-weight: 500;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            letter-spacing: -0.01em;
         }
 
         .contact-info {
             display: flex;
             flex-wrap: wrap;
-            gap: 1rem 1.5rem;
-            font-size: 0.9rem;
+            gap: 1rem 2rem;
+            font-size: 0.95rem;
             color: var(--text-secondary);
         }
 
         .contact-item {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.625rem;
         }
 
         .icon {
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
             color: var(--text-light);
             flex-shrink: 0;
         }
@@ -201,28 +267,35 @@
             color: inherit;
             text-decoration: none;
             position: relative;
-            transition: color var(--transition-speed);
+            transition: var(--transition-base);
+            padding-bottom: 1px;
+            border-bottom: 1px solid transparent;
         }
 
         .contact-item a:hover {
             color: var(--primary);
+            border-bottom-color: var(--primary);
         }
 
         /* Sections */
         section {
-            margin-bottom: 3rem;
+            margin-bottom: 3.5rem;
+        }
+
+        section:last-child {
+            margin-bottom: 0;
         }
 
         h2 {
-            font-size: 0.75rem;
+            font-size: 0.875rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
             color: var(--text-light);
             font-weight: 700;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 1.5rem;
         }
 
         h2::after {
@@ -234,15 +307,15 @@
 
         /* Experience & Education Items */
         .item {
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             position: relative;
-            padding-left: 1rem;
+            padding-left: 1.5rem;
             border-left: 2px solid transparent;
-            transition: border-color var(--transition-speed);
+            transition: var(--transition-base);
         }
 
         .item:hover {
-            border-left-color: var(--border);
+            border-left-color: var(--primary-light);
         }
 
         .item:last-child {
@@ -253,77 +326,84 @@
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.375rem;
             flex-wrap: wrap;
-            gap: 0.5rem;
+            gap: 0.75rem;
         }
 
         .item-title {
-            font-size: 1.05rem;
-            font-weight: 600;
+            font-size: 1.125rem;
+            font-weight: 700;
             color: var(--text-main);
+            letter-spacing: -0.01em;
         }
 
         .item-subtitle {
-            font-size: 0.95rem;
+            font-size: 1rem;
             color: var(--primary);
             font-weight: 500;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
             display: block;
         }
 
         .item-date {
-            font-size: 0.85rem;
+            font-size: 0.875rem;
             color: var(--text-light);
             font-feature-settings: "tnum";
             font-variant-numeric: tabular-nums;
             white-space: nowrap;
-            background: #f3f4f6;
-            padding: 0.1rem 0.4rem;
-            border-radius: 4px;
+            background: var(--bg-body);
+            padding: 0.25rem 0.625rem;
+            border-radius: var(--radius-md);
+            font-weight: 500;
         }
 
         .item-content {
             color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.6;
+            font-size: 1rem;
+            line-height: 1.7;
         }
 
         ul.details-list {
             list-style: none;
-            margin-top: 0.75rem;
+            margin-top: 1rem;
         }
 
         ul.details-list li {
             position: relative;
-            padding-left: 1.25rem;
-            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
             color: var(--text-secondary);
-            font-size: 0.95rem;
+            font-size: 1rem;
+        }
+
+        ul.details-list li:last-child {
+            margin-bottom: 0;
         }
 
         ul.details-list li::before {
             content: "";
             position: absolute;
             left: 0;
-            top: 0.6em;
-            width: 4px;
-            height: 4px;
+            top: 0.65em;
+            width: 6px;
+            height: 6px;
             background-color: var(--primary);
             border-radius: 50%;
+            opacity: 0.8;
         }
 
         /* Skills Grid - Modern Pills */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
         }
 
         .skill-group h3 {
-            font-size: 0.9rem;
+            font-size: 1rem;
             font-weight: 600;
-            margin-bottom: 1rem;
+            margin-bottom: 1.25rem;
             color: var(--text-main);
             display: flex;
             align-items: center;
@@ -333,46 +413,58 @@
         .skill-pills {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
+            gap: 0.75rem;
             list-style: none;
         }
 
         .skill-pill {
-            font-size: 0.85rem;
-            background-color: #f3f4f6;
+            font-size: 0.9rem;
+            background-color: var(--bg-body);
             color: var(--text-secondary);
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
+            padding: 0.375rem 1rem;
+            border-radius: var(--radius-full);
             border: 1px solid transparent;
-            transition: all var(--transition-speed);
+            transition: var(--transition-base);
+            font-weight: 500;
         }
 
         .skill-pill:hover {
-            background-color: #eff6ff;
-            color: var(--primary);
-            border-color: #bfdbfe;
+            background-color: var(--primary-light);
+            color: var(--primary-dark);
+            transform: translateY(-1px);
         }
 
         /* Languages */
         .languages-list {
-            display: flex;
-            gap: 3rem;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 2rem;
         }
 
         .lang-item {
             display: flex;
             flex-direction: column;
+            padding: 1rem;
+            background: var(--bg-body);
+            border-radius: var(--radius-md);
+            border: 1px solid transparent;
+            transition: var(--transition-base);
+        }
+
+        .lang-item:hover {
+            border-color: var(--border);
+            transform: translateY(-2px);
         }
 
         .lang-name {
-            font-weight: 600;
-            font-size: 0.95rem;
+            font-weight: 700;
+            font-size: 1rem;
             color: var(--text-main);
+            margin-bottom: 0.25rem;
         }
 
         .lang-level {
-            font-size: 0.85rem;
+            font-size: 0.875rem;
             color: var(--text-light);
         }
 
@@ -391,39 +483,58 @@
                 border: none;
             }
 
-            .top-bar {
+            .top-bar, .skip-link {
                 display: none;
             }
 
             .item {
                 border-left: none;
                 padding-left: 0;
+                margin-bottom: 1.5rem;
+                page-break-inside: avoid;
             }
 
             .item-date {
                 background: none;
                 padding: 0;
                 color: #666;
+                border: 1px solid #eee;
+                padding: 2px 8px;
             }
 
             .skill-pill {
                 border: 1px solid #ddd;
                 background: none;
+                color: black;
             }
 
             a {
                 text-decoration: none;
                 color: black;
             }
+            
+            h2 {
+                margin-bottom: 1rem;
+                border-bottom: 2px solid #eee;
+                padding-bottom: 0.5rem;
+            }
+            
+            h2::after {
+                display: none;
+            }
         }
 
         @media (max-width: 640px) {
+            body {
+                padding: 1rem;
+            }
+
             .container {
-                padding: 1.5rem;
+                padding: 2rem 1.5rem;
             }
 
             h1 {
-                font-size: 1.75rem;
+                font-size: 2rem;
             }
 
             .item-header {
@@ -433,47 +544,59 @@
 
             .contact-info {
                 flex-direction: column;
-                gap: 0.75rem;
+                gap: 1rem;
             }
 
             .skills-grid {
                 grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .languages-list {
+                grid-template-columns: 1fr 1fr;
             }
         }
 
         /* Dark theme overrides (applies when `html` has class `dark`) */
         html.dark {
             --primary: #60a5fa;
-            --primary-dark: #3b82f6;
-            --text-main: #f1f5f9;
+            --primary-dark: #93c5fd;
+            --primary-light: rgba(96, 165, 250, 0.1);
+            
+            --text-main: #f8fafc;
             --text-secondary: #cbd5e1;
             --text-light: #94a3b8;
+            
             --bg-body: #0f172a;
             --bg-card: #1e293b;
             --border: #334155;
+            
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.3);
         }
 
         /* Dark mode specific element adjustments */
         html.dark .item-date,
-        html.dark .skill-pill {
-            background-color: rgba(255, 255, 255, 0.05);
-            color: var(--text-secondary);
-        }
-
+        html.dark .skill-pill,
+        html.dark .lang-item,
         html.dark .lang-toggle {
             background-color: rgba(255, 255, 255, 0.03);
-            border-color: var(--border);
         }
 
         html.dark .lang-btn.active {
             background-color: var(--primary);
-            color: var(--bg-card);
+            color: #0f172a;
         }
 
         html.dark .skill-pill:hover {
-            background-color: rgba(96, 165, 250, 0.15);
+            background-color: var(--primary-light);
             border-color: var(--primary);
             color: var(--primary);
+        }
+        
+        html.dark .theme-btn:hover {
+            background-color: rgba(255,255,255,0.05);
         }
     </style>
 </head>
@@ -488,7 +611,6 @@
                 <button class="lang-btn active" onclick="setLanguage('pt')" aria-label="Mudar para Português">PT</button>
                 <button class="lang-btn" onclick="setLanguage('en')" aria-label="Switch to English">EN</button>
                 <button class="lang-btn" onclick="setLanguage('es')" aria-label="Cambiar a Español">ES</button>
-                <button class="lang-btn" onclick="setLanguage('af')" aria-label="Skakel oor na Afrikaans">AF</button>
             </div>
 
             <div style="display:flex; align-items:center; gap:0.5rem;">
@@ -648,19 +770,19 @@
         <section>
             <h2 data-i18n="section_languages">Idiomas</h2>
             <div class="languages-list">
-                <div class="lang-item">
+                <div class="lang-item" data-tooltip="Nativo — falo e escrevo com domínio; uso diário em atividades profissionais (vendas, gestão e produção de conteúdo).">
                     <span class="lang-name" data-i18n="lang1_name">Português</span>
                     <span class="lang-level" data-i18n="lang1_level">Nativo</span>
                 </div>
-                <div class="lang-item">
+                <div class="lang-item" data-tooltip="Fluente — aprendido de forma autodidata e por intercâmbio cultural na África do Sul; leitura prática em estudos de Relações Internacionais. Uso prático em Comércio Exterior e comunicação internacional">
                     <span class="lang-name" data-i18n="lang2_name">Inglês</span>
                     <span class="lang-level" data-i18n="lang2_level">Fluente</span>
                 </div>
-                <div class="lang-item">
+                <div class="lang-item" data-tooltip="Intermediário/avançado — boa leitura e compreensão; aprendido por convívio e estudos; comunicação oral básica e boa compreensão em contextos profissionais.">
                     <span class="lang-name" data-i18n="lang3_name">Espanhol</span>
                     <span class="lang-level" data-i18n="lang3_level">Intermediário</span>
                 </div>
-                <div class="lang-item">
+                <div class="lang-item" data-tooltip="Contato durante intercâmbio na África do Sul; compreensão média e comunicação básica.">
                     <span class="lang-name" data-i18n="lang4_name">Africâner</span>
                     <span class="lang-level" data-i18n="lang4_level">Básico</span>
                 </div>
@@ -774,8 +896,8 @@
                 summary_text: "Profesional con experiencia en Gestión Comercial y Proyectos Digitales, incluyendo ventas consultivas y liderazgo de equipos. Actualmente trabajo como autónomo, pero busco activamente nuevas oportunidades en el mercado corporativo para aplicar mis habilidades en estrategia comercial y creación de contenido digital.",
                 section_experience: "Experiencia Profesional",
                 job1_title: "Analista de Ventas y Procesos",
-                job1_desc1: "<strong>Ventas Consultivas:</strong> Gestión del ciclo de ventas consultivas de activos inmobiliarios de alto valor.",
-                job1_desc2: "<strong>Procesos:</strong> Implementación de análisis de datos para calificación de leads y optimización del embudo de ventas.",
+                job1_desc1: "<strong>Ventas Consultivas:</strong> Gestão del ciclo de ventas consultivas de ativos imobiliarios de alto valor.",
+                job1_desc2: "<strong>Procesos:</strong> Implementación de análisis de datos para calificación de leads e optimización del embudo de ventas.",
                 job2_title: "Presidente y Fundador",
                 job2_desc1: "<strong>Gestión de Equipo:</strong> Liderazgo ejecutivo de equipo multidisciplinario (30 miembros). Definición de metas estratégicas y rutinas operativas.",
                 job2_desc2: "<strong>Financiero:</strong> Reestructuración financiera completa y captación estratégica de recursos, garantizando superávit operativo para la gestión siguiente.",
@@ -785,13 +907,13 @@
                 job3_desc2: "<strong>Medios y Diseño:</strong> Producción audiovisual para eventos corporativos, incluyendo cobertura y edición ágil (ej: Foro Ambición 2030).",
                 job3_desc3: "<strong>Herramientas:</strong> Creación de herramientas de automatización de procesos para optimización de cálculos y rutinas.",
                 job4_title: "Asistente de Importación",
-                job4_desc1: "<strong>Comercio Exterior:</strong> Operacionalización de procesos de importación/exportación y gestión de relaciones con la cadena de suministro internacional.",
+                job4_desc1: "<strong>Comercio Exterior:</strong> Operacionalización de processos de importação/exportação e gestão de relações com a cadeia de suprimento internacional.",
                 section_skills: "Habilidades Técnicas",
                 skill_cat1: "Diseño y Audiovisual",
                 skill_cat2: "Negocios y Herramientas",
                 section_education: "Formación Académica",
                 edu1_title: "Relaciones Internacionales (Licenciatura)",
-                edu2_title: "Técnico en Administración",
+                edu2_title: "Técnico em Administração",
                 section_languages: "Idiomas",
                 lang1_name: "Portugués",
                 lang1_level: "Nativo",
@@ -805,44 +927,6 @@
                 act1_desc: "Gestión estratégica de Imagen Pública y comunicación corporativa para Interact y Rotaract Club.",
                 act2_title: "Intercambio (Rotary Youth Exchange)",
                 act2_desc: "Sudáfrica."
-            },
-            af: {
-                role: "Kommersiële Bestuur en Digitale Projekte",
-                section_summary: "Opsomming",
-                summary_text: "Professionele persoon met ervaring in Kommersiële Bestuur en Digitale Projekte, insluitend konsulterende verkope en spanleierskap. Ek werk tans as vryskut en soek aktief na nuwe geleenthede in die korporatiewe mark om my vaardighede in verkoopsstrategie en digitale inhoudskepping toe te pas.",
-                section_experience: "Professionele Ervaring",
-                job1_title: "Verkope- en Prosesanalis",
-                job1_desc1: "<strong>Konsulterende Verkope:</strong> Bestuur van die konsulterende verkoopsiklus vir hoë-waarde eiendomsbates.",
-                job1_desc2: "<strong>Prosesse:</strong> Implementering van data-analise vir loodkwalifikasie en optimalisering van die verkoopstregter.",
-                job2_title: "President en Stigter",
-                job2_desc1: "<strong>Spanbestuur:</strong> Uitvoerende leierskap van 'n multidissiplinêre span (30 lede). Definiëring van strategiese doelwitte en operasionele roetines.",
-                job2_desc2: "<strong>Finansieel:</strong> Volledige finansiële herstrukturering en strategiese fondsinsameling, wat 'n operasionele oorskot vir die volgende bestuur verseker.",
-                job3_title: "Digitale Produksie en Projekbestuurder",
-                job3_company: "Vryskut",
-                job3_desc1: "<strong>Webprojekte:</strong> Bestuur en uitvoering van end-tot-end digitale projekte. Ontwikkeling van prestasie-gefokusde webkoppelvlakke.",
-                job3_desc2: "<strong>Media & Ontwerp:</strong> Oudiovisuele produksie vir korporatiewe geleenthede, insluitend dekking en ratse redigering (bv. Ambition 2030 Forum).",
-                job3_desc3: "<strong>Gereedskap:</strong> Skepping van proses-outomatiseringsgereedskap vir berekening- en roetine-optimalisering.",
-                job4_title: "Invoerassistent",
-                job4_desc1: "<strong>Buitelandse Handel:</strong> Operasionalisering van invoer-/uitvoerprosesse en bestuursverhoudinge met die internasionale voorsieningsketting.",
-                section_skills: "Tegniese Vaardighede",
-                skill_cat1: "Ontwerp en Oudiovisueel",
-                skill_cat2: "Besigheid en Gereedskap",
-                section_education: "Opvoeding",
-                edu1_title: "Internasionale Verhoudinge (Baccalaureus)",
-                edu2_title: "Besigheidsadministrasie Tegnikus",
-                section_languages: "Tale",
-                lang1_name: "Portugees",
-                lang1_level: "Moedertaal",
-                lang2_name: "Engels",
-                lang2_level: "Vlot",
-                lang3_name: "Spaans",
-                lang3_level: "Intermediêr",
-                lang4_name: "Afrikaans",
-                lang4_level: "Basies",
-                section_activities: "Buitemuurse Aktiwiteite",
-                act1_desc: "Strategiese bestuur van Openbare Beeld en korporatiewe kommunikasie vir Interact en Rotaract Klub.",
-                act2_title: "Uitruilprogram (Rotary Youth Exchange)",
-                act2_desc: "Suid-Afrika."
             }
         };
 
