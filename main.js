@@ -284,11 +284,14 @@ const FormatUtils = (() => {
     /**
      * Formata uma data para o formato brasileiro
      * @param {Date|string} date - Data a ser formatada
-     * @returns {string} Data formatada (DD/MM/AAAA)
+     * @returns {string|null} Data formatada (DD/MM/AAAA) ou null se inválida
      */
     function formatDateBR(date) {
+        if (date === null || date === undefined || date === '') {
+            return null;
+        }
         const d = new Date(date);
-        if (isNaN(d.getTime())) return '';
+        if (isNaN(d.getTime())) return null;
         
         const day = String(d.getDate()).padStart(2, '0');
         const month = String(d.getMonth() + 1).padStart(2, '0');

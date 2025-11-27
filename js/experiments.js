@@ -18,6 +18,12 @@ const ExperimentUtils = (() => {
         if (typeof value !== 'number' || isNaN(value)) {
             return defaultValue;
         }
+        // Ensure min <= max for correct behavior
+        if (min > max) {
+            const temp = min;
+            min = max;
+            max = temp;
+        }
         return Math.max(min, Math.min(max, value));
     }
 
@@ -301,9 +307,13 @@ const CanvasUtils = (() => {
      */
     function getCanvasCoordinates(canvas, event) {
         const rect = canvas.getBoundingClientRect();
+        // Use clientX/clientY consistently as they are viewport-relative
+        // and getBoundingClientRect() also returns viewport-relative coordinates
+        const clientX = event.clientX !== undefined ? event.clientX : event.pageX - window.scrollX;
+        const clientY = event.clientY !== undefined ? event.clientY : event.pageY - window.scrollY;
         return {
-            x: (event.clientX || event.pageX) - rect.left,
-            y: (event.clientY || event.pageY) - rect.top
+            x: clientX - rect.left,
+            y: clientY - rect.top
         };
     }
 
