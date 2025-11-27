@@ -21,17 +21,31 @@
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     
     /* Strict Spacing (Vertical Rhythm) */
+    --space-2xs: 2px;
     --space-xs: 4px;
     --space-sm: 8px;
+    --space-sm-md: 12px;
     --space-md: 16px;
     --space-lg: 24px;
     --space-xl: 32px;
-    --space-xxl: 64px; /* The "Section Break" */
+    --space-2xl: 48px;
+    --space-3xl: 64px; /* The "Section Break" */
+    --space-4xl: 96px;
 
     /* Radius */
+    --radius-xs: 4px;
     --radius-sm: 6px;
     --radius-md: 12px;
     --radius-app: 14px;
+
+    /* Typography Scale - Base 12px Harmonized */
+    --font-xs: 10px;   /* Tiny details */
+    --font-sm: 14px;   /* Meta, secondary */
+    --font-base: 13px; /* Body, standard */
+    --font-md: 18px;   /* Subtitles, H3 */
+    --font-lg: 16px;   /* Section Headers, H2 */
+    --font-xl: 16px;   /* Major highlights */
+    --font-xxl: 40px;  /* Page Title H1 */
 
     /* Playground Specific */
     --exp-canvas-bg: #FAFAFA;
@@ -102,7 +116,7 @@ a, button, input {
     backdrop-filter: saturate(180%) blur(20px);
     -webkit-backdrop-filter: saturate(180%) blur(20px);
     border-bottom: 1px solid var(--border);
-    height: 50px;
+    height: var(--space-2xl);
     display: flex;
     align-items: center;
 }
@@ -111,7 +125,7 @@ a, button, input {
     width: 100%;
     max-width: 720px; /* Same as content */
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 var(--space-lg);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -119,7 +133,7 @@ a, button, input {
 
 .nav-brand {
     font-weight: 600;
-    font-size: 14px;
+    font-size: var(--font-base);
     color: var(--text-main);
     letter-spacing: -0.01em;
 }
@@ -127,17 +141,17 @@ a, button, input {
 .nav-right {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: var(--space-md);
 }
 
 .nav-link {
     background: none;
     border: none;
-    font-size: 13px;
+    font-size: var(--font-sm);
     color: var(--text-secondary);
     cursor: pointer;
     font-weight: 500;
-    padding: 4px 8px;
+    padding: var(--space-xs) var(--space-sm);
     border-radius: var(--radius-sm);
 }
 
@@ -156,7 +170,7 @@ html.dark .nav-link.active {
 
 .divider-vertical {
     width: 1px;
-    height: 16px;
+    height: var(--space-md);
     background-color: var(--border);
 }
 
@@ -166,7 +180,7 @@ html.dark .nav-link.active {
     background: none;
     border: none;
     color: var(--primary);
-    font-size: 14px;
+    font-size: var(--font-base);
     font-weight: 500;
     cursor: pointer;
 }
@@ -196,7 +210,7 @@ html.dark .nav-link.active {
 }
 
 .mobile-nav-content {
-    padding: 2rem;
+    padding: var(--space-xl);
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -206,22 +220,22 @@ html.dark .nav-link.active {
     align-self: flex-end;
     background: none;
     border: none;
-    font-size: 14px;
+    font-size: var(--font-base);
     font-weight: 600;
     color: var(--primary);
     cursor: pointer;
-    margin-bottom: 3rem;
-    padding: 8px;
+    margin-bottom: var(--space-2xl);
+    padding: var(--space-sm);
 }
 
 .mobile-links {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: var(--space-lg);
 }
 
 .mobile-link {
-    font-size: 24px;
+    font-size: var(--font-xl);
     font-weight: 600;
     background: none;
     border: none;
@@ -239,24 +253,24 @@ html.dark .nav-link.active {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 2rem;
+    padding-top: var(--space-xl);
     border-top: 1px solid var(--border);
 }
 
 /* Lang Toggle (Shared) */
 .lang-toggle, .lang-toggle-mobile {
     display: flex;
-    gap: 4px;
+    gap: var(--space-xs);
 }
 
 .lang-btn {
     background: none;
     border: none;
     color: var(--text-secondary);
-    font-size: 11px;
+    font-size: var(--font-sm);
     font-weight: 600;
-    padding: 2px 6px;
-    border-radius: 4px;
+    padding: var(--space-2xs) var(--space-sm);
+    border-radius: var(--radius-xs);
     cursor: pointer;
     text-transform: uppercase;
 }
@@ -274,7 +288,7 @@ html.dark .nav-link.active {
     border: none;
     color: var(--text-secondary);
     cursor: pointer;
-    padding: 4px;
+    padding: var(--space-xs);
     display: flex;
     align-items: center;
 }
@@ -282,8 +296,8 @@ html.dark .nav-link.active {
 .theme-btn:hover { color: var(--primary); }
 
 .icon {
-    width: 16px;
-    height: 16px;
+    width: var(--space-md);
+    height: var(--space-md);
     fill: currentColor; /* Most icons are filled */
     display: block;
     transition: color 0.2s ease;
@@ -295,8 +309,8 @@ html.dark .nav-link.active {
 .page-container {
     width: 100%;
     max-width: 850px; /* Slightly wider for sheet look */
-    margin: 40px auto;
-    padding: 48px 64px; /* Google Docs standard-ish padding */
+    margin: var(--space-2xl) auto;
+    padding: var(--space-2xl) var(--space-3xl); /* Google Docs standard-ish padding */
     min-height: calc(100vh - 130px); /* Adjust for header + margin */
 
     background-color: var(--bg-sheet);
@@ -330,34 +344,34 @@ html.dark .nav-link.active {
 
 /* Header Area */
 header.resume-header {
-    margin-bottom: var(--space-xxl); /* 64px */
+    margin-bottom: var(--space-3xl); /* 64px */
     display: flex;
     flex-direction: column;
 }
 
 h1 {
-    font-size: 36px; /* Larger, more authoritative */
+    font-size: var(--font-xxl); /* Larger, more authoritative */
     font-weight: 700;
     color: var(--text-main);
     letter-spacing: -0.03em;
     line-height: 1.1;
-    margin-bottom: 8px; /* Space between name and role */
+    margin-bottom: var(--space-sm); /* Space between name and role */
 }
 
 .role {
-    font-size: 18px;
+    font-size: var(--font-md);
     font-weight: 500;
     color: var(--text-secondary);
-    margin-bottom: 24px; /* Space before contact info */
+    margin-bottom: var(--space-lg); /* Space before contact info */
     letter-spacing: -0.01em;
 }
 
 .contact-info {
     display: flex;
     flex-wrap: wrap;
-    gap: 24px; /* More breathing room */
-    row-gap: 8px;
-    font-size: 14px;
+    gap: var(--space-lg); /* More breathing room */
+    row-gap: var(--space-sm);
+    font-size: var(--font-sm);
     font-weight: 400;
     color: var(--text-secondary);
 }
@@ -366,7 +380,7 @@ h1 {
     color: var(--text-secondary);
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: var(--space-xs);
 }
 
 .contact-item a {
@@ -386,11 +400,11 @@ h1 {
 
 /* Sections */
 section {
-    margin-bottom: var(--space-xxl); /* Big break between sections */
+    margin-bottom: var(--space-3xl); /* Big break between sections */
 }
 
 h2 {
-    font-size: 13px;
+    font-size: var(--font-md);
     font-weight: 600;
     color: var(--text-secondary);
     text-transform: uppercase;
@@ -398,7 +412,7 @@ h2 {
     padding-bottom: var(--space-sm);
     border-bottom: 1px solid var(--border);
     margin-bottom: var(--space-lg); /* 24px */
-    margin-top: var(--space-xxl); /* 64px rhythm */
+    margin-top: var(--space-3xl); /* 64px rhythm */
 }
 
 /* Reset margin top for the first section if needed, but usually header handles it */
@@ -407,7 +421,7 @@ section:first-of-type h2 {
 }
 
 .body-text {
-    font-size: 16px;
+    font-size: var(--font-base);
     color: var(--text-main);
     line-height: 1.6;
 }
@@ -432,24 +446,24 @@ section:first-of-type h2 {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    margin-bottom: 2px;
+    margin-bottom: var(--space-2xs);
 }
 
 .job-title {
-    font-size: 16px;
+    font-size: var(--font-md);
     font-weight: 600;
     color: var(--text-main);
 }
 
 .job-date {
-    font-size: 14px;
+    font-size: var(--font-sm);
     color: var(--text-secondary);
     font-variant-numeric: tabular-nums;
 }
 
 .job-company {
     display: block;
-    font-size: 14px;
+    font-size: var(--font-sm);
     color: var(--text-secondary);
     margin-bottom: var(--space-sm);
 }
@@ -460,12 +474,12 @@ section:first-of-type h2 {
 }
 
 .job-details li {
-    font-size: 15px;
+    font-size: var(--font-base);
     color: var(--text-main);
     line-height: 1.5;
     margin-bottom: var(--space-xs);
     position: relative;
-    padding-left: 12px;
+    padding-left: var(--space-sm-md);
 }
 
 .job-details li::before {
@@ -473,7 +487,7 @@ section:first-of-type h2 {
     position: absolute;
     left: 0;
     color: var(--text-secondary);
-    font-size: 12px;
+    font-size: var(--font-xs);
     top: 1px;
 }
 
@@ -489,7 +503,7 @@ section:first-of-type h2 {
 }
 
 .skill-group h3 {
-    font-size: 13px;
+    font-size: var(--font-base);
     color: var(--text-secondary);
     margin-bottom: var(--space-sm);
     font-weight: 500;
@@ -498,15 +512,15 @@ section:first-of-type h2 {
 .skill-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: var(--space-xs);
 }
 
 .tag {
-    font-size: 13px;
+    font-size: var(--font-sm);
     color: var(--text-main);
     background-color: var(--bg-tag);
-    padding: 4px 10px;
-    border-radius: 6px; /* Tight radius */
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm); /* Tight radius */
     border: 1px solid transparent;
     cursor: default;
     transition: all 0.2s ease;
@@ -531,13 +545,13 @@ section:first-of-type h2 {
 }
 
 .lang-name {
-    font-size: 14px;
+    font-size: var(--font-base);
     font-weight: 500;
     color: var(--text-main);
 }
 
 .lang-level {
-    font-size: 13px;
+    font-size: var(--font-sm);
     color: var(--text-secondary);
 }
 
@@ -561,10 +575,10 @@ section:first-of-type h2 {
 .pg-tab-btn {
     background: none;
     border: none;
-    font-size: 14px;
+    font-size: var(--font-base);
     color: var(--text-secondary);
     cursor: pointer;
-    padding-bottom: 12px;
+    padding-bottom: var(--space-sm-md);
     border-bottom: 2px solid transparent;
     margin-bottom: -1px; /* Overlap border */
     font-weight: 500;
@@ -616,15 +630,15 @@ section:first-of-type h2 {
 }
 
 .app-icon {
-    width: 64px;
-    height: 64px;
+    width: var(--space-3xl);
+    height: var(--space-3xl);
     background-color: var(--bg-body); /* Transparent/Bg match */
     border: 1px solid var(--exp-thumb-border);
     border-radius: var(--radius-app); /* 14px iOS style */
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 8px;
+    margin-bottom: var(--space-sm);
     transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -640,8 +654,8 @@ section:first-of-type h2 {
 }
 
 .icon-lg {
-    width: 32px;
-    height: 32px;
+    width: var(--space-xl);
+    height: var(--space-xl);
     color: var(--text-main);
     /* Handle mixed icons (some fill, some stroke) */
     fill: currentColor;
@@ -668,15 +682,15 @@ section:first-of-type h2 {
 }
 
 .app-info h3 {
-    font-size: 13px;
+    font-size: var(--font-base);
     font-weight: 500;
     color: var(--text-main);
-    margin-bottom: 2px;
+    margin-bottom: var(--space-2xs);
     line-height: 1.2;
 }
 
 .app-info p {
-    font-size: 12px;
+    font-size: var(--font-xs);
     color: var(--text-secondary);
 }
 
@@ -685,7 +699,7 @@ section:first-of-type h2 {
     background: none;
     border: none;
     color: var(--primary);
-    font-size: 14px;
+    font-size: var(--font-base);
     font-weight: 500;
     cursor: pointer;
     margin-bottom: var(--space-md);
@@ -729,7 +743,7 @@ section:first-of-type h2 {
 }
 
 .exp-controls label {
-    font-size: 12px;
+    font-size: var(--font-sm);
     font-weight: 500;
     color: var(--text-secondary);
     display: flex;
@@ -762,7 +776,7 @@ input[type=range]::-webkit-slider-thumb {
 
 input[type=range]::-webkit-slider-runnable-track {
     width: 100%;
-    height: 4px;
+    height: var(--space-xs);
     background: var(--border);
     border-radius: 2px;
 }
