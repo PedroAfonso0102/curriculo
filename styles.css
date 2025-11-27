@@ -4,10 +4,12 @@
     --primary-hover: #004499;
     --primary-light: #E1F0FF;
     
-    --bg-body: #FFFFFF; /* Pure White Canvas */
+    --bg-body: #F2F2F7; /* Apple System Gray (Light Mode) */
+    --bg-sheet: #FFFFFF; /* Pure White Sheet */
     --bg-overlay: rgba(255, 255, 255, 0.85); /* Glassmorphism light */
     --bg-subtle: #F2F2F7; /* System Gray 6 */
     --bg-tag: #F2F2F7;
+    --bg-hover-block: #FAFAFA;
     
     --text-main: #1D1D1F; /* Dark Gunmetal */
     --text-secondary: #86868B; /* Subtle Gray */
@@ -42,10 +44,12 @@ html.dark {
     --primary-hover: #409CFF;
     --primary-light: rgba(10, 132, 255, 0.15);
 
-    --bg-body: #000000; /* True Black */
-    --bg-overlay: rgba(0, 0, 0, 0.85);
-    --bg-subtle: #1C1C1E; /* System Gray 6 Dark */
-    --bg-tag: #1C1C1E;
+    --bg-body: #1C1C1E; /* Dark Gray Canvas */
+    --bg-sheet: #000000; /* True Black Sheet */
+    --bg-overlay: rgba(28, 28, 30, 0.85);
+    --bg-subtle: #2C2C2E; /* System Gray 5 Dark */
+    --bg-tag: #2C2C2E;
+    --bg-hover-block: #1A1A1C; /* Slightly lighter/different for hover */
 
     --text-main: #F5F5F7; /* Off-white */
     --text-secondary: #86868B;
@@ -290,15 +294,23 @@ html.dark .nav-link.active {
    ------------------------------------------------------------------ */
 .page-container {
     width: 100%;
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 3rem 1.5rem 6rem 1.5rem; /* Vertical Rhythm: generous bottom padding */
-    min-height: calc(100vh - 50px);
+    max-width: 850px; /* Slightly wider for sheet look */
+    margin: 40px auto;
+    padding: 40px 60px;
+    min-height: calc(100vh - 130px); /* Adjust for header + margin */
+
+    background-color: var(--bg-sheet);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
 @media (max-width: 768px) {
     .page-container {
-        padding: 2rem 1.5rem;
+        padding: 30px 20px;
+        margin: 20px auto;
+        border-radius: 0;
+        box-shadow: none;
+        max-width: 100%;
     }
 }
 
@@ -395,7 +407,18 @@ section:first-of-type h2 {
 /* Experience Items (No Cards) */
 .experience-item {
     margin-bottom: var(--space-xl); /* 32px */
+    padding: var(--space-md);
+    border-radius: var(--radius-sm);
+    transition: background-color 0.2s ease;
 }
+
+.experience-item:hover {
+    background-color: var(--bg-hover-block);
+}
+
+/* Also apply hover to job details if desired, or just the block.
+   The user asked for "mouse over section content".
+   Block level is cleaner. */
 
 .job-header {
     display: flex;
@@ -556,11 +579,20 @@ section:first-of-type h2 {
     display: block;
 }
 
+#tab-experiments {
+    min-height: 400px;
+    display: grid;
+    place-items: center; /* Vertical and Horizontal Center */
+}
+
+/* Ensure the grid itself is centered if it doesn't take full width */
 .experiments-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Small items */
     gap: var(--space-xl) var(--space-md);
     justify-content: center;
+    width: 100%;
+    max-width: 600px; /* Constrain width to keep it centered nicely */
 }
 
 .app-item {
