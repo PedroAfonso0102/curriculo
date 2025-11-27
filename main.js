@@ -136,26 +136,34 @@ function setLanguage(lang) {
 
 // Theme Toggle Logic
 document.addEventListener('DOMContentLoaded', () => {
-    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleBtns = document.querySelectorAll('.theme-toggle');
     const htmlElement = document.documentElement;
 
-    // Check for saved user preference
-    const currentTheme = localStorage.getItem('theme');
-    if (currentTheme === 'dark') {
-        htmlElement.classList.add('dark');
+    const applyTheme = (isDark, persist = false) => {
+        htmlElement.classList.toggle('dark', isDark);
+        if (persist) {
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+        themeToggleBtns.forEach(btn => btn.setAttribute('aria-pressed', isDark ? 'true' : 'false'));
+        window.dispatchEvent(new CustomEvent('themechange', { detail: { isDark } }));
+    };
+
+    const storedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initialDark = storedTheme ? storedTheme === 'dark' : prefersDark;
+    applyTheme(initialDark);
+
+    if (!storedTheme && window.matchMedia) {
+        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        mediaQuery.addEventListener('change', (event) => applyTheme(event.matches));
     }
 
-    // Initialize theme button aria state
-    if (themeToggleBtn) {
-        themeToggleBtn.setAttribute('aria-pressed', htmlElement.classList.contains('dark') ? 'true' : 'false');
-        
-        themeToggleBtn.addEventListener('click', () => {
-            htmlElement.classList.toggle('dark');
-            const isDark = htmlElement.classList.contains('dark');
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-            themeToggleBtn.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+    themeToggleBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const nextState = !htmlElement.classList.contains('dark');
+            applyTheme(nextState, true);
         });
-    }
+    });
 
     // Ensure language buttons have correct aria-pressed on load
     document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -163,15 +171,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Initialize Sidebar Logic
-    generateOutline();
-    setupScrollSpy();
+    generateOutline('#resume-view');
+    setupScrollSpy('#resume-view');
 });
 
 // View Switching Logic
 function switchView(viewName) {
     const resumeView = document.getElementById('resume-view');
     const playgroundView = document.getElementById('playground-view');
-    const outlineSection = document.getElementById('outline-section');
     
     // Update Sidebar Buttons
     document.querySelectorAll('.sidebar-item').forEach(btn => {
@@ -181,21 +188,17 @@ function switchView(viewName) {
         }
     });
 
-    if (viewName === 'resume') {
-        resumeView.style.display = 'block';
-        playgroundView.style.display = 'none';
-        outlineSection.style.display = 'block';
-        // Re-run scroll spy setup as elements might have shifted
-        setTimeout(setupScrollSpy, 100);
-        
-        // Stop any running experiment when leaving playground
-        if (Experiments) Experiments.stopCurrent();
-        
-    } else {
-        resumeView.style.display = 'none';
-        playgroundView.style.display = 'block';
-        outlineSection.style.display = 'none';
+    const isResume = viewName === 'resume';
+    resumeView.style.display = isResume ? 'block' : 'none';
+    playgroundView.style.display = isResume ? 'none' : 'block';
+
+    if (isResume && Experiments) {
+        Experiments.stopCurrent();
     }
+
+    const selector = isResume ? '#resume-view' : '#playground-view';
+    generateOutline(selector);
+    setTimeout(() => setupScrollSpy(selector), 100);
 }
 
 // Utility: debounce
@@ -308,6 +311,9 @@ function openExperiment(type) {
             bound.push({ el: ctrl, handler });
         });
         view._expBound = bound;
+
+        generateOutline('#playground-view');
+        setupScrollSpy('#playground-view');
     }
 }
 
@@ -328,6 +334,9 @@ function closeExperiment() {
     
     container.style.display = 'none';
     dashboard.style.display = 'block';
+
+    generateOutline('#playground-view');
+    setupScrollSpy('#playground-view');
 }
 
 // Make functions global for HTML access
@@ -337,16 +346,25 @@ window.switchView = switchView;
 window.setLanguage = setLanguage;
 
 // Outline Generation Logic
-function generateOutline() {
+function generateOutline(rootSelector = '#resume-view') {
     const outlineList = document.querySelector('.outline-list');
-    const sections = document.querySelectorAll('#resume-view h2');
+    const root = document.querySelector(rootSelector);
+    if (!outlineList || !root) return;
+    const sections = Array.from(root.querySelectorAll('h2')).filter(section => section.offsetParent !== null);
     
     outlineList.innerHTML = ''; // Clear existing
 
+    if (!sections.length) {
+        const empty = document.createElement('div');
+        empty.className = 'outline-empty';
+        empty.textContent = 'Sem seções disponíveis.';
+        outlineList.appendChild(empty);
+        return;
+    }
+
     sections.forEach((section, index) => {
-        // Ensure section has an ID for linking
         if (!section.id) {
-            section.id = `section-${index}`;
+            section.id = `${rootSelector.replace('#', '')}-section-${index}`;
         }
 
         const link = document.createElement('a');
@@ -364,9 +382,13 @@ function generateOutline() {
 }
 
 // Scroll Spy Logic (Highlight active section in outline)
-function setupScrollSpy() {
-    const sections = document.querySelectorAll('#resume-view h2');
+function setupScrollSpy(rootSelector = '#resume-view') {
+    const sections = Array.from(document.querySelectorAll(`${rootSelector} h2`)).filter(section => section.offsetParent !== null);
     const outlineItems = document.querySelectorAll('.outline-item');
+
+    if (!sections.length || !outlineItems.length) {
+        return;
+    }
 
     const observerOptions = {
         root: null,

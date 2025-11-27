@@ -1,3 +1,29 @@
+const ExperimentTheme = (() => {
+    const read = () => {
+        const styles = getComputedStyle(document.documentElement);
+        const value = (name, fallback) => {
+            const raw = styles.getPropertyValue(name);
+            return raw && raw.trim().length ? raw.trim() : fallback;
+        };
+        return {
+            gravityFadeRGB: value('--exp-gravity-fade-rgb', '255,255,255'),
+            pendulumFade: value('--exp-pendulum-fade', 'rgba(255, 255, 255, 0.3)'),
+            textMuted: value('--text-secondary', '#5f6368')
+        };
+    };
+
+    let cache = read();
+    window.addEventListener('themechange', () => {
+        cache = read();
+    });
+
+    return {
+        get() {
+            return cache;
+        }
+    };
+})();
+
 const Experiments = {
     activeId: null,
     // holds currently running instance { cleanup: fn, setOptions: fn }
@@ -357,7 +383,8 @@ const Experiments = {
 
         let animationId;
         function animate() {
-            ctx.fillStyle = `rgba(255,255,255,${params.trailAlpha})`; // Fade trail
+            const colors = ExperimentTheme.get();
+            ctx.fillStyle = `rgba(${colors.gravityFadeRGB},${params.trailAlpha})`; // Fade trail per theme
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             particles.forEach(p => {
@@ -460,7 +487,8 @@ const Experiments = {
             a2 += a2_v;
 
             // Draw
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+            const colors = ExperimentTheme.get();
+            ctx.fillStyle = colors.pendulumFade;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             ctx.save();
@@ -471,7 +499,7 @@ const Experiments = {
             let x2 = x1 + r2 * Math.sin(a2);
             let y2 = y1 + r2 * Math.cos(a2);
 
-            ctx.strokeStyle = '#5f6368';
+            ctx.strokeStyle = colors.textMuted;
             ctx.lineWidth = 2;
             ctx.beginPath();
             ctx.moveTo(0, 0);

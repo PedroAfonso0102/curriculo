@@ -94,7 +94,7 @@
                 </div>
     
                 <div style="display:flex; align-items:center; gap:0.5rem;">
-                    <button id="theme-toggle" class="theme-btn" aria-label="Alternar modo noturno" title="Alternar modo noturno">
+                    <button class="theme-btn theme-toggle" aria-label="Alternar modo noturno" title="Alternar modo noturno">
                         <svg class="icon" aria-hidden="true">
                             <use href="#icon-theme"></use>
                         </svg>
@@ -297,6 +297,22 @@
     </main>
 
     <div id="playground-view" class="container" style="display: none;">
+        <div class="top-bar" role="navigation" aria-label="Controles de idioma e tema">
+            <div class="lang-toggle" role="group" aria-label="Language Selection">
+                <button class="lang-btn active" onclick="setLanguage('pt')" aria-label="Mudar para Português">PT</button>
+                <button class="lang-btn" onclick="setLanguage('en')" aria-label="Switch to English">EN</button>
+                <button class="lang-btn" onclick="setLanguage('es')" aria-label="Cambiar a Español">ES</button>
+            </div>
+
+            <div style="display:flex; align-items:center; gap:0.5rem;">
+                <button class="theme-btn theme-toggle" aria-label="Alternar modo noturno" title="Alternar modo noturno">
+                    <svg class="icon" aria-hidden="true">
+                        <use href="#icon-theme"></use>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
         <header>
             <h1>Playground</h1>
             <div class="role">Área de Testes e Experimentação</div>
@@ -308,28 +324,24 @@
                 <h2>Experimentos</h2>
                 <div class="experiments-grid">
                     <div class="experiment-card" onclick="openExperiment('fluid')">
-                        <svg class="exp-icon" aria-hidden="true"><use href="#icon-fluid"></use></svg>
                         <div class="exp-info">
                             <h3>Fluid Simulation</h3>
                             <p>Simulação de fluidos interativa.</p>
                         </div>
                     </div>
                     <div class="experiment-card" onclick="openExperiment('gravity')">
-                        <svg class="exp-icon" aria-hidden="true"><use href="#icon-gravity"></use></svg>
                         <div class="exp-info">
                             <h3>Gravity</h3>
                             <p>Sistema de partículas gravitacionais.</p>
                         </div>
                     </div>
                     <div class="experiment-card" onclick="openExperiment('pendulum')">
-                        <svg class="exp-icon" aria-hidden="true"><use href="#icon-pendulum"></use></svg>
                         <div class="exp-info">
                             <h3>Double Pendulum</h3>
                             <p>Pêndulo duplo caótico.</p>
                         </div>
                     </div>
                     <div class="experiment-card" onclick="openExperiment('fourier')">
-                        <svg class="exp-icon" aria-hidden="true"><use href="#icon-wave"></use></svg>
                         <div class="exp-info">
                             <h3>Fourier Series</h3>
                             <p>Visualização de ondas quadradas.</p>
@@ -346,7 +358,7 @@
             </button>
             
             <div id="fluid-view" class="experiment-view" style="display:none;">
-                <h2><svg class="exp-icon small" aria-hidden="true"><use href="#icon-fluid"></use></svg>Fluid Simulation</h2>
+                <h2>Fluid Simulation</h2>
                 <canvas id="fluidCanvas"></canvas>
                 <p class="caption">Clique e arraste para interagir com o fluido.</p>
                 <div class="exp-controls">
@@ -371,7 +383,7 @@
             </div>
 
             <div id="gravity-view" class="experiment-view" style="display:none;">
-                <h2><svg class="exp-icon small" aria-hidden="true"><use href="#icon-gravity"></use></svg>Gravity System</h2>
+                <h2>Gravity System</h2>
                 <canvas id="gravityCanvas"></canvas>
                 <p class="caption">Clique e arraste para lançar novos corpos celestes.</p>
                 <div class="exp-controls">
@@ -387,7 +399,7 @@
             </div>
 
             <div id="pendulum-view" class="experiment-view" style="display:none;">
-                <h2><svg class="exp-icon small" aria-hidden="true"><use href="#icon-pendulum"></use></svg>Double Pendulum</h2>
+                <h2>Double Pendulum</h2>
                 <canvas id="pendulumCanvas"></canvas>
                 <div class="exp-controls">
                     <label>Mass 1: <span class="val" id="pendulum-m1-label">10</span></label>
@@ -411,7 +423,7 @@
             </div>
 
             <div id="fourier-view" class="experiment-view" style="display:none;">
-                <h2><svg class="exp-icon small" aria-hidden="true"><use href="#icon-wave"></use></svg>Fourier Series</h2>
+                <h2>Fourier Series</h2>
                 <canvas id="fourierCanvas"></canvas>
                 <div class="exp-controls">
                     <label>Terms: <span class="val" id="fourier-maxTerms-label">5</span></label>
