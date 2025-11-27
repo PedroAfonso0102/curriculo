@@ -81,7 +81,7 @@ const translations = {
         summary_text: "Profesional con experiencia en Gestión Comercial y Proyectos Digitales, incluyendo ventas consultivas y liderazgo de equipos. Actualmente trabajo como autónomo, pero busco activamente nuevas oportunidades en el mercado corporativo para aplicar mis habilidades en estrategia comercial y creación de contenido digital.",
         section_experience: "Experiencia Profesional",
         job1_title: "Analista de Ventas y Procesos",
-        job1_desc1: "<strong>Ventas Consultivas:</strong> Gestión del ciclo de ventas consultivas de activos inmobiliarios de alto valor.",
+        job1_desc1: "<strong>Ventas Consultivas:</strong> Gestão del ciclo de ventas consultivas de ativos imobiliarios de alto valor.",
         job1_desc2: "<strong>Procesos:</strong> Implementación de análisis de datos para calificación de leads y optimización del embudo de ventas.",
         job2_title: "Presidente y Fundador",
         job2_desc1: "<strong>Gestión de Equipo:</strong> Liderazgo ejecutivo de equipo multidisciplinario (30 miembros). Definición de metas estratégicas y rutinas operativas.",
@@ -161,4 +161,143 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.setAttribute('aria-pressed', btn.classList.contains('active') ? 'true' : 'false');
     });
+
+    // Initialize Sidebar Logic
+    generateOutline();
+    setupScrollSpy();
 });
+
+// View Switching Logic
+function switchView(viewName) {
+    const resumeView = document.getElementById('resume-view');
+    const playgroundView = document.getElementById('playground-view');
+    const outlineSection = document.getElementById('outline-section');
+    
+    // Update Sidebar Buttons
+    document.querySelectorAll('.sidebar-item').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.textContent.trim().toLowerCase().includes(viewName)) {
+            btn.classList.add('active');
+        }
+    });
+
+    if (viewName === 'resume') {
+        resumeView.style.display = 'block';
+        playgroundView.style.display = 'none';
+        outlineSection.style.display = 'block';
+        // Re-run scroll spy setup as elements might have shifted
+        setTimeout(setupScrollSpy, 100);
+        
+        // Stop any running experiment when leaving playground
+        if (Experiments) Experiments.stopCurrent();
+        
+    } else {
+        resumeView.style.display = 'none';
+        playgroundView.style.display = 'block';
+        outlineSection.style.display = 'none';
+    }
+}
+
+// Experiment Logic
+function openExperiment(type) {
+    const dashboard = document.getElementById('playground-dashboard');
+    const container = document.getElementById('experiment-container');
+    const views = document.querySelectorAll('.experiment-view');
+    
+    // Hide dashboard, show container
+    dashboard.style.display = 'none';
+    container.style.display = 'block';
+    
+    // Hide all views first
+    views.forEach(v => v.style.display = 'none');
+    
+    // Show specific view
+    const view = document.getElementById(`${type}-view`);
+    if (view) {
+        view.style.display = 'block';
+        // Initialize experiment
+        if (Experiments && Experiments[type]) {
+            // Stop any previous
+            Experiments.stopCurrent();
+            // Start new
+            Experiments.cleanup = Experiments[type](`${type}Canvas`);
+            Experiments.activeId = type;
+        }
+    }
+}
+
+function closeExperiment() {
+    const dashboard = document.getElementById('playground-dashboard');
+    const container = document.getElementById('experiment-container');
+    
+    // Stop experiment
+    if (Experiments) {
+        Experiments.stopCurrent();
+    }
+    
+    container.style.display = 'none';
+    dashboard.style.display = 'block';
+}
+
+// Make functions global for HTML access
+window.openExperiment = openExperiment;
+window.closeExperiment = closeExperiment;
+window.switchView = switchView;
+window.setLanguage = setLanguage;
+
+// Outline Generation Logic
+function generateOutline() {
+    const outlineList = document.querySelector('.outline-list');
+    const sections = document.querySelectorAll('#resume-view h2');
+    
+    outlineList.innerHTML = ''; // Clear existing
+
+    sections.forEach((section, index) => {
+        // Ensure section has an ID for linking
+        if (!section.id) {
+            section.id = `section-${index}`;
+        }
+
+        const link = document.createElement('a');
+        link.className = 'outline-item';
+        link.textContent = section.textContent;
+        link.href = `#${section.id}`;
+        
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            section.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        outlineList.appendChild(link);
+    });
+}
+
+// Scroll Spy Logic (Highlight active section in outline)
+function setupScrollSpy() {
+    const sections = document.querySelectorAll('#resume-view h2');
+    const outlineItems = document.querySelectorAll('.outline-item');
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '-10% 0px -80% 0px', // Trigger when section is near top
+        threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Remove active class from all
+                outlineItems.forEach(item => item.classList.remove('active'));
+                
+                // Add active class to corresponding link
+                const id = entry.target.id;
+                const activeLink = document.querySelector(`.outline-item[href="#${id}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                }
+            }
+        });
+    }, observerOptions);
+
+    sections.forEach(section => observer.observe(section));
+}

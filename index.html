@@ -44,24 +44,50 @@
 
     <a class="skip-link" href="#main-content">Pular para o conteúdo</a>
 
-    <div class="top-bar" role="navigation" aria-label="Controles de idioma e tema">
-        <div class="lang-toggle" role="group" aria-label="Language Selection">
-            <button class="lang-btn active" onclick="setLanguage('pt')" aria-label="Mudar para Português">PT</button>
-            <button class="lang-btn" onclick="setLanguage('en')" aria-label="Switch to English">EN</button>
-            <button class="lang-btn" onclick="setLanguage('es')" aria-label="Cambiar a Español">ES</button>
+    <nav class="doc-sidebar">
+        <div class="sidebar-header">
+            <span class="doc-title">Currículo</span>
         </div>
-
-        <div style="display:flex; align-items:center; gap:0.5rem;">
-            <button id="theme-toggle" class="theme-btn" aria-label="Alternar modo noturno" title="Alternar modo noturno">
-                <svg class="icon" aria-hidden="true">
-                    <use href="#icon-theme"></use>
-                </svg>
+        
+        <div class="sidebar-section">
+            <div class="sidebar-label">Páginas</div>
+            <button class="sidebar-item active" onclick="switchView('resume')">
+                <svg class="sidebar-icon" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                Currículo
+            </button>
+            <button class="sidebar-item" onclick="switchView('playground')">
+                <svg class="sidebar-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                Playground
             </button>
         </div>
-    </div>
 
-    <main id="main-content" class="container" role="main">
-        <header>
+        <div class="sidebar-section" id="outline-section">
+            <div class="sidebar-label">Neste documento</div>
+            <div class="outline-list">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </nav>
+
+    <div class="content-wrapper">
+        <main id="resume-view" class="container" role="main">
+            <div class="top-bar" role="navigation" aria-label="Controles de idioma e tema">
+                <div class="lang-toggle" role="group" aria-label="Language Selection">
+                    <button class="lang-btn active" onclick="setLanguage('pt')" aria-label="Mudar para Português">PT</button>
+                    <button class="lang-btn" onclick="setLanguage('en')" aria-label="Switch to English">EN</button>
+                    <button class="lang-btn" onclick="setLanguage('es')" aria-label="Cambiar a Español">ES</button>
+                </div>
+    
+                <div style="display:flex; align-items:center; gap:0.5rem;">
+                    <button id="theme-toggle" class="theme-btn" aria-label="Alternar modo noturno" title="Alternar modo noturno">
+                        <svg class="icon" aria-hidden="true">
+                            <use href="#icon-theme"></use>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <header>
             <h1>Pedro Afonso Pinheiro de Paula</h1>
             <div class="role" data-i18n="role">Gestão Comercial e Projetos Digitais</div>
             <div class="contact-info">
@@ -255,6 +281,81 @@
         </section>
     </main>
 
+    <div id="playground-view" class="container" style="display: none;">
+        <header>
+            <h1>Playground</h1>
+            <div class="role">Área de Testes e Experimentação</div>
+        </header>
+
+        <!-- Dashboard Grid -->
+        <div id="playground-dashboard">
+            <section>
+                <h2>Experimentos</h2>
+                <div class="experiments-grid">
+                    <div class="experiment-card" onclick="openExperiment('fluid')">
+                        <div class="exp-icon">💧</div>
+                        <div class="exp-info">
+                            <h3>Fluid Simulation</h3>
+                            <p>Simulação de fluidos interativa.</p>
+                        </div>
+                    </div>
+                    <div class="experiment-card" onclick="openExperiment('gravity')">
+                        <div class="exp-icon">🪐</div>
+                        <div class="exp-info">
+                            <h3>Gravity</h3>
+                            <p>Sistema de partículas gravitacionais.</p>
+                        </div>
+                    </div>
+                    <div class="experiment-card" onclick="openExperiment('pendulum')">
+                        <div class="exp-icon">⏱️</div>
+                        <div class="exp-info">
+                            <h3>Double Pendulum</h3>
+                            <p>Pêndulo duplo caótico.</p>
+                        </div>
+                    </div>
+                    <div class="experiment-card" onclick="openExperiment('fourier')">
+                        <div class="exp-icon">〰️</div>
+                        <div class="exp-info">
+                            <h3>Fourier Series</h3>
+                            <p>Visualização de ondas quadradas.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Experiment Views -->
+        <div id="experiment-container" style="display: none;">
+            <button class="back-btn" onclick="closeExperiment()">
+                ← Voltar para Dashboard
+            </button>
+            
+            <div id="fluid-view" class="experiment-view" style="display:none;">
+                <h2>Fluid Simulation</h2>
+                <canvas id="fluidCanvas"></canvas>
+                <p class="caption">Clique e arraste para interagir com o fluido.</p>
+            </div>
+
+            <div id="gravity-view" class="experiment-view" style="display:none;">
+                <h2>Gravity System</h2>
+                <canvas id="gravityCanvas"></canvas>
+                <p class="caption">Clique e arraste para lançar novos corpos celestes.</p>
+            </div>
+
+            <div id="pendulum-view" class="experiment-view" style="display:none;">
+                <h2>Double Pendulum</h2>
+                <canvas id="pendulumCanvas"></canvas>
+            </div>
+
+            <div id="fourier-view" class="experiment-view" style="display:none;">
+                <h2>Fourier Series</h2>
+                <canvas id="fourierCanvas"></canvas>
+            </div>
+        </div>
+    </div>
+    </div> <!-- End content-wrapper -->
+
+    <script src="js/experiments.js"></script>
     <script src="main.js"></script>
 </body>
 
