@@ -40,6 +40,21 @@
         <symbol id="icon-linkedin" viewBox="0 0 24 24">
             <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
         </symbol>
+        <symbol id="icon-fluid" viewBox="0 0 24 24">
+            <path d="M12 2C9 6 6 8 6 11a6 6 0 0012 0c0-3-3-5-6-9z"/>
+        </symbol>
+        <symbol id="icon-gravity" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M2 12a10 10 0 0020 0" fill="none" stroke="#000" stroke-width="0"/>
+        </symbol>
+        <symbol id="icon-pendulum" viewBox="0 0 24 24">
+            <path d="M12 2v6"/>
+            <circle cx="12" cy="12" r="2"/>
+            <path d="M12 14v6"/>
+        </symbol>
+        <symbol id="icon-wave" viewBox="0 0 24 24">
+            <path d="M2 12c4-8 8 8 12 0s8 8 12 0"/>
+        </symbol>
     </svg>
 
     <a class="skip-link" href="#main-content">Pular para o conteúdo</a>
@@ -293,28 +308,28 @@
                 <h2>Experimentos</h2>
                 <div class="experiments-grid">
                     <div class="experiment-card" onclick="openExperiment('fluid')">
-                        <div class="exp-icon">💧</div>
+                        <svg class="exp-icon" aria-hidden="true"><use href="#icon-fluid"></use></svg>
                         <div class="exp-info">
                             <h3>Fluid Simulation</h3>
                             <p>Simulação de fluidos interativa.</p>
                         </div>
                     </div>
                     <div class="experiment-card" onclick="openExperiment('gravity')">
-                        <div class="exp-icon">🪐</div>
+                        <svg class="exp-icon" aria-hidden="true"><use href="#icon-gravity"></use></svg>
                         <div class="exp-info">
                             <h3>Gravity</h3>
                             <p>Sistema de partículas gravitacionais.</p>
                         </div>
                     </div>
                     <div class="experiment-card" onclick="openExperiment('pendulum')">
-                        <div class="exp-icon">⏱️</div>
+                        <svg class="exp-icon" aria-hidden="true"><use href="#icon-pendulum"></use></svg>
                         <div class="exp-info">
                             <h3>Double Pendulum</h3>
                             <p>Pêndulo duplo caótico.</p>
                         </div>
                     </div>
                     <div class="experiment-card" onclick="openExperiment('fourier')">
-                        <div class="exp-icon">〰️</div>
+                        <svg class="exp-icon" aria-hidden="true"><use href="#icon-wave"></use></svg>
                         <div class="exp-info">
                             <h3>Fourier Series</h3>
                             <p>Visualização de ondas quadradas.</p>
@@ -331,25 +346,83 @@
             </button>
             
             <div id="fluid-view" class="experiment-view" style="display:none;">
-                <h2>Fluid Simulation</h2>
+                <h2><svg class="exp-icon small" aria-hidden="true"><use href="#icon-fluid"></use></svg>Fluid Simulation</h2>
                 <canvas id="fluidCanvas"></canvas>
                 <p class="caption">Clique e arraste para interagir com o fluido.</p>
+                <div class="exp-controls">
+                    <label>Resolution: <span class="val" id="fluid-resolution-label">128</span></label>
+                    <input class="exp-control" type="range" name="resolution" min="32" max="256" step="8" value="128">
+
+                    <label>Viscosity: <span class="val" id="fluid-visc-label">0.00005</span></label>
+                    <input class="exp-control" type="range" name="visc" min="0" max="0.001" step="0.00001" value="0.00005">
+
+                    <label>Diffusion: <span class="val" id="fluid-diff-label">0.00005</span></label>
+                    <input class="exp-control" type="range" name="diff" min="0" max="0.001" step="0.00001" value="0.00005">
+
+                    <label>Emit Strength: <span class="val" id="fluid-emit-label">100</span></label>
+                    <input class="exp-control" type="range" name="emit" min="10" max="1000" step="10" value="100">
+
+                    <label>Decay (fade): <span class="val" id="fluid-decay-label">0.995</span></label>
+                    <input class="exp-control" type="range" name="decay" min="0.90" max="0.999" step="0.0001" value="0.995">
+
+                    <label>Time step: <span class="val" id="fluid-dt-label">0.1</span></label>
+                    <input class="exp-control" type="range" name="dt" min="0.01" max="0.5" step="0.01" value="0.1">
+                </div>
             </div>
 
             <div id="gravity-view" class="experiment-view" style="display:none;">
-                <h2>Gravity System</h2>
+                <h2><svg class="exp-icon small" aria-hidden="true"><use href="#icon-gravity"></use></svg>Gravity System</h2>
                 <canvas id="gravityCanvas"></canvas>
                 <p class="caption">Clique e arraste para lançar novos corpos celestes.</p>
+                <div class="exp-controls">
+                    <label>Gravity Strength: <span class="val" id="gravity-G-label">0.5</span></label>
+                    <input class="exp-control" type="range" name="G" min="0" max="2" step="0.01" value="0.5">
+
+                    <label>Particle Count: <span class="val" id="gravity-particleCount-label">6</span></label>
+                    <input class="exp-control" type="range" name="particleCount" min="1" max="50" step="1" value="6">
+
+                    <label>Trail Fade: <span class="val" id="gravity-trailAlpha-label">0.2</span></label>
+                    <input class="exp-control" type="range" name="trailAlpha" min="0" max="1" step="0.01" value="0.2">
+                </div>
             </div>
 
             <div id="pendulum-view" class="experiment-view" style="display:none;">
-                <h2>Double Pendulum</h2>
+                <h2><svg class="exp-icon small" aria-hidden="true"><use href="#icon-pendulum"></use></svg>Double Pendulum</h2>
                 <canvas id="pendulumCanvas"></canvas>
+                <div class="exp-controls">
+                    <label>Mass 1: <span class="val" id="pendulum-m1-label">10</span></label>
+                    <input class="exp-control" type="range" name="m1" min="1" max="40" step="1" value="10">
+
+                    <label>Mass 2: <span class="val" id="pendulum-m2-label">10</span></label>
+                    <input class="exp-control" type="range" name="m2" min="1" max="40" step="1" value="10">
+
+                    <label>Length 1: <span class="val" id="pendulum-r1-label">100</span></label>
+                    <input class="exp-control" type="range" name="r1" min="50" max="220" step="1" value="100">
+
+                    <label>Length 2: <span class="val" id="pendulum-r2-label">100</span></label>
+                    <input class="exp-control" type="range" name="r2" min="50" max="220" step="1" value="100">
+
+                    <label>Damping: <span class="val" id="pendulum-damping-label">0.999</span></label>
+                    <input class="exp-control" type="range" name="damping" min="0.9" max="0.9999" step="0.0001" value="0.999">
+
+                    <label>Gravity: <span class="val" id="pendulum-g-label">1</span></label>
+                    <input class="exp-control" type="range" name="g" min="0" max="5" step="0.1" value="1">
+                </div>
             </div>
 
             <div id="fourier-view" class="experiment-view" style="display:none;">
-                <h2>Fourier Series</h2>
+                <h2><svg class="exp-icon small" aria-hidden="true"><use href="#icon-wave"></use></svg>Fourier Series</h2>
                 <canvas id="fourierCanvas"></canvas>
+                <div class="exp-controls">
+                    <label>Terms: <span class="val" id="fourier-maxTerms-label">5</span></label>
+                    <input class="exp-control" type="range" name="maxTerms" min="1" max="60" step="1" value="5">
+
+                    <label>Speed: <span class="val" id="fourier-speed-label">0.02</span></label>
+                    <input class="exp-control" type="range" name="speed" min="0.005" max="0.1" step="0.001" value="0.02">
+
+                    <label>Amplitude: <span class="val" id="fourier-amplitude-label">50</span></label>
+                    <input class="exp-control" type="range" name="amplitude" min="10" max="200" step="1" value="50">
+                </div>
             </div>
         </div>
     </div>

@@ -519,6 +519,17 @@ ul.details-list li::before {
     margin-bottom: 1rem;
 }
 
+.exp-icon svg {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 0.5rem;
+    fill: var(--primary);
+    opacity: 0.95;
+}
+
+.exp-icon.small svg { width: 18px; height: 18px; margin-right: 0.5rem; vertical-align: middle; }
+.experiment-view h2 { display: flex; align-items: center; gap: 0.5rem; }
+
 .exp-info h3 {
     font-size: 1rem;
     font-weight: 600;
@@ -567,6 +578,51 @@ ul.details-list li::before {
     font-style: italic;
 }
 
+.exp-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.exp-controls label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.exp-controls input[type="range"] {
+    width: 100%;
+}
+
+.exp-controls {
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    padding: 0.75rem;
+    border-radius: 8px;
+}
+
+.exp-controls .val {
+    display: inline-block;
+    min-width: 48px;
+    text-align: right;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace;
+    color: var(--text-main);
+    font-weight: 600;
+    margin-left: 0.5rem;
+}
+
+@media (min-width: 900px) {
+    .exp-controls {
+        gap: 0.75rem;
+    }
+    .exp-controls label {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5rem;
+    }
+}
+
 /* Dark Mode Adjustments for Experiments */
 html.dark .experiment-view canvas {
     background: #1e293b;
@@ -607,3 +663,6 @@ html.dark .top-bar {
 html.dark .item:hover {
     background-color: rgba(255,255,255,0.03);
 }
+
+.experiment-view .exp-controls { margin-top: 0.75rem; }
+.experiment-view h2 { font-size: 1.1rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }

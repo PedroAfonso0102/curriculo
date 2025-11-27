@@ -1,28 +1,44 @@
 const Experiments = {
     activeId: null,
-    cleanup: null,
+    // holds currently running instance { cleanup: fn, setOptions: fn }
+    currentInstance: null,
 
     stopCurrent: function() {
-        if (this.cleanup) {
-            this.cleanup();
-            this.cleanup = null;
+        if (this.currentInstance) {
+            try {
+                if (typeof this.currentInstance.cleanup === 'function') this.currentInstance.cleanup();
+            } catch (err) {
+                console.error('Error during experiment cleanup', err);
+            }
+            this.currentInstance = null;
         }
         this.activeId = null;
     },
 
-    fluid: function(canvasId) {
+    fluid: function(canvasId, options = {}) {
         const canvas = document.getElementById(canvasId);
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
-        
         // Reset canvas state
-        canvas.width = canvas.clientWidth;
-        canvas.height = canvas.clientHeight;
+        canvas.width = canvas.clientWidth || 800;
+        canvas.height = canvas.clientHeight || 400;
 
-        // Simulation parameters
-        const N = 64; // Reduced for performance/stability in smaller windows
-        const iter = 4;
-        const scale = Math.ceil(canvas.width / N);
+        // Parameters stored in an object so they can be updated live
+        const params = {
+            resolution: options.resolution || 128, // desired resolution
+            iter: options.iter || 4,
+            dt: options.dt || 0.1,
+            diff: options.diff || 0.00005,
+            visc: options.visc || 0.00005,
+            emit: options.emit || 100,
+            decay: options.decay || 0.995
+        };
+
+        // performance guard: clamp resolution to device and canvas
+        const maxRes = Math.min(256, Math.max(32, Math.floor(canvas.width / 2)));
+        const N = Math.max(32, Math.min(params.resolution, maxRes));
+        const iter = params.iter;
+        const scale = Math.max(1, Math.floor(canvas.width / N));
         const size = (N + 2) * (N + 2);
 
         // Arrays
@@ -33,9 +49,10 @@ const Experiments = {
         let dens = new Float32Array(size);
         let dens_prev = new Float32Array(size);
 
-        const dt = 0.1;
-        const diff = 0.0001;
-        const visc = 0.0001;
+        // local copies used inside loops (may be updated via setOptions)
+        let dt = params.dt;
+        let diff = params.diff;
+        let visc = params.visc;
 
         function IX(x, y) {
             return x + (N + 2) * y;
@@ -168,7 +185,7 @@ const Experiments = {
         let animationId;
         function loop() {
             // Fade out
-            for (let i = 0; i < size; i++) dens[i] *= 0.995;
+            for (let i = 0; i < size; i++) dens[i] *= params.decay;
             step();
             render();
             animationId = requestAnimationFrame(loop);
@@ -198,7 +215,7 @@ const Experiments = {
 
             if (gridX > 0 && gridX < N + 1 && gridY > 0 && gridY < N + 1) {
                 const index = IX(gridX, gridY);
-                dens[index] += 100;
+                dens[index] += params.emit;
                 const amtX = x - lastX;
                 const amtY = y - lastY;
                 u[index] += amtX * 0.5;
@@ -214,24 +231,59 @@ const Experiments = {
 
         loop();
 
-        return () => {
-            cancelAnimationFrame(animationId);
-            canvas.removeEventListener('mousedown', onMouseDown);
-            window.removeEventListener('mouseup', onMouseUp);
-            canvas.removeEventListener('mousemove', onMouseMove);
+        // setOptions allows live updates — returns { requiresReinit: boolean }
+        function setOptions(newOpts = {}) {
+            const next = Object.assign({}, params, newOpts);
+            // Changing resolution requires a full re-init (new arrays & sizes)
+            const nextMaxRes = Math.min(256, Math.max(32, Math.floor(canvas.width / 2)));
+            const nextN = Math.max(32, Math.min(next.resolution, nextMaxRes));
+
+            const requiresReinit = nextN !== N;
+
+            // Update scalar params for live updates
+            params.resolution = next.resolution;
+            params.iter = next.iter;
+            params.dt = next.dt;
+            params.diff = next.diff;
+            params.visc = next.visc;
+            params.emit = next.emit;
+            params.decay = next.decay;
+
+            // update local copies
+            dt = params.dt;
+            diff = params.diff;
+            visc = params.visc;
+
+            return { requiresReinit };
+        }
+
+        const instance = {
+            cleanup: () => {
+                cancelAnimationFrame(animationId);
+                canvas.removeEventListener('mousedown', onMouseDown);
+                window.removeEventListener('mouseup', onMouseUp);
+                canvas.removeEventListener('mousemove', onMouseMove);
+            },
+            setOptions
         };
+
+        return instance;
     },
 
-    gravity: function(canvasId) {
+    gravity: function(canvasId, options = {}) {
         const canvas = document.getElementById(canvasId);
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
         
-        canvas.width = canvas.clientWidth;
-        canvas.height = canvas.clientHeight;
+        canvas.width = canvas.clientWidth || 800;
+        canvas.height = canvas.clientHeight || 400;
 
         let particles = [];
-        let G = 0.5;
+        let params = {
+            G: options.G || 0.5,
+                particleCount: options.particleCount || 6,
+            trailAlpha: options.trailAlpha || 0.2
+        };
 
         class Particle {
             constructor(x, y, vx, vy, mass, color) {
@@ -254,7 +306,7 @@ const Experiments = {
                     let dist = Math.sqrt(distSq);
                     if (dist < 5) dist = 5; // Clamp distance
 
-                    let force = (G * this.mass * other.mass) / distSq;
+                    let force = (params.G * this.mass * other.mass) / distSq;
                     let fx = force * (dx / dist);
                     let fy = force * (dy / dist);
 
@@ -286,7 +338,8 @@ const Experiments = {
 
         // Init
         particles.push(new Particle(canvas.width / 2, canvas.height / 2, 0, 0, 1000, '#fbbc04')); // Google Yellow
-        for (let i = 0; i < 5; i++) {
+            const orbCount = Math.max(0, params.particleCount - 1);
+            for (let i = 0; i < orbCount; i++) {
             let x = canvas.width / 2 + Math.random() * 200 - 100;
             let y = canvas.height / 2 + Math.random() * 200 - 100;
             if (Math.abs(x - canvas.width / 2) < 50) x += 100;
@@ -294,8 +347,8 @@ const Experiments = {
             let dx = x - canvas.width / 2;
             let dy = y - canvas.height / 2;
             let dist = Math.sqrt(dx * dx + dy * dy);
-            let v = Math.sqrt(G * 1000 / dist);
-            let vx = -dy / dist * v;
+            let v = Math.sqrt(params.G * 1000 / dist);
+                let vx = -dy / dist * v;
             let vy = dx / dist * v;
 
             const colors = ['#4285f4', '#ea4335', '#34a853']; // Google Blue, Red, Green
@@ -304,7 +357,7 @@ const Experiments = {
 
         let animationId;
         function animate() {
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.2)'; // Fade trail (white bg)
+            ctx.fillStyle = `rgba(255,255,255,${params.trailAlpha})`; // Fade trail
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             particles.forEach(p => {
@@ -341,26 +394,47 @@ const Experiments = {
 
         animate();
 
-        return () => {
-            cancelAnimationFrame(animationId);
-            canvas.removeEventListener('mousedown', onMouseDown);
-            window.removeEventListener('mouseup', onMouseUp);
+        function setOptions(newOpts = {}) {
+            const prevCount = params.particleCount;
+            params = Object.assign(params, newOpts);
+            // if particle count changed, re-init to regenerate system
+            const requiresReinit = prevCount !== params.particleCount;
+            return { requiresReinit };
+        }
+
+        const instance = {
+            cleanup: () => {
+                cancelAnimationFrame(animationId);
+                canvas.removeEventListener('mousedown', onMouseDown);
+                window.removeEventListener('mouseup', onMouseUp);
+            },
+            setOptions
         };
+
+        return instance;
     },
 
-    pendulum: function(canvasId) {
+    pendulum: function(canvasId, options = {}) {
         const canvas = document.getElementById(canvasId);
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
         
-        canvas.width = canvas.clientWidth;
-        canvas.height = canvas.clientHeight;
+        canvas.width = canvas.clientWidth || 800;
+        canvas.height = canvas.clientHeight || 400;
 
-        let r1 = 100, r2 = 100;
-        let m1 = 10, m2 = 10;
+        let params = {
+            r1: options.r1 || 100,
+            r2: options.r2 || 100,
+            m1: options.m1 || 10,
+            m2: options.m2 || 10,
+            g: options.g || 1,
+            damping: options.damping || 0.999
+        };
+        let r1 = params.r1, r2 = params.r2;
+        let m1 = params.m1, m2 = params.m2;
         let a1 = Math.PI / 2, a2 = Math.PI / 2;
         let a1_v = 0, a2_v = 0;
-        let g = 1;
+        let g = params.g;
         let path = [];
 
         let animationId;
@@ -380,8 +454,8 @@ const Experiments = {
             den = r2 * (2 * m1 + m2 - m2 * Math.cos(2 * a1 - 2 * a2));
             let a2_a = (num1 * (num2 + num3 + num4)) / den;
 
-            a1_v += a1_a;
-            a2_v += a2_a;
+            a1_v = a1_v * params.damping + a1_a;
+            a2_v = a2_v * params.damping + a2_a;
             a1 += a1_v;
             a2 += a2_v;
 
@@ -420,21 +494,41 @@ const Experiments = {
         }
 
         loop();
-        return () => cancelAnimationFrame(animationId);
+
+        function setOptions(newOpts = {}) {
+            const prevR1 = params.r1;
+            const prevR2 = params.r2;
+            params = Object.assign(params, newOpts);
+            r1 = params.r1; r2 = params.r2; m1 = params.m1; m2 = params.m2; g = params.g;
+            const requiresReinit = prevR1 !== params.r1 || prevR2 !== params.r2;
+            return { requiresReinit };
+        }
+
+        const instance = {
+            cleanup: () => cancelAnimationFrame(animationId),
+            setOptions
+        };
+        return instance;
     },
 
-    fourier: function(canvasId) {
+    fourier: function(canvasId, options = {}) {
         const canvas = document.getElementById(canvasId);
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
         
-        canvas.width = canvas.clientWidth;
-        canvas.height = canvas.clientHeight;
+        canvas.width = canvas.clientWidth || 800;
+        canvas.height = canvas.clientHeight || 400;
+
+        let params = {
+            maxTerms: options.maxTerms || 5,
+            speed: options.speed || 0.02,
+                amplitude: options.amplitude || 50
+        };
 
         let time = 0;
         let wave = [];
-        let maxTerms = 5;
-        let speed = 0.02;
+        let maxTerms = params.maxTerms;
+        let speed = params.speed;
 
         let animationId;
         function drawEpicycles(x, y, rotation) {
@@ -442,7 +536,7 @@ const Experiments = {
                 let prevx = x;
                 let prevy = y;
                 let n = i * 2 + 1;
-                let radius = 50 * (4 / (n * Math.PI));
+                    let radius = params.amplitude * (4 / (n * Math.PI));
                 x += radius * Math.cos(n * time + rotation);
                 y += radius * Math.sin(n * time + rotation);
 
@@ -484,11 +578,25 @@ const Experiments = {
             }
             ctx.stroke();
 
-            time += speed;
+            time += params.speed;
             animationId = requestAnimationFrame(animate);
         }
 
         animate();
-        return () => cancelAnimationFrame(animationId);
+
+        function setOptions(newOpts = {}) {
+            const prevTerms = params.maxTerms;
+            params = Object.assign(params, newOpts);
+            maxTerms = params.maxTerms; speed = params.speed;
+            const requiresReinit = prevTerms !== params.maxTerms;
+            return { requiresReinit };
+        }
+
+        const instance = {
+            cleanup: () => cancelAnimationFrame(animationId),
+            setOptions
+        };
+
+        return instance;
     }
 };

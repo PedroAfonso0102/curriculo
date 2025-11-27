@@ -198,6 +198,15 @@ function switchView(viewName) {
     }
 }
 
+// Utility: debounce
+function debounce(fn, wait) {
+    let t;
+    return function(...args) {
+        clearTimeout(t);
+        t = setTimeout(() => fn.apply(this, args), wait);
+    };
+}
+
 // Experiment Logic
 function openExperiment(type) {
     const dashboard = document.getElementById('playground-dashboard');
@@ -215,14 +224,90 @@ function openExperiment(type) {
     const view = document.getElementById(`${type}-view`);
     if (view) {
         view.style.display = 'block';
-        // Initialize experiment
-        if (Experiments && Experiments[type]) {
-            // Stop any previous
-            Experiments.stopCurrent();
-            // Start new
-            Experiments.cleanup = Experiments[type](`${type}Canvas`);
-            Experiments.activeId = type;
+        // Initialize experiment with options from controls
+        const formatVal = (v) => {
+            if (typeof v !== 'number') return v;
+            if (Math.abs(v) >= 100) return Math.round(v);
+            if (Math.abs(v) >= 1) return Math.round(v * 100) / 100;
+            // small numbers: show up to 5 significant digits
+            return parseFloat(v.toPrecision(4));
+        };
+
+        const readOptions = () => {
+            const opts = {};
+            const controls = view.querySelectorAll('.exp-control');
+            controls.forEach(ctrl => {
+                const name = ctrl.name;
+                let val = ctrl.value;
+                // coerce numeric values
+                if (val !== undefined && val !== null && val !== '') {
+                    if (val.indexOf('.') >= 0) val = parseFloat(val);
+                    else val = parseFloat(val);
+                }
+                opts[name] = val;
+                // update label if exists
+                const label = view.querySelector(`#${type}-${name}-label`) || view.querySelector(`#${type}-${name}-label`);
+                if (label) label.textContent = formatVal(val);
+            });
+            return opts;
+        };
+
+        const startWithOptions = (opts) => {
+            if (Experiments && Experiments[type]) {
+                // Stop previous first
+                Experiments.stopCurrent();
+
+                // Start new experiment and store the returned instance
+                const result = Experiments[type](`${type}Canvas`, opts);
+
+                // Support older-style cleanup functions (function) or the new instance object
+                if (typeof result === 'function') {
+                    Experiments.currentInstance = { cleanup: result, setOptions: null };
+                } else if (result && typeof result === 'object') {
+                    Experiments.currentInstance = result;
+                } else {
+                    Experiments.currentInstance = null;
+                }
+
+                Experiments.activeId = type;
+            }
+        };
+
+        // Start immediately
+        startWithOptions(readOptions());
+
+        // Wire controls to re-init experiment on change (debounced)
+        if (view._expBound && Array.isArray(view._expBound)) {
+            // remove old listeners
+            view._expBound.forEach(b => b.el.removeEventListener('input', b.handler));
         }
+        const bound = [];
+        view.querySelectorAll('.exp-control').forEach(ctrl => {
+            const handler = debounce(() => {
+                const opts = readOptions();
+                // If the experiment supports live updates, prefer setOptions
+                if (Experiments && Experiments.currentInstance && typeof Experiments.currentInstance.setOptions === 'function') {
+                    try {
+                        const res = Experiments.currentInstance.setOptions(opts);
+                        // If the instance signals a re-init is required, restart entirely
+                        if (res && res.requiresReinit) {
+                            startWithOptions(opts);
+                        }
+                        return;
+                    } catch (err) {
+                        console.warn('setOptions failed, reinitializing:', err);
+                        startWithOptions(opts);
+                        return;
+                    }
+                }
+
+                // Fallback: re-init
+                startWithOptions(opts);
+            }, 250);
+            ctrl.addEventListener('input', handler);
+            bound.push({ el: ctrl, handler });
+        });
+        view._expBound = bound;
     }
 }
 
@@ -230,9 +315,15 @@ function closeExperiment() {
     const dashboard = document.getElementById('playground-dashboard');
     const container = document.getElementById('experiment-container');
     
-    // Stop experiment
-    if (Experiments) {
-        Experiments.stopCurrent();
+    // Capture active id so we can remove listeners, then stop experiment
+    const prevActive = Experiments ? Experiments.activeId : null;
+    if (Experiments) Experiments.stopCurrent();
+    if (prevActive) {
+        const activeView = document.getElementById(`${prevActive}-view`);
+        if (activeView && activeView._expBound) {
+            activeView._expBound.forEach(b => b.el.removeEventListener('input', b.handler));
+            activeView._expBound = null;
+        }
     }
     
     container.style.display = 'none';
