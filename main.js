@@ -231,6 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function switchView(viewName) {
     const resumeView = document.getElementById('resume-view');
     const playgroundView = document.getElementById('playground-view');
+    const hireMeView = document.getElementById('hire-me-view');
     
     // Update Top Bar & Mobile Links
     const updateLinks = (selector) => {
@@ -244,18 +245,43 @@ function switchView(viewName) {
     updateLinks('.nav-link');
     updateLinks('.mobile-link');
 
-    const isResume = viewName === 'resume';
-    const hideEl = isResume ? playgroundView : resumeView;
-    const showEl = isResume ? resumeView : playgroundView;
+    // Hide all views first (or manage transitions)
+    const views = {
+        'resume': resumeView,
+        'playground': playgroundView,
+        'hire-me': hireMeView
+    };
 
-    // Use transition helper
-    animateTransition(hideEl, showEl, () => {
-        if (isResume && window.Experiments) {
-            if (typeof window.Experiments.stopCurrent === 'function') {
-                window.Experiments.stopCurrent();
-            }
-        }
+    const showEl = views[viewName];
+    
+    // Simple toggle for now, can be animated
+    Object.values(views).forEach(el => {
+        if (el && el !== showEl) el.style.display = 'none';
     });
+
+    if (showEl) {
+        showEl.style.display = 'block';
+        showEl.style.opacity = '0';
+        showEl.style.transform = 'translateY(10px)';
+        
+        // Force Reflow
+        void showEl.offsetWidth;
+
+        showEl.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        showEl.style.opacity = '1';
+        showEl.style.transform = 'translateY(0)';
+    }
+
+    // Specific Init Logic
+    if (viewName === 'resume' && window.Experiments) {
+        if (typeof window.Experiments.stopCurrent === 'function') {
+            window.Experiments.stopCurrent();
+        }
+    }
+
+    if (viewName === 'hire-me' && window.HireMe) {
+        window.HireMe.init();
+    }
 }
 
 // Utility: debounce

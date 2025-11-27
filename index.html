@@ -67,6 +67,7 @@
             <div class="nav-right desktop-only">
                 <button class="nav-link active" data-view="resume" onclick="switchView('resume')">Currículo</button>
                 <button class="nav-link" data-view="playground" onclick="switchView('playground')">Playground</button>
+                <button class="nav-link" data-view="hire-me" onclick="switchView('hire-me')">Me Contrate</button>
 
                 <div class="divider-vertical"></div>
 
@@ -96,6 +97,7 @@
             <nav class="mobile-links">
                 <button class="mobile-link active" data-view="resume" onclick="switchView('resume'); toggleMobileMenu()">Currículo</button>
                 <button class="mobile-link" data-view="playground" onclick="switchView('playground'); toggleMobileMenu()">Playground</button>
+                <button class="mobile-link" data-view="hire-me" onclick="switchView('hire-me'); toggleMobileMenu()">Me Contrate</button>
             </nav>
             <div class="mobile-controls">
                 <div class="lang-toggle-mobile">
@@ -482,9 +484,16 @@
                 </section>
             </div>
         </main>
+
+        <main id="hire-me-view" class="view-container" style="display: none;">
+            <div id="hire-me-content">
+                <!-- Content injected by JS -->
+            </div>
+        </main>
     </div>
 
     <script src="js/experiments.js"></script>
+    <script src="js/hire_me.js"></script>
     <script src="main.js"></script>
 </body>
 
