@@ -62,6 +62,12 @@ window.translations = {
         ctrl_terms: "Termos",
         ctrl_speed: "Velocidade",
         ctrl_amplitude: "Amplitude",
+        exp_spring: "Movimento Harmônico",
+        exp_spring_desc: "Molas",
+        exp_chaos: "Jogo do Caos",
+        exp_chaos_desc: "Fractais",
+        exp_lissajous: "Lissajous",
+        exp_lissajous_desc: "Curvas",
         // Hire Me - General
         hire_header_title: "Me Contrate",
         hire_role: "Escolha o serviço ideal para o seu momento",
@@ -208,6 +214,12 @@ window.translations = {
         ctrl_terms: "Terms",
         ctrl_speed: "Speed",
         ctrl_amplitude: "Amplitude",
+        exp_spring: "Harmonic Motion",
+        exp_spring_desc: "Springs",
+        exp_chaos: "Chaos Game",
+        exp_chaos_desc: "Fractals",
+        exp_lissajous: "Lissajous",
+        exp_lissajous_desc: "Curves",
         // Hire Me - General
         hire_header_title: "Hire Me",
         hire_role: "Choose the ideal service for your moment",
@@ -354,6 +366,12 @@ window.translations = {
         ctrl_terms: "Términos",
         ctrl_speed: "Velocidad",
         ctrl_amplitude: "Amplitud",
+        exp_spring: "Movimiento Armónico",
+        exp_spring_desc: "Resortes",
+        exp_chaos: "Juego del Caos",
+        exp_chaos_desc: "Fractales",
+        exp_lissajous: "Lissajous",
+        exp_lissajous_desc: "Curvas",
         // Hire Me - General
         hire_header_title: "Contrátame",
         hire_role: "Elige el servicio ideal para tu momento",
@@ -494,6 +512,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (persist) {
             localStorage.setItem('theme', isDark ? 'dark' : 'light');
         }
+
+        // Update Desktop Icon (Apple-like Toggle)
+        const iconUse = document.getElementById('theme-icon-use');
+        if (iconUse) {
+            // Dark Mode = Show Sun (to switch to Light)
+            // Light Mode = Show Moon (to switch to Dark)
+            iconUse.setAttribute('href', isDark ? '#icon-sun' : '#icon-moon');
+        }
+
         themeToggleBtns.forEach(btn => {
             btn.setAttribute('aria-pressed', isDark ? 'true' : 'false');
             // Optional: Update text for mobile button if needed
