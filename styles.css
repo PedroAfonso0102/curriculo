@@ -32,6 +32,25 @@
     --exp-pendulum-fade: rgba(255, 255, 255, 0.3);
 }
 
+/* Mobile Menu Button */
+.menu-toggle {
+    display: none;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 200;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-doc);
+    cursor: pointer;
+    color: var(--text-secondary);
+}
+
 /* Skip link for keyboard users */
 .skip-link {
     position: absolute;
@@ -103,7 +122,8 @@ body {
     border-right: 1px solid var(--border);
     padding: 2rem 1rem;
     overflow-y: auto;
-    z-index: 50;
+    z-index: 150;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .content-wrapper {
@@ -112,6 +132,7 @@ body {
     display: flex;
     justify-content: center;
     min-height: 100vh;
+    transition: margin-left 0.3s ease;
 }
 
 .container {
@@ -124,6 +145,76 @@ body {
     box-shadow: var(--shadow-doc);
     border: none;
     position: relative; /* For absolute positioning of top-bar */
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 900px) {
+    .menu-toggle {
+        display: flex;
+    }
+
+    .doc-sidebar {
+        transform: translateX(-100%);
+        background-color: var(--bg-card);
+        box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+    }
+
+    .doc-sidebar.open {
+        transform: translateX(0);
+    }
+
+    .content-wrapper {
+        margin-left: 0;
+        padding: 1rem;
+        padding-top: 4rem; /* Space for menu button */
+    }
+
+    .container {
+        max-width: 100%;
+        min-height: auto;
+        padding: 1.5rem;
+        width: 100%;
+    }
+
+    .top-bar {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+    }
+
+    h1 {
+        font-size: 2rem; /* Rem instead of pt */
+        margin-top: 2rem;
+    }
+
+    .contact-info {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    /* Overlay for mobile sidebar */
+    .sidebar-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: 140;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .sidebar-overlay.active {
+        display: block;
+        opacity: 1;
+    }
 }
 
 /* Sidebar Styling */
@@ -157,7 +248,7 @@ body {
     align-items: center;
     gap: 0.75rem;
     width: 100%;
-    padding: 0.5rem 1rem;
+    padding: 0.75rem 1rem; /* Larger touch target */
     border: none;
     background: none;
     color: var(--text-secondary);
@@ -167,6 +258,7 @@ body {
     border-radius: 0 20px 20px 0; /* Google Docs style rounded right */
     transition: var(--transition-fast);
     text-align: left;
+    min-height: 44px; /* Touch target */
 }
 
 .sidebar-item:hover {
@@ -180,8 +272,8 @@ body {
 }
 
 .sidebar-icon {
-    width: 20px;
-    height: 20px;
+    width: 24px; /* Slightly larger */
+    height: 24px;
     fill: currentColor;
     opacity: 0.8;
 }
@@ -193,14 +285,15 @@ body {
 }
 
 .outline-item {
-    padding: 0.4rem 1rem 0.4rem 2rem; /* Indented */
-    font-size: 0.85rem;
+    padding: 0.75rem 1rem 0.75rem 2rem; /* Indented & Larger touch target */
+    font-size: 0.9rem; /* Readable size */
     color: var(--text-secondary);
     cursor: pointer;
     border-left: 2px solid transparent;
     transition: var(--transition-fast);
     text-decoration: none;
     display: block;
+    min-height: 44px;
 }
 
 .outline-item:hover {
@@ -233,6 +326,13 @@ body {
     /* Removed background/blur to blend with paper */
     padding: 0.5rem;
     width: fit-content;
+}
+
+@media (max-width: 900px) {
+    .top-bar {
+        top: 0.5rem;
+        right: 0.5rem;
+    }
 }
 
 /* Fix for top-bar positioning relative to body/container */
@@ -335,6 +435,7 @@ h1 {
     text-decoration: none;
     position: relative;
     transition: var(--transition-fast);
+    padding: 0.25rem 0; /* Better touch area */
 }
 
 .contact-item a:hover {
@@ -550,12 +651,12 @@ ul.details-list li::before {
     color: var(--primary);
     font-weight: 500;
     cursor: pointer;
-    padding: 0.5rem 0;
+    padding: 1rem 0; /* Larger touch target */
     margin-bottom: 1rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 .back-btn:hover {
@@ -593,6 +694,8 @@ ul.details-list li::before {
 
 .exp-controls input[type="range"] {
     width: 100%;
+    height: 32px; /* Easier to grab */
+    cursor: pointer;
 }
 
 .exp-controls {

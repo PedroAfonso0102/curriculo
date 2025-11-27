@@ -82,7 +82,7 @@ const translations = {
         section_experience: "Experiencia Profesional",
         job1_title: "Analista de Ventas y Procesos",
         job1_desc1: "<strong>Ventas Consultivas:</strong> Gestão del ciclo de ventas consultivas de ativos imobiliarios de alto valor.",
-        job1_desc2: "<strong>Procesos:</strong> Implementación de análisis de datos para calificación de leads y optimización del embudo de ventas.",
+        job1_desc2: "<strong>Procesos:</strong> Implementación de análisis de dados para calificación de leads y optimización del embudo de ventas.",
         job2_title: "Presidente y Fundador",
         job2_desc1: "<strong>Gestión de Equipo:</strong> Liderazgo ejecutivo de equipo multidisciplinario (30 miembros). Definición de metas estratégicas y rutinas operativas.",
         job2_desc2: "<strong>Financiero:</strong> Reestructuración financiera completa y captación estratégica de recursos, garantizando superávit operativo para la gestión siguiente.",
@@ -92,13 +92,13 @@ const translations = {
         job3_desc2: "<strong>Medios y Diseño:</strong> Producción audiovisual para eventos corporativos, incluyendo cobertura y edición ágil (ej: Foro Ambición 2030).",
         job3_desc3: "<strong>Herramientas:</strong> Creación de herramientas de automatización de procesos para optimización de cálculos y rutinas.",
         job4_title: "Asistente de Importación",
-        job4_desc1: "<strong>Comercio Exterior:</strong> Operacionalización de procesos de importación/exportación y gestión de relaciones con la cadena de suministro internacional.",
+        job4_desc1: "<strong>Comercio Exterior:</strong> Operacionalização de processos de importação/exportação e gestão de relações com a cadeia de suprimento internacional.",
         section_skills: "Habilidades Técnicas",
         skill_cat1: "Diseño y Audiovisual",
         skill_cat2: "Negocios y Herramientas",
         section_education: "Formación Académica",
         edu1_title: "Relaciones Internacionales (Licenciatura)",
-        edu2_title: "Técnico en Administración",
+        edu2_title: "Técnico em Administração",
         section_languages: "Idiomas",
         lang1_name: "Portugués",
         lang1_details: "Nativo",
@@ -344,6 +344,42 @@ window.openExperiment = openExperiment;
 window.closeExperiment = closeExperiment;
 window.switchView = switchView;
 window.setLanguage = setLanguage;
+window.toggleSidebar = toggleSidebar;
+
+// Sidebar Toggle Logic
+function toggleSidebar() {
+    const sidebar = document.querySelector('.doc-sidebar');
+    const overlay = document.querySelector('.sidebar-overlay');
+    const isOpen = sidebar.classList.contains('open');
+    
+    if (isOpen) {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    } else {
+        sidebar.classList.add('open');
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+}
+
+// Close sidebar when clicking a link on mobile
+document.addEventListener('DOMContentLoaded', () => {
+    // ...existing code...
+    
+    // Close sidebar on link click (mobile)
+    const sidebarLinks = document.querySelectorAll('.sidebar-item, .outline-item');
+    sidebarLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= 900) {
+                const sidebar = document.querySelector('.doc-sidebar');
+                if (sidebar.classList.contains('open')) {
+                    toggleSidebar();
+                }
+            }
+        });
+    });
+});
 
 // Outline Generation Logic
 function generateOutline(rootSelector = '#resume-view') {

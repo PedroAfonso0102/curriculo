@@ -251,9 +251,47 @@ const Experiments = {
             lastY = y;
         };
 
+        // Touch Support
+        const onTouchStart = e => {
+            if (e.touches.length > 0) {
+                const touch = e.touches[0];
+                const rect = canvas.getBoundingClientRect();
+                isMouseDown = true;
+                lastX = touch.clientX - rect.left;
+                lastY = touch.clientY - rect.top;
+            }
+        };
+
+        const onTouchMove = e => {
+            if (!isMouseDown || e.touches.length === 0) return;
+            if (e.cancelable) e.preventDefault(); // Prevent scrolling
+            const touch = e.touches[0];
+            const rect = canvas.getBoundingClientRect();
+            const x = touch.clientX - rect.left;
+            const y = touch.clientY - rect.top;
+
+            const gridX = Math.floor(x / scale);
+            const gridY = Math.floor(y / scale);
+
+            if (gridX > 0 && gridX < N + 1 && gridY > 0 && gridY < N + 1) {
+                const index = IX(gridX, gridY);
+                dens[index] += params.emit;
+                const amtX = x - lastX;
+                const amtY = y - lastY;
+                u[index] += amtX * 0.5;
+                v[index] += amtY * 0.5;
+            }
+            lastX = x;
+            lastY = y;
+        };
+
         canvas.addEventListener('mousedown', onMouseDown);
         window.addEventListener('mouseup', onMouseUp);
         canvas.addEventListener('mousemove', onMouseMove);
+        
+        canvas.addEventListener('touchstart', onTouchStart, { passive: false });
+        window.addEventListener('touchend', onMouseUp);
+        canvas.addEventListener('touchmove', onTouchMove, { passive: false });
 
         loop();
 
@@ -289,6 +327,9 @@ const Experiments = {
                 canvas.removeEventListener('mousedown', onMouseDown);
                 window.removeEventListener('mouseup', onMouseUp);
                 canvas.removeEventListener('mousemove', onMouseMove);
+                canvas.removeEventListener('touchstart', onTouchStart);
+                window.removeEventListener('touchend', onMouseUp);
+                canvas.removeEventListener('touchmove', onTouchMove);
             },
             setOptions
         };
@@ -416,8 +457,35 @@ const Experiments = {
             particles.push(new Particle(startX, startY, vx, vy, Math.random() * 10 + 2, '#5f6368'));
         };
 
+        // Touch Support
+        const onTouchStart = e => {
+            if (e.touches.length > 0) {
+                if (e.cancelable) e.preventDefault();
+                const touch = e.touches[0];
+                const rect = canvas.getBoundingClientRect();
+                isDragging = true;
+                startX = touch.clientX - rect.left;
+                startY = touch.clientY - rect.top;
+            }
+        };
+
+        const onTouchEnd = e => {
+            if (!isDragging) return;
+            isDragging = false;
+            const rect = canvas.getBoundingClientRect();
+            const touch = e.changedTouches[0];
+            let endX = touch.clientX - rect.left;
+            let endY = touch.clientY - rect.top;
+            let vx = (startX - endX) * 0.05;
+            let vy = (startY - endY) * 0.05;
+            particles.push(new Particle(startX, startY, vx, vy, Math.random() * 10 + 2, '#5f6368'));
+        };
+
         canvas.addEventListener('mousedown', onMouseDown);
         window.addEventListener('mouseup', onMouseUp);
+        
+        canvas.addEventListener('touchstart', onTouchStart, { passive: false });
+        window.addEventListener('touchend', onTouchEnd);
 
         animate();
 
@@ -434,6 +502,8 @@ const Experiments = {
                 cancelAnimationFrame(animationId);
                 canvas.removeEventListener('mousedown', onMouseDown);
                 window.removeEventListener('mouseup', onMouseUp);
+                canvas.removeEventListener('touchstart', onTouchStart);
+                window.removeEventListener('touchend', onTouchEnd);
             },
             setOptions
         };
