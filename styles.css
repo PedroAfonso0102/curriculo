@@ -862,7 +862,10 @@ html.dark input[type=range]::-webkit-slider-thumb {
 .details-header-cover {
     width: 100%;
     min-height: 100px;
+    height: 150px; /* Added based on updated requirements */
     background-color: var(--bg-tag);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-lg);
 }
 
 .details-content h2 {
@@ -1063,6 +1066,31 @@ html.dark input[type=range]::-webkit-slider-thumb {
 .slot-btn:hover {
     border-color: var(--primary);
     color: var(--primary);
+}
+
+/* New Date Selector Button Class for Dynamic Schedule */
+.date-selector-btn {
+    background-color: var(--bg-body);
+    border: 1px solid var(--border);
+    padding: var(--space-sm-md);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: var(--font-sm);
+    width: 100%;
+    text-align: left;
+    margin-bottom: var(--space-sm);
+    transition: all 0.2s ease;
+}
+
+.date-selector-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.date-selector-btn.active {
+    border-color: var(--primary);
+    color: var(--primary);
+    background-color: var(--bg-hover-block);
 }
 
 /* Checkout & Confirmation */

@@ -45,12 +45,12 @@ const servicesData = [
         gradient: 'linear-gradient(135deg, #fccb90 0%, #d57eeb 100%)'
     },
     {
-        id: 'mentoria-dev',
-        title: 'Mentoria Dev',
+        id: 'mentoria-audiovisual',
+        title: 'Mentoria Audiovisual',
         price: 'R$ 200/h',
         deadline: 'Sessão 1h',
-        description: 'Orientação de carreira, revisão de código ou ajuda para desbloquear problemas técnicos específicos.',
-        included: ['Code Review', 'Plano de Estudos', 'Tira-dúvidas técnico'],
+        description: 'Orientação de carreira, análise técnica e direção de projetos audiovisuais.',
+        included: ['Análise de Portfólio/Reel', 'Direção de Arte & Roteiro', 'Feedback de Edição'],
         notIncluded: ['Desenvolvimento de projetos completos'],
         type: 'schedule',
         gradient: 'linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%)'
@@ -70,7 +70,7 @@ const servicesData = [
 
 const HireMe = {
     state: {
-        currentStep: 'catalog', // catalog, details, form, schedule, checkout, confirmation
+        currentStep: 'catalog', // catalog, details, form, schedule, confirmation
         selectedService: null,
         formData: {}
     },
@@ -81,8 +81,60 @@ const HireMe = {
         this.renderCatalog();
     },
 
+    // --- UTILS ---
+    getNextBusinessDays(daysCount) {
+        const days = [];
+        let current = new Date();
+        // Start from tomorrow
+        current.setDate(current.getDate() + 1);
+
+        while (days.length < daysCount) {
+            const dayOfWeek = current.getDay();
+            if (dayOfWeek !== 0 && dayOfWeek !== 6) { // Not Sunday (0) or Saturday (6)
+                days.push(new Date(current));
+            }
+            current.setDate(current.getDate() + 1);
+        }
+        return days;
+    },
+
+    formatDateDisplay(date) {
+        const dd = String(date.getDate()).padStart(2, '0');
+        const mm = String(date.getMonth() + 1).padStart(2, '0');
+        const weekDays = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
+        return `${dd}/${mm} - ${weekDays[date.getDay()]}`;
+    },
+
+    sendToWhatsApp() {
+        const service = this.state.selectedService.title;
+        const name = this.state.formData.clientName || 'Cliente';
+        let msg = '';
+
+        if (this.state.selectedService.type === 'contract') {
+             // Budget/Form Flow
+             const budget = this.state.formData.budget || 'N/A';
+             const deadline = this.state.formData.deadline || 'N/A';
+             msg = `Olá! Meu nome é ${name}. Gostaria de solicitar um orçamento para *${service}*.\nOrçamento: ${budget}\nPrazo: ${deadline}`;
+        } else {
+            // Schedule Flow
+            const date = this.state.formData.date || 'N/A';
+            const time = this.state.formData.time || 'N/A';
+            msg = `Olá! Meu nome é ${name}. Gostaria de agendar uma *${service}* para dia ${date} às ${time}.`;
+        }
+
+        const encodedMsg = encodeURIComponent(msg);
+        window.open(`https://wa.me/5519994418294?text=${encodedMsg}`, '_blank');
+
+        // Show local confirmation after redirect
+        this.renderConfirmation();
+    },
+
+    // --- VIEWS ---
+
     renderCatalog() {
         this.state.currentStep = 'catalog';
+        // Note: Using 'services-grid' which is a grid layout.
+        // Inline styles for gradient cover are kept as they are data-driven content.
         this.container.innerHTML = `
             <header class="hire-header">
                 <h1>Me Contrate</h1>
@@ -112,7 +164,7 @@ const HireMe = {
             <div class="details-view fade-in">
                 <button class="back-link" onclick="HireMe.renderCatalog()">← Voltar</button>
                 <div class="details-content">
-                    <div class="details-header-cover" style="background: ${service.gradient}; height: 150px; border-radius: 12px; margin-bottom: 2rem;"></div>
+                    <div class="details-header-cover" style="background: ${service.gradient};"></div>
                     <h2>${service.title}</h2>
                     <div class="details-meta">
                         <div class="meta-item">
@@ -143,7 +195,7 @@ const HireMe = {
 
                     <div class="details-actions">
                         <button class="cta-btn" onclick="HireMe.proceedFromDetails()">
-                            ${service.type === 'contract' ? 'Solicitar Orçamento' : 'Agendar Horário'}
+                            ${service.type === 'contract' ? 'Solicitar Orçamento' : 'Ver Horários'}
                         </button>
                     </div>
                 </div>
@@ -168,6 +220,10 @@ const HireMe = {
                 <h2>Formulário de Qualificação</h2>
                 <form onsubmit="HireMe.handleFormSubmit(event)" class="hire-form">
                     <div class="form-group">
+                        <label>Seu Nome</label>
+                        <input type="text" name="clientName" placeholder="Seu nome completo" required>
+                    </div>
+                    <div class="form-group">
                         <label>Qual o orçamento disponível?</label>
                         <input type="text" name="budget" placeholder="Ex: R$ 5.000" required>
                     </div>
@@ -179,7 +235,7 @@ const HireMe = {
                         <label>Link do projeto atual (se houver)?</label>
                         <input type="url" name="link" placeholder="https://exemplo.com">
                     </div>
-                    <button type="submit" class="cta-btn">Continuar para Pagamento</button>
+                    <button type="submit" class="cta-btn">Enviar via WhatsApp</button>
                 </form>
             </div>
         `;
@@ -189,105 +245,88 @@ const HireMe = {
         e.preventDefault();
         const formData = new FormData(e.target);
         this.state.formData = Object.fromEntries(formData.entries());
-        this.renderCheckout();
+        this.sendToWhatsApp();
     },
 
     renderSchedule() {
         this.state.currentStep = 'schedule';
-        // Mock Calendar View
+        const days = this.getNextBusinessDays(7);
+
+        // Simple List of Days
+        const daysHTML = days.map((date, index) => {
+            const dateStr = this.formatDateDisplay(date);
+            // Store ISO date in data attribute or simple string
+            const simpleDate = `${date.getDate()}/${date.getMonth() + 1}`;
+            return `
+                <button class="date-selector-btn" onclick="HireMe.selectDate('${simpleDate}', this)">
+                    ${dateStr}
+                </button>
+            `;
+        }).join('');
+
         this.container.innerHTML = `
             <div class="schedule-view fade-in">
                 <button class="back-link" onclick="HireMe.openDetails('${this.state.selectedService.id}')">← Voltar</button>
-                <h2>Agendamento</h2>
-                <div class="calendar-mock">
-                    <div class="calendar-header">
-                        <span>Julho 2024</span>
+                <h2>Escolha uma Data</h2>
+                <p class="body-text" style="margin-bottom: 1rem;">Selecione um dia de preferência. Confirmaremos o horário exato pelo WhatsApp.</p>
+
+                <div class="form-group" style="margin-bottom: 2rem;">
+                     <label>Seu Nome</label>
+                     <input type="text" id="scheduleName" placeholder="Seu nome completo" required>
+                </div>
+
+                <div class="schedule-list">
+                    <label style="display:block; margin-bottom: 8px; font-weight: 500; color: var(--text-secondary);">Próximos Dias Úteis</label>
+                    <div id="days-container">
+                        ${daysHTML}
                     </div>
-                    <div class="calendar-grid">
-                        <!-- Simplified Grid -->
-                        <div class="day-label">D</div><div class="day-label">S</div><div class="day-label">T</div><div class="day-label">Q</div><div class="day-label">Q</div><div class="day-label">S</div><div class="day-label">S</div>
-                        ${Array(31).fill(0).map((_, i) => `
-                            <div class="day ${i === 10 ? 'selected' : ''}">${i + 1}</div>
-                        `).join('')}
-                    </div>
-                    <div class="time-slots">
-                        <h3>Horários Disponíveis (11/07)</h3>
-                        <div class="slots-grid">
-                            <button class="slot-btn" onclick="HireMe.confirmSchedule('09:00')">09:00</button>
-                            <button class="slot-btn" onclick="HireMe.confirmSchedule('10:00')">10:00</button>
-                            <button class="slot-btn" onclick="HireMe.confirmSchedule('14:00')">14:00</button>
-                        </div>
+                </div>
+
+                <div id="time-selection" style="display:none; margin-top: 2rem;">
+                    <label style="display:block; margin-bottom: 8px; font-weight: 500; color: var(--text-secondary);">Período Preferido</label>
+                    <div class="slots-grid">
+                        <button class="slot-btn" onclick="HireMe.confirmSchedule('Manhã (09h - 12h)')">Manhã</button>
+                        <button class="slot-btn" onclick="HireMe.confirmSchedule('Tarde (13h - 18h)')">Tarde</button>
+                        <button class="slot-btn" onclick="HireMe.confirmSchedule('Noite (19h - 21h)')">Noite</button>
                     </div>
                 </div>
             </div>
         `;
     },
 
-    confirmSchedule(time) {
-        this.state.formData.time = time;
-        this.state.formData.date = '11/07/2024';
-        this.renderConfirmation('schedule');
+    selectDate(dateStr, btnElement) {
+        // Visual feedback
+        const allBtns = document.querySelectorAll('#days-container .date-selector-btn');
+        allBtns.forEach(b => {
+            b.classList.remove('active');
+        });
+
+        btnElement.classList.add('active');
+
+        this.state.formData.date = dateStr;
+        document.getElementById('time-selection').style.display = 'block';
     },
 
-    renderCheckout() {
-        this.state.currentStep = 'checkout';
-        this.container.innerHTML = `
-            <div class="checkout-view fade-in">
-                <button class="back-link" onclick="HireMe.renderQualificationForm()">← Voltar</button>
-                <h2>Checkout Seguro</h2>
-                
-                <div class="order-summary">
-                    <div class="summary-row">
-                        <span>${this.state.selectedService.title}</span>
-                        <span>${this.state.selectedService.price}</span>
-                    </div>
-                    <div class="summary-total">
-                        <span>Total</span>
-                        <span>${this.state.selectedService.price}</span>
-                    </div>
-                </div>
-
-                <form onsubmit="HireMe.handleCheckoutSubmit(event)" class="hire-form">
-                    <div class="form-group">
-                        <label>Número do Cartão</label>
-                        <input type="text" placeholder="0000 0000 0000 0000" required>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Validade</label>
-                            <input type="text" placeholder="MM/AA" required>
-                        </div>
-                        <div class="form-group">
-                            <label>CVC</label>
-                            <input type="text" placeholder="123" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Nome no Cartão</label>
-                        <input type="text" placeholder="Nome Completo" required>
-                    </div>
-                    <button type="submit" class="cta-btn">Pagar ${this.state.selectedService.price}</button>
-                </form>
-            </div>
-        `;
+    confirmSchedule(timeSlot) {
+        const nameInput = document.getElementById('scheduleName');
+        if (!nameInput.value) {
+            alert('Por favor, digite seu nome antes de continuar.');
+            nameInput.focus();
+            return;
+        }
+        this.state.formData.clientName = nameInput.value;
+        this.state.formData.time = timeSlot;
+        this.sendToWhatsApp();
     },
 
-    handleCheckoutSubmit(e) {
-        e.preventDefault();
-        this.renderConfirmation('contract');
-    },
-
-    renderConfirmation(type) {
+    renderConfirmation() {
         this.state.currentStep = 'confirmation';
-        const title = type === 'contract' ? 'Pagamento Confirmado!' : 'Agendamento Confirmado!';
-        const msg = type === 'contract' ? 'Seu projeto foi iniciado. Entrarei em contato em breve.' : `Sua reunião está marcada para ${this.state.formData.date} às ${this.state.formData.time}.`;
-
         this.container.innerHTML = `
             <div class="confirmation-view fade-in">
                 <div class="success-icon">✓</div>
-                <h2>${title}</h2>
-                <p>${msg}</p>
-                <button class="cta-btn" onclick="HireMe.renderCatalog()">Voltar ao Início</button>
+                <h2>Solicitação Iniciada!</h2>
+                <p class="body-text">Você foi redirecionado para o WhatsApp. Caso a janela não tenha aberto, verifique seu bloqueador de pop-ups.</p>
+                <button class="cta-btn" onclick="HireMe.renderCatalog()" style="margin-top: 2rem;">Voltar ao Início</button>
             </div>
         `;
     }
