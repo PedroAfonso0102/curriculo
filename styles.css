@@ -4,10 +4,10 @@
     --bg-app: #F2F2F7; /* System Gray 6 */
     
     /* A "Folha de Papel" */
-    --bg-surface: #FFFFFF;
+    --bg-surface: #FAFAFA;
 
     /* Overlays & Subtles */
-    --bg-overlay: rgba(255, 255, 255, 0.85); /* Glassmorphism light */
+    --bg-overlay: rgba(250, 250, 250, 0.85); /* Glassmorphism light */
     --bg-subtle: #F2F2F7; /* Secondary backgrounds (tags, inputs) */
     --bg-hover-block: #FAFAFA; /* Hover states */
 
@@ -58,10 +58,10 @@
     --exp-thumb-border: #E5E5EA;
 }
 
-/* OLED Dark Mode (True Black) */
+/* Dark Mode (Harmonized) */
 html.dark {
     --bg-app: #1C1C1E; /* Dark Gray Canvas */
-    --bg-surface: #000000; /* True Black Sheet */
+    --bg-surface: #121212; /* Deep Gray Sheet */
     --bg-overlay: rgba(28, 28, 30, 0.85);
     --bg-subtle: #2C2C2E;
     --bg-hover-block: #1A1A1C;
@@ -830,7 +830,7 @@ html.dark input[type=range]::-webkit-slider-thumb {
 .gradient-blue { background: linear-gradient(135deg, #007AFF 0%, #00C6FF 100%); }
 .gradient-purple { background: linear-gradient(135deg, #AF52BF 0%, #FF267E 100%); }
 .gradient-orange { background: linear-gradient(135deg, #FF9500 0%, #FFCC00 100%); }
-.gradient-dark { background: linear-gradient(135deg, #2c3e50 0%, #000000 100%); }
+.gradient-dark { background: linear-gradient(135deg, #2c3e50 0%, #121212 100%); }
 
 .service-info {
     padding: var(--space-md);
