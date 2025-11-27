@@ -1,4 +1,14 @@
 // Translations & Content
+// DUAL UPDATE PROCESS (Obrigatório):
+// 1) Atualize o texto em Português diretamente em `index.html` (conteúdo hardcoded) para SEO/initial paint.
+// 2) Atualize a mesma chave em `window.translations.pt` em `main.js` para sincronizar traduções.
+// 3) Confirme que todos os elementos que precisam de tradução possuem `data-i18n="<key>"` no HTML.
+// 4) Não use o texto do botão para identificar views; utilize `data-view` para navegação.
+// NOTES (EN): Dual Update required to ensure initial SEO content and runtime translations stay in sync.
+//    - Update index.html (PT) and then update `window.translations` for pt/en/es in main.js.
+//    - Use `data-i18n` attributes in HTML to wire translations.
+//    - Use `data-view` attributes on navigation buttons for language-agnostic routing.
+
 window.translations = {
     pt: {
         role: "Gestão Comercial & Desenvolvimento Digital",
