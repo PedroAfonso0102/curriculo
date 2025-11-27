@@ -17,6 +17,7 @@ const translations = {
         job3_desc1: "<strong>Projetos Web:</strong> Desenvolvimento de interfaces e landing pages (HTML/CSS/JS) focadas em conversão e performance.",
         job3_desc2: "<strong>Produção Audiovisual:</strong> Edição e motion graphics (Premiere/After Effects) para comunicação corporativa e materiais de venda.",
         job3_desc3: "<strong>Automação:</strong> Criação de scripts e ferramentas simples para automação de tarefas repetitivas e organização de fluxo de trabalho.",
+        job3_desc4: "<strong>Cobertura e Edição de Eventos:</strong> Produção, edição rápida e design gráfico para eventos corporativos — cobertura e edição em tempo real do Fórum Ambição 2030 (Pacto Global da ONU – Rede Brasil), Teatro Santander, São Paulo, agosto de 2025.",
         job4_title: "Assistente de Importação",
         job4_desc1: "<strong>Comércio Exterior:</strong> Operacionalização de processos de importação/exportação e gestão de relacionamento com cadeia de suprimentos internacional.",
         section_skills: "Habilidades Técnicas",
@@ -64,6 +65,7 @@ const translations = {
         job3_desc1: "<strong>Web Projects:</strong> Development of interfaces and landing pages (HTML/CSS/JS) focused on conversion and performance.",
         job3_desc2: "<strong>Audiovisual Production:</strong> Editing and motion graphics (Premiere/After Effects) for corporate communication and sales materials.",
         job3_desc3: "<strong>Automation:</strong> Creation of scripts and simple tools for automating repetitive tasks and organizing workflows.",
+        job3_desc4: "<strong>Event Coverage & Editing:</strong> Live event production, rapid-turnaround editing and graphic design for corporate events — real-time coverage and editing of Fórum Ambição 2030 (UN Global Compact – Brazil Network), Teatro Santander, São Paulo, August 2025.",
         job4_title: "Import Assistant",
         job4_desc1: "<strong>Foreign Trade:</strong> Operationalization of import/export processes and relationship management with the international supply chain.",
         section_skills: "Technical Skills",
@@ -111,6 +113,7 @@ const translations = {
         job3_desc1: "<strong>Proyectos Web:</strong> Desarrollo de interfaces y landing pages (HTML/CSS/JS) enfocadas en conversión y rendimiento.",
         job3_desc2: "<strong>Producción Audiovisual:</strong> Edición y motion graphics (Premiere/After Effects) para comunicación corporativa y materiales de venta.",
         job3_desc3: "<strong>Automatización:</strong> Creación de scripts y herramientas simples para la automatización de tareas repetitivas y organización del flujo de trabajo.",
+        job3_desc4: "<strong>Cobertura y Edición de Eventos:</strong> Producción en vivo, edición rápida y diseño gráfico para eventos corporativos — cobertura y edición en tiempo real del Fórum Ambição 2030 (Pacto Global de la ONU – Red Brasil), Teatro Santander, São Paulo, agosto de 2025.",
         job4_title: "Asistente de Importación",
         job4_desc1: "<strong>Comercio Exterior:</strong> Operacionalização de processos de importação/exportação e gestão de relações com a cadeia de suprimento internacional.",
         section_skills: "Habilidades Técnicas",
@@ -200,6 +203,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize Sidebar Logic
     generateOutline('#resume-view');
     setupScrollSpy('#resume-view');
+    // Initialize language based on active button or browser preference
+    const activeLangBtn = document.querySelector('.lang-btn.active');
+    const initialLang = activeLangBtn ? activeLangBtn.textContent.toLowerCase() : (navigator.language ? navigator.language.slice(0,2) : 'pt');
+    setLanguage(initialLang);
 });
 
 // View Switching Logic
