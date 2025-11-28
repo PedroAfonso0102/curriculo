@@ -1259,3 +1259,55 @@ html.dark input[type=range]::-webkit-slider-thumb {
 .fade-in {
     animation: fadeIn 0.3s ease;
 }
+
+/* ------------------------------------------------------------------
+   Playground - Aesthetic Bifurcation
+   ------------------------------------------------------------------ */
+
+/* Lab Aesthetic (Terminal/Code) */
+.lab-aesthetic {
+    /* Slight darkening of background for the "Terminal" feel,
+       but keeping it subtle to match the clean design system */
+}
+
+/* On dark mode, it's already dark. On light mode, maybe a slightly technical font stack or border? */
+.lab-aesthetic .playground-header h1,
+.lab-aesthetic .playground-header .role {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    /* Fallback to monospace if fonts aren't loaded, but Inter is standard.
+       Let's stick to system monospace for the "Lab" feel */
+    font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+}
+
+.lab-aesthetic h2, .lab-aesthetic h3, .lab-aesthetic .app-info h3 {
+    font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+    letter-spacing: -0.02em;
+}
+
+/* Insight Log Aesthetic (Clean/Serif) */
+.log-aesthetic {
+    /* A more editorial feel */
+    max-width: 680px; /* Optimal reading width */
+    margin: 0 auto;
+}
+
+.log-aesthetic h2 {
+    font-family: 'Inter', sans-serif; /* Keep Inter but maybe lighter or serif if available */
+    /* Using system serif for "Book" feel */
+    font-family: New York, 'Times New Roman', Times, serif;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    text-transform: none; /* Remove uppercase for editorial feel */
+    font-size: var(--font-xl);
+}
+
+.log-aesthetic .body-text {
+    font-family: New York, 'Times New Roman', Times, serif;
+    font-size: 18px; /* Slightly larger for reading */
+    line-height: 1.7;
+    color: var(--text-primary);
+}
+
+.log-aesthetic .insight-item h3 {
+    font-family: New York, 'Times New Roman', Times, serif;
+}
