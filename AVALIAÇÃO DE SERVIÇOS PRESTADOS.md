@@ -1,117 +1,102 @@
-# AVALIAÇÃO DE SERVIÇOS PRESTADOS
-
-## 1. Resumo e Avaliação dos Serviços Ofertados
-
-Com base na análise do código fonte (`js/hire_me.js` e `main.js`), atualmente você oferece 6 produtos/serviços distintos, divididos entre **Projetos (Contrato)** e **Consultoria/Horas (Agendamento)**.
-
-### A. Produtos de Desenvolvimento (Escopo Fechado/Contrato)
-
-#### 1. Landing Page
-*   **Preço:** R$ 2.500,00
-*   **Prazo:** 10 dias úteis
-*   **Proposta de Valor:** Página de alta conversão focada em um único objetivo.
-*   **O que entrega:** Design exclusivo, Copywriting básico, Integração com Email Mkt, Otimização Mobile.
-*   **O que NÃO entrega:** Domínio/Hospedagem e Tráfego Pago.
-*   **Avaliação:** Produto de entrada ideal. O escopo está bem definido, o que protege você de "refações infinitas". O preço é competitivo para um serviço personalizado (não-template).
-*   **Ponto de Atenção:** "Copywriting Básico" pode ser subjetivo. Defina limites (ex: até 500 palavras ou cliente fornece base).
-
-#### 2. E-commerce Básico
-*   **Preço:** R$ 4.500,00
-*   **Prazo:** 20 dias úteis
-*   **Proposta de Valor:** Loja virtual completa para pequenos negócios.
-*   **O que entrega:** Até 50 produtos, Integração de Pagamento (PagSeguro/Stripe), Frete, Painel Admin.
-*   **O que NÃO entrega:** Cadastro de todos os produtos (acima de 50 ou manual massivo) e Fotografia.
-*   **Avaliação:** Produto de alta complexidade técnica. O prazo de 20 dias é agressivo se incluir design customizado.
-*   **Ponto de Atenção:** A integração de frete e pagamentos pode gerar muita manutenção. Certifique-se de usar plataformas robustas (Shopify, Woocommerce, Nuvemshop) para não ter que codar isso do zero pelo preço cobrado.
-
-#### 3. Aplicação Web (SaaS/Sistemas)
-*   **Preço:** Sob Consulta
-*   **Prazo:** Variável
-*   **Proposta de Valor:** Sistemas complexos, dashboards, áreas de membros.
-*   **O que entrega:** Banco de Dados, API RESTful, Frontend React/Vue, Painel Admin.
-*   **O que NÃO entrega:** App Nativo Mobile.
-*   **Avaliação:** Este é o seu produto "High Ticket". É onde você vende sua senioridade técnica.
-*   **Ponto de Atenção:** A precificação aqui é crítica. Nunca feche preço sem um Documento de Escopo detalhado.
-
-#### 4. Freelance Fixo (Retainer)
-*   **Preço:** Mensal (Valor a combinar, geralmente baseado em horas)
-*   **Prazo:** Recorrente
-*   **Proposta de Valor:** Manutenção e pequenas melhorias contínuas.
-*   **O que entrega:** Prioridade, Relatório de horas, Manutenção preventiva.
-*   **O que NÃO entrega:** Novos projetos grandes (features complexas).
-*   **Avaliação:** Excelente para fluxo de caixa previsível (MRR - Monthly Recurring Revenue).
-*   **Ponto de Atenção:** Defina claramente o SLA (tempo de resposta) e o limite de horas mensais para não se tornar um funcionário barato.
-
-### B. Serviços de Consultoria (Hora/Sessão)
-
-#### 5. Consultoria UX/UI
-*   **Preço:** R$ 300/h
-*   **Formato:** Por hora
-*   **Proposta de Valor:** Análise heurística e melhoria de interfaces existentes.
-*   **O que entrega:** Relatório, Wireframes (rascunho), Reunião.
-*   **O que NÃO entrega:** Código (Implementação).
-*   **Avaliação:** Ótima margem de lucro, pois vende seu conhecimento e não braço operacional.
-*   **Ponto de Atenção:** Deixe claro que o entregável é *intelectual* (PDFs, Figma), não *funcional* (HTML/CSS).
-
-#### 6. Mentoria Audiovisual
-*   **Preço:** R$ 200/h
-*   **Formato:** Sessão de 1h
-*   **Proposta de Valor:** Orientação de carreira e direção técnica.
-*   **O que entrega:** Análise de Portfólio, Direção de Arte, Feedback.
-*   **O que NÃO entrega:** Edição ou produção feita por você.
-*   **Avaliação:** Maneira inteligente de monetizar sua experiência secundária sem ocupar muito tempo de produção.
+# AVALIAÇÃO E ESTRUTURA DE SERVIÇOS v2.1
+**Status:** Pivô Estratégico (Frontend High-End & Produção Visual)
+**Stack Principal:** Vanilla JS (Performance Absoluta) + Audiovisual (Excelência Estética)
 
 ---
 
-## 2. Company Playbook (Guia Operacional)
+## 1. Manifesto de Identidade & Posicionamento
+**A Nova Definição:**
+Você transcendeu o papel de "Generalista Fullstack". No mercado atual, você se posiciona como **Arquiteto de Experiências Digitais & Performance Visual**.
 
-Este documento define como a "EuQueFiz Ltda" (sua operação autônoma) funciona.
+**Sua Proposta Única de Valor (UVP):**
+1.  **Exclusividade:** Abandono total de templates em projetos High-Ticket. Cada linha de código é intencional.
+2.  **Velocidade:** Performance não é negociável. Enquanto o mercado entrega inchaço, você entrega milissegundos.
+3.  **Autoridade Visual:** A estética não é apenas cosmética; é função. A fotografia profissional é o alicerce da credibilidade.
 
-### Princípios de Atendimento
-1.  **Consultivo, não "Tirador de Pedido":** Você não vende apenas código, vende solução de negócios. Se o cliente pedir algo que não vai funcionar, é seu dever alertar.
-2.  **Transparência Radical:** Prazos e preços são acordados antes. Se houver atraso, avise com antecedência, não no dia da entrega.
-3.  **Documentação é Rei:** Tudo o que for acordado verbalmente deve ser formalizado por e-mail ou mensagem. "O que não está escrito, não existe".
-
-### Ferramentas Sugeridas (Stack Operacional)
-*   **CRM/Vendas:** O próprio WhatsApp (Business) com etiquetas (Lead, Em Negociação, Fechado).
-*   **Contratos:** Use modelos prontos (Docusign ou Autentique) para Landing Pages e Apps. Para mentorias, o pagamento antecipado serve como contrato de adesão.
-*   **Pagamentos:** Asaas ou Cora para boletos/Pix automatizados. Stripe para clientes internacionais.
-*   **Gestão de Projetos:** Trello ou Notion (simples e visual para o cliente acompanhar).
-
-### Fluxo de Vendas Padrão
-1.  **Lead entra pelo Site/WhatsApp.**
-2.  **Qualificação (15 min):** Entender se o cliente tem *Budget* (dinheiro), *Authority* (decide sozinho?), *Need* (precisa mesmo?) e *Timing* (é pra agora?). (BANT).
-3.  **Proposta (Orçamento):** Envio de PDF simples ou mensagem estruturada com Escopo, Preço e Prazo.
-4.  **Fechamento:** Assinatura de contrato + Pagamento do Sinal (50%).
-5.  **Onboarding:** Reunião de Briefing para pegar acessos e materiais.
+**Filosofia de Trabalho:**
+> "Recuso o medíocre. Trabalhos visualmente pobres desvalorizam meu portfólio. Eu não vendo apenas código; vendo a percepção de valor da sua marca."
 
 ---
 
-## 3. Roteiro e Checklist de Acompanhamento
+## 2. Portfólio de Produtos (Refinado)
 
-Use este checklist para cada novo cliente. Copie e cole no seu Notion/Obsidian.
+### A. Desenvolvimento Web (High-Ticket & Performance)
 
-### FASE 1: Venda e Contrato
-- [ ] **Lead Qualificado:** O cliente tem perfil e dinheiro para pagar?
-- [ ] **Reunião de Briefing/Diagnóstico:** Entendi o problema real?
-- [ ] **Proposta Enviada:** Escopo detalhado, valor e prazo.
-- [ ] **Acordo Fechado:** Cliente deu o "De acordo".
-- [ ] **Contrato Assinado:** (Para projetos acima de R$ 2k).
-- [ ] **Sinal Recebido:** 50% do valor (ou regra definida) na conta.
+#### 1. Landing Page "Speed-First" (Boutique)
+**Investimento:** R$ 2.500,00 - R$ 3.500,00
+**Tecnologia:** HTML5 Semântico + CSS3 Moderno + Vanilla JS. (Zero dependências desnecessárias).
 
-### FASE 2: Execução (Desenvolvimento)
-- [ ] **Coleta de Materiais:** Logo, textos, imagens, acessos (hospedagem/domínio).
-- [ ] **Setup do Ambiente:** Repositório criado, ambiente de dev pronto.
-- [ ] **Desenvolvimento - Sprint 1 (Estrutura):** Layout macro e funcionalidades base.
-- [ ] **Validação 1:** Cliente aprova a estrutura/design visual?
-- [ ] **Desenvolvimento - Sprint 2 (Conteúdo e Refino):** Inserção de textos, ajustes finos, mobile.
-- [ ] **Testes Internos:** Funciona no celular? O formulário envia e-mail? Tem bugs?
+*   **A Promessa:** Carregamento instantâneo (< 1s). Otimização cirúrgica para o Índice de Qualidade (Google/Facebook Ads).
+*   **O Cliente Ideal:** Investidores de tráfego pago que entendem que cada segundo de atraso custa conversões.
+*   **Controle de Risco:** Aprovação rigorosa de Design (Figma) antes da implementação.
+*   **Cláusula de Segurança:** *Alterações estruturais pós-aprovação do design incorrem em taxas de refação técnica.*
 
-### FASE 3: Entrega e Pós-Venda
-- [ ] **Apresentação Final:** Reunião para mostrar o produto pronto.
-- [ ] **Aprovação Final:** Cliente deu o "OK" para publicar.
-- [ ] **Pagamento Final:** Recebimento dos 50% restantes.
-- [ ] **Deploy/Publicação:** Colocar o site no ar (domínio do cliente).
-- [ ] **Entrega de Acessos:** Enviar senhas e manuais (se houver).
-- [ ] **Feedback/Depoimento:** Pedir um depoimento para o site/LinkedIn.
-- [ ] **Upsell:** Oferecer o contrato de "Freelance Fixo" para manutenção.
+#### 2. Storefront Customizado (E-commerce Experience)
+**Investimento:** R$ 5.000,00 - R$ 7.000,00
+**Tecnologia:** Frontend Vanilla JS + Integração API/SDK (Stripe, PagSeguro, Shopify Lite).
+
+*   **A Promessa:** Trazer a fluidez de navegação de gigantes (Apple/Nike) para o negócio em ascensão. Uma vitrine imersiva, longe da rigidez das "lojas prontas".
+*   **Escopo Técnico:** Entrega da Vitrine e Carrinho Visual. O checkout e a gestão transacional permanecem em ambientes seguros de terceiros (mitigação de risco).
+*   **Estratégia:** Venda de exclusividade e identidade de marca.
+
+---
+
+### B. Serviços de Implementação (Mid-Ticket)
+
+#### 3. Setup de Plataforma (Curadoria Visual)
+**Investimento:** R$ 2.000,00 + Setup Fee
+**O que é:** Configuração avançada de Nuvemshop/Shopify + CSS Customizado.
+
+*   **Cenário de Venda:** Clientes com orçamento restrito ou necessidade de ERP complexo que exija backend robusto pré-existente.
+*   **Condição Sine Qua Non:** Este serviço é **indissociável** do pacote de fotografia.
+    > "Não entrego templates padrão. Se for usar uma plataforma pronta, ela terá, obrigatoriamente, uma identidade visual de elite."
+
+---
+
+### C. Produção Visual (O Diferencial Competitivo)
+
+#### 4. Pacote "Visual Asset" (Direção de Arte)
+**Investimento:** R$ 3.500,00 (Diária + Edição) ou Adicional de R$ 2.000 no projeto Web.
+**Entregáveis:** Fotografia de Produto (Still/Ambientada) + Vídeo Institucional/Reels (Short-form).
+
+*   **Lógica Comercial:** O cliente não compra "fotos"; ele compra a **matéria-prima** necessária para que o site funcione.
+*   **Vantagem Tática:** Elimina a dependência de material amador enviado pelo cliente. Você assume o controle total da qualidade final.
+
+---
+
+## 3. Matriz de Riscos & Regras de Negócio
+*Para proteger a margem de lucro e a sanidade do processo.*
+
+### A Regra do "Code-Freeze"
+Como trabalhamos com código puro (Vanilla) e não com construtores visuais, a refação é custosa.
+1.  **Fase 1: Design & Wireframe** — Revisões ilimitadas. O momento de sonhar e alterar é aqui.
+2.  **Fase 2: Assinatura de Aprovação** — O "De Acordo" formal.
+3.  **Fase 3: Desenvolvimento (Code)** — Congelamento estrutural. Apenas ajustes finos (texto/cor) são permitidos. Mudanças de layout nesta etapa são cobradas como horas técnicas adicionais.
+
+### A Regra da "Segurança Backend"
+Enquanto a expertise em MySQL/Backend é aprimorada:
+*   **Zero Risco Crítico:** Jamais desenvolva sistemas de login ou processamento de pagamentos do zero (ainda).
+*   **API First:** Consuma dados. Deixe a custódia de dados sensíveis (cartões, senhas) para quem tem infraestrutura de segurança dedicada.
+
+---
+
+## 4. Playbook de Vendas (Argumentação Sênior)
+*Como desarmar objeções de preço com autoridade técnica.*
+
+| Objeção do Cliente | Resposta do Especialista |
+| :--- | :--- |
+| *"Por que R$ 6k se o tema custa R$ 500?"* | "Temas prontos carregam 'peso morto' de código que torna a loja lenta. A Amazon comprovou que cada 100ms de atraso reduz 1% das vendas. Eu construo uma estrutura limpa, focada em performance máxima para converter seus anúncios. **Você prefere economizar na construção ou lucrar na operação?**" |
+| *"Posso mudar o layout depois de pronto?"* | "Meu processo é artesanal para garantir velocidade extrema. Mudanças estruturais exigem recodificação manual. Por isso, investimos tempo no Design. Após aprovado, meu foco vira 100% performance, não mais estética." |
+| *"Eu já tenho as fotos (feitas no celular)."* | "Eu vendo excelência digital. Um site de alta performance com imagens amadoras gera desconfiança no consumidor. Para garantir o resultado premium que você viu no meu portfólio, a direção visual precisa estar sob meu controle." |
+
+---
+
+## 5. Roadmap de Evolução
+*   **Imediato:** Formalizar o **Contrato Híbrido** (Dev + Audiovisual) com cláusulas rígidas de escopo e cessão de direitos de imagem.
+*   **Curto Prazo:** Desenvolver o **"Vanilla Boilerplate"** — seu kit de ferramentas proprietário para iniciar projetos avançados em minutos, não dias.
+*   **Médio Prazo:** Aprofundamento em MySQL para transição de "Storefronts" para "Sistemas Web Completos", visando LTV (Lifetime Value) e contratos recorrentes.
+
+### Pergunta de Dedução (Proteção de Marca)
+*Cenário:* Um cliente insiste em inserções que degradam a performance e a estética (pop-ups invasivos, música automática).
+*Solução Contratual:* **Cláusula de Direito de Autoria e Portfólio.**
+> "O Contratado reserva-se o direito de não vincular seu nome ou portfólio a projetos que sofram alterações substanciais que, a seu critério exclusivo, comprometam a qualidade técnica ou estética originalmente entregue."
