@@ -228,6 +228,24 @@ A eficácia do agente é proporcional à precisão da instrução. Adote a postu
 - **Gestão de Z-Index (Camadas):**
   > `// Analise o uso de 'z-index'. Identifique valores "mágicos" (9999, 1000) que causam guerras de sobreposição. Proponha uma escala semântica de camadas (ex: --z-dropdown, --z-modal, --z-toast) e refatore o CSS para usar essas variáveis.`
 
+- **Espaçamento e Ritmo Vertical (Spacing Scale):**
+  > `// Analise o CSS e identifique usos de valores de espaçamento (margin, padding) arbitrários ou em pixels (ex: 13px, 27px). Substitua-os pelas variáveis do sistema de espaçamento (--space-xs, --space-sm, --space-md, etc.) para garantir consistência e ritmo vertical. Se um valor não se encaixar, ajuste para a variável mais próxima.`
+
+- **Tipografia e Escala Modular:**
+  > `// Verifique todas as definições de 'font-size' e 'line-height'. Garanta que estamos usando EXCLUSIVAMENTE as variáveis de tipografia (--font-xs, --font-base, --font-xl, etc.). Remova definições manuais. Assegure que o 'line-height' seja relativo (ex: 1.5 ou 1.2) e não fixo em pixels, para melhor acessibilidade.`
+
+- **Consistência de Ícones (SVG & Stroke):**
+  > `// Audite o uso de ícones no projeto. Verifique se todos seguem o mesmo estilo visual (ex: Outline vs Solid, espessura do traço/stroke-width). Padronize o tamanho usando classes utilitárias (ex: .icon-sm, .icon-lg) e garanta que todos tenham 'aria-hidden="true"' ou 'aria-label' apropriado.`
+
+- **Grid e Layout (Container Discipline):**
+  > `// Analise a estrutura de layout macro. Garanta que todas as páginas usem o mesmo container centralizado (ex: .page-container ou .sheet-container) com max-width consistente. Substitua larguras fixas em pixels por porcentagens ou 'max-width' para fluidez. Verifique se o Grid System está sendo respeitado nas listagens.`
+
+- **Dark Mode/Theming (Semantic Colors):**
+  > `// Verifique a compatibilidade com Dark Mode. Identifique cores hardcoded (ex: #000, #FFF) que quebram no tema escuro. Substitua por variáveis semânticas (--bg-surface, --text-primary). Teste se o contraste permanece acessível (WCAG AA) em ambos os modos.`
+
+- **Componentes de Feedback (Alerts & Toasts):**
+  > `// Padronize as mensagens de feedback do sistema. Crie ou refatore um componente único para Alertas/Toasts que aceite tipos (Success, Error, Info, Warning). Garanta que a posição, animação de entrada e tempo de exibição sejam idênticos em toda a aplicação.`
+
 ### 🎨 Modificação de Estilo & Temas
 - **Migração de Estilo (Re-skinning):**
   > `// Quero alterar a linguagem visual deste projeto de [Estilo Atual] para [Novo Estilo, ex: Material Design, Flat, Neumorphism]. Liste as variáveis CSS (Cores, Bordas, Sombras, Fontes) que precisam ser alteradas. Gere o novo CSS base que aplica essa transformação globalmente sem quebrar o layout.`
