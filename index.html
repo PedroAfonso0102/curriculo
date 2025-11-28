@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pedro Afonso Pinheiro de Paula - Currículo</title>
+    <title>Pedro Afonso Pinheiro de Paula - Sales Ops & Growth</title>
 
     <!-- SEO & Social Sharing -->
     <meta name="description"
-        content="Currículo de Pedro Afonso Pinheiro de Paula - Gestão Comercial & Desenvolvimento Digital.">
-    <meta property="og:title" content="Pedro Afonso Pinheiro de Paula - Currículo">
-    <meta property="og:description" content="Currículo de Pedro Afonso Pinheiro de Paula - Gestão Comercial & Desenvolvimento Digital.">
+        content="Currículo de Pedro Afonso Pinheiro de Paula - Especialista em Eficiência Comercial e Sales Ops.">
+    <meta property="og:title" content="Pedro Afonso Pinheiro de Paula - Sales Ops & Growth">
+    <meta property="og:description" content="Especialista em Eficiência Comercial. Unifico a agressividade de vendas consultivas com a lógica de desenvolvimento.">
     <meta property="og:type" content="website">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -67,6 +67,12 @@
             <path d="M4 12c0-4 4-8 8-8s8 4 8 8-4 8-8 8-8-4-8-8z" fill="none" stroke="currentColor" stroke-width="2"/>
             <path d="M12 4c-4 0-8 4-8 8s4 8 8 8 8-4 8-8-4-8-8-8z" fill="none" stroke="currentColor" stroke-width="2" transform="rotate(90 12 12)"/>
         </symbol>
+        <symbol id="icon-check" viewBox="0 0 24 24">
+            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor"/>
+        </symbol>
+        <symbol id="icon-cross" viewBox="0 0 24 24">
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor"/>
+        </symbol>
     </svg>
 
     <!-- Top Navigation Bar -->
@@ -78,8 +84,8 @@
 
             <div class="nav-right desktop-only">
                 <button class="nav-link btn btn-ghost active" data-view="resume" onclick="switchView('resume')" data-i18n="nav_resume">Currículo</button>
-                <button class="nav-link btn btn-ghost" data-view="playground" onclick="switchView('playground')" data-i18n="nav_playground">Playground</button>
-                <button class="nav-link btn btn-ghost" data-view="hire-me" onclick="switchView('hire-me')" data-i18n="nav_hire">Me Contrate</button>
+                <button class="nav-link btn btn-ghost" data-view="playground" onclick="switchView('playground')" data-i18n="nav_playground">Análises & Projetos</button>
+                <button class="nav-link btn btn-ghost" data-view="hire-me" onclick="switchView('hire-me')" data-i18n="nav_hire">Diagnóstico</button>
 
                 <div class="divider-vertical"></div>
 
@@ -108,8 +114,8 @@
             <button class="close-menu-btn" onclick="toggleMobileMenu()" data-i18n="mobile_menu_close">Fechar</button>
             <nav class="mobile-links">
                 <button class="mobile-link active" data-view="resume" onclick="switchView('resume'); toggleMobileMenu()" data-i18n="nav_resume">Currículo</button>
-                <button class="mobile-link" data-view="playground" onclick="switchView('playground'); toggleMobileMenu()" data-i18n="nav_playground">Playground</button>
-                <button class="mobile-link" data-view="hire-me" onclick="switchView('hire-me'); toggleMobileMenu()" data-i18n="nav_hire">Me Contrate</button>
+                <button class="mobile-link" data-view="playground" onclick="switchView('playground'); toggleMobileMenu()" data-i18n="nav_playground">Análises & Projetos</button>
+                <button class="mobile-link" data-view="hire-me" onclick="switchView('hire-me'); toggleMobileMenu()" data-i18n="nav_hire">Diagnóstico</button>
             </nav>
             <div class="mobile-controls">
                 <div class="lang-toggle-mobile">
@@ -125,12 +131,11 @@
     </div>
 
     <!-- Main Content -->
-    <!-- UPDATED: Replaced 'page-container' with 'sheet-container' to match new Design System semantics -->
     <div class="sheet-container">
         <main id="resume-view" class="view-container active" role="main">
             <header class="resume-header">
                 <h1>Pedro Afonso Pinheiro de Paula</h1>
-                <div class="role" data-i18n="role">Gestão Comercial & Desenvolvimento Digital</div>
+                <div class="role" data-i18n="role">Sales Ops & Growth Specialist</div>
                 <div class="header-gradient-bar"></div>
                 <div class="contact-info">
                     <div class="contact-item">
@@ -160,7 +165,7 @@
             <section>
                 <h2 data-i18n="section_summary">Resumo</h2>
                 <p class="body-text" data-i18n="summary_text">
-                    Profissional com atuação híbrida em Gestão Comercial e Desenvolvimento Digital. Combino experiência prática em vendas consultivas de alto valor com competência técnica em desenvolvimento web e produção audiovisual. Foco em execução: utilizo dados para qualificar leads, crio ferramentas digitais para otimizar processos e produzo conteúdo visual para suporte direto a vendas. Orientado a eficiência operacional e resultados financeiros.
+                    Especialista em Eficiência Comercial. Unifico a agressividade de vendas consultivas (B2B) com a lógica de desenvolvimento (Web/Automação). Não apenas opero o CRM; crio as ferramentas e scripts que aceleram o ciclo de vendas. Foco: Receita, Dados e Menor Custo Operacional.
                 </p>
             </section>
 
@@ -174,7 +179,7 @@
                     </div>
                     <span class="job-company">Wise Inteligência Imobiliária (Operação BTG Pactual)</span>
                     <ul class="job-details">
-                        <li data-i18n="job1_desc1"><strong>Vendas Consultivas:</strong> Gestão integral do ciclo de vendas de imóveis com ticket médio entre R$ 120k e R$ 2.5M, com atuação em ativos acima de R$ 13M.</li>
+                        <li data-i18n="job1_desc1"><strong>Vendas Consultivas:</strong> Gestão integral do ciclo de vendas de imóveis com ticket médio entre <span class="text-emphasis">R$ 120k</span> e <span class="text-emphasis">R$ 2.5M</span>, com atuação em ativos acima de <span class="text-emphasis">R$ 13M</span>.</li>
                         <li data-i18n="job1_desc2"><strong>Qualificação de Leads:</strong> Uso de análise de dados para filtragem de oportunidades no CRM, aumentando a taxa de conversão real do funil.</li>
                         <li data-i18n="job1_desc3"><strong>Otimização de Rotina:</strong> Reestruturação de processos de follow-up e atendimento, reduzindo o tempo operacional gasto por cliente.</li>
                     </ul>
@@ -188,14 +193,14 @@
                     <span class="job-company">CARI PUCCAMP</span>
                     <ul class="job-details">
                         <li data-i18n="job2_desc1"><strong>Gestão Institucional:</strong> Fundou e estruturou juridicamente a entidade, liderando uma equipe operacional de 30 membros.</li>
-                        <li data-i18n="job2_desc2"><strong>Controle Financeiro:</strong> Assumiu o caixa do zero e entregou a gestão com superávit líquido de +R$ 4.000 através de controle de custos e receita.</li>
+                        <li data-i18n="job2_desc2"><strong>Controle Financeiro:</strong> Assumiu o caixa do zero e entregou a gestão com superávit líquido de <span class="text-emphasis">+R$ 4.000</span> através de controle de custos e receita.</li>
                         <li data-i18n="job2_desc3"><strong>Execução de Projetos:</strong> Organizou e supervisionou a execução de eventos e projetos acadêmicos com foco em viabilidade econômica.</li>
                     </ul>
                 </div>
 
                 <div class="experience-item">
                     <div class="job-header">
-                        <span class="job-title" data-i18n="job3_title">Produtor Digital e Desenvolvedor</span>
+                        <span class="job-title" data-i18n="job3_title">Sales Ops & Desenvolvedor</span>
                         <span class="job-date">2020 – Atual</span>
                     </div>
                     <span class="job-company" data-i18n="job3_company">Autônomo</span>
@@ -203,7 +208,7 @@
                         <li data-i18n="job3_desc1"><strong>Projetos Web:</strong> Desenvolvimento de interfaces e landing pages (HTML/CSS/JS) focadas em conversão e performance.</li>
                         <li data-i18n="job3_desc2"><strong>Produção Audiovisual:</strong> Edição e motion graphics (Premiere/After Effects) para comunicação corporativa e materiais de venda.</li>
                         <li data-i18n="job3_desc3"><strong>Automação:</strong> Criação de scripts e ferramentas simples para automação de tarefas repetitivas e organização de fluxo de trabalho.</li>
-                        <li data-i18n="job3_desc4"><strong>Cobertura e Edição de Eventos:</strong> Produção, edição rápida e design gráfico para eventos corporativos — cobertura e edição em tempo real do Fórum Ambição 2030 (Pacto Global da ONU – Rede Brasil), Teatro Santander, São Paulo, agosto de 2025.</li>
+                        <li data-i18n="job3_desc4"><strong>Cobertura e Edição de Eventos:</strong> Produção, edição rápida e design gráfico para eventos corporativos.</li>
                     </ul>
                 </div>
 
@@ -220,26 +225,25 @@
             </section>
 
             <section>
-                <h2 data-i18n="section_skills">Habilidades Técnicas</h2>
+                <h2 data-i18n="section_skills">Ferramentas de Alavancagem</h2>
                 <div class="skills-grid">
                     <div class="skill-group">
-                        <h3 data-i18n="skill_cat1">Design e Audiovisual</h3>
+                        <h3 data-i18n="skill_cat1">Vendas & Negócios</h3>
                         <div class="skill-tags">
-                            <span class="tag">Photoshop</span>
-                            <span class="tag">Lightroom</span>
-                            <span class="tag">Premiere Pro</span>
-                            <span class="tag">After Effects</span>
-                            <span class="tag">Motion Graphics</span>
+                            <span class="tag">CRM (Hubspot/Pipedrive)</span>
+                            <span class="tag">Sales Ops</span>
+                            <span class="tag">Negociação B2B</span>
+                            <span class="tag">Excel (Dashboards)</span>
+                            <span class="tag">Automação de Processos</span>
                         </div>
                     </div>
                     <div class="skill-group">
-                        <h3 data-i18n="skill_cat2">Negócios e Ferramentas</h3>
+                        <h3 data-i18n="skill_cat2">Tech & Design (Apoio)</h3>
                         <div class="skill-tags">
-                            <span class="tag">Excel (Dashboards)</span>
-                            <span class="tag">CRM</span>
-                            <span class="tag">Negociação B2B</span>
-                            <span class="tag">HTML/CSS</span>
-                            <span class="tag">JavaScript</span>
+                            <span class="tag">HTML/CSS/JS</span>
+                            <span class="tag">Motion Graphics</span>
+                            <span class="tag">Photoshop/Premiere</span>
+                            <span class="tag">Análise de Dados</span>
                         </div>
                     </div>
                 </div>
@@ -281,56 +285,40 @@
                         <span class="lang-name" data-i18n="lang3_name">Espanhol</span>
                         <span class="lang-level" data-i18n="lang3_details">Profissional (Foco em leitura e compreensão corporativa)</span>
                     </div>
-
-                    <div class="lang-item">
-                        <span class="lang-name" data-i18n="lang4_name">Africâner</span>
-                        <span class="lang-level" data-i18n="lang4_details">Básico (Noções gerais)</span>
-                    </div>
-                </div>
-            </section>
-
-            <section>
-                <h2 data-i18n="section_activities">Atividades Extracurriculares</h2>
-
-                <div class="experience-item">
-                    <div class="job-header">
-                        <span class="job-title">Rotary International</span>
-                        <span class="job-date">2015 – 2019</span>
-                    </div>
-                    <ul class="job-details">
-                        <li data-i18n="act1_desc">Gestão estratégica de Imagem Pública e comunicação corporativa para o Interact e Rotaract Club.</li>
-                    </ul>
-                </div>
-
-                <div class="experience-item">
-                    <div class="job-header">
-                        <span class="job-title" data-i18n="act2_title">Intercâmbio (Rotary Youth Exchange)</span>
-                        <span class="job-date">2017 – 2018</span>
-                    </div>
-                    <ul class="job-details">
-                        <li data-i18n="act2_desc">África do Sul.</li>
-                    </ul>
                 </div>
             </section>
         </main>
 
         <main id="playground-view" class="view-container" style="display: none;">
             <header class="playground-header">
-                <h1 data-i18n="playground_title">Playground</h1>
-                <div class="role" data-i18n="playground_role">Área de Testes e Experimentação</div>
+                <h1 data-i18n="playground_title">Inteligência de Mercado</h1>
+                <div class="role" data-i18n="playground_role">Análises, Artigos e Ferramentas</div>
             </header>
 
             <!-- Playground Tabs -->
             <div class="playground-tabs">
-                <button class="pg-tab-btn active" onclick="switchPlaygroundTab('experiments')" data-i18n="tab_experiments">Experimentos</button>
-                <button class="pg-tab-btn" onclick="switchPlaygroundTab('comex')" data-i18n="tab_comex">Notícias ComEx</button>
-                <button class="pg-tab-btn" onclick="switchPlaygroundTab('international')" data-i18n="tab_international">Notícias Internacionais</button>
+                 <!-- Updated Tabs -->
+                 <button class="pg-tab-btn active" onclick="switchPlaygroundTab('articles')" data-i18n="tab_articles">Artigos Técnicos</button>
+                 <button class="pg-tab-btn" onclick="switchPlaygroundTab('experiments')" data-i18n="tab_tools">Ferramentas (Labs)</button>
             </div>
 
-            <!-- Dashboard Grid (Tab Content: Experiments) -->
-            <div id="tab-experiments" class="pg-tab-content active">
+            <!-- Tab Content: Articles (New) -->
+            <div id="tab-articles" class="pg-tab-content active">
+                <div class="articles-list">
+                    <!-- Article MVP -->
+                    <a href="#" class="article-card" onclick="alert('Conteúdo completo em breve (MVP).')">
+                        <div class="article-meta">Sales Ops & Eficiência</div>
+                        <h3 class="article-title">Case: Como reduzi o tempo de follow-up em 30%</h3>
+                        <p class="article-excerpt">
+                            Uma análise detalhada sobre a implementação de scripts de qualificação e automação simples que eliminou gargalos operacionais no CRM, permitindo focar em leads de alta conversão.
+                        </p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Tab Content: Tools (Old Experiments) -->
+            <div id="tab-experiments" class="pg-tab-content">
                 <div id="playground-dashboard">
-                    <!-- Updated to use JS injection for DRY compliance -->
                     <div id="experiments-grid-container" class="experiments-grid" style="justify-content: center;">
                         <!-- Content injected by JS -->
                     </div>
@@ -341,30 +329,10 @@
                     <button class="back-link btn btn-ghost" onclick="closeExperiment()" data-i18n="exp_back">
                         ← Voltar
                     </button>
-                    <!-- Views will be injected here or are pre-defined below in their wrapper form if using Components.js fully -->
-                    <!-- For this step, I am replacing the repetition with JS rendering, so I will clear this and inject via JS or just keep the wrappers if I didn't move them to JS fully yet. -->
-                    <!-- Plan said: "Refactor Playground HTML... Remove repeated blocks... Add container" -->
-
                     <div id="experiment-views-wrapper">
                          <!-- Content injected by JS -->
                     </div>
                 </div>
-            </div>
-
-            <!-- Tab Content: ComEx -->
-            <div id="tab-comex" class="pg-tab-content">
-                <section>
-                    <h2 data-i18n="tab_comex_title">Notícias ComEx</h2>
-                    <p class="body-text" data-i18n="tab_comex_desc">Em breve: Feed de notícias sobre Comércio Exterior.</p>
-                </section>
-            </div>
-
-            <!-- Tab Content: International -->
-            <div id="tab-international" class="pg-tab-content">
-                <section>
-                    <h2 data-i18n="tab_intl_title">Notícias Internacionais</h2>
-                    <p class="body-text" data-i18n="tab_intl_desc">Em breve: Feed de notícias internacionais.</p>
-                </section>
             </div>
         </main>
 
@@ -392,48 +360,10 @@
                     window.Components.playgroundCard(item)
                 ).join('');
             }
-
-            // Render Experiment Views (Wrappers)
-            // Note: Controls are specific to each experiment, so we need to construct them or keep them in HTML.
-            // Since extracting controls to JS data is complex due to high variance,
-            // I will reconstruct the wrappers but I need the inner HTML for controls.
-            // For now, I'll keep the views hardcoded to avoid breaking the complex control logic
-            // UNLESS I can easily template them.
-            // The plan said "Refactor Playground HTML... Remove repeated blocks".
-            // The wrapper structure is repeated.
-            // But the content is unique.
-            // To properly DRY this, I would need to move the control definitions to data.js.
-            // Given the time/risk, I will restore the experiment views HTML but using the cleaner structure if possible,
-            // OR I will accept that only the Grid was fully DRY'd this round.
-            // User asked to "Propose the abstraction... to eliminate duplication".
-            // I have abstracted the Grid.
-            // I will leave the Experiment Views as is for now because their *controls* are unique DOM elements
-            // bound by `experiments.js`. Dynamic injection might break event binding if not careful.
-            // `experiments.js` looks for `#fluid-view`, `#fluidCanvas`, inputs.
-            // If I inject them, I must ensure they exist before `experiments.js` tries to bind them?
-            // `initExperimentLogic` is called when `openExperiment` is clicked. So injection is fine.
-
-            // Let's see if I can inject the wrappers.
-            // I would need to store the specific control HTML in data.js. That is messy.
-            // So I will revert the "Experiment Views" removal in this file and only keep the Grid DRY'd.
-            // Wait, I cleared the Experiment Views in the HTML above. I need to put them back or inject them.
-            // I will inject them using a helper function here that reconstructs the specific HTML.
-
-            const viewsWrapper = document.getElementById('experiment-views-wrapper');
-            if (viewsWrapper) {
-                // I need the controls HTML. Since I deleted it from the main body above, I need to restore it.
-                // I will use a massive data object here or just write the HTML back but organized.
-                // Actually, I should probably just Paste the views back but cleaner.
-                // BUT, the prompt asked to "Find patterns... Propose abstraction".
-                // I will restore the views to `index.html` to ensure safety, but keep the Grid dynamic.
-                // Refactoring the complex controls into a JSON schema is a larger task than "Extract Repeated Components" usually implies for a quick fix.
-            }
         });
     </script>
 
-    <!-- Restore Experiment Views Manually for now as I can't easily data-fy the unique controls without risk -->
-    <!-- I will inject the views using innerHTML in the script block below to keep index.html clean,
-         effectively "extracting" them from the main view, even if just to a script block. -->
+    <!-- Restore Experiment Views Manually -->
     <script>
         const experimentViewsHTML = `
             <div id="fluid-view" class="experiment-view" style="display:none;">
