@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pedro Afonso Pinheiro de Paula - Sales Ops & Growth</title>
+    <title>Pedro Afonso Pinheiro de Paula - Vendas & Tecnologia</title>
 
     <!-- SEO & Social Sharing -->
     <meta name="description"
-        content="Currículo de Pedro Afonso Pinheiro de Paula - Especialista em Eficiência Comercial e Sales Ops.">
-    <meta property="og:title" content="Pedro Afonso Pinheiro de Paula - Sales Ops & Growth">
-    <meta property="og:description" content="Especialista em Eficiência Comercial. Unifico a agressividade de vendas consultivas com a lógica de desenvolvimento.">
+        content="Currículo de Pedro Afonso Pinheiro de Paula - Profissional de Vendas com background técnico.">
+    <meta property="og:title" content="Pedro Afonso Pinheiro de Paula - Vendas & Tecnologia">
+    <meta property="og:description" content="Atuo na frente comercial com a vantagem de resolver demandas operacionais de design e código.">
     <meta property="og:type" content="website">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -64,14 +64,20 @@
             <circle cx="12" cy="12" r="1"/>
         </symbol>
         <symbol id="icon-lissajous" viewBox="0 0 24 24">
-            <path d="M4 12c0-4 4-8 8-8s8 4 8 8-4 8-8 8-8-4-8-8z" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M4 12c0-4 4-8 8-8s8 4 8 8-4 8-8 8-8-4-8-8-8z" fill="none" stroke="currentColor" stroke-width="2"/>
             <path d="M12 4c-4 0-8 4-8 8s4 8 8 8 8-4 8-8-4-8-8-8z" fill="none" stroke="currentColor" stroke-width="2" transform="rotate(90 12 12)"/>
         </symbol>
         <symbol id="icon-check" viewBox="0 0 24 24">
             <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor"/>
         </symbol>
         <symbol id="icon-cross" viewBox="0 0 24 24">
-            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor"/>
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 17.59 13.41 12z" fill="currentColor"/>
+        </symbol>
+        <symbol id="icon-calendar" viewBox="0 0 24 24">
+             <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z" fill="currentColor"/>
+        </symbol>
+        <symbol id="icon-video" viewBox="0 0 24 24">
+            <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z" fill="currentColor"/>
         </symbol>
     </svg>
 
@@ -84,8 +90,8 @@
 
             <div class="nav-right desktop-only">
                 <button class="nav-link btn btn-ghost active" data-view="resume" onclick="switchView('resume')" data-i18n="nav_resume">Currículo</button>
-                <button class="nav-link btn btn-ghost" data-view="playground" onclick="switchView('playground')" data-i18n="nav_playground">Análises & Projetos</button>
-                <button class="nav-link btn btn-ghost" data-view="hire-me" onclick="switchView('hire-me')" data-i18n="nav_hire">Diagnóstico</button>
+                <button class="nav-link btn btn-ghost" data-view="playground" onclick="switchView('playground')" data-i18n="nav_playground">Artigos & Projetos</button>
+                <button class="nav-link btn btn-ghost" data-view="hire-me" onclick="switchView('hire-me')" data-i18n="nav_hire">Por que eu?</button>
 
                 <div class="divider-vertical"></div>
 
@@ -114,8 +120,8 @@
             <button class="close-menu-btn" onclick="toggleMobileMenu()" data-i18n="mobile_menu_close">Fechar</button>
             <nav class="mobile-links">
                 <button class="mobile-link active" data-view="resume" onclick="switchView('resume'); toggleMobileMenu()" data-i18n="nav_resume">Currículo</button>
-                <button class="mobile-link" data-view="playground" onclick="switchView('playground'); toggleMobileMenu()" data-i18n="nav_playground">Análises & Projetos</button>
-                <button class="mobile-link" data-view="hire-me" onclick="switchView('hire-me'); toggleMobileMenu()" data-i18n="nav_hire">Diagnóstico</button>
+                <button class="mobile-link" data-view="playground" onclick="switchView('playground'); toggleMobileMenu()" data-i18n="nav_playground">Artigos & Projetos</button>
+                <button class="mobile-link" data-view="hire-me" onclick="switchView('hire-me'); toggleMobileMenu()" data-i18n="nav_hire">Por que eu?</button>
             </nav>
             <div class="mobile-controls">
                 <div class="lang-toggle-mobile">
@@ -135,7 +141,7 @@
         <main id="resume-view" class="view-container active" role="main">
             <header class="resume-header">
                 <h1>Pedro Afonso Pinheiro de Paula</h1>
-                <div class="role" data-i18n="role">Sales Ops & Growth Specialist</div>
+                <div class="role" data-i18n="role">Vendas, Operações & Tecnologia</div>
                 <div class="header-gradient-bar"></div>
                 <div class="contact-info">
                     <div class="contact-item">
@@ -165,7 +171,7 @@
             <section>
                 <h2 data-i18n="section_summary">Resumo</h2>
                 <p class="body-text" data-i18n="summary_text">
-                    Especialista em Eficiência Comercial. Unifico a agressividade de vendas consultivas (B2B) com a lógica de desenvolvimento (Web/Automação). Não apenas opero o CRM; crio as ferramentas e scripts que aceleram o ciclo de vendas. Foco: Receita, Dados e Menor Custo Operacional.
+                    Profissional de Vendas com background técnico. Atuo na frente comercial (prospecção/fechamento) com a vantagem de resolver demandas operacionais de design e código sem depender de outros departamentos. Uso tecnologia para organizar minha própria rotina e entregar resultados visuais rápidos.
                 </p>
             </section>
 
@@ -200,7 +206,7 @@
 
                 <div class="experience-item">
                     <div class="job-header">
-                        <span class="job-title" data-i18n="job3_title">Sales Ops & Desenvolvedor</span>
+                        <span class="job-title" data-i18n="job3_title">Vendedor & Produtor Digital</span>
                         <span class="job-date">2020 – Atual</span>
                     </div>
                     <span class="job-company" data-i18n="job3_company">Autônomo</span>
@@ -225,25 +231,25 @@
             </section>
 
             <section>
-                <h2 data-i18n="section_skills">Ferramentas de Alavancagem</h2>
+                <h2 data-i18n="section_skills">Ferramentas de Apoio</h2>
                 <div class="skills-grid">
                     <div class="skill-group">
                         <h3 data-i18n="skill_cat1">Vendas & Negócios</h3>
                         <div class="skill-tags">
                             <span class="tag">CRM (Hubspot/Pipedrive)</span>
-                            <span class="tag">Sales Ops</span>
+                            <span class="tag">Sales Ops (Básico)</span>
                             <span class="tag">Negociação B2B</span>
                             <span class="tag">Excel (Dashboards)</span>
-                            <span class="tag">Automação de Processos</span>
+                            <span class="tag">Automação de Rotina</span>
                         </div>
                     </div>
                     <div class="skill-group">
-                        <h3 data-i18n="skill_cat2">Tech & Design (Apoio)</h3>
+                        <h3 data-i18n="skill_cat2">Tech & Design (Autonomia)</h3>
                         <div class="skill-tags">
                             <span class="tag">HTML/CSS/JS</span>
                             <span class="tag">Motion Graphics</span>
                             <span class="tag">Photoshop/Premiere</span>
-                            <span class="tag">Análise de Dados</span>
+                            <span class="tag">Noção de APIs</span>
                         </div>
                     </div>
                 </div>
@@ -291,26 +297,26 @@
 
         <main id="playground-view" class="view-container" style="display: none;">
             <header class="playground-header">
-                <h1 data-i18n="playground_title">Inteligência de Mercado</h1>
-                <div class="role" data-i18n="playground_role">Análises, Artigos e Ferramentas</div>
+                <h1 data-i18n="playground_title">Artigos & Reflexões</h1>
+                <div class="role" data-i18n="playground_role">Estudos sobre Vendas, Tecnologia e Processos</div>
             </header>
 
             <!-- Playground Tabs -->
             <div class="playground-tabs">
                  <!-- Updated Tabs -->
-                 <button class="pg-tab-btn active" onclick="switchPlaygroundTab('articles')" data-i18n="tab_articles">Artigos Técnicos</button>
-                 <button class="pg-tab-btn" onclick="switchPlaygroundTab('experiments')" data-i18n="tab_tools">Ferramentas (Labs)</button>
+                 <button class="pg-tab-btn active" onclick="switchPlaygroundTab('articles')" data-i18n="tab_articles">O que estou estudando</button>
+                 <button class="pg-tab-btn" onclick="switchPlaygroundTab('experiments')" data-i18n="tab_tools">Labs (Tech)</button>
             </div>
 
-            <!-- Tab Content: Articles (New) -->
+            <!-- Tab Content: Articles -->
             <div id="tab-articles" class="pg-tab-content active">
                 <div class="articles-list">
-                    <!-- Article MVP -->
-                    <a href="#" class="article-card" onclick="alert('Conteúdo completo em breve (MVP).')">
-                        <div class="article-meta">Sales Ops & Eficiência</div>
-                        <h3 class="article-title">Case: Como reduzi o tempo de follow-up em 30%</h3>
+                    <!-- Realistic Article -->
+                    <a href="#" class="article-card" onclick="alert('Texto completo em breve.')">
+                        <div class="article-meta">2023 • Otimização de Rotina</div>
+                        <h3 class="article-title">Como usei scripts simples para reduzir meu tempo de follow-up</h3>
                         <p class="article-excerpt">
-                            Uma análise detalhada sobre a implementação de scripts de qualificação e automação simples que eliminou gargalos operacionais no CRM, permitindo focar em leads de alta conversão.
+                            Uma breve reflexão sobre como pequenas automações me ajudaram a organizar o CRM sem depender de ferramentas complexas ou do time de TI.
                         </p>
                     </a>
                 </div>

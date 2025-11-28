@@ -1,14 +1,14 @@
 
 /**
  * Manages the logic for the "Hire Me" view.
- * Refactored to focus on Sales Ops positioning.
+ * Refactored to focus on "Why Me?" - Autonomy and Efficiency.
  * @namespace HireMe
  */
 const HireMe = {
     init() {
         this.container = document.getElementById('hire-me-content');
         if (!this.container) return;
-        this.renderSalesOpsLanding();
+        this.renderWhyMeLanding();
     },
 
     t(key) {
@@ -19,7 +19,7 @@ const HireMe = {
         return key;
     },
 
-    renderSalesOpsLanding() {
+    renderWhyMeLanding() {
         this.container.innerHTML = `
             <header class="hire-header">
                 <h1>${this.t('hire_header_title')}</h1>
@@ -27,8 +27,12 @@ const HireMe = {
             </header>
 
             <div class="hire-split-container">
-                <!-- Left Column: What I Deliver -->
-                <div class="hire-column">
+                <!-- Why Me Column -->
+                <div class="hire-column" style="margin: 0 auto; max-width: 600px; text-align: left;">
+                    <p class="body-text" style="margin-bottom: 2rem; font-size: var(--font-md);">
+                        ${this.t('hire_intro_text')}
+                    </p>
+
                     <h3>${this.t('hire_deliver_title')}</h3>
                     <ul class="hire-list">
                         <li>
@@ -36,49 +40,29 @@ const HireMe = {
                             <span>${this.t('hire_deliver_1')}</span>
                         </li>
                         <li>
-                            <svg class="icon-check" width="24" height="24"><use href="#icon-check"></use></svg>
+                            <svg class="icon-video" width="24" height="24"><use href="#icon-video"></use></svg>
                             <span>${this.t('hire_deliver_2')}</span>
                         </li>
                         <li>
-                            <svg class="icon-check" width="24" height="24"><use href="#icon-check"></use></svg>
+                            <svg class="icon-theme" width="24" height="24"><use href="#icon-theme"></use></svg>
                             <span>${this.t('hire_deliver_3')}</span>
-                        </li>
-                         <li>
-                            <svg class="icon-check" width="24" height="24"><use href="#icon-check"></use></svg>
-                            <span>${this.t('hire_deliver_4')}</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Right Column: What I Don't Do -->
-                <div class="hire-column">
-                    <h3>${this.t('hire_not_title')}</h3>
-                    <ul class="hire-list">
-                        <li>
-                            <svg class="icon-cross" width="24" height="24"><use href="#icon-cross"></use></svg>
-                            <span>${this.t('hire_not_1')}</span>
-                        </li>
-                        <li>
-                            <svg class="icon-cross" width="24" height="24"><use href="#icon-cross"></use></svg>
-                            <span>${this.t('hire_not_2')}</span>
-                        </li>
-                        <li>
-                            <svg class="icon-cross" width="24" height="24"><use href="#icon-cross"></use></svg>
-                            <span>${this.t('hire_not_3')}</span>
                         </li>
                     </ul>
                 </div>
             </div>
 
             <div class="hire-cta-container">
-                <a href="https://calendly.com/pedro-app1" target="_blank" class="cta-main-btn btn">
+                <a href="#" onclick="HireMe.openWhatsApp()" class="cta-main-btn btn">
                     ${this.t('hire_cta_button')}
                 </a>
-                <p style="margin-top: 1rem; color: var(--text-secondary); font-size: var(--font-sm);">
-                    ${this.t('hire_cta_sub')}
-                </p>
             </div>
         `;
+    },
+
+    openWhatsApp() {
+        // Pre-filled message for the recruiter
+        const msg = encodeURIComponent("Olá Pedro, vi seu currículo e gostaria de marcar uma conversa.");
+        window.open(`https://wa.me/5519994418294?text=${msg}`, '_blank');
     }
 };
 
