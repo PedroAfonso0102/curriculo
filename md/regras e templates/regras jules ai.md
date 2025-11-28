@@ -199,7 +199,64 @@ A eficácia do agente é proporcional à precisão da instrução. Adote a postu
 
 ---
 
-## 10. CONTRIBUIÇÃO
+## 10. REFATORAÇÃO, PADRONIZAÇÃO & DESIGN SYSTEM
+*Prompts para manutenção de escala, consistência visual e arquitetura de pastas.*
+
+### 🏗️ Análise & Reestruturação de Código
+- **Análise Estrutural e Sugestão de Arquitetura:**
+  > `// Atue como Arquiteto de Software. Analise a estrutura atual deste projeto (arquivos e pastas). Identifique se estamos usando um padrão "Single File" (monolítico) ou se há uma tentativa de modularização. Com base no contexto inferido, sugira a MELHOR reorganização de pastas possível. Proponha subdivisões para CSS (ex: atomic, components), JS (ex: services, utils) e HTML. Justifique cada mudança com foco em escalabilidade e manutenção.`
+
+- **Refatoração de Monólito para Modular:**
+  > `// Este arquivo está muito grande. Analise as responsabilidades misturadas aqui. Proponha um plano de refatoração para quebrar este arquivo em módulos menores e coesos. Ex: Extrair estilos para CSS separado, lógica para JS separado e manter apenas a estrutura no HTML. Me dê a estrutura de pastas resultante antes de codar.`
+
+- **Detecção de Código Morto (Dead Code):**
+  > `// Varra o projeto em busca de "Código Morto". Identifique classes CSS declaradas que não são usadas em nenhum HTML e funções JS que nunca são chamadas ou exportadas. Liste esses itens para remoção segura para reduzir o tamanho do bundle.`
+
+- **Extração de Componentes Repetidos (DRY):**
+  > `// Analise o HTML/JSX. Encontre padrões de interface que se repetem em mais de 3 lugares (ex: Cards de produto, Itens de lista, Botões com ícone). Proponha a abstração desses trechos em componentes reutilizáveis únicos para eliminar duplicação.`
+
+### 📐 Padronização de Layout & UI
+- **Auditoria e Unificação de Design System:**
+  > `// Atue como Design Ops. Analise todos os arquivos de estilo/componentes deste repositório. Identifique inconsistências no Grid System, Espaçamentos (Margins/Paddings), Tipografia e Cores. Crie um plano para padronizar tudo sob um único Design System. Liste quais componentes devem ser mantidos, quais devem ser refatorados para se adequar ao padrão e quais devem ser descartados por redundância.`
+
+- **Normalização de Hierarquia Visual:**
+  > `// Analise a hierarquia visual das páginas. Verifique se o uso de H1, H2, H3 e tamanhos de fonte segue uma lógica consistente de importância. Identifique onde a hierarquia está quebrada (ex: botões secundários chamando mais atenção que os primários) e proponha correções CSS em lote para resolver.`
+
+- **Padronização de Breakpoints (Responsividade):**
+  > `// Analise as Media Queries espalhadas pelo CSS. Identifique valores arbitrários (ex: 768px, 770px, 800px) que causam comportamento inconsistente. Unifique tudo para um padrão de breakpoints (Mobile, Tablet, Desktop) e refatore o CSS para usar variáveis de breakpoint centralizadas.`
+
+- **Gestão de Z-Index (Camadas):**
+  > `// Analise o uso de 'z-index'. Identifique valores "mágicos" (9999, 1000) que causam guerras de sobreposição. Proponha uma escala semântica de camadas (ex: --z-dropdown, --z-modal, --z-toast) e refatore o CSS para usar essas variáveis.`
+
+### 🎨 Modificação de Estilo & Temas
+- **Migração de Estilo (Re-skinning):**
+  > `// Quero alterar a linguagem visual deste projeto de [Estilo Atual] para [Novo Estilo, ex: Material Design, Flat, Neumorphism]. Liste as variáveis CSS (Cores, Bordas, Sombras, Fontes) que precisam ser alteradas. Gere o novo CSS base que aplica essa transformação globalmente sem quebrar o layout.`
+
+- **Ajuste Fino de CSS (Pixel Perfect):**
+  > `// O elemento [Seletor] não está alinhado corretamente com [Referência] em telas [Tamanho]. Ajuste o CSS (Flexbox/Grid) para garantir alinhamento perfeito. Verifique também se o espaçamento interno (padding) está consistente com o resto do componente.`
+
+- **Extração de Paleta de Cores (Tokenização):**
+  > `// Encontre todas as cores Hex/RGB hardcoded nos arquivos CSS/JS. Extraia-as para um arquivo 'variables.css' ou objeto de tema, nomeando-as semanticamente (ex: --color-primary, --color-bg-surface, --color-text-muted) em vez de pelo nome da cor.`
+
+- **Conversão para Unidades Relativas (Acessibilidade):**
+  > `// Converta todos os tamanhos de fonte e espaçamentos definidos em 'px' para 'rem'. Assuma base 16px. Isso é crucial para permitir que o usuário escale a fonte pelo navegador e melhore a acessibilidade.`
+
+### 🧩 Consistência de UX
+- **Injeção de Padrões de UX (Global):**
+  > `// Analise o repositório e identifique onde faltam padrões essenciais de UX. Ex: Feedback de carregamento (Skeletons/Spinners), Estados vazios (Empty States) em listas, e Feedback de erro em formulários. Gere um plano para implementar esses padrões de forma consistente em TODAS as telas que precisam.`
+
+- **Padronização de Micro-interações:**
+  > `// Defina um padrão de animação para interações (Hover, Click, Modal Open). Ex: "Todos os botões devem ter scale(0.98) no click". Aplique esse padrão globalmente no CSS/JS para que a sensação de uso seja uniforme em todo o aplicativo.`
+
+- **Auditoria de Navegação por Teclado:**
+  > `// Verifique se todos os elementos interativos (botões, links, inputs) possuem estados de ':focus' visíveis e distintos. Se não, crie um estilo padrão de 'focus-ring' (anel de foco) de alto contraste e aplique globalmente para garantir acessibilidade.`
+
+- **Padronização de Feedback de Formulário:**
+  > `// Garanta que todos os inputs tenham 3 estados visuais claros: Padrão, Erro (borda vermelha + mensagem de texto) e Sucesso (borda verde). Gere o CSS/JS necessário para validar e aplicar esses estados automaticamente em todos os formulários.`
+
+---
+
+## 11. CONTRIBUIÇÃO
 *Protocolo para atualização deste documento.*
 
 *   **Pull Requests:** Aceitos apenas com testes de prompt validados.
