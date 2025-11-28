@@ -259,7 +259,7 @@ const HireMe = {
             </header>
             <div class="services-grid">
                 ${servicesData.map(service => `
-                    <div class="service-card" onclick="HireMe.openDetails('${service.id}')">
+                    <div class="service-card card-interactive" onclick="HireMe.openDetails('${service.id}')">
                         <div class="service-card-cover" style="background: ${service.gradient}"></div>
                         <div class="service-info">
                             <h3>${this.t(service.titleKey)}</h3>
@@ -315,7 +315,7 @@ const HireMe = {
                     </div>
 
                     <div class="details-actions">
-                        <button class="cta-btn" onclick="HireMe.proceedFromDetails()">
+                        <button class="cta-btn btn btn-primary" onclick="HireMe.proceedFromDetails()">
                             ${service.type === 'contract' ? this.t('hire_btn_budget') : this.t('hire_btn_schedule')}
                         </button>
                     </div>
@@ -343,7 +343,7 @@ const HireMe = {
         this.state.currentStep = 'form';
         this.container.innerHTML = `
             <div class="form-view fade-in">
-                <button class="back-link" onclick="HireMe.openDetails('${this.state.selectedService.id}')">${this.t('hire_back')}</button>
+                <button class="back-link btn btn-ghost" onclick="HireMe.openDetails('${this.state.selectedService.id}')">${this.t('hire_back')}</button>
                 <h2>${this.t('hire_form_title')}</h2>
                 <form onsubmit="HireMe.handleFormSubmit(event)" class="hire-form">
                     <div class="form-group">
@@ -362,7 +362,7 @@ const HireMe = {
                         <label>${this.t('hire_form_link')}</label>
                         <input type="url" name="link" placeholder="https://exemplo.com">
                     </div>
-                    <button type="submit" class="cta-btn">${this.t('hire_form_submit')}</button>
+                    <button type="submit" class="cta-btn btn btn-primary">${this.t('hire_form_submit')}</button>
                 </form>
             </div>
         `;
@@ -399,7 +399,7 @@ const HireMe = {
 
         this.container.innerHTML = `
             <div class="schedule-view fade-in">
-                <button class="back-link" onclick="HireMe.openDetails('${this.state.selectedService.id}')">${this.t('hire_back')}</button>
+                <button class="back-link btn btn-ghost" onclick="HireMe.openDetails('${this.state.selectedService.id}')">${this.t('hire_back')}</button>
                 <h2>${this.t('hire_schedule_title')}</h2>
                 <p class="body-text" style="margin-bottom: 1rem;">${this.t('hire_schedule_desc')}</p>
 
@@ -471,7 +471,7 @@ const HireMe = {
                 <div class="success-icon">✓</div>
                 <h2>${this.t('hire_conf_title')}</h2>
                 <p class="body-text">${this.t('hire_conf_desc')}</p>
-                <button class="cta-btn" onclick="HireMe.renderCatalog()" style="margin-top: 2rem;">${this.t('hire_conf_btn')}</button>
+                <button class="cta-btn btn btn-primary" onclick="HireMe.renderCatalog()" style="margin-top: 2rem;">${this.t('hire_conf_btn')}</button>
             </div>
         `;
     }

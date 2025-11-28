@@ -21,6 +21,10 @@
     --color-accent-hover: #0056B3;
     --color-success: #34C759; /* Success Green */
     
+    /* Buttons */
+    --btn-padding-sm: var(--space-xs) var(--space-sm);
+    --btn-padding-md: var(--space-sm-md) var(--space-xl);
+
     /* Borders */
     --border: #E5E5EA; /* Hairline Divider */
 
@@ -56,6 +60,16 @@
     /* Playground Specific (Legacy variables mapped to new system) */
     --exp-canvas-bg: #FAFAFA;
     --exp-thumb-border: #E5E5EA;
+
+    /* Gradients */
+    --gradient-header: linear-gradient(90deg, #86868b 0%, #FAFAFA 100%);
+    --gradient-cover-default: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    --gradient-details: linear-gradient(135deg, #E0EAFC 0%, #CFDEF3 100%);
+
+    /* Grid System */
+    --grid-min-xs: 100px;
+    --grid-min-sm: 140px;
+    --grid-min-md: 240px;
 }
 
 /* Dark Mode (Harmonized) */
@@ -77,6 +91,10 @@ html.dark {
 
     --exp-canvas-bg: #111111;
     --exp-thumb-border: #38383A;
+
+    --gradient-header: linear-gradient(90deg, #86868b 0%, #121212 100%);
+    --gradient-cover-default: linear-gradient(135deg, #2c3e50 0%, #121212 100%);
+    --gradient-details: linear-gradient(135deg, #2c3e50 0%, #4ca1af 100%);
 }
 
 /* Reset & Base */
@@ -149,28 +167,51 @@ a, button, input {
     gap: var(--space-md);
 }
 
-.nav-link {
+/* Base Button Class */
+.btn {
     background: none;
     border: none;
-    font-size: var(--font-sm);
-    color: var(--text-secondary);
     cursor: pointer;
+    font-family: inherit;
     font-weight: 500;
-    padding: var(--space-xs) var(--space-sm);
     border-radius: var(--radius-sm);
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
 }
 
-.nav-link:hover {
+.btn-ghost {
+    color: var(--text-secondary);
+    padding: var(--btn-padding-sm);
+    font-size: var(--font-sm);
+}
+
+.btn-ghost:hover {
     color: var(--color-accent);
+    background-color: var(--bg-hover-block);
 }
 
-.nav-link.active {
+.btn-ghost.active {
     color: var(--text-primary);
-    background-color: rgba(0,0,0,0.05);
+    background-color: var(--bg-subtle);
 }
 
-html.dark .nav-link.active {
-    background-color: rgba(255,255,255,0.1);
+.btn-primary {
+    background-color: var(--color-accent);
+    color: white;
+    font-size: var(--font-base);
+    font-weight: 600;
+    padding: var(--btn-padding-md);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-accent-hover);
+}
+
+.nav-link {
+    /* Kept for JS hooks, style is now provided by .btn .btn-ghost */
 }
 
 .divider-vertical {
@@ -374,27 +415,18 @@ h1 {
 .header-gradient-bar {
     height: 0.8px;
     width: 100%;
-    background: linear-gradient(90deg, #86868b 0%, #FAFAFA 100%);
+    background: var(--gradient-header);
     border-radius: 1px;
     margin-bottom: var(--space-lg);
-    margin-top: 12px;
+    margin-top: var(--space-sm-md);
 }
 
 .header-gradient-bar-bottom {
     height: 0.8px;
     width: 100%;
-    background: linear-gradient(90deg, #86868b 0%, #FAFAFA 100%);
+    background: var(--gradient-header);
     border-radius: 1px;
     margin-top: var(--space-lg);
-}
-
-/* Dark mode overrides: swap the light stop with #121212 */
-html.dark .header-gradient-bar {
-    background: linear-gradient(90deg, #86868b 0%, #121212 100%);
-}
-
-html.dark .header-gradient-bar-bottom {
-    background: linear-gradient(90deg, #86868b 0%, #121212 100%);
 }
 
 .contact-info {
@@ -560,7 +592,7 @@ section:first-of-type h2 {
 /* Languages */
 .languages-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(var(--grid-min-sm), 1fr));
     gap: var(--space-md);
 }
 
@@ -636,7 +668,7 @@ section:first-of-type h2 {
 
 .experiments-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(var(--grid-min-xs), 1fr));
     gap: var(--space-xl) var(--space-md);
     justify-content: center;
     width: 100%;
@@ -815,41 +847,39 @@ html.dark input[type=range]::-webkit-slider-thumb {
 
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(var(--grid-min-md), 1fr));
     gap: var(--space-lg);
 }
 
-/* Standard Service Card - Now with Gradient option via sub-classes or base styling */
-.service-card {
+/* Interactive Card Base */
+.card-interactive {
     background-color: var(--bg-surface);
     border-radius: var(--radius-md);
-    padding: 0;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    border: 1px solid var(--border);
     cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    border: 1px solid var(--border);
     position: relative;
 }
 
-/*
-   Gradient Implementation for Hire Me Cards
-   Requirement: "QUERO GRADIENTES!"
-   We will apply a subtle gradient background to the COVER area, or the whole card depending on the "Apple Music" look.
-   Usually, Apple Music cards have a full image/gradient cover.
-   Let's apply gradients to the .service-card-cover
-*/
-
-.service-card:hover {
+.card-interactive:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    border-color: var(--color-accent);
+}
+
+/* Standard Service Card */
+.service-card {
+    padding: 0;
+    /* Uses .card-interactive */
 }
 
 .service-card-cover {
     width: 100%;
     height: 120px; /* Slightly taller */
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); /* Default Fallback */
+    background: var(--gradient-cover-default);
 }
 
 /* Gradient Variants (can be applied by JS based on service type or random) */
@@ -897,7 +927,7 @@ html.dark input[type=range]::-webkit-slider-thumb {
     width: 100%;
     min-height: 100px;
     height: 150px;
-    background: linear-gradient(135deg, #E0EAFC 0%, #CFDEF3 100%); /* Default soft gradient */
+    background: var(--gradient-details);
     border-radius: var(--radius-md);
     margin-bottom: var(--space-lg);
 }
@@ -972,20 +1002,8 @@ html.dark input[type=range]::-webkit-slider-thumb {
 }
 
 .cta-btn {
-    background-color: var(--color-accent);
-    color: white;
-    border: none;
-    padding: var(--space-sm-md) var(--space-xl);
-    border-radius: var(--radius-sm);
-    font-size: var(--font-base);
-    font-weight: 600;
-    cursor: pointer;
     width: 100%;
-    transition: background-color 0.2s ease;
-}
-
-.cta-btn:hover {
-    background-color: var(--color-accent-hover);
+    /* Style provided by .btn .btn-primary */
 }
 
 /* Forms */
