@@ -1,96 +1,109 @@
 # Currículo & Portfólio Digital - Pedro Afonso Pinheiro de Paula
 
-Bem-vindo ao repositório do meu currículo e portfólio digital. Este projeto é uma aplicação web interativa que combina minha experiência profissional com uma área de experimentação técnica ("Playground") e um catálogo de serviços ("Me Contrate").
-
-## 📋 Visão Geral
-
-Este projeto foi desenvolvido com tecnologias web nativas (Vanilla JavaScript, HTML5 e CSS3) para garantir alta performance, sem dependência de frameworks pesados. Ele serve três propósitos principais:
-
-1.  **Currículo:** Apresentação profissional da minha carreira, habilidades e formação.
-2.  **Playground:** Uma área de demonstração técnica com simulações físicas e matemáticas interativas (Fluidos, Gravidade, Pêndulo Duplo, etc.).
-3.  **Me Contrate:** Um catálogo de serviços onde clientes podem solicitar orçamentos diretamente via WhatsApp.
+Bem-vindo ao repositório do meu currículo e portfólio digital. Este projeto é uma aplicação web interativa (SPA) construída com tecnologias nativas, combinando apresentação profissional, experimentação técnica e um catálogo de serviços.
 
 🔗 **Acesse online:** [https://pedroafonso.com/curriculo](https://pedroafonso.com/curriculo)
 
-## 🚀 Tecnologias Utilizadas
+---
 
-*   **HTML5:** Estrutura semântica e acessível.
-*   **CSS3:** Estilização com variáveis CSS (Custom Properties) para temas Claro/Escuro e design responsivo (Mobile First).
-*   **JavaScript (ES6+):** Lógica de aplicação, roteamento SPA (Single Page Application) simples, simulações em Canvas API e gerenciamento de estado.
+## 🏗️ Arquitetura do Sistema
 
-## 📂 Estrutura do Projeto
+O sistema segue uma arquitetura **Client-Side Monolithic** simplificada, sem dependências de build tools complexos. O foco é performance (High Performance Loading) e SEO para o conteúdo principal.
 
+### Diagrama de Arquitetura (Mermaid)
+
+```mermaid
+graph TD
+    User[Usuário / Navegador]
+    
+    subgraph "Core Application"
+        Index[index.html<br/>(Entry Point & Content)]
+        MainJS[main.js<br/>(Router, i18n, Theme)]
+        Styles[styles.css<br/>(Design System)]
+    end
+
+    subgraph "Modules (Lazy/On-Demand)"
+        ExpJS[js/experiments.js<br/>(Canvas Simulations)]
+        HireJS[js/hire_me.js<br/>(Service Logic)]
+    end
+
+    subgraph "DOM Views"
+        ResumeView[#resume-view<br/>(Static HTML)]
+        PlayView[#playground-view<br/>(Canvas Container)]
+        HireView[#hire-me-view<br/>(Dynamic DOM)]
+    end
+
+    subgraph "External Services"
+        WA[WhatsApp API<br/>(Conversion Endpoint)]
+    end
+
+    %% Flow
+    User -->|Request| Index
+    Index -->|Loads| MainJS
+    Index -->|Loads| Styles
+    
+    MainJS -->|Control| ResumeView
+    MainJS -->|Control| PlayView
+    MainJS -->|Control| HireView
+    
+    PlayView -.->|Controlled by| ExpJS
+    HireView -.->|Controlled by| HireJS
+    
+    HireJS -->|Redirect| WA
 ```
-.
-├── index.html          # Ponto de entrada da aplicação e conteúdo base (PT-BR)
-├── main.js             # Lógica principal: Roteamento, Traduções, Temas
-├── styles.css          # Estilos globais e componentes
-├── js/
-│   ├── experiments.js  # Lógica das simulações do Playground (Canvas)
-│   └── hire_me.js      # Lógica da seção "Me Contrate" (Catálogo e Formulários)
-└── PROTOTIPAGEM.../    # Arquivos de design e protótipos visuais
-```
 
-## 🛠️ Configuração e Execução
+### 🧱 Limites do Sistema
 
-Como este projeto utiliza apenas tecnologias nativas, não é necessário `npm install` ou processos de build complexos para rodá-lo localmente.
+1.  **Frontend-Only:** Não há backend próprio. Toda a lógica reside no navegador do cliente.
+2.  **Persistência Local:** Preferências de usuário (Tema) são salvas no `localStorage`. Não há banco de dados centralizado.
+3.  **Dependência Externa:** O fluxo de conversão ("Me Contrate") depende inteiramente da API de URL do WhatsApp (`wa.me`).
+4.  **Compatibilidade:** Otimizado para navegadores modernos (ES6+), com degradação graciosa para visualização de conteúdo estático.
+
+### 🔄 Fluxo de Dados
+
+1.  **Inicialização:**
+    *   O navegador carrega `index.html` (Paint inicial rápido com conteúdo em PT-BR).
+    *   `main.js` hidrata a aplicação: verifica preferências de tema e idioma.
+2.  **Navegação (Roteamento):**
+    *   Cliques no menu invocam `switchView()`.
+    *   Oculta/Mostra contêineres DOM (`display: none/block`).
+    *   Pausa loops de animação (Canvas) quando o Playground é ocultado para economizar CPU/Bateria.
+3.  **Internacionalização (i18n):**
+    *   Sistema "Dual Update": Conteúdo crítico hardcoded no HTML (SEO) + Objeto JSON em memória para trocas dinâmicas.
+4.  **Conversão:**
+    *   Usuário preenche formulário em `#hire-me-view`.
+    *   `js/hire_me.js` sanitiza inputs e constrói uma URL codificada.
+    *   Redirecionamento para WhatsApp com mensagem pré-formatada.
+
+### ⚠️ Modos de Falha e Resiliência
+
+| Modo de Falha | Impacto | Mitigação / Comportamento |
+| :--- | :--- | :--- |
+| **JavaScript Desabilitado** | Alto | O conteúdo do Currículo (Resume) permanece visível e legível (HTML estático). Funcionalidades interativas (Playground, Troca de Idioma) falham silenciosamente. |
+| **Bloqueio de Pop-up** | Médio | O redirecionamento para o WhatsApp pode ser bloqueado. O sistema deve instruir o usuário a verificar bloqueadores. |
+| **Falha no LocalStorage** | Baixo | Preferências de tema/idioma não serão salvas entre sessões. O site carrega com defaults (Tema Claro, PT-BR). |
+| **Erro em Canvas** | Baixo | Se o dispositivo não suportar Canvas API, o Playground mostrará uma área em branco ou erro de console, mas o restante do site continua funcional. |
+
+---
+
+## 🚀 Como Executar Localmente
 
 1.  **Clone o repositório:**
     ```bash
-    git clone https://github.com/PedroAfonso0102/seu-repo.git
-    cd seu-repo
+    git clone https://github.com/PedroAfonso0102/curriculo.git
     ```
+2.  **Abra o projeto:**
+    Basta abrir o arquivo `index.html` em seu navegador.
+    *   *Recomendação:* Use a extensão "Live Server" no VS Code para hot-reload.
 
-2.  **Execute:**
-    Basta abrir o arquivo `index.html` em qualquer navegador moderno.
-    *   Recomendado: Use uma extensão como "Live Server" no VS Code para desenvolvimento.
+## 📂 Estrutura de Arquivos
 
-## 🌍 Sistema de Traduções (i18n)
-
-O projeto suporta múltiplos idiomas (PT, EN, ES). O sistema de tradução funciona através de um processo de "Dual Update" para garantir SEO e performance:
-
-1.  **HTML Hardcoded (index.html):** O conteúdo em Português é mantido diretamente no HTML para carregamento inicial rápido e indexação por motores de busca.
-2.  **Objeto de Traduções (main.js):** O objeto `window.translations` contém as strings para todos os idiomas suportados.
-3.  **Atributos de Dados:** Elementos que requerem tradução possuem o atributo `data-i18n="chave_da_traducao"`.
-
-**Como adicionar uma nova tradução:**
-1.  Adicione o texto em Português no `index.html` (se for novo conteúdo).
-2.  Adicione o atributo `data-i18n="nova_chave"` ao elemento HTML.
-3.  No arquivo `main.js`, adicione a chave `nova_chave` e suas traduções dentro do objeto `window.translations` para `pt`, `en` e `es`.
-
-## 🧪 Playground (Experimentos)
-
-A seção Playground (`js/experiments.js`) contém simulações interativas renderizadas em `<canvas>`.
-
-*   **Arquitetura:** Cada experimento é uma função que aceita um ID de canvas e um objeto de opções.
-*   **Gerenciamento:** O objeto `Experiments` gerencia o ciclo de vida (início, parada, limpeza) para garantir que loops de animação não consumam recursos em segundo plano.
-*   **Temas:** O módulo `ExperimentTheme` sincroniza as cores das simulações com as variáveis CSS do tema atual (Claro/Escuro).
-
-**Como adicionar um novo experimento:**
-1.  Crie a função do experimento em `Experiments` no `js/experiments.js`.
-2.  Garanta que a função retorne um objeto com método `cleanup()` (para `cancelAnimationFrame` e remoção de listeners).
-3.  Adicione a interface de controle no HTML (dentro de `#playground-view`).
-4.  Registre a chamada em `main.js` ou na interface de usuário.
-
-## 💼 Seção "Me Contrate"
-
-A lógica desta seção está em `js/hire_me.js`. Ela gerencia:
-*   Renderização do catálogo de serviços baseada em `servicesData`.
-*   Formulários de qualificação e agendamento.
-*   Redirecionamento para WhatsApp com mensagem pré-formatada e traduzida.
-
-## 🤝 Contribuição
-
-Contribuições são bem-vindas!
-1.  Faça um Fork do projeto.
-2.  Crie uma Branch para sua feature (`git checkout -b feature/NovaFeature`).
-3.  Faça o Commit (`git commit -m 'Adiciona NovaFeature'`).
-4.  Faça o Push (`git push origin feature/NovaFeature`).
-5.  Abra um Pull Request.
+*   `index.html`: Estrutura semântica e conteúdo base.
+*   `main.js`: Core da aplicação (Router, State).
+*   `styles.css`: Estilização global e variáveis.
+*   `js/experiments.js`: Lógica matemática/física das simulações.
+*   `js/hire_me.js`: Lógica de negócios e formulários.
 
 ## 📄 Licença
 
-Este projeto é de uso pessoal e profissional de Pedro Afonso Pinheiro de Paula. O código fonte está disponível para fins de estudo e referência.
-
----
-**Contato:** pedro.app1@proton.me
+Uso pessoal e profissional. Código disponível para fins educacionais.
