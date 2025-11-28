@@ -49,6 +49,29 @@ const servicesData = [
         type: 'contract',
         gradient: 'linear-gradient(135deg, #fccb90 0%, #d57eeb 100%)'
     }
+    ,
+    {
+        id: 'ux-consult',
+        titleKey: 'service_ux_title',
+        priceDisplayKey: 'hire_price_consult',
+        deadlineDisplayKey: 'hire_dead_variable',
+        descriptionKey: 'service_ux_desc',
+        includedKeys: ['service_ux_inc1', 'service_ux_inc2', 'service_ux_inc3'],
+        notIncludedKeys: ['service_ux_exc1'],
+        type: 'contract',
+        gradient: 'linear-gradient(135deg, #90f7ec 0%, #32ccbc 100%)'
+    },
+    {
+        id: 'freelance-retainer',
+        titleKey: 'service_freelance_title',
+        priceDisplayKey: 'hire_price_monthly',
+        deadlineDisplayKey: 'hire_dead_recur',
+        descriptionKey: 'service_freelance_desc',
+        includedKeys: ['service_freelance_inc1', 'service_freelance_inc2', 'service_freelance_inc3'],
+        notIncludedKeys: ['service_freelance_exc1'],
+        type: 'contract',
+        gradient: 'linear-gradient(135deg, #f6d365 0%, #fda085 100%)'
+    }
 ];
 
 /**

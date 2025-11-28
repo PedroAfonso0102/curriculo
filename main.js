@@ -161,11 +161,11 @@ window.translations = {
         service_app_exc1: "App Nativo (iOS/Android)",
 
         service_ux_title: "Consultoria UX/UI",
-        service_ux_desc: "Análise heurística, testes de usabilidade ou redesign de interfaces para melhorar a experiência do usuário.",
-        service_ux_inc1: "Relatório de Melhorias",
-        service_ux_inc2: "Wireframes de Sugestão",
-        service_ux_inc3: "Reunião de Alinhamento",
-        service_ux_exc1: "Implementação (Code)",
+        service_ux_desc: "Avaliação de usabilidade e interface. Entrego relatório com falhas críticas, wireframes e plano de intervenção. Processo: auditoria → priorização → alinhamento.",
+        service_ux_inc1: "Relatório com prioridades",
+        service_ux_inc2: "Wireframes de solução",
+        service_ux_inc3: "Sessão de alinhamento (remote)",
+        service_ux_exc1: "Implementação em código",
 
         service_mentor_title: "Mentoria Audiovisual",
         service_mentor_desc: "Orientação de carreira, análise técnica e direção de projetos audiovisuais.",
@@ -175,11 +175,11 @@ window.translations = {
         service_mentor_exc1: "Desenvolvimento de projetos completos",
 
         service_freelance_title: "Freelance Fixo",
-        service_freelance_desc: "Alocação de horas mensais para manutenção, pequenas melhorias ou suporte contínuo em seus projetos.",
-        service_freelance_inc1: "Prioridade no atendimento",
-        service_freelance_inc2: "Relatório de horas",
-        service_freelance_inc3: "Manutenção preventiva",
-        service_freelance_exc1: "Novos projetos grandes",
+        service_freelance_desc: "Contrato mensal de horas para manutenção, pequenas features e suporte. Entrego relatório mensal de horas e prioridades.",
+        service_freelance_inc1: "Alocação mensal de horas",
+        service_freelance_inc2: "Relatório mensal",
+        service_freelance_inc3: "Prioridade no atendimento",
+        service_freelance_exc1: "Projetos novos de grande escopo",
 
         hire_price_consult: "Sob Consulta",
         hire_price_hour: "R$ 300/h",
@@ -193,7 +193,7 @@ window.translations = {
 
         // New Services (v2.1)
         service_speed_landing_title: "Landing Page — Speed-First",
-        service_speed_landing_desc: "Carregamento <1s. Código leve e otimizado para anúncios.",
+        service_speed_landing_desc: "Landing otimizada para anúncios. Página única, carregamento <1s. Processo: briefing → design (Figma) → desenvolvimento → otimização.",
         service_speed_landing_inc1: "HTML5 + CSS otimizado",
         service_speed_landing_inc2: "Vanilla JS, sem libs",
         service_speed_landing_inc3: "Design aprovado (Figma)",
@@ -201,7 +201,7 @@ window.translations = {
         service_speed_landing_exc1: "Mudanças estruturais pós-aprovação",
 
         service_storefront_title: "Storefront Customizado",
-        service_storefront_desc: "Vitrine custom, foco em UX e performance.",
+        service_storefront_desc: "Storefront para e‑commerce (vitrine + carrinho). Integração com PagSeguro/Stripe/Shopify/Nuvemshop. Processo: briefing → protótipo → integração → entrega.",
         service_storefront_inc1: "Frontend custom (Vanilla)",
         service_storefront_inc2: "Integração de pagamentos",
         service_storefront_inc3: "Carrinho visual e vitrine",
@@ -209,14 +209,14 @@ window.translations = {
         service_storefront_exc1: "Checkout transacional (terceiro)",
 
         service_platform_setup_title: "Setup de Plataforma",
-        service_platform_setup_desc: "Configuração Nuvemshop/Shopify com CSS custom.",
+        service_platform_setup_desc: "Configuração e personalização em Nuvemshop/Shopify: tema, CSS e integrações básicas. Requer pacote fotográfico para identidade.",
         service_platform_setup_inc1: "Configuração da loja",
         service_platform_setup_inc2: "CSS personalizado",
         service_platform_setup_inc3: "Ajuste visual final",
         service_platform_setup_exc1: "Entrega de templates sem custom",
 
         service_visual_asset_title: "Pacote Visual Asset",
-        service_visual_asset_desc: "Fotografia e vídeo para uso no site e anúncios.",
+        service_visual_asset_desc: "Fotografia de produto e vídeos curtos para site e anúncios. Entrego imagens otimizadas e arquivos para ads. Processo: briefing → shooting → edição.",
         service_visual_asset_inc1: "Fotografia de produto",
         service_visual_asset_inc2: "Vídeos curtos (reels)",
         service_visual_asset_inc3: "Edição e direção de arte",
