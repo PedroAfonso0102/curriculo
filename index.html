@@ -55,6 +55,18 @@
         <symbol id="icon-wave" viewBox="0 0 24 24">
             <path d="M2 12c4-8 8 8 12 0s8 8 12 0"/>
         </symbol>
+        <symbol id="icon-harmonic" viewBox="0 0 24 24">
+            <path d="M12 2v20M2 12h20" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="12" cy="12" r="4"/>
+        </symbol>
+        <symbol id="icon-chaos" viewBox="0 0 24 24">
+            <path d="M12 2L2 22h20L12 2z" fill="none" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="12" r="1"/>
+        </symbol>
+        <symbol id="icon-lissajous" viewBox="0 0 24 24">
+            <path d="M4 12c0-4 4-8 8-8s8 4 8 8-4 8-8 8-8-4-8-8z" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 4c-4 0-8 4-8 8s4 8 8 8 8-4 8-8-4-8-8-8z" fill="none" stroke="currentColor" stroke-width="2" transform="rotate(90 12 12)"/>
+        </symbol>
     </svg>
 
     <!-- Top Navigation Bar -->
@@ -323,8 +335,8 @@
                                 <svg class="icon-lg"><use href="#icon-fluid"></use></svg>
                             </div>
                             <div class="app-info">
-                                <h3>Fluid Simulation</h3>
-                                <p>Interativo</p>
+                                <h3 data-i18n="exp_fluid_title">Simulação de Fluidos</h3>
+                                <p data-i18n="exp_fluid_desc">Interativo</p>
                             </div>
                         </div>
 
@@ -334,8 +346,8 @@
                                 <svg class="icon-lg"><use href="#icon-gravity"></use></svg>
                             </div>
                             <div class="app-info">
-                                <h3>Gravity</h3>
-                                <p>Partículas</p>
+                                <h3 data-i18n="exp_gravity_title">Gravidade</h3>
+                                <p data-i18n="exp_gravity_desc">Partículas</p>
                             </div>
                         </div>
 
@@ -345,8 +357,8 @@
                                 <svg class="icon-lg"><use href="#icon-pendulum"></use></svg>
                             </div>
                             <div class="app-info">
-                                <h3>Double Pendulum</h3>
-                                <p>Caos</p>
+                                <h3 data-i18n="exp_pendulum_title">Pêndulo Duplo</h3>
+                                <p data-i18n="exp_pendulum_desc">Caos</p>
                             </div>
                         </div>
 
@@ -356,8 +368,41 @@
                                 <svg class="icon-lg"><use href="#icon-wave"></use></svg>
                             </div>
                             <div class="app-info">
-                                <h3>Fourier Series</h3>
-                                <p>Ondas</p>
+                                <h3 data-i18n="exp_fourier_title">Séries de Fourier</h3>
+                                <p data-i18n="exp_fourier_desc">Ondas</p>
+                            </div>
+                        </div>
+
+                        <!-- Harmonic Motion -->
+                        <div class="app-item" onclick="openExperiment('harmonic')">
+                            <div class="app-icon">
+                                <svg class="icon-lg"><use href="#icon-harmonic"></use></svg>
+                            </div>
+                            <div class="app-info">
+                                <h3 data-i18n="exp_harmonic_title">Movimento Harmônico</h3>
+                                <p data-i18n="exp_harmonic_desc">Molas</p>
+                            </div>
+                        </div>
+
+                        <!-- Chaos Game -->
+                        <div class="app-item" onclick="openExperiment('chaos')">
+                            <div class="app-icon">
+                                <svg class="icon-lg"><use href="#icon-chaos"></use></svg>
+                            </div>
+                            <div class="app-info">
+                                <h3 data-i18n="exp_chaos_title">Jogo do Caos</h3>
+                                <p data-i18n="exp_chaos_desc">Fractais</p>
+                            </div>
+                        </div>
+
+                        <!-- Lissajous -->
+                        <div class="app-item" onclick="openExperiment('lissajous')">
+                            <div class="app-icon">
+                                <svg class="icon-lg"><use href="#icon-lissajous"></use></svg>
+                            </div>
+                            <div class="app-info">
+                                <h3 data-i18n="exp_lissajous_title">Curvas de Lissajous</h3>
+                                <p data-i18n="exp_lissajous_desc">Curvas</p>
                             </div>
                         </div>
                     </div>
@@ -464,6 +509,75 @@
                             </aside>
                         </div>
                     </div>
+
+                    <div id="harmonic-view" class="experiment-view" style="display:none;">
+                        <div class="exp-layout">
+                           <div class="exp-main">
+                               <h2>Harmonic Motion</h2>
+                               <canvas id="harmonicCanvas"></canvas>
+                           </div>
+                           <aside class="exp-sidebar">
+                               <div class="exp-controls">
+                                   <label>Stiffness (k) <span class="val" id="harmonic-k-label">0.1</span></label>
+                                   <input class="exp-control" type="range" name="k" min="0.01" max="0.5" step="0.01" value="0.1">
+
+                                   <label>Damping <span class="val" id="harmonic-damping-label">0.98</span></label>
+                                   <input class="exp-control" type="range" name="damping" min="0.90" max="0.999" step="0.001" value="0.98">
+
+                                   <label>Mass <span class="val" id="harmonic-mass-label">10</span></label>
+                                   <input class="exp-control" type="range" name="mass" min="1" max="50" step="1" value="10">
+
+                                   <label>Gravity <span class="val" id="harmonic-gravity-label">0.5</span></label>
+                                   <input class="exp-control" type="range" name="gravity" min="0" max="2" step="0.1" value="0.5">
+                               </div>
+                           </aside>
+                       </div>
+                   </div>
+
+                   <div id="chaos-view" class="experiment-view" style="display:none;">
+                        <div class="exp-layout">
+                           <div class="exp-main">
+                               <h2>Chaos Game</h2>
+                               <canvas id="chaosCanvas"></canvas>
+                           </div>
+                           <aside class="exp-sidebar">
+                               <div class="exp-controls">
+                                   <label>Vertices <span class="val" id="chaos-vertices-label">3</span></label>
+                                   <input class="exp-control" type="range" name="vertices" min="3" max="8" step="1" value="3">
+
+                                   <label>Ratio <span class="val" id="chaos-ratio-label">0.5</span></label>
+                                   <input class="exp-control" type="range" name="ratio" min="0.1" max="0.9" step="0.01" value="0.5">
+
+                                   <label>Speed (pts/frame) <span class="val" id="chaos-speed-label">100</span></label>
+                                   <input class="exp-control" type="range" name="speed" min="1" max="1000" step="10" value="100">
+                               </div>
+                           </aside>
+                       </div>
+                   </div>
+
+                   <div id="lissajous-view" class="experiment-view" style="display:none;">
+                        <div class="exp-layout">
+                           <div class="exp-main">
+                               <h2>Lissajous Curves</h2>
+                               <canvas id="lissajousCanvas"></canvas>
+                           </div>
+                           <aside class="exp-sidebar">
+                               <div class="exp-controls">
+                                   <label>Freq X <span class="val" id="lissajous-freqX-label">3</span></label>
+                                   <input class="exp-control" type="range" name="freqX" min="1" max="20" step="1" value="3">
+
+                                   <label>Freq Y <span class="val" id="lissajous-freqY-label">2</span></label>
+                                   <input class="exp-control" type="range" name="freqY" min="1" max="20" step="1" value="2">
+
+                                   <label>Phase Speed <span class="val" id="lissajous-speed-label">0.01</span></label>
+                                   <input class="exp-control" type="range" name="speed" min="0" max="0.1" step="0.001" value="0.01">
+
+                                   <label>Trail Length <span class="val" id="lissajous-trail-label">500</span></label>
+                                   <input class="exp-control" type="range" name="trail" min="100" max="2000" step="100" value="500">
+                               </div>
+                           </aside>
+                       </div>
+                   </div>
                 </div>
             </div>
 

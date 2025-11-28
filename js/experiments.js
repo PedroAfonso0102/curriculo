@@ -696,5 +696,281 @@ const Experiments = {
         };
 
         return instance;
+    },
+
+    harmonic: function(canvasId, options = {}) {
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        canvas.width = canvas.clientWidth || 800;
+        canvas.height = canvas.clientHeight || 400;
+
+        let params = Object.assign({
+            k: 0.1,
+            damping: 0.98,
+            mass: 10,
+            gravity: 0.5
+        }, options);
+
+        let animationId;
+        let particles = [];
+        const numParticles = 5;
+        const spacing = 50;
+
+        // Initialize chain
+        for(let i=0; i<numParticles; i++) {
+            particles.push({
+                x: canvas.width/2,
+                y: 50 + i * spacing,
+                oldX: canvas.width/2,
+                oldY: 50 + i * spacing,
+                pinned: i === 0
+            });
+        }
+
+        let dragNode = null;
+
+        function update() {
+            for(let i=0; i<particles.length; i++) {
+                let p = particles[i];
+                if(p.pinned) continue;
+                if(p === dragNode) continue;
+
+                let vx = (p.x - p.oldX) * params.damping;
+                let vy = (p.y - p.oldY) * params.damping;
+
+                p.oldX = p.x;
+                p.oldY = p.y;
+
+                p.x += vx;
+                p.y += vy;
+                p.y += params.gravity;
+            }
+
+            // Constraints (Springs)
+            // Iterate multiple times for stability if needed, but once is fine for soft springs
+            for(let i=0; i<particles.length-1; i++) {
+                let p1 = particles[i];
+                let p2 = particles[i+1];
+                let dx = p2.x - p1.x;
+                let dy = p2.y - p1.y;
+                let dist = Math.sqrt(dx*dx + dy*dy);
+                let diff = dist - spacing;
+                let percent = (diff / dist) / 2 * params.k; // Stiffness
+                
+                let offsetX = dx * percent;
+                let offsetY = dy * percent;
+
+                if(!p1.pinned && p1 !== dragNode) {
+                    p1.x += offsetX;
+                    p1.y += offsetY;
+                }
+                if(!p2.pinned && p2 !== dragNode) {
+                    p2.x -= offsetX;
+                    p2.y -= offsetY;
+                }
+            }
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.beginPath();
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 2;
+            ctx.moveTo(particles[0].x, particles[0].y);
+            for(let i=1; i<particles.length; i++) {
+                ctx.lineTo(particles[i].x, particles[i].y);
+            }
+            ctx.stroke();
+
+            for(let i=0; i<particles.length; i++) {
+                let p = particles[i];
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, params.mass, 0, Math.PI*2); 
+                ctx.fillStyle = i===0 ? '#000' : '#1a73e8';
+                ctx.fill();
+            }
+        }
+
+        function loop() {
+            update();
+            draw();
+            animationId = requestAnimationFrame(loop);
+        }
+        loop();
+
+        // Interaction
+        const onMouseDown = (e) => {
+            const rect = canvas.getBoundingClientRect();
+            const mx = e.clientX - rect.left;
+            const my = e.clientY - rect.top;
+            
+            for(let p of particles) {
+                let dx = mx - p.x;
+                let dy = my - p.y;
+                if(dx*dx + dy*dy < 400) { // Hit radius
+                    dragNode = p;
+                    break;
+                }
+            }
+        };
+        const onMouseMove = (e) => {
+            if(dragNode) {
+                const rect = canvas.getBoundingClientRect();
+                dragNode.x = e.clientX - rect.left;
+                dragNode.y = e.clientY - rect.top;
+            }
+        };
+        const onMouseUp = () => {
+            dragNode = null;
+        };
+
+        canvas.addEventListener('mousedown', onMouseDown);
+        window.addEventListener('mousemove', onMouseMove);
+        window.addEventListener('mouseup', onMouseUp);
+
+        return {
+            cleanup: () => {
+                cancelAnimationFrame(animationId);
+                canvas.removeEventListener('mousedown', onMouseDown);
+                window.removeEventListener('mousemove', onMouseMove);
+                window.removeEventListener('mouseup', onMouseUp);
+            },
+            setOptions: (newOpts) => {
+                params = Object.assign(params, newOpts);
+                return { requiresReinit: false };
+            }
+        };
+    },
+
+    chaos: function(canvasId, options = {}) {
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        canvas.width = canvas.clientWidth || 800;
+        canvas.height = canvas.clientHeight || 400;
+
+        let params = Object.assign({
+            vertices: 3,
+            ratio: 0.5,
+            speed: 100
+        }, options);
+
+        let animationId;
+        let points = []; // Vertices
+        let currentPoint = { x: canvas.width/2, y: canvas.height/2 };
+
+        // Init Vertices
+        const radius = Math.min(canvas.width, canvas.height) / 2 - 20;
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2;
+        
+        for(let i=0; i<params.vertices; i++) {
+            const angle = (i * 2 * Math.PI) / params.vertices - Math.PI/2;
+            points.push({
+                x: cx + Math.cos(angle) * radius,
+                y: cy + Math.sin(angle) * radius
+            });
+        }
+
+        // Draw vertices once
+        ctx.fillStyle = '#000';
+        for(let p of points) {
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 4, 0, Math.PI*2);
+            ctx.fill();
+        }
+
+        function loop() {
+            ctx.fillStyle = 'rgba(26, 115, 232, 0.5)';
+            for(let i=0; i<params.speed; i++) {
+                const target = points[Math.floor(Math.random() * points.length)];
+                currentPoint.x = currentPoint.x + (target.x - currentPoint.x) * params.ratio;
+                currentPoint.y = currentPoint.y + (target.y - currentPoint.y) * params.ratio;
+                ctx.fillRect(currentPoint.x, currentPoint.y, 1, 1);
+            }
+            animationId = requestAnimationFrame(loop);
+        }
+        loop();
+
+        return {
+            cleanup: () => cancelAnimationFrame(animationId),
+            setOptions: (newOpts) => {
+                if(newOpts.vertices !== params.vertices || newOpts.ratio !== params.ratio) {
+                    params = Object.assign(params, newOpts);
+                    return { requiresReinit: true };
+                }
+                params = Object.assign(params, newOpts);
+                return { requiresReinit: false };
+            }
+        };
+    },
+
+    lissajous: function(canvasId, options = {}) {
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        canvas.width = canvas.clientWidth || 800;
+        canvas.height = canvas.clientHeight || 400;
+
+        let params = Object.assign({
+            freqX: 3,
+            freqY: 2,
+            speed: 0.01,
+            trail: 500
+        }, options);
+
+        let animationId;
+        let t = 0;
+        let path = [];
+        let phase = 0;
+
+        function loop() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            const cx = canvas.width / 2;
+            const cy = canvas.height / 2;
+            const scale = Math.min(cx, cy) - 20;
+
+            phase += params.speed;
+            t += 0.05; 
+            
+            const px = cx + Math.sin(params.freqX * t + phase) * scale;
+            const py = cy + Math.sin(params.freqY * t) * scale;
+            
+            path.push({x: px, y: py});
+            if(path.length > params.trail) path.shift();
+            
+            if(path.length > 1) {
+                ctx.beginPath();
+                ctx.strokeStyle = '#1a73e8';
+                ctx.lineWidth = 2;
+                ctx.moveTo(path[0].x, path[0].y);
+                for(let i=1; i<path.length; i++) {
+                    ctx.lineTo(path[i].x, path[i].y);
+                }
+                ctx.stroke();
+            }
+            
+            ctx.beginPath();
+            ctx.arc(px, py, 5, 0, Math.PI*2);
+            ctx.fillStyle = '#000';
+            ctx.fill();
+
+            animationId = requestAnimationFrame(loop);
+        }
+        loop();
+
+        return {
+            cleanup: () => cancelAnimationFrame(animationId),
+            setOptions: (newOpts) => {
+                params = Object.assign(params, newOpts);
+                if(newOpts.freqX !== params.freqX || newOpts.freqY !== params.freqY) {
+                    path = [];
+                }
+                return { requiresReinit: false };
+            }
+        };
     }
 };

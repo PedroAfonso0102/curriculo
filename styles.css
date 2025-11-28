@@ -609,10 +609,10 @@ section:first-of-type h2 {
 }
 
 .experiments-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: var(--space-xl) var(--space-md);
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
+    gap: var(--space-xl) var(--space-md);
     width: 100%;
     max-width: 600px;
 }
@@ -623,7 +623,7 @@ section:first-of-type h2 {
     align-items: center;
     text-align: center;
     cursor: pointer;
-    group: hover;
+    width: 110px;
 }
 
 .app-icon {
