@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page BTG - Pedro Afonso</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Specific Detail Page Styles */
+        .project-hero {
+            position: relative;
+            height: 400px;
+            background: linear-gradient(135deg, #1c1c1e 0%, #3a3a3c 100%); /* Placeholder dark bg */
+            border-radius: var(--radius-md) var(--radius-md) 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin: -2rem -3rem 2rem -3rem; /* Bleed out of padding */
+        }
+
+        @media (max-width: 768px) {
+            .project-hero {
+                margin: -30px -20px 20px -20px;
+                border-radius: 0;
+                height: 250px;
+            }
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: var(--space-2xl);
+        }
+
+        @media (max-width: 900px) {
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .tech-sheet {
+            background: var(--bg-subtle);
+            padding: var(--space-lg);
+            border-radius: var(--radius-md);
+            position: sticky;
+            top: 100px;
+        }
+
+        .sheet-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--space-sm);
+            font-size: var(--font-sm);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 8px;
+        }
+
+        .sheet-row:last-child { border: none; }
+
+        .sheet-label { color: var(--text-secondary); }
+        .sheet-val { font-weight: 600; color: var(--text-primary); text-align: right; }
+
+        .article-content {
+            font-size: 18px;
+            line-height: 1.7;
+            color: var(--text-primary);
+        }
+
+        .article-content h3 {
+            margin-top: var(--space-xl);
+            margin-bottom: var(--space-sm);
+        }
+
+        .article-content p {
+            margin-bottom: var(--space-md);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Top Navigation Bar (Simplified for Project Page) -->
+    <nav class="site-header">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="index.html" class="nav-brand" style="text-decoration: none;">Pedro Afonso</a>
+            </div>
+            <div class="nav-right">
+                <a href="index.html" class="btn btn-ghost">← Voltar para Portfólio</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sheet-container">
+        <!-- Hero / Cover -->
+        <div class="project-hero">
+            <!-- Image would go here -->
+            <div style="text-align: center;">
+                <span style="font-size: 64px;">🏢</span>
+                <p style="opacity: 0.7;">Capa do Projeto (Mockup)</p>
+            </div>
+        </div>
+
+        <div class="project-grid">
+            <main class="article-content">
+                <h1>Landing Page BTG Pactual</h1>
+                <p class="role">Wise Inteligência Imobiliária</p>
+
+                <h3>O Problema</h3>
+                <p>
+                    A operação necessitava de uma página de captura focada exclusivamente em investidores de alta renda (ticket > R$ 1M).
+                    As soluções de mercado (Wix, Elementor) geravam código pesado, prejudicando o Quality Score do Google Ads e aumentando o custo por lead (CPL).
+                </p>
+
+                <h3>A Solução</h3>
+                <p>
+                    Desenvolvi uma Landing Page "Speed-First" utilizando HTML5 semântico e CSS moderno, sem frameworks pesados.
+                    O foco foi a hierarquia visual clara e carregamento instantâneo.
+                </p>
+                <ul>
+                    <li>Layout minimalista focado na proposta de valor.</li>
+                    <li>Formulário integrado diretamente ao CRM via webhook.</li>
+                    <li>Otimização de imagens WebP.</li>
+                </ul>
+
+                <h3>O Resultado</h3>
+                <p>
+                    O tempo de carregamento caiu de 4.2s (solução anterior) para 0.8s.
+                    O Quality Score no Google Ads subiu de 6/10 para 9/10, reduzindo o CPC em 25% nas primeiras semanas de campanha.
+                </p>
+            </main>
+
+            <aside>
+                <div class="tech-sheet">
+                    <h3 style="font-size: var(--font-md); margin-bottom: var(--space-md);">Ficha Técnica</h3>
+
+                    <div class="sheet-row">
+                        <span class="sheet-label">Cliente</span>
+                        <span class="sheet-val">Wise (BTG)</span>
+                    </div>
+                    <div class="sheet-row">
+                        <span class="sheet-label">Role</span>
+                        <span class="sheet-val">Dev & Copy</span>
+                    </div>
+                    <div class="sheet-row">
+                        <span class="sheet-label">Stack</span>
+                        <span class="sheet-val">HTML/CSS/JS</span>
+                    </div>
+                    <div class="sheet-row">
+                        <span class="sheet-label">Ano</span>
+                        <span class="sheet-val">2023</span>
+                    </div>
+
+                    <div style="margin-top: var(--space-xl);">
+                        <a href="index.html" class="btn btn-primary" style="width: 100%;">Contratar Similar</a>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <script>
+        // Simple Theme Check to match parent
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+</body>
+</html>
