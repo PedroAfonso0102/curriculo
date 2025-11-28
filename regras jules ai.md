@@ -175,6 +175,48 @@ A diferença entre um código "que funciona" e um código "de produção" está 
 
 ---
 
+## Boilerplates de Serviço (Me Contrate)
+*Prompts 'Ready-to-Use' alinhados com os serviços do seu portfólio. Copie e cole para iniciar projetos com qualidade premium.*
+
+### 🚀 Landing Pages & Performance
+
+- **Landing Page (Conversão Clássica)**
+  > `// Atue como um Especialista em CRO (Conversion Rate Optimization). Crie a estrutura HTML5/CSS3 para uma Landing Page focada em [Objetivo: Venda/Lead]. A estrutura deve seguir o modelo AIDA (Atenção, Interesse, Desejo, Ação). Inclua seções para: Hero com CTA claro, Prova Social (Testemunhos), Benefícios (Grid), FAQ (Accordion) e Rodapé. O CSS deve ser responsivo (Mobile-First) e visualmente limpo.`
+
+- **Landing Page "Speed-First" (<1s Load)**
+  > `// Atue como um Engenheiro de Performance Web. Crie um boilerplate para uma Landing Page 'Speed-First'. O objetivo é atingir 100/100 no Lighthouse. Requisitos Obrigatórios: HTML5 Semântico estrito, CSS crítico in-line (acima da dobra), imagens com lazy-loading nativo e srcset, e ZERO frameworks JS (apenas Vanilla JS leve se estritamente necessário). Minifique o output final.`
+
+### 🛍️ E-commerce & Storefronts
+
+- **E-commerce Básico (Pequenos Negócios)**
+  > `// Crie um esqueleto funcional para um E-commerce simples. Preciso de: 1. Um array JSON mockado contendo 6 produtos (id, nome, preço, img). 2. Uma função JS para renderizar esses produtos em um Grid responsivo. 3. Uma lógica simples de Carrinho (adicionar/remover/total) usando LocalStorage para persistência. 4. Um botão de checkout que apenas monte uma mensagem de pedido para o WhatsApp.`
+
+- **Storefront Customizado (Headless/Imersivo)**
+  > `// Atue como um Desenvolvedor Creative Frontend. Projete a arquitetura de um Storefront Headless. O foco é UX de alto nível ("App-like feel"). Utilize a View Transitions API para navegação fluida entre a Vitrine e o Detalhe do Produto. O carrinho deve ser um 'Off-Canvas' (gaveta lateral) que não recarrega a página. Simule o consumo de uma API REST externa.`
+
+- **Setup de Plataforma (Nuvemshop/Shopify)**
+  > `// Gere um snippet CSS avançado para customizar o checkout/vitrine de uma loja [Nuvemshop/Shopify]. O objetivo é elevar a percepção de valor (premium). Altere as fontes padrão para [Fonte Google Fonts], ajuste os botões de compra para terem um gradiente sutil e hover effect, e limpe a poluição visual do rodapé padrão. Adicione comentários explicando onde colar cada bloco no painel admin.`
+
+### 💻 Aplicações & Sistemas
+
+- **Aplicação Web (SaaS/Dashboard)**
+  > `// Inicie a estrutura de uma Aplicação Web (Dashboard Admin). Use [React/Vue/Vanilla]. Crie um layout com Sidebar lateral colapsável e Header fixo. Implemente um roteamento básico para 3 views: 'Dashboard' (com cards de métricas placeholder), 'Usuários' (tabela com filtros) e 'Configurações'. Inclua um mock de autenticação (Login screen).`
+
+### 🎨 Design & Audiovisual
+
+- **Consultoria UX/UI (Auditoria)**
+  > `// Atue como um UX Researcher. Crie um template Markdown para um 'Relatório de Auditoria Heurística'. O template deve conter seções para: 1. Resumo Executivo. 2. Análise das 10 Heurísticas de Nielsen (com espaço para prints e gravidade do erro). 3. Matriz de Priorização (Esforço x Impacto). 4. Recomendações de Quick Wins.`
+
+- **Pacote Visual Asset (Organização)**
+  > `// Crie uma estrutura de pastas e um script (Node.js ou Python) para automatizar a organização de assets de mídia. O script deve ler uma pasta 'Input', renomear arquivos de imagem/vídeo baseados em data/projeto (ex: 'PROJ_2024_PROD_001.jpg') e mover para pastas separadas 'Raw', 'Editado' e 'Final_Web_Ready' (com compressão automática via sharp/ffmpeg se possível).`
+
+### 💼 Serviços Recorrentes
+
+- **Freelance Fixo (Relatório & Controle)**
+  > `// Gere um template de 'Log de Horas e Atividades' em Markdown ou HTML simples para enviar ao cliente mensalmente. Deve conter: Tabela de Sessões (Data, Hora Início, Hora Fim, Descrição da Tarefa, Duração), Resumo Total de Horas, e uma seção de 'Próximos Passos/Impedimentos'.`
+
+---
+
 ## Contribuindo
 
 Suas contribuições são bem-vindas! Adicione novos prompts avançados, corrija formatações ou sugira novas categorias de engenharia de prompt.
