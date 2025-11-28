@@ -25,30 +25,6 @@
         <symbol id="icon-theme" viewBox="0 0 24 24">
             <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
         </symbol>
-        <!-- Apple-like Sun (Thin) -->
-        <symbol id="icon-sun" viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="2"/>
-            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </symbol>
-        <!-- Apple-like Moon (Thin Crescent) -->
-        <symbol id="icon-moon" viewBox="0 0 24 24">
-             <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-        </symbol>
-        <!-- Spring / Oscillator -->
-        <symbol id="icon-spring" viewBox="0 0 24 24">
-            <path d="M4 20h2l3-16 4 16 3-16 4 16h2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </symbol>
-        <!-- Chaos / Fractal -->
-        <symbol id="icon-chaos" viewBox="0 0 24 24">
-             <path d="M12 3l-9 16h18z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-             <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
-             <circle cx="8" cy="16" r="1" fill="currentColor"/>
-             <circle cx="16" cy="16" r="1" fill="currentColor"/>
-        </symbol>
-        <!-- Lissajous / Curve -->
-        <symbol id="icon-lissajous" viewBox="0 0 24 24">
-             <path d="M12 12c0-3 2-5 4.5-5 s4.5 2 4.5 5 -2 5 -4.5 5 -4.5-2 -4.5-5 c0 3-2 5-4.5 5 S 3 15 3 12 s2-5 4.5-5 S 12 9 12 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-        </symbol>
         <symbol id="icon-location" viewBox="0 0 24 24">
             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
         </symbol>
@@ -115,7 +91,7 @@
 
                 <button class="theme-btn theme-toggle" onclick="toggleTheme()" aria-label="Alternar modo noturno">
                     <svg class="icon" aria-hidden="true">
-                        <use id="theme-icon-use" href="#icon-moon"></use>
+                        <use href="#icon-theme"></use>
                     </svg>
                 </button>
             </div>
@@ -426,39 +402,6 @@
                             </div>
                             <div class="app-info">
                                 <h3 data-i18n="exp_lissajous_title">Curvas de Lissajous</h3>
-                                <p data-i18n="exp_lissajous_desc">Curvas</p>
-                            </div>
-                        </div>
-
-                        <!-- Spring (Harmonic) -->
-                        <div class="app-item" onclick="alert('Coming Soon')">
-                            <div class="app-icon">
-                                <svg class="icon-lg"><use href="#icon-spring"></use></svg>
-                            </div>
-                            <div class="app-info">
-                                <h3 data-i18n="exp_spring">Harmonic Motion</h3>
-                                <p data-i18n="exp_spring_desc">Molas</p>
-                            </div>
-                        </div>
-
-                        <!-- Chaos Game -->
-                        <div class="app-item" onclick="alert('Coming Soon')">
-                            <div class="app-icon">
-                                <svg class="icon-lg"><use href="#icon-chaos"></use></svg>
-                            </div>
-                            <div class="app-info">
-                                <h3 data-i18n="exp_chaos">Chaos Game</h3>
-                                <p data-i18n="exp_chaos_desc">Fractais</p>
-                            </div>
-                        </div>
-
-                        <!-- Lissajous -->
-                        <div class="app-item" onclick="alert('Coming Soon')">
-                            <div class="app-icon">
-                                <svg class="icon-lg"><use href="#icon-lissajous"></use></svg>
-                            </div>
-                            <div class="app-info">
-                                <h3 data-i18n="exp_lissajous">Lissajous</h3>
                                 <p data-i18n="exp_lissajous_desc">Curvas</p>
                             </div>
                         </div>
