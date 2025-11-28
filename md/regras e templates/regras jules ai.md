@@ -256,7 +256,131 @@ A eficácia do agente é proporcional à precisão da instrução. Adote a postu
 
 ---
 
-## 11. CONTRIBUIÇÃO
+## 11. CICLO DE VIDA & GESTÃO ESTRATÉGICA
+*Lacunas estratégicas: Documentação, Gestão, Aprendizado e Crise.*
+
+### 📚 Documentação Viva & Engenharia de Conhecimento
+- **Auto-Doc (Técnico):**
+  > `// Analise este arquivo/módulo. Gere uma documentação técnica no padrão JSDoc/Docstring para todas as funções exportadas. Além disso, crie um arquivo 'ARCHITECTURE.md' explicando o fluxo de dados e as decisões de design (ex: por que usou a lib X e não Y).`
+
+- **Manual do Usuário (Final):**
+  > `// Com base nas funcionalidades implementadas neste código, escreva um Manual do Usuário Final. Linguagem simples, passo-a-passo, focada em "Como realizar a tarefa X".`
+
+### ⏱️ Gestão de Projeto & Estimativa
+- **Estimativa PERT (Anti-Prejuízo):**
+  > `// Atue como Tech Lead. Analise esta feature request: [Descrição]. Quebre-a em sub-tarefas técnicas granulares (ex: criar tabela, endpoint, validação, front, teste). Estime o tempo Otimista, Provável e Pessimista para cada tarefa. Calcule a média PERT e adicione 20% de margem de segurança (buffer).`
+
+- **Definição de Pronto (DoD):**
+  > `// Para evitar refações infinitas, crie uma lista de critérios de aceitação ("Definition of Done") para esta tarefa. O que exatamente precisa acontecer para considerarmos isso 100% concluído e impedir que o cliente peça "só mais uma coisinha"?`
+
+### 🎓 Aprendizado Acelerado & Mentor Híbrido
+- **Explain Like I'm Junior (Conceitual):**
+  > `// Não apenas gere o código. Após a solução, adicione uma seção "Conceitos Chave". Explique a lógica por trás da escolha desta arquitetura/função específica. Por que isso é melhor que a abordagem ingênua? Use analogias visuais.`
+
+- **Plano de Estudo JIT (Just-in-Time):**
+  > `// Analise as tecnologias e padrões usados neste projeto que criamos (ex: Grid Layout, JWT, MySQL Joins). Crie um roteiro de estudos prático com 3 tópicos prioritários que eu preciso dominar para parar de depender de IA para tarefas similares a esta.`
+
+### 🚨 Gestão de Crise & SRE
+- **Protocolo de Triagem (War Room):**
+  > `// O sistema apresenta o erro [Erro/Sintoma]. Atue como SRE (Site Reliability Engineer). Não tente corrigir ainda. Primeiro, guie-me por um checklist lógico de isolamento de falha para descobrirmos a Causa Raiz. Comece do mais óbvio (DNS, Servidor) para o mais complexo (Código, Banco).`
+
+### 🎨 Design Handoff & Fidelidade
+- **Figma to Code Logic (Pixel Perfect):**
+  > `// Tenho este CSS atual [Colar CSS] e esta imagem do design desejado [Descrever diferenças ou colar propriedades do Figma]. Identifique as discrepâncias visuais exatas (line-height, letter-spacing, box-shadow). Gere apenas o CSS delta (as correções) para tornar a implementação 1:1 com o design.`
+
+---
+
+## 12. ENGENHARIA DE COMPONENTES (MEGA-PROMPTS)
+*Caixa de Ferramentas para Componentes "First-Class" em Vanilla JS + Alta Performance.*
+
+### 1. A GÊNESE: Criação de Componente Robusto
+*Use quando a tela está em branco. Força estrutura antes da estética.*
+> **// PROMPT: CRIAÇÃO DE COMPONENTE "FIRST-CLASS"**
+>
+> **Contexto:** Estou construindo uma aplicação Web focada em Performance (Vanilla JS). Preciso criar um componente de UI reutilizável: **[NOME DO COMPONENTE, ex: Header Principal / Sidebar de Navegação]**.
+>
+> **Atue como:** Arquiteto de Frontend Sênior & Especialista em Acessibilidade (WCAG).
+>
+> **Instruções de Execução:**
+> 1.  **Estrutura Semântica (HTML5):** Escreva o HTML usando as tags mais semânticas possíveis (`<header>`, `<nav>`, `<aside>`, `<ul>`). Use nomenclatura de classes consistente (BEM ou Utility-First, prefiro: **[INSERIR PREFERÊNCIA: BEM / Kebab-case]**).
+> 2.  **Estilização (CSS Moderno):**
+>     * Use CSS Grid para o layout macro e Flexbox para alinhamentos internos.
+>     * **Obrigatório:** Use Variáveis CSS (Custom Properties) para cores, espaçamentos e fontes. Não use "números mágicos" ou cores hardcoded.
+>     * Mobile-First: O CSS base deve ser para telas pequenas. Use `@media (min-width)` para desktop.
+> 3.  **Comportamento (Vanilla JS):**
+>     * Se houver interatividade (ex: Toggle Menu), escreva uma classe JS ou Módulo ES6.
+>     * Não anexe eventos no HTML (`onclick="..."`). Use `addEventListener`.
+>     * Implemente "Event Delegation" se houver listas de itens clicáveis.
+> 4.  **Acessibilidade (Non-Negotiable):**
+>     * Inclua atributos ARIA onde necessário (ex: `aria-expanded`, `aria-label`, `role`).
+>     * Garanta que o componente seja navegável via Teclado (Tab index, Focus ring visível).
+>
+> **Saída Esperada:** Entregue 3 blocos de código separados (HTML, CSS, JS) e uma breve explicação de como instanciar/usar este componente.
+
+### 2. A AUDITORIA: Validação de Boas Práticas
+*Use após criar para garantir QA Técnico.*
+> **// PROMPT: AUDITORIA DE COMPONENTE (QA TÉCNICO)**
+>
+> **Contexto:** Tenho este código de componente **[COLAR CÓDIGO HTML/CSS/JS]**.
+>
+> **Atue como:** Auditor de QA e Especialista em A11y (Acessibilidade).
+>
+> **Missão:** Destrua este código em busca de falhas. Não seja gentil.
+>
+> **Checklist de Verificação:**
+> 1.  **Semântica:** Estou usando `<div>` onde deveria usar `<button>`, `<a>` ou `<section>`?
+> 2.  **Acessibilidade (WCAG 2.1 AA):**
+>     * O contraste de cores está adequado?
+>     * Leitores de tela conseguem entender o estado atual (aberto/fechado)?
+>     * Existe "Focus Trap" em modais ou menus mobile?
+> 3.  **Performance CSS:** Estou usando propriedades que forçam "Layout Recalculation" (como `top`/`left` em animações) em vez de `transform`? O uso de seletores é eficiente?
+> 4.  **Manutenibilidade:** Existem valores hardcoded que deveriam ser variáveis? O CSS está vazando para fora do componente (falta de escopo)?
+>
+> **Saída Esperada:** Uma lista de "Violações Encontradas" classificada por gravidade (Crítica/Média/Baixa) e, na sequência, o **Código Refatorado** corrigindo todos os pontos.
+
+### 3. A PADRONIZAÇÃO: Refatoração para Design System
+*Use para garantir consistência global.*
+> **// PROMPT: REFATORAÇÃO PARA DESIGN SYSTEM (TOKENIZAÇÃO)**
+>
+> **Contexto:** Tenho este componente funcional **[NOME]**, mas ele está visualmente "hardcoded" e inconsistente com o resto do site.
+>
+> **Entrada de Dados:**
+> * **Código do Componente:** [COLAR CÓDIGO]
+> * **Meus Tokens Globais (Exemplo):**
+>     * Cores: `--color-primary`, `--color-bg`, `--color-text`
+>     * Espaço: `--space-sm`, `--space-md`, `--space-lg`
+>     * Fonte: `--font-base`, `--font-heading`
+>
+> **Atue como:** Engenheiro de Design Systems.
+>
+> **Instruções:**
+> 1.  **Tokenização:** Substitua todos os valores hexadecimais, pixels e fontes fixas pelas Variáveis CSS fornecidas acima.
+> 2.  **Padronização de Classes:** Renomeie as classes CSS para seguir estritamente o padrão: `.componente__elemento--modificador` (BEM).
+> 3.  **Limpeza:** Remova qualquer estilo que seja "reset" ou global (ex: `box-sizing`, `font-family` no body) e mantenha apenas o estilo específico do componente.
+>
+> **Objetivo:** Quero poder mudar o arquivo `variables.css` e este componente se adaptar automaticamente ao novo tema.
+
+### 4. O POLIMENTO: Melhoria Visual e Micro-interações
+*Use para "Juice it up" e dar vida ao componente.*
+> **// PROMPT: ESTÉTICA & MICRO-INTERAÇÕES (JUICE IT UP)**
+>
+> **Contexto:** Este componente **[NOME]** funciona, mas está "morto" e sem graça. Preciso aumentar a percepção de qualidade (Look & Feel).
+>
+> **Atue como:** Motion Designer e Frontend Developer Criativo.
+>
+> **Instruções:**
+> 1.  **Feedback de Estado:** Adicione estilos visuais claros para `:hover`, `:active` e `:focus-visible`.
+> 2.  **Micro-interações:**
+>     * Adicione transições suaves (`transition`) para mudanças de cor e fundo.
+>     * Se for um botão ou card, adicione um efeito sutil de `transform: translateY(-2px)` e sombra no hover para dar profundidade.
+> 3.  **Performance de Animação:** Use APENAS `opacity` e `transform` para animações. Não anime `width`, `height` ou `margin`.
+> 4.  **Toque Moderno:** Sugira o uso de `backdrop-filter` (glassmorphism) ou sombras coloridas suaves (`box-shadow`) se fizer sentido com a estética atual.
+>
+> **Saída:** O CSS atualizado com comentários explicando onde a "mágica" acontece.
+
+---
+
+## 13. CONTRIBUIÇÃO
 *Protocolo para atualização deste documento.*
 
 *   **Pull Requests:** Aceitos apenas com testes de prompt validados.
