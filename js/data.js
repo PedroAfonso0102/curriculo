@@ -13,7 +13,7 @@ const PlaygroundData = {
             titleDefault: 'Simulação de Fluidos',
             subKey: 'exp_fluid_sub',
             subDefault: 'Interativo',
-            gradient: 'linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)'
+            gradient: 'linear-gradient(135deg, #7D7D7D 0%, #525252 100%)'
         },
         {
             id: 'gravity',
@@ -22,7 +22,7 @@ const PlaygroundData = {
             titleDefault: 'Gravidade',
             subKey: 'exp_gravity_sub',
             subDefault: 'Partículas',
-            gradient: 'linear-gradient(135deg, #f6d365 0%, #fda085 100%)'
+            gradient: 'linear-gradient(135deg, #B8860B 0%, #805C05 100%)'
         },
         {
             id: 'pendulum',
@@ -31,7 +31,7 @@ const PlaygroundData = {
             titleDefault: 'Pêndulo Duplo',
             subKey: 'exp_pendulum_sub',
             subDefault: 'Caos',
-            gradient: 'linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%)'
+            gradient: 'linear-gradient(135deg, #4A565E 0%, #2C353C 100%)'
         },
         {
             id: 'fourier',
@@ -40,7 +40,7 @@ const PlaygroundData = {
             titleDefault: 'Séries de Fourier',
             subKey: 'exp_fourier_sub',
             subDefault: 'Ondas',
-            gradient: 'linear-gradient(135deg, #fccb90 0%, #d57eeb 100%)'
+            gradient: 'linear-gradient(135deg, #A66444 0%, #754229 100%)'
         },
         {
             id: 'harmonic',
@@ -49,7 +49,7 @@ const PlaygroundData = {
             titleDefault: 'Movimento Harmônico',
             subKey: 'exp_harmonic_sub',
             subDefault: 'Molas',
-            gradient: 'linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%)'
+            gradient: 'linear-gradient(135deg, #6E6056 0%, #453B34 100%)'
         },
         {
             id: 'chaos',
@@ -58,7 +58,7 @@ const PlaygroundData = {
             titleDefault: 'Jogo do Caos',
             subKey: 'exp_chaos_sub',
             subDefault: 'Fractais',
-            gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)'
+            gradient: 'linear-gradient(135deg, #353b48 0%, #1e272e 100%)'
         },
         {
             id: 'lissajous',
@@ -67,7 +67,7 @@ const PlaygroundData = {
             titleDefault: 'Curvas de Lissajous',
             subKey: 'exp_lissajous_sub',
             subDefault: 'Curvas',
-            gradient: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)'
+            gradient: 'linear-gradient(135deg, #806548 0%, #523F2A 100%)'
         }
     ]
 };
