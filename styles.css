@@ -39,6 +39,15 @@
     --font-lg: 24px;   /* Section Headers, H2 (Increased from 20px) */
     --font-xl: 32px;   /* Major highlights */
     --font-xxl: 36px;  /* Page Title H1 (Decreased from 40px for balance) */
+
+    /* --- Z-INDEX LAYERS --- */
+    --z-below: -1;
+    --z-base: 1;
+    --z-sticky: 100;    /* Headers, sticky elements */
+    --z-dropdown: 200;
+    --z-overlay: 300;   /* Backdrops */
+    --z-modal: 400;     /* Dialogs, Mobile Menus */
+    --z-toast: 500;     /* Notifications */
     
     /* --- LAYOUT & SHAPE --- */
     --radius-sm: 6px;
@@ -141,7 +150,7 @@ a, button, input {
 .site-header {
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: var(--z-sticky);
     background: var(--bg-overlay);
     backdrop-filter: saturate(180%) blur(20px);
     -webkit-backdrop-filter: saturate(180%) blur(20px);
@@ -258,7 +267,7 @@ a, button, input {
     width: 100%;
     height: 100%;
     background: var(--bg-app);
-    z-index: 2000;
+    z-index: var(--z-modal);
     display: none;
     opacity: 0;
     transition: opacity 0.2s ease;
