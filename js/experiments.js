@@ -348,8 +348,9 @@ const Experiments = {
         let particles = [];
         let params = {
             G: options.G || 0.5,
-                particleCount: options.particleCount || 6,
-            trailAlpha: options.trailAlpha || 0.2
+            particleCount: options.particleCount || 6,
+            trailAlpha: options.trailAlpha || 0.2,
+            trails: options.trails !== undefined ? options.trails : 1
         };
 
         class Particle {
@@ -388,13 +389,15 @@ const Experiments = {
             }
 
             draw() {
-                ctx.beginPath();
-                ctx.strokeStyle = this.color;
-                ctx.globalAlpha = 0.4;
-                ctx.lineWidth = 1;
-                for (let p of this.path) ctx.lineTo(p.x, p.y);
-                ctx.stroke();
-                ctx.globalAlpha = 1.0;
+                if (params.trails) {
+                    ctx.beginPath();
+                    ctx.strokeStyle = this.color;
+                    ctx.globalAlpha = 0.4;
+                    ctx.lineWidth = 1;
+                    for (let p of this.path) ctx.lineTo(p.x, p.y);
+                    ctx.stroke();
+                    ctx.globalAlpha = 1.0;
+                }
 
                 ctx.beginPath();
                 ctx.fillStyle = this.color;
@@ -425,8 +428,12 @@ const Experiments = {
         let animationId;
         function animate() {
             const colors = ExperimentTheme.get();
-            ctx.fillStyle = `rgba(${colors.gravityFadeRGB},${params.trailAlpha})`; // Fade trail per theme
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            if (params.trails) {
+                ctx.fillStyle = `rgba(${colors.gravityFadeRGB},${params.trailAlpha})`; // Fade trail per theme
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+            } else {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
 
             particles.forEach(p => {
                 p.update();
@@ -525,7 +532,8 @@ const Experiments = {
             m1: options.m1 || 10,
             m2: options.m2 || 10,
             g: options.g || 1,
-            damping: options.damping || 0.999
+            damping: options.damping || 0.999,
+            traceOpacity: options.traceOpacity || 0.3
         };
         let r1 = params.r1, r2 = params.r2;
         let m1 = params.m1, m2 = params.m2;
@@ -558,7 +566,13 @@ const Experiments = {
 
             // Draw
             const colors = ExperimentTheme.get();
-            ctx.fillStyle = colors.pendulumFade;
+            // Use traceOpacity for the fade effect
+            // We need to parse the RGB from the theme or just use white/black with opacity
+            // The theme provides 'pendulumFade' which is rgba(255,255,255,0.3). 
+            // We want to override the alpha.
+            // Let's assume light mode white fade for now or use the theme color but replace alpha?
+            // Simpler: just use fillStyle with the opacity.
+            ctx.fillStyle = `rgba(${colors.gravityFadeRGB}, ${params.traceOpacity})`;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             ctx.save();
@@ -620,7 +634,8 @@ const Experiments = {
         let params = {
             maxTerms: options.maxTerms || 5,
             speed: options.speed || 0.02,
-                amplitude: options.amplitude || 50
+            amplitude: options.amplitude || 50,
+            hue: options.hue || 0
         };
 
         let time = 0;
@@ -669,7 +684,11 @@ const Experiments = {
             ctx.stroke();
 
             ctx.beginPath();
-            ctx.strokeStyle = '#1a73e8';
+            if (params.hue > 0) {
+                ctx.strokeStyle = `hsl(${params.hue}, 100%, 50%)`;
+            } else {
+                ctx.strokeStyle = '#1a73e8';
+            }
             ctx.lineWidth = 2;
             for (let i = 0; i < wave.length; i++) {
                 ctx.lineTo(i + 350, wave[i]);
@@ -709,16 +728,16 @@ const Experiments = {
             k: 0.1,
             damping: 0.98,
             mass: 10,
-            gravity: 0.5
+            gravity: 0.5,
+            count: 5
         }, options);
 
         let animationId;
         let particles = [];
-        const numParticles = 5;
         const spacing = 50;
 
         // Initialize chain
-        for(let i=0; i<numParticles; i++) {
+        for(let i=0; i<params.count; i++) {
             particles.push({
                 x: canvas.width/2,
                 y: 50 + i * spacing,
@@ -838,8 +857,10 @@ const Experiments = {
                 window.removeEventListener('mouseup', onMouseUp);
             },
             setOptions: (newOpts) => {
+                const prevCount = params.count;
                 params = Object.assign(params, newOpts);
-                return { requiresReinit: false };
+                const requiresReinit = prevCount !== params.count;
+                return { requiresReinit };
             }
         };
     },
@@ -854,7 +875,8 @@ const Experiments = {
         let params = Object.assign({
             vertices: 3,
             ratio: 0.5,
-            speed: 100
+            speed: 100,
+            size: 1
         }, options);
 
         let animationId;
@@ -888,7 +910,7 @@ const Experiments = {
                 const target = points[Math.floor(Math.random() * points.length)];
                 currentPoint.x = currentPoint.x + (target.x - currentPoint.x) * params.ratio;
                 currentPoint.y = currentPoint.y + (target.y - currentPoint.y) * params.ratio;
-                ctx.fillRect(currentPoint.x, currentPoint.y, 1, 1);
+                ctx.fillRect(currentPoint.x, currentPoint.y, params.size, params.size);
             }
             animationId = requestAnimationFrame(loop);
         }
@@ -918,7 +940,8 @@ const Experiments = {
             freqX: 3,
             freqY: 2,
             speed: 0.01,
-            trail: 500
+            trail: 500,
+            width: 2
         }, options);
 
         let animationId;
@@ -945,7 +968,7 @@ const Experiments = {
             if(path.length > 1) {
                 ctx.beginPath();
                 ctx.strokeStyle = '#1a73e8';
-                ctx.lineWidth = 2;
+                ctx.lineWidth = params.width;
                 ctx.moveTo(path[0].x, path[0].y);
                 for(let i=1; i<path.length; i++) {
                     ctx.lineTo(path[i].x, path[i].y);

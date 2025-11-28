@@ -131,6 +131,7 @@
             <header class="resume-header">
                 <h1>Pedro Afonso Pinheiro de Paula</h1>
                 <div class="role" data-i18n="role">Gestão Comercial & Desenvolvimento Digital</div>
+                <div class="header-gradient-bar"></div>
                 <div class="contact-info">
                     <div class="contact-item">
                         <svg class="icon"><use href="#icon-location"></use></svg>
@@ -153,6 +154,7 @@
                         <a href="https://www.linkedin.com/in/pedro-afonso-d-69b617100/" target="_blank" rel="noopener">LinkedIn</a>
                     </div>
                 </div>
+                <div class="header-gradient-bar-bottom"></div>
             </header>
 
             <section>
@@ -328,15 +330,15 @@
             <!-- Dashboard Grid (Tab Content: Experiments) -->
             <div id="tab-experiments" class="pg-tab-content active">
                 <div id="playground-dashboard">
-                    <div class="experiments-grid">
+                    <div class="experiments-grid" style="justify-content: center;">
                         <!-- Fluid -->
                         <div class="app-item" onclick="openExperiment('fluid')">
                             <div class="app-icon">
                                 <svg class="icon-lg"><use href="#icon-fluid"></use></svg>
                             </div>
                             <div class="app-info">
-                                <h3 data-i18n="exp_fluid_title">Simulação de Fluidos</h3>
-                                <p data-i18n="exp_fluid_desc">Interativo</p>
+                                <h3>Simulação de Fluidos</h3>
+                                <p>Interativo</p>
                             </div>
                         </div>
 
@@ -346,8 +348,8 @@
                                 <svg class="icon-lg"><use href="#icon-gravity"></use></svg>
                             </div>
                             <div class="app-info">
-                                <h3 data-i18n="exp_gravity_title">Gravidade</h3>
-                                <p data-i18n="exp_gravity_desc">Partículas</p>
+                                <h3>Gravidade</h3>
+                                <p>Partículas</p>
                             </div>
                         </div>
 
@@ -357,8 +359,8 @@
                                 <svg class="icon-lg"><use href="#icon-pendulum"></use></svg>
                             </div>
                             <div class="app-info">
-                                <h3 data-i18n="exp_pendulum_title">Pêndulo Duplo</h3>
-                                <p data-i18n="exp_pendulum_desc">Caos</p>
+                                <h3>Pêndulo Duplo</h3>
+                                <p>Caos</p>
                             </div>
                         </div>
 
@@ -368,8 +370,8 @@
                                 <svg class="icon-lg"><use href="#icon-wave"></use></svg>
                             </div>
                             <div class="app-info">
-                                <h3 data-i18n="exp_fourier_title">Séries de Fourier</h3>
-                                <p data-i18n="exp_fourier_desc">Ondas</p>
+                                <h3>Séries de Fourier</h3>
+                                <p>Ondas</p>
                             </div>
                         </div>
 
@@ -379,8 +381,8 @@
                                 <svg class="icon-lg"><use href="#icon-harmonic"></use></svg>
                             </div>
                             <div class="app-info">
-                                <h3 data-i18n="exp_harmonic_title">Movimento Harmônico</h3>
-                                <p data-i18n="exp_harmonic_desc">Molas</p>
+                                <h3>Movimento Harmônico</h3>
+                                <p>Molas</p>
                             </div>
                         </div>
 
@@ -390,8 +392,8 @@
                                 <svg class="icon-lg"><use href="#icon-chaos"></use></svg>
                             </div>
                             <div class="app-info">
-                                <h3 data-i18n="exp_chaos_title">Jogo do Caos</h3>
-                                <p data-i18n="exp_chaos_desc">Fractais</p>
+                                <h3>Jogo do Caos</h3>
+                                <p>Fractais</p>
                             </div>
                         </div>
 
@@ -401,8 +403,8 @@
                                 <svg class="icon-lg"><use href="#icon-lissajous"></use></svg>
                             </div>
                             <div class="app-info">
-                                <h3 data-i18n="exp_lissajous_title">Curvas de Lissajous</h3>
-                                <p data-i18n="exp_lissajous_desc">Curvas</p>
+                                <h3>Curvas de Lissajous</h3>
+                                <p>Curvas</p>
                             </div>
                         </div>
                     </div>
@@ -417,19 +419,22 @@
                     <div id="fluid-view" class="experiment-view" style="display:none;">
                         <div class="exp-layout">
                             <div class="exp-main">
-                                <h2>Fluid Simulation</h2>
+                                <h2>Simulação de Fluidos</h2>
                                 <canvas id="fluidCanvas"></canvas>
                             </div>
                             <aside class="exp-sidebar">
                                 <div class="exp-controls">
-                                    <label><span data-i18n="ctrl_resolution">Resolution</span> <span class="val" id="fluid-resolution-label">128</span></label>
+                                    <label><span data-i18n="ctrl_resolution">Resolução</span> <span class="val" id="fluid-resolution-label">128</span></label>
                                     <input class="exp-control" type="range" name="resolution" min="32" max="256" step="8" value="128">
 
-                                    <label><span data-i18n="ctrl_viscosity">Viscosity</span> <span class="val" id="fluid-visc-label">0.00005</span></label>
+                                    <label><span data-i18n="ctrl_viscosity">Viscosidade</span> <span class="val" id="fluid-visc-label">0.00005</span></label>
                                     <input class="exp-control" type="range" name="visc" min="0" max="0.001" step="0.00001" value="0.00005">
 
-                                    <label><span data-i18n="ctrl_emit_strength">Emit Strength</span> <span class="val" id="fluid-emit-label">100</span></label>
+                                    <label><span data-i18n="ctrl_emit_strength">Força de Emissão</span> <span class="val" id="fluid-emit-label">100</span></label>
                                     <input class="exp-control" type="range" name="emit" min="10" max="1000" step="10" value="100">
+                                    
+                                    <label>Difusão <span class="val" id="fluid-diff-label">0.0001</span></label>
+                                    <input class="exp-control" type="range" name="diff" min="0" max="0.01" step="0.0001" value="0.0001">
                                 </div>
                             </aside>
                         </div>
@@ -438,16 +443,19 @@
                     <div id="gravity-view" class="experiment-view" style="display:none;">
                          <div class="exp-layout">
                             <div class="exp-main">
-                                <h2>Gravity System</h2>
+                                <h2>Sistema Gravitacional</h2>
                                 <canvas id="gravityCanvas"></canvas>
                             </div>
                             <aside class="exp-sidebar">
                                 <div class="exp-controls">
-                                    <label><span data-i18n="ctrl_gravity">Gravity</span> <span class="val" id="gravity-G-label">0.5</span></label>
+                                    <label><span data-i18n="ctrl_gravity">Gravidade</span> <span class="val" id="gravity-G-label">0.5</span></label>
                                     <input class="exp-control" type="range" name="G" min="0" max="2" step="0.01" value="0.5">
 
-                                    <label><span data-i18n="ctrl_particles">Particles</span> <span class="val" id="gravity-particleCount-label">6</span></label>
+                                    <label><span data-i18n="ctrl_particles">Partículas</span> <span class="val" id="gravity-particleCount-label">6</span></label>
                                     <input class="exp-control" type="range" name="particleCount" min="1" max="50" step="1" value="6">
+                                    
+                                    <label>Rastro <span class="val" id="gravity-trails-label">1</span></label>
+                                    <input class="exp-control" type="range" name="trails" min="0" max="1" step="1" value="1">
                                 </div>
                             </aside>
                         </div>
@@ -456,12 +464,12 @@
                     <div id="pendulum-view" class="experiment-view" style="display:none;">
                         <div class="exp-layout">
                             <div class="exp-main">
-                                <h2>Double Pendulum</h2>
+                                <h2>Pêndulo Duplo</h2>
                                 <canvas id="pendulumCanvas"></canvas>
                             </div>
                              <aside class="exp-sidebar">
                                 <div class="exp-controls">
-                                    <label><span data-i18n="ctrl_mass1">Mass 1</span> <span class="val" id="pendulum-m1-label">10</span></label>
+                                    <label><span data-i18n="ctrl_mass1">Massa 1</span> <span class="val" id="pendulum-m1-label">10</span></label>
                                     <input class="exp-control" type="range" name="m1" min="1" max="40" step="1" value="10">
 
                                     <input type="hidden" name="m2" value="10">
@@ -470,20 +478,23 @@
                                     <input type="hidden" name="damping" value="0.999">
                                     <input type="hidden" name="g" value="1">
 
-                                    <label><span data-i18n="ctrl_mass2">Mass 2</span> <span class="val" id="pendulum-m2-label">10</span></label>
+                                    <label><span data-i18n="ctrl_mass2">Massa 2</span> <span class="val" id="pendulum-m2-label">10</span></label>
                                     <input class="exp-control" type="range" name="m2" min="1" max="40" step="1" value="10">
 
-                                    <label><span data-i18n="ctrl_length1">Length 1</span> <span class="val" id="pendulum-r1-label">100</span></label>
+                                    <label><span data-i18n="ctrl_length1">Comprimento 1</span> <span class="val" id="pendulum-r1-label">100</span></label>
                                     <input class="exp-control" type="range" name="r1" min="50" max="220" step="1" value="100">
 
-                                    <label><span data-i18n="ctrl_length2">Length 2</span> <span class="val" id="pendulum-r2-label">100</span></label>
+                                    <label><span data-i18n="ctrl_length2">Comprimento 2</span> <span class="val" id="pendulum-r2-label">100</span></label>
                                     <input class="exp-control" type="range" name="r2" min="50" max="220" step="1" value="100">
 
-                                    <label><span data-i18n="ctrl_damping">Damping</span> <span class="val" id="pendulum-damping-label">0.999</span></label>
+                                    <label><span data-i18n="ctrl_damping">Amortecimento</span> <span class="val" id="pendulum-damping-label">0.999</span></label>
                                     <input class="exp-control" type="range" name="damping" min="0.9" max="0.9999" step="0.0001" value="0.999">
 
-                                    <label><span data-i18n="ctrl_g">Gravity</span> <span class="val" id="pendulum-g-label">1</span></label>
+                                    <label><span data-i18n="ctrl_g">Gravidade</span> <span class="val" id="pendulum-g-label">1</span></label>
                                     <input class="exp-control" type="range" name="g" min="0" max="5" step="0.1" value="1">
+                                    
+                                    <label>Opacidade Rastro <span class="val" id="pendulum-traceOpacity-label">0.3</span></label>
+                                    <input class="exp-control" type="range" name="traceOpacity" min="0.01" max="1" step="0.01" value="0.3">
                                 </div>
                             </aside>
                         </div>
@@ -492,19 +503,22 @@
                     <div id="fourier-view" class="experiment-view" style="display:none;">
                          <div class="exp-layout">
                             <div class="exp-main">
-                                <h2>Fourier Series</h2>
+                                <h2>Séries de Fourier</h2>
                                 <canvas id="fourierCanvas"></canvas>
                             </div>
                             <aside class="exp-sidebar">
                                 <div class="exp-controls">
-                                    <label><span data-i18n="ctrl_terms">Terms</span> <span class="val" id="fourier-maxTerms-label">5</span></label>
+                                    <label><span data-i18n="ctrl_terms">Termos</span> <span class="val" id="fourier-maxTerms-label">5</span></label>
                                     <input class="exp-control" type="range" name="maxTerms" min="1" max="60" step="1" value="5">
 
-                                    <label><span data-i18n="ctrl_speed">Speed</span> <span class="val" id="fourier-speed-label">0.02</span></label>
+                                    <label><span data-i18n="ctrl_speed">Velocidade</span> <span class="val" id="fourier-speed-label">0.02</span></label>
                                     <input class="exp-control" type="range" name="speed" min="0.005" max="0.1" step="0.001" value="0.02">
 
                                     <label><span data-i18n="ctrl_amplitude">Amplitude</span> <span class="val" id="fourier-amplitude-label">50</span></label>
                                     <input class="exp-control" type="range" name="amplitude" min="10" max="200" step="1" value="50">
+                                    
+                                    <label>Cor (Hue) <span class="val" id="fourier-hue-label">210</span></label>
+                                    <input class="exp-control" type="range" name="hue" min="0" max="360" step="1" value="210">
                                 </div>
                             </aside>
                         </div>
@@ -513,22 +527,25 @@
                     <div id="harmonic-view" class="experiment-view" style="display:none;">
                         <div class="exp-layout">
                            <div class="exp-main">
-                               <h2>Harmonic Motion</h2>
+                               <h2>Movimento Harmônico</h2>
                                <canvas id="harmonicCanvas"></canvas>
                            </div>
                            <aside class="exp-sidebar">
                                <div class="exp-controls">
-                                   <label>Stiffness (k) <span class="val" id="harmonic-k-label">0.1</span></label>
+                                   <label>Rigidez (k) <span class="val" id="harmonic-k-label">0.1</span></label>
                                    <input class="exp-control" type="range" name="k" min="0.01" max="0.5" step="0.01" value="0.1">
 
-                                   <label>Damping <span class="val" id="harmonic-damping-label">0.98</span></label>
+                                   <label>Amortecimento <span class="val" id="harmonic-damping-label">0.98</span></label>
                                    <input class="exp-control" type="range" name="damping" min="0.90" max="0.999" step="0.001" value="0.98">
 
-                                   <label>Mass <span class="val" id="harmonic-mass-label">10</span></label>
+                                   <label>Massa <span class="val" id="harmonic-mass-label">10</span></label>
                                    <input class="exp-control" type="range" name="mass" min="1" max="50" step="1" value="10">
 
-                                   <label>Gravity <span class="val" id="harmonic-gravity-label">0.5</span></label>
+                                   <label>Gravidade <span class="val" id="harmonic-gravity-label">0.5</span></label>
                                    <input class="exp-control" type="range" name="gravity" min="0" max="2" step="0.1" value="0.5">
+                                   
+                                   <label>Qtd. Partículas <span class="val" id="harmonic-count-label">5</span></label>
+                                   <input class="exp-control" type="range" name="count" min="2" max="15" step="1" value="5">
                                </div>
                            </aside>
                        </div>
@@ -537,19 +554,22 @@
                    <div id="chaos-view" class="experiment-view" style="display:none;">
                         <div class="exp-layout">
                            <div class="exp-main">
-                               <h2>Chaos Game</h2>
+                               <h2>Jogo do Caos</h2>
                                <canvas id="chaosCanvas"></canvas>
                            </div>
                            <aside class="exp-sidebar">
                                <div class="exp-controls">
-                                   <label>Vertices <span class="val" id="chaos-vertices-label">3</span></label>
+                                   <label>Vértices <span class="val" id="chaos-vertices-label">3</span></label>
                                    <input class="exp-control" type="range" name="vertices" min="3" max="8" step="1" value="3">
 
-                                   <label>Ratio <span class="val" id="chaos-ratio-label">0.5</span></label>
+                                   <label>Razão <span class="val" id="chaos-ratio-label">0.5</span></label>
                                    <input class="exp-control" type="range" name="ratio" min="0.1" max="0.9" step="0.01" value="0.5">
 
-                                   <label>Speed (pts/frame) <span class="val" id="chaos-speed-label">100</span></label>
+                                   <label>Velocidade <span class="val" id="chaos-speed-label">100</span></label>
                                    <input class="exp-control" type="range" name="speed" min="1" max="1000" step="10" value="100">
+                                   
+                                   <label>Tamanho Ponto <span class="val" id="chaos-size-label">1</span></label>
+                                   <input class="exp-control" type="range" name="size" min="0.5" max="5" step="0.5" value="1">
                                </div>
                            </aside>
                        </div>
@@ -558,7 +578,7 @@
                    <div id="lissajous-view" class="experiment-view" style="display:none;">
                         <div class="exp-layout">
                            <div class="exp-main">
-                               <h2>Lissajous Curves</h2>
+                               <h2>Curvas de Lissajous</h2>
                                <canvas id="lissajousCanvas"></canvas>
                            </div>
                            <aside class="exp-sidebar">
@@ -569,11 +589,14 @@
                                    <label>Freq Y <span class="val" id="lissajous-freqY-label">2</span></label>
                                    <input class="exp-control" type="range" name="freqY" min="1" max="20" step="1" value="2">
 
-                                   <label>Phase Speed <span class="val" id="lissajous-speed-label">0.01</span></label>
+                                   <label>Vel. Fase <span class="val" id="lissajous-speed-label">0.01</span></label>
                                    <input class="exp-control" type="range" name="speed" min="0" max="0.1" step="0.001" value="0.01">
 
-                                   <label>Trail Length <span class="val" id="lissajous-trail-label">500</span></label>
+                                   <label>Rastro <span class="val" id="lissajous-trail-label">500</span></label>
                                    <input class="exp-control" type="range" name="trail" min="100" max="2000" step="100" value="500">
+                                   
+                                   <label>Espessura <span class="val" id="lissajous-width-label">2</span></label>
+                                   <input class="exp-control" type="range" name="width" min="1" max="10" step="1" value="2">
                                </div>
                            </aside>
                        </div>

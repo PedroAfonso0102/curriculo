@@ -57,21 +57,6 @@ window.translations = {
         tab_comex_desc: "Em breve: Feed de notícias sobre Comércio Exterior.",
         tab_intl_title: "Notícias Internacionais",
         tab_intl_desc: "Em breve: Feed de notícias internacionais.",
-        // Experiments
-        exp_fluid_title: "Simulação de Fluidos",
-        exp_fluid_desc: "Interativo",
-        exp_gravity_title: "Gravidade",
-        exp_gravity_desc: "Partículas",
-        exp_pendulum_title: "Pêndulo Duplo",
-        exp_pendulum_desc: "Caos",
-        exp_fourier_title: "Séries de Fourier",
-        exp_fourier_desc: "Ondas",
-        exp_harmonic_title: "Movimento Harmônico",
-        exp_harmonic_desc: "Molas",
-        exp_chaos_title: "Jogo do Caos",
-        exp_chaos_desc: "Fractais",
-        exp_lissajous_title: "Curvas de Lissajous",
-        exp_lissajous_desc: "Curvas",
         // Playground Controls
         ctrl_resolution: "Resolução",
         ctrl_viscosity: "Viscosidade",
@@ -649,8 +634,7 @@ function initExperimentLogic(type, view) {
                 const name = ctrl.name;
                 let val = ctrl.value;
                 if (val !== undefined && val !== null && val !== '') {
-                    if (val.indexOf('.') >= 0) val = parseFloat(val);
-                    else val = parseFloat(val);
+                    val = parseFloat(val);
                 }
                 opts[name] = val;
                 const label = view.querySelector(`#${type}-${name}-label`);
@@ -676,35 +660,46 @@ function initExperimentLogic(type, view) {
             }
         };
 
+        // Initial start
         startWithOptions(readOptions());
 
+        // Cleanup old listeners
         if (view._expBound && Array.isArray(view._expBound)) {
             view._expBound.forEach(b => b.el.removeEventListener('input', b.handler));
         }
+        
         const bound = [];
-        view.querySelectorAll('.exp-control').forEach(ctrl => {
-            const handler = debounce(() => {
-                const opts = readOptions();
-                if (Experiments && Experiments.currentInstance && typeof Experiments.currentInstance.setOptions === 'function') {
-                    try {
-                        const res = Experiments.currentInstance.setOptions(opts);
-                        if (res && res.requiresReinit) {
-                            startWithOptions(opts);
-                        }
-                        return;
-                    } catch (err) {
-                        console.warn('setOptions failed, reinitializing:', err);
+        
+        // Debounced logic update
+        const updateLogic = debounce((opts) => {
+            if (Experiments && Experiments.currentInstance && typeof Experiments.currentInstance.setOptions === 'function') {
+                try {
+                    const res = Experiments.currentInstance.setOptions(opts);
+                    if (res && res.requiresReinit) {
                         startWithOptions(opts);
-                        return;
                     }
+                    return;
+                } catch (err) {
+                    console.warn('setOptions failed, reinitializing:', err);
+                    startWithOptions(opts);
+                    return;
                 }
-                startWithOptions(opts);
-            }, 250);
+            }
+            startWithOptions(opts);
+        }, 250);
+
+        // Bind controls
+        view.querySelectorAll('.exp-control').forEach(ctrl => {
+            const handler = () => {
+                const opts = readOptions(); // Updates labels immediately
+                updateLogic(opts);          // Updates simulation with delay
+            };
             ctrl.addEventListener('input', handler);
             bound.push({ el: ctrl, handler });
         });
+        
         view._expBound = bound;
-}
+    }
 
 function closeExperiment() {
     const dashboard = document.getElementById('playground-dashboard');
