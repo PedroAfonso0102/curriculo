@@ -1,3 +1,8 @@
+/**
+ * Module responsible for reading and caching current theme colors from CSS variables.
+ * Used by canvas experiments to adapt colors (e.g., in Dark Mode).
+ * @module ExperimentTheme
+ */
 const ExperimentTheme = (() => {
     const read = () => {
         const styles = getComputedStyle(document.documentElement);
@@ -18,17 +23,37 @@ const ExperimentTheme = (() => {
     });
 
     return {
+        /**
+         * Gets the current theme configuration.
+         * @returns {{gravityFadeRGB: string, pendulumFade: string, textMuted: string}} The theme colors.
+         */
         get() {
             return cache;
         }
     };
 })();
 
+/**
+ * Collection of interactive canvas experiments (Fluid, Gravity, Pendulum, etc.).
+ * Each method initializes an experiment on a given canvas.
+ * @namespace Experiments
+ */
 const Experiments = {
+    /**
+     * ID of the currently active experiment.
+     * @type {string|null}
+     */
     activeId: null,
-    // holds currently running instance { cleanup: fn, setOptions: fn }
+
+    /**
+     * Holds the currently running experiment instance.
+     * @type {{cleanup: Function, setOptions: Function}|null}
+     */
     currentInstance: null,
 
+    /**
+     * Stops and cleans up the currently running experiment.
+     */
     stopCurrent: function() {
         if (this.currentInstance) {
             try {
@@ -41,6 +66,20 @@ const Experiments = {
         this.activeId = null;
     },
 
+    /**
+     * Initializes the Fluid Simulation experiment.
+     * A basic Navier-Stokes solver for incompressible fluids.
+     * @param {string} canvasId - The ID of the canvas element.
+     * @param {Object} options - Configuration options.
+     * @param {number} [options.resolution=128] - Grid resolution.
+     * @param {number} [options.iter=4] - Solver iterations.
+     * @param {number} [options.dt=0.1] - Time step.
+     * @param {number} [options.diff=0.00005] - Diffusion rate.
+     * @param {number} [options.visc=0.00005] - Viscosity.
+     * @param {number} [options.emit=100] - Amount of density added on interaction.
+     * @param {number} [options.decay=0.995] - Density decay factor.
+     * @returns {{cleanup: Function, setOptions: Function}} Control object.
+     */
     fluid: function(canvasId, options = {}) {
         const canvas = document.getElementById(canvasId);
         if (!canvas) return;
@@ -337,6 +376,17 @@ const Experiments = {
         return instance;
     },
 
+    /**
+     * Initializes the Gravity Simulation experiment.
+     * Simulates particles interacting with mutual gravitational forces.
+     * @param {string} canvasId - The ID of the canvas element.
+     * @param {Object} options - Configuration options.
+     * @param {number} [options.G=0.5] - Gravitational constant.
+     * @param {number} [options.particleCount=6] - Number of particles.
+     * @param {number} [options.trailAlpha=0.2] - Opacity of trails.
+     * @param {number} [options.trails=1] - Whether trails are enabled (1) or not (0).
+     * @returns {{cleanup: Function, setOptions: Function}} Control object.
+     */
     gravity: function(canvasId, options = {}) {
         const canvas = document.getElementById(canvasId);
         if (!canvas) return;
@@ -353,6 +403,9 @@ const Experiments = {
             trails: options.trails !== undefined ? options.trails : 1
         };
 
+        /**
+         * Represents a particle in the gravity simulation.
+         */
         class Particle {
             constructor(x, y, vx, vy, mass, color) {
                 this.x = x;
@@ -518,6 +571,20 @@ const Experiments = {
         return instance;
     },
 
+    /**
+     * Initializes the Double Pendulum experiment.
+     * Simulates chaotic motion of a double pendulum system.
+     * @param {string} canvasId - The ID of the canvas element.
+     * @param {Object} options - Configuration options.
+     * @param {number} [options.r1=100] - Length of first arm.
+     * @param {number} [options.r2=100] - Length of second arm.
+     * @param {number} [options.m1=10] - Mass of first bob.
+     * @param {number} [options.m2=10] - Mass of second bob.
+     * @param {number} [options.g=1] - Gravity.
+     * @param {number} [options.damping=0.999] - Damping factor.
+     * @param {number} [options.traceOpacity=0.3] - Opacity of the motion trace.
+     * @returns {{cleanup: Function, setOptions: Function}} Control object.
+     */
     pendulum: function(canvasId, options = {}) {
         const canvas = document.getElementById(canvasId);
         if (!canvas) return;
@@ -623,6 +690,17 @@ const Experiments = {
         return instance;
     },
 
+    /**
+     * Initializes the Fourier Series experiment.
+     * Visualizes the construction of a square wave using epicycles.
+     * @param {string} canvasId - The ID of the canvas element.
+     * @param {Object} options - Configuration options.
+     * @param {number} [options.maxTerms=5] - Number of Fourier terms.
+     * @param {number} [options.speed=0.02] - Animation speed.
+     * @param {number} [options.amplitude=50] - Wave amplitude.
+     * @param {number} [options.hue=0] - Color hue (0-360).
+     * @returns {{cleanup: Function, setOptions: Function}} Control object.
+     */
     fourier: function(canvasId, options = {}) {
         const canvas = document.getElementById(canvasId);
         if (!canvas) return;
@@ -717,6 +795,18 @@ const Experiments = {
         return instance;
     },
 
+    /**
+     * Initializes the Harmonic Motion experiment.
+     * Simulates a chain of particles connected by springs.
+     * @param {string} canvasId - The ID of the canvas element.
+     * @param {Object} options - Configuration options.
+     * @param {number} [options.k=0.1] - Spring stiffness.
+     * @param {number} [options.damping=0.98] - Damping factor.
+     * @param {number} [options.mass=10] - Particle mass.
+     * @param {number} [options.gravity=0.5] - Gravity.
+     * @param {number} [options.count=5] - Number of particles.
+     * @returns {{cleanup: Function, setOptions: Function}} Control object.
+     */
     harmonic: function(canvasId, options = {}) {
         const canvas = document.getElementById(canvasId);
         if (!canvas) return;
@@ -865,6 +955,17 @@ const Experiments = {
         };
     },
 
+    /**
+     * Initializes the Chaos Game experiment.
+     * Generates a fractal pattern by jumping between vertices.
+     * @param {string} canvasId - The ID of the canvas element.
+     * @param {Object} options - Configuration options.
+     * @param {number} [options.vertices=3] - Number of polygon vertices.
+     * @param {number} [options.ratio=0.5] - Distance ratio to jump.
+     * @param {number} [options.speed=100] - Points drawn per frame.
+     * @param {number} [options.size=1] - Size of each point.
+     * @returns {{cleanup: Function, setOptions: Function}} Control object.
+     */
     chaos: function(canvasId, options = {}) {
         const canvas = document.getElementById(canvasId);
         if (!canvas) return;
@@ -929,6 +1030,18 @@ const Experiments = {
         };
     },
 
+    /**
+     * Initializes the Lissajous Curves experiment.
+     * Draws a curve created by the intersection of two sinusoidal motions.
+     * @param {string} canvasId - The ID of the canvas element.
+     * @param {Object} options - Configuration options.
+     * @param {number} [options.freqX=3] - Frequency on X axis.
+     * @param {number} [options.freqY=2] - Frequency on Y axis.
+     * @param {number} [options.speed=0.01] - Phase change speed.
+     * @param {number} [options.trail=500] - Trail length.
+     * @param {number} [options.width=2] - Line width.
+     * @returns {{cleanup: Function, setOptions: Function}} Control object.
+     */
     lissajous: function(canvasId, options = {}) {
         const canvas = document.getElementById(canvasId);
         if (!canvas) return;

@@ -1,4 +1,9 @@
 
+/**
+ * Data definition for available services in the "Hire Me" section.
+ * Contains translation keys, configuration for pricing/deadlines, and UI hints.
+ * @type {Array<Object>}
+ */
 const servicesData = [
     {
         id: 'landing-page',
@@ -86,13 +91,28 @@ const servicesData = [
     }
 ];
 
+/**
+ * Manages the logic for the "Hire Me" view, including the service catalog,
+ * detail views, forms, and WhatsApp integration.
+ * @namespace HireMe
+ */
 const HireMe = {
+    /**
+     * Internal state of the Hire Me view.
+     * @property {string} currentStep - The current active step ('catalog', 'details', 'form', 'schedule', 'confirmation').
+     * @property {Object|null} selectedService - The currently selected service object from `servicesData`.
+     * @property {Object} formData - Collected user input data.
+     */
     state: {
         currentStep: 'catalog', // catalog, details, form, schedule, confirmation
         selectedService: null,
         formData: {}
     },
 
+    /**
+     * Initializes the Hire Me section by rendering the service catalog.
+     * Should be called when the view becomes active.
+     */
     init() {
         this.container = document.getElementById('hire-me-content');
         if (!this.container) return;
@@ -100,6 +120,13 @@ const HireMe = {
     },
 
     // --- UTILS ---
+
+    /**
+     * Translates a given key using the global `window.translations` object.
+     * Defaults to the key itself if no translation is found.
+     * @param {string} key - The translation key.
+     * @returns {string} The translated text.
+     */
     t(key) {
         const lang = document.documentElement.lang || 'pt';
         if (window.translations && window.translations[lang] && window.translations[lang][key]) {
@@ -108,11 +135,22 @@ const HireMe = {
         return key; // Fallback
     },
 
+    /**
+     * Formats the price display for a service based on available keys or hardcoded values.
+     * @param {Object} service - The service object.
+     * @returns {string} The formatted price string.
+     */
     getServicePrice(service) {
         if (service.priceDisplayKey) return this.t(service.priceDisplayKey);
         return service.priceDisplay || '';
     },
 
+    /**
+     * Formats the deadline display for a service.
+     * Handles unit translation (e.g., "days", "hours").
+     * @param {Object} service - The service object.
+     * @returns {string} The formatted deadline string.
+     */
     getServiceDeadline(service) {
         if (service.deadlineDisplayKey) return this.t(service.deadlineDisplayKey);
         if (service.deadlineUnitKey && service.deadlineValue) {
@@ -121,6 +159,11 @@ const HireMe = {
         return service.deadlineDisplay || '';
     },
 
+    /**
+     * Calculates the next N business days starting from tomorrow.
+     * @param {number} daysCount - Number of business days to retrieve.
+     * @returns {Array<Date>} List of date objects.
+     */
     getNextBusinessDays(daysCount) {
         const days = [];
         let current = new Date();
@@ -137,6 +180,11 @@ const HireMe = {
         return days;
     },
 
+    /**
+     * Formats a Date object into a readable string based on the current language.
+     * @param {Date} date - The date to format.
+     * @returns {string} Formatted date string (e.g., "DD/MM - Weekday").
+     */
     formatDateDisplay(date) {
         const lang = document.documentElement.lang || 'pt';
         const dd = String(date.getDate()).padStart(2, '0');
@@ -157,6 +205,10 @@ const HireMe = {
         return `${dd}/${mm} - ${weekDay}`;
     },
 
+    /**
+     * Constructs a WhatsApp message based on the selected service and form data,
+     * then redirects the user to the WhatsApp API.
+     */
     sendToWhatsApp() {
         const serviceName = this.t(this.state.selectedService.titleKey);
         const name = this.state.formData.clientName || 'Cliente';
@@ -212,6 +264,9 @@ const HireMe = {
 
     // --- VIEWS ---
 
+    /**
+     * Renders the main grid of available services (the catalog).
+     */
     renderCatalog() {
         this.state.currentStep = 'catalog';
         this.container.innerHTML = `
@@ -233,6 +288,10 @@ const HireMe = {
         `;
     },
 
+    /**
+     * Opens the detailed view for a specific service.
+     * @param {string} serviceId - The ID of the service to show.
+     */
     openDetails(serviceId) {
         const service = servicesData.find(s => s.id === serviceId);
         if (!service) return;
@@ -283,6 +342,9 @@ const HireMe = {
         this.container.innerHTML = detailsHTML;
     },
 
+    /**
+     * Proceeds to the next step based on service type: Qualification Form (contract) or Schedule (consulting).
+     */
     proceedFromDetails() {
         if (this.state.selectedService.type === 'contract') {
             this.renderQualificationForm();
@@ -291,6 +353,9 @@ const HireMe = {
         }
     },
 
+    /**
+     * Renders the qualification form for project-based services.
+     */
     renderQualificationForm() {
         this.state.currentStep = 'form';
         this.container.innerHTML = `
@@ -320,6 +385,10 @@ const HireMe = {
         `;
     },
 
+    /**
+     * Handles the submission of the qualification form.
+     * @param {Event} e - The submit event.
+     */
     handleFormSubmit(e) {
         e.preventDefault();
         const formData = new FormData(e.target);
@@ -327,6 +396,9 @@ const HireMe = {
         this.sendToWhatsApp();
     },
 
+    /**
+     * Renders the scheduling view for time-based services.
+     */
     renderSchedule() {
         this.state.currentStep = 'schedule';
         const days = this.getNextBusinessDays(7);
@@ -372,6 +444,11 @@ const HireMe = {
         `;
     },
 
+    /**
+     * Selects a date for scheduling and shows the time selection options.
+     * @param {string} dateStr - The selected date string (DD/MM).
+     * @param {HTMLElement} btnElement - The button element that was clicked.
+     */
     selectDate(dateStr, btnElement) {
         // Visual feedback
         const allBtns = document.querySelectorAll('#days-container .date-selector-btn');
@@ -385,6 +462,10 @@ const HireMe = {
         document.getElementById('time-selection').style.display = 'block';
     },
 
+    /**
+     * Confirms the schedule with the selected time slot and proceeds to send.
+     * @param {string} timeSlot - The selected time slot (e.g., 'Morning (09h - 12h)').
+     */
     confirmSchedule(timeSlot) {
         const nameInput = document.getElementById('scheduleName');
         if (!nameInput.value) {
@@ -397,6 +478,9 @@ const HireMe = {
         this.sendToWhatsApp();
     },
 
+    /**
+     * Renders the confirmation screen after a successful request.
+     */
     renderConfirmation() {
         this.state.currentStep = 'confirmation';
         this.container.innerHTML = `

@@ -9,6 +9,11 @@
 //    - Use `data-i18n` attributes in HTML to wire translations.
 //    - Use `data-view` attributes on navigation buttons for language-agnostic routing.
 
+/**
+ * Global translations object containing text for all supported languages.
+ * Keys correspond to `data-i18n` attributes in the HTML.
+ * @type {Object.<string, Object.<string, string>>}
+ */
 window.translations = {
     pt: {
         role: "Gestão Comercial & Desenvolvimento Digital",
@@ -556,6 +561,10 @@ window.translations = {
     }
 };
 
+/**
+ * Sets the current language of the application and updates the UI text.
+ * @param {string} lang - The language code (e.g., 'pt', 'en', 'es').
+ */
 function setLanguage(lang) {
     document.documentElement.lang = lang;
 
@@ -593,7 +602,9 @@ function setLanguage(lang) {
     }
 }
 
-// Mobile Menu Logic
+/**
+ * Toggles the mobile menu overlay and updates the body class.
+ */
 function toggleMobileMenu() {
     const overlay = document.getElementById('mobile-menu-overlay');
     const body = document.body;
@@ -657,7 +668,11 @@ document.addEventListener('DOMContentLoaded', () => {
     setLanguage(window.translations[initialLang] ? initialLang : 'pt');
 });
 
-// View Switching Logic
+/**
+ * Switches the main view of the application (Resume, Playground, Hire Me).
+ * Handles visibility transitions and stops/starts view-specific logic.
+ * @param {string} viewName - The identifier of the view to switch to (e.g., 'resume', 'playground', 'hire-me').
+ */
 function switchView(viewName) {
     const resumeView = document.getElementById('resume-view');
     const playgroundView = document.getElementById('playground-view');
@@ -714,7 +729,12 @@ function switchView(viewName) {
     }
 }
 
-// Utility: debounce
+/**
+ * Creates a debounced function that delays invoking `fn` until after `wait` milliseconds have elapsed.
+ * @param {Function} fn - The function to debounce.
+ * @param {number} wait - The number of milliseconds to delay.
+ * @returns {Function} The debounced function.
+ */
 function debounce(fn, wait) {
     let t;
     return function(...args) {
@@ -723,7 +743,10 @@ function debounce(fn, wait) {
     };
 }
 
-// Experiment Logic
+/**
+ * Opens a specific experiment in the Playground view.
+ * @param {string} type - The type of experiment to open (e.g., 'fluid', 'gravity').
+ */
 function openExperiment(type) {
     const dashboard = document.getElementById('playground-dashboard');
     const container = document.getElementById('experiment-container');
@@ -739,6 +762,12 @@ function openExperiment(type) {
     });
 }
 
+/**
+ * Initializes the logic and event listeners for a specific experiment view.
+ * Handles reading options from DOM controls and starting the experiment instance.
+ * @param {string} type - The experiment type.
+ * @param {HTMLElement} view - The DOM element containing the experiment view.
+ */
 function initExperimentLogic(type, view) {
         // Initialize experiment with options from controls
         const formatVal = (v) => {
@@ -822,6 +851,9 @@ function initExperimentLogic(type, view) {
         view._expBound = bound;
     }
 
+/**
+ * Closes the currently active experiment and returns to the dashboard.
+ */
 function closeExperiment() {
     const dashboard = document.getElementById('playground-dashboard');
     const container = document.getElementById('experiment-container');
@@ -839,6 +871,12 @@ function closeExperiment() {
     });
 }
 
+/**
+ * Animates a transition between two elements (hide one, show another).
+ * @param {HTMLElement} hideElement - The element to hide.
+ * @param {HTMLElement} showElement - The element to show.
+ * @param {Function} onComplete - Callback function executed after the transition.
+ */
 function animateTransition(hideElement, showElement, onComplete) {
     const immediateSwitch = () => {
         if (hideElement) hideElement.style.display = 'none';
@@ -881,6 +919,10 @@ function animateTransition(hideElement, showElement, onComplete) {
     }, 200);
 }
 
+/**
+ * Switches the active tab in the Playground view.
+ * @param {string} tabId - The ID of the tab to activate.
+ */
 function switchPlaygroundTab(tabId) {
     const buttons = document.querySelectorAll('.pg-tab-btn');
     buttons.forEach(btn => {
