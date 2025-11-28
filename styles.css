@@ -31,14 +31,14 @@
     /* --- TYPOGRAPHY (Readable) --- */
     --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     
-    /* Escala Atualizada (Mobile First) */
+    /* Escala Atualizada (Visual Hierarchy Normalized) */
     --font-xs: 12px;   /* Tiny details */
-    --font-sm: 13px;   /* Metadata, secondary info */
-    --font-base: 15px; /* BODY STANDARD (Up from 13px) */
-    --font-md: 17px;   /* Subtitles, H3 */
-    --font-lg: 20px;   /* Section Headers, H2 */
-    --font-xl: 24px;   /* Major highlights */
-    --font-xxl: 40px;  /* Page Title H1 */
+    --font-sm: 13px;   /* Metadata */
+    --font-base: 15px; /* BODY STANDARD */
+    --font-md: 18px;   /* Subtitles, H3 (Increased from 17px) */
+    --font-lg: 24px;   /* Section Headers, H2 (Increased from 20px) */
+    --font-xl: 32px;   /* Major highlights */
+    --font-xxl: 36px;  /* Page Title H1 (Decreased from 40px for balance) */
     
     /* --- LAYOUT & SHAPE --- */
     --radius-sm: 6px;
@@ -187,6 +187,8 @@ a, button, input {
     align-items: center;
     justify-content: center;
     text-decoration: none;
+    /* Normalization: Buttons should be base size or small, but consistent */
+    font-size: var(--font-base);
 }
 
 .btn:active {
@@ -196,7 +198,8 @@ a, button, input {
 .btn-ghost {
     color: var(--text-secondary);
     padding: var(--btn-padding-sm);
-    font-size: var(--font-sm);
+    /* Ensure nav buttons are legible */
+    font-size: var(--font-base);
 }
 
 .btn-ghost:hover {
@@ -487,7 +490,7 @@ section {
 }
 
 h2 {
-    font-size: var(--font-lg); /* 20px */
+    font-size: var(--font-lg); /* 24px */
     font-weight: 600;
     color: var(--text-secondary);
     text-transform: uppercase;
@@ -528,7 +531,7 @@ section:first-of-type h2 {
 }
 
 .job-title {
-    font-size: var(--font-md); /* 17px */
+    font-size: var(--font-md); /* 18px */
     font-weight: 600;
     color: var(--text-primary);
 }
@@ -581,7 +584,7 @@ section:first-of-type h2 {
 }
 
 .skill-group h3 {
-    font-size: var(--font-base);
+    font-size: var(--font-md); /* Updated from base */
     color: var(--text-secondary);
     margin-bottom: var(--space-sm);
     font-weight: 500;
@@ -753,10 +756,10 @@ section:first-of-type h2 {
 }
 
 .app-info h3 {
-    font-size: var(--font-base);
+    font-size: var(--font-md); /* Updated from base */
     font-weight: 500;
     color: var(--text-primary);
-    margin-bottom: var(--space-xs); /* was 2xs, bumped for 15px text */
+    margin-bottom: var(--space-xs);
     line-height: 1.2;
 }
 
@@ -921,7 +924,7 @@ html.dark input[type=range]::-webkit-slider-thumb {
 }
 
 .service-info h3 {
-    font-size: var(--font-base);
+    font-size: var(--font-md); /* Updated from base */
     font-weight: 600;
     color: var(--text-primary);
     margin-bottom: var(--space-xs);
@@ -996,7 +999,7 @@ html.dark input[type=range]::-webkit-slider-thumb {
 }
 
 .list-group h3 {
-    font-size: var(--font-base);
+    font-size: var(--font-md); /* Updated from base */
     font-weight: 600;
     margin-bottom: var(--space-sm);
     color: var(--text-primary);
@@ -1120,7 +1123,7 @@ html.dark input[type=range]::-webkit-slider-thumb {
 }
 
 .time-slots h3 {
-    font-size: var(--font-sm);
+    font-size: var(--font-base); /* Updated from sm */
     margin-bottom: var(--space-sm);
 }
 
