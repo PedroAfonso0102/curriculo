@@ -77,9 +77,9 @@
             </div>
 
             <div class="nav-right desktop-only">
-                <button class="nav-link active" data-view="resume" onclick="switchView('resume')">Currículo</button>
-                <button class="nav-link" data-view="playground" onclick="switchView('playground')">Playground</button>
-                <button class="nav-link" data-view="hire-me" onclick="switchView('hire-me')">Me Contrate</button>
+                <button class="nav-link active" data-view="resume" onclick="switchView('resume')" data-i18n="nav_resume">Currículo</button>
+                <button class="nav-link" data-view="playground" onclick="switchView('playground')" data-i18n="nav_playground">Playground</button>
+                <button class="nav-link" data-view="hire-me" onclick="switchView('hire-me')" data-i18n="nav_hire">Me Contrate</button>
 
                 <div class="divider-vertical"></div>
 
@@ -96,7 +96,7 @@
                 </button>
             </div>
 
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Abrir menu">
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Abrir menu" data-i18n="mobile_menu_open">
                 Menu
             </button>
         </div>
@@ -105,11 +105,11 @@
     <!-- Mobile Menu Overlay -->
     <div id="mobile-menu-overlay" class="mobile-overlay">
         <div class="mobile-nav-content">
-            <button class="close-menu-btn" onclick="toggleMobileMenu()">Fechar</button>
+            <button class="close-menu-btn" onclick="toggleMobileMenu()" data-i18n="mobile_menu_close">Fechar</button>
             <nav class="mobile-links">
-                <button class="mobile-link active" data-view="resume" onclick="switchView('resume'); toggleMobileMenu()">Currículo</button>
-                <button class="mobile-link" data-view="playground" onclick="switchView('playground'); toggleMobileMenu()">Playground</button>
-                <button class="mobile-link" data-view="hire-me" onclick="switchView('hire-me'); toggleMobileMenu()">Me Contrate</button>
+                <button class="mobile-link active" data-view="resume" onclick="switchView('resume'); toggleMobileMenu()" data-i18n="nav_resume">Currículo</button>
+                <button class="mobile-link" data-view="playground" onclick="switchView('playground'); toggleMobileMenu()" data-i18n="nav_playground">Playground</button>
+                <button class="mobile-link" data-view="hire-me" onclick="switchView('hire-me'); toggleMobileMenu()" data-i18n="nav_hire">Me Contrate</button>
             </nav>
             <div class="mobile-controls">
                 <div class="lang-toggle-mobile">
@@ -316,8 +316,8 @@
 
         <main id="playground-view" class="view-container" style="display: none;">
             <header class="playground-header">
-                <h1>Playground</h1>
-                <div class="role">Área de Testes e Experimentação</div>
+                <h1 data-i18n="playground_title">Playground</h1>
+                <div class="role" data-i18n="playground_role">Área de Testes e Experimentação</div>
             </header>
 
             <!-- Playground Tabs -->
@@ -337,8 +337,8 @@
                                 <svg class="icon-lg"><use href="#icon-fluid"></use></svg>
                             </div>
                             <div class="app-info">
-                                <h3>Simulação de Fluidos</h3>
-                                <p>Interativo</p>
+                                <h3 data-i18n="exp_fluid_title">Simulação de Fluidos</h3>
+                                <p data-i18n="exp_fluid_sub">Interativo</p>
                             </div>
                         </div>
 
@@ -348,8 +348,8 @@
                                 <svg class="icon-lg"><use href="#icon-gravity"></use></svg>
                             </div>
                             <div class="app-info">
-                                <h3>Gravidade</h3>
-                                <p>Partículas</p>
+                                <h3 data-i18n="exp_gravity_title">Gravidade</h3>
+                                <p data-i18n="exp_gravity_sub">Partículas</p>
                             </div>
                         </div>
 
@@ -359,8 +359,8 @@
                                 <svg class="icon-lg"><use href="#icon-pendulum"></use></svg>
                             </div>
                             <div class="app-info">
-                                <h3>Pêndulo Duplo</h3>
-                                <p>Caos</p>
+                                <h3 data-i18n="exp_pendulum_title">Pêndulo Duplo</h3>
+                                <p data-i18n="exp_pendulum_sub">Caos</p>
                             </div>
                         </div>
 
@@ -370,8 +370,8 @@
                                 <svg class="icon-lg"><use href="#icon-wave"></use></svg>
                             </div>
                             <div class="app-info">
-                                <h3>Séries de Fourier</h3>
-                                <p>Ondas</p>
+                                <h3 data-i18n="exp_fourier_title">Séries de Fourier</h3>
+                                <p data-i18n="exp_fourier_sub">Ondas</p>
                             </div>
                         </div>
 
@@ -381,8 +381,8 @@
                                 <svg class="icon-lg"><use href="#icon-harmonic"></use></svg>
                             </div>
                             <div class="app-info">
-                                <h3>Movimento Harmônico</h3>
-                                <p>Molas</p>
+                                <h3 data-i18n="exp_harmonic_title">Movimento Harmônico</h3>
+                                <p data-i18n="exp_harmonic_sub">Molas</p>
                             </div>
                         </div>
 
@@ -392,8 +392,8 @@
                                 <svg class="icon-lg"><use href="#icon-chaos"></use></svg>
                             </div>
                             <div class="app-info">
-                                <h3>Jogo do Caos</h3>
-                                <p>Fractais</p>
+                                <h3 data-i18n="exp_chaos_title">Jogo do Caos</h3>
+                                <p data-i18n="exp_chaos_sub">Fractais</p>
                             </div>
                         </div>
 
@@ -403,8 +403,8 @@
                                 <svg class="icon-lg"><use href="#icon-lissajous"></use></svg>
                             </div>
                             <div class="app-info">
-                                <h3>Curvas de Lissajous</h3>
-                                <p>Curvas</p>
+                                <h3 data-i18n="exp_lissajous_title">Curvas de Lissajous</h3>
+                                <p data-i18n="exp_lissajous_sub">Curvas</p>
                             </div>
                         </div>
                     </div>
@@ -412,14 +412,14 @@
 
                 <!-- Experiment Views -->
                 <div id="experiment-container" style="display: none;">
-                    <button class="back-link" onclick="closeExperiment()">
+                    <button class="back-link" onclick="closeExperiment()" data-i18n="exp_back">
                         ← Voltar
                     </button>
 
                     <div id="fluid-view" class="experiment-view" style="display:none;">
                         <div class="exp-layout">
                             <div class="exp-main">
-                                <h2>Simulação de Fluidos</h2>
+                                <h2 data-i18n="exp_fluid_title">Simulação de Fluidos</h2>
                                 <canvas id="fluidCanvas"></canvas>
                             </div>
                             <aside class="exp-sidebar">
@@ -433,7 +433,7 @@
                                     <label><span data-i18n="ctrl_emit_strength">Força de Emissão</span> <span class="val" id="fluid-emit-label">100</span></label>
                                     <input class="exp-control" type="range" name="emit" min="10" max="1000" step="10" value="100">
                                     
-                                    <label>Difusão <span class="val" id="fluid-diff-label">0.0001</span></label>
+                                    <label><span data-i18n="ctrl_diffusion">Difusão</span> <span class="val" id="fluid-diff-label">0.0001</span></label>
                                     <input class="exp-control" type="range" name="diff" min="0" max="0.01" step="0.0001" value="0.0001">
                                 </div>
                             </aside>
@@ -443,7 +443,7 @@
                     <div id="gravity-view" class="experiment-view" style="display:none;">
                          <div class="exp-layout">
                             <div class="exp-main">
-                                <h2>Sistema Gravitacional</h2>
+                                <h2 data-i18n="exp_gravity_title">Sistema Gravitacional</h2>
                                 <canvas id="gravityCanvas"></canvas>
                             </div>
                             <aside class="exp-sidebar">
@@ -454,7 +454,7 @@
                                     <label><span data-i18n="ctrl_particles">Partículas</span> <span class="val" id="gravity-particleCount-label">6</span></label>
                                     <input class="exp-control" type="range" name="particleCount" min="1" max="50" step="1" value="6">
                                     
-                                    <label>Rastro <span class="val" id="gravity-trails-label">1</span></label>
+                                    <label><span data-i18n="ctrl_trails">Rastro</span> <span class="val" id="gravity-trails-label">1</span></label>
                                     <input class="exp-control" type="range" name="trails" min="0" max="1" step="1" value="1">
                                 </div>
                             </aside>
@@ -464,7 +464,7 @@
                     <div id="pendulum-view" class="experiment-view" style="display:none;">
                         <div class="exp-layout">
                             <div class="exp-main">
-                                <h2>Pêndulo Duplo</h2>
+                                <h2 data-i18n="exp_pendulum_title">Pêndulo Duplo</h2>
                                 <canvas id="pendulumCanvas"></canvas>
                             </div>
                              <aside class="exp-sidebar">
@@ -493,7 +493,7 @@
                                     <label><span data-i18n="ctrl_g">Gravidade</span> <span class="val" id="pendulum-g-label">1</span></label>
                                     <input class="exp-control" type="range" name="g" min="0" max="5" step="0.1" value="1">
                                     
-                                    <label>Opacidade Rastro <span class="val" id="pendulum-traceOpacity-label">0.3</span></label>
+                                    <label><span data-i18n="ctrl_trace_opacity">Opacidade Rastro</span> <span class="val" id="pendulum-traceOpacity-label">0.3</span></label>
                                     <input class="exp-control" type="range" name="traceOpacity" min="0.01" max="1" step="0.01" value="0.3">
                                 </div>
                             </aside>
@@ -503,7 +503,7 @@
                     <div id="fourier-view" class="experiment-view" style="display:none;">
                          <div class="exp-layout">
                             <div class="exp-main">
-                                <h2>Séries de Fourier</h2>
+                                <h2 data-i18n="exp_fourier_title">Séries de Fourier</h2>
                                 <canvas id="fourierCanvas"></canvas>
                             </div>
                             <aside class="exp-sidebar">
@@ -517,7 +517,7 @@
                                     <label><span data-i18n="ctrl_amplitude">Amplitude</span> <span class="val" id="fourier-amplitude-label">50</span></label>
                                     <input class="exp-control" type="range" name="amplitude" min="10" max="200" step="1" value="50">
                                     
-                                    <label>Cor (Hue) <span class="val" id="fourier-hue-label">210</span></label>
+                                    <label><span data-i18n="ctrl_color_hue">Cor (Hue)</span> <span class="val" id="fourier-hue-label">210</span></label>
                                     <input class="exp-control" type="range" name="hue" min="0" max="360" step="1" value="210">
                                 </div>
                             </aside>
@@ -527,12 +527,12 @@
                     <div id="harmonic-view" class="experiment-view" style="display:none;">
                         <div class="exp-layout">
                            <div class="exp-main">
-                               <h2>Movimento Harmônico</h2>
+                               <h2 data-i18n="exp_harmonic_title">Movimento Harmônico</h2>
                                <canvas id="harmonicCanvas"></canvas>
                            </div>
                            <aside class="exp-sidebar">
                                <div class="exp-controls">
-                                   <label>Rigidez (k) <span class="val" id="harmonic-k-label">0.1</span></label>
+                                   <label><span data-i18n="ctrl_harmonic_k">Rigidez (k)</span> <span class="val" id="harmonic-k-label">0.1</span></label>
                                    <input class="exp-control" type="range" name="k" min="0.01" max="0.5" step="0.01" value="0.1">
 
                                    <label>Amortecimento <span class="val" id="harmonic-damping-label">0.98</span></label>
@@ -544,7 +544,7 @@
                                    <label>Gravidade <span class="val" id="harmonic-gravity-label">0.5</span></label>
                                    <input class="exp-control" type="range" name="gravity" min="0" max="2" step="0.1" value="0.5">
                                    
-                                   <label>Qtd. Partículas <span class="val" id="harmonic-count-label">5</span></label>
+                                   <label><span data-i18n="ctrl_harmonic_count">Qtd. Partículas</span> <span class="val" id="harmonic-count-label">5</span></label>
                                    <input class="exp-control" type="range" name="count" min="2" max="15" step="1" value="5">
                                </div>
                            </aside>
@@ -554,12 +554,12 @@
                    <div id="chaos-view" class="experiment-view" style="display:none;">
                         <div class="exp-layout">
                            <div class="exp-main">
-                               <h2>Jogo do Caos</h2>
+                               <h2 data-i18n="exp_chaos_title">Jogo do Caos</h2>
                                <canvas id="chaosCanvas"></canvas>
                            </div>
                            <aside class="exp-sidebar">
                                <div class="exp-controls">
-                                   <label>Vértices <span class="val" id="chaos-vertices-label">3</span></label>
+                                   <label><span data-i18n="ctrl_chaos_vertices">Vértices</span> <span class="val" id="chaos-vertices-label">3</span></label>
                                    <input class="exp-control" type="range" name="vertices" min="3" max="8" step="1" value="3">
 
                                    <label>Razão <span class="val" id="chaos-ratio-label">0.5</span></label>
@@ -568,7 +568,7 @@
                                    <label>Velocidade <span class="val" id="chaos-speed-label">100</span></label>
                                    <input class="exp-control" type="range" name="speed" min="1" max="1000" step="10" value="100">
                                    
-                                   <label>Tamanho Ponto <span class="val" id="chaos-size-label">1</span></label>
+                                   <label><span data-i18n="ctrl_chaos_size">Tamanho Ponto</span> <span class="val" id="chaos-size-label">1</span></label>
                                    <input class="exp-control" type="range" name="size" min="0.5" max="5" step="0.5" value="1">
                                </div>
                            </aside>
@@ -578,7 +578,7 @@
                    <div id="lissajous-view" class="experiment-view" style="display:none;">
                         <div class="exp-layout">
                            <div class="exp-main">
-                               <h2>Curvas de Lissajous</h2>
+                               <h2 data-i18n="exp_lissajous_title">Curvas de Lissajous</h2>
                                <canvas id="lissajousCanvas"></canvas>
                            </div>
                            <aside class="exp-sidebar">
@@ -592,10 +592,10 @@
                                    <label>Vel. Fase <span class="val" id="lissajous-speed-label">0.01</span></label>
                                    <input class="exp-control" type="range" name="speed" min="0" max="0.1" step="0.001" value="0.01">
 
-                                   <label>Rastro <span class="val" id="lissajous-trail-label">500</span></label>
+                                   <label><span data-i18n="ctrl_lissajous_trail">Rastro</span> <span class="val" id="lissajous-trail-label">500</span></label>
                                    <input class="exp-control" type="range" name="trail" min="100" max="2000" step="100" value="500">
                                    
-                                   <label>Espessura <span class="val" id="lissajous-width-label">2</span></label>
+                                   <label><span data-i18n="ctrl_lissajous_width">Espessura</span> <span class="val" id="lissajous-width-label">2</span></label>
                                    <input class="exp-control" type="range" name="width" min="1" max="10" step="1" value="2">
                                </div>
                            </aside>

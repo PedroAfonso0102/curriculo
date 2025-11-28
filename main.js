@@ -57,6 +57,29 @@ window.translations = {
         tab_comex_desc: "Em breve: Feed de notícias sobre Comércio Exterior.",
         tab_intl_title: "Notícias Internacionais",
         tab_intl_desc: "Em breve: Feed de notícias internacionais.",
+        // Playground & UI labels
+        nav_resume: "Currículo",
+        nav_playground: "Playground",
+        nav_hire: "Me Contrate",
+        mobile_menu_open: "Menu",
+        mobile_menu_close: "Fechar",
+        playground_title: "Playground",
+        playground_role: "Área de Testes e Experimentação",
+        exp_back: "← Voltar",
+        exp_fluid_title: "Simulação de Fluidos",
+        exp_fluid_sub: "Interativo",
+        exp_gravity_title: "Gravidade",
+        exp_gravity_sub: "Partículas",
+        exp_pendulum_title: "Pêndulo Duplo",
+        exp_pendulum_sub: "Caos",
+        exp_fourier_title: "Séries de Fourier",
+        exp_fourier_sub: "Ondas",
+        exp_harmonic_title: "Movimento Harmônico",
+        exp_harmonic_sub: "Molas",
+        exp_chaos_title: "Jogo do Caos",
+        exp_chaos_sub: "Fractais",
+        exp_lissajous_title: "Curvas de Lissajous",
+        exp_lissajous_sub: "Curvas",
         // Playground Controls
         ctrl_resolution: "Resolução",
         ctrl_viscosity: "Viscosidade",
@@ -72,6 +95,13 @@ window.translations = {
         ctrl_terms: "Termos",
         ctrl_speed: "Velocidade",
         ctrl_amplitude: "Amplitude",
+        ctrl_diffusion: "Difusão",
+        ctrl_trails: "Rastro",
+        ctrl_trace_opacity: "Opacidade Rastro",
+        ctrl_color_hue: "Cor (Hue)",
+        ctrl_harmonic_k: "Rigidez (k)",
+        ctrl_harmonic_count: "Qtd. Partículas",
+        theme_toggle_aria: "Alternar modo noturno",
         // Hire Me - General
         hire_header_title: "Me Contrate",
         hire_role: "Escolha o serviço ideal para o seu momento",
@@ -203,6 +233,29 @@ window.translations = {
         tab_comex_desc: "Coming soon: Foreign Trade news feed.",
         tab_intl_title: "International News",
         tab_intl_desc: "Coming soon: International news feed.",
+        // Playground & UI labels
+        nav_resume: "Resume",
+        nav_playground: "Playground",
+        nav_hire: "Hire Me",
+        mobile_menu_open: "Menu",
+        mobile_menu_close: "Close",
+        playground_title: "Playground",
+        playground_role: "Testing & Experimentation Area",
+        exp_back: "← Back",
+        exp_fluid_title: "Fluid Simulation",
+        exp_fluid_sub: "Interactive",
+        exp_gravity_title: "Gravity",
+        exp_gravity_sub: "Particles",
+        exp_pendulum_title: "Double Pendulum",
+        exp_pendulum_sub: "Chaos",
+        exp_fourier_title: "Fourier Series",
+        exp_fourier_sub: "Waves",
+        exp_harmonic_title: "Harmonic Motion",
+        exp_harmonic_sub: "Springs",
+        exp_chaos_title: "Chaos Game",
+        exp_chaos_sub: "Fractals",
+        exp_lissajous_title: "Lissajous Curves",
+        exp_lissajous_sub: "Curves",
         // Playground Controls
         ctrl_resolution: "Resolution",
         ctrl_viscosity: "Viscosity",
@@ -218,6 +271,21 @@ window.translations = {
         ctrl_terms: "Terms",
         ctrl_speed: "Speed",
         ctrl_amplitude: "Amplitude",
+        // Extra Controls
+        ctrl_diffusion: "Diffusion",
+        ctrl_trails: "Trails",
+        ctrl_trace_opacity: "Trace Opacity",
+        ctrl_color_hue: "Color (Hue)",
+        ctrl_harmonic_k: "Stiffness (k)",
+        ctrl_harmonic_count: "Particle Count",
+        ctrl_chaos_vertices: "Vertices",
+        ctrl_chaos_size: "Point Size",
+        ctrl_lissajous_trail: "Trail",
+        ctrl_lissajous_width: "Thickness",
+        // Theme labels
+        theme_dark: "Dark Mode",
+        theme_light: "Light Mode",
+        theme_toggle_aria: "Toggle dark mode",
         // Hire Me - General
         hire_header_title: "Hire Me",
         hire_role: "Choose the ideal service for your moment",
@@ -349,6 +417,29 @@ window.translations = {
         tab_comex_desc: "Próximamente: Noticias sobre Comercio Exterior.",
         tab_intl_title: "Noticias Internacionales",
         tab_intl_desc: "Próximamente: Noticias internacionales.",
+        // Playground & UI labels
+        nav_resume: "Currículum",
+        nav_playground: "Playground",
+        nav_hire: "Contrátame",
+        mobile_menu_open: "Menú",
+        mobile_menu_close: "Cerrar",
+        playground_title: "Playground",
+        playground_role: "Área de Pruebas y Experimentación",
+        exp_back: "← Volver",
+        exp_fluid_title: "Simulación de Fluidos",
+        exp_fluid_sub: "Interactivo",
+        exp_gravity_title: "Gravedad",
+        exp_gravity_sub: "Partículas",
+        exp_pendulum_title: "Péndulo Doble",
+        exp_pendulum_sub: "Caos",
+        exp_fourier_title: "Series de Fourier",
+        exp_fourier_sub: "Ondas",
+        exp_harmonic_title: "Movimiento Armónico",
+        exp_harmonic_sub: "Muelle(s)",
+        exp_chaos_title: "Juego del Caos",
+        exp_chaos_sub: "Fractales",
+        exp_lissajous_title: "Curvas de Lissajous",
+        exp_lissajous_sub: "Curvas",
         // Playground Controls
         ctrl_resolution: "Resolución",
         ctrl_viscosity: "Viscosidad",
@@ -364,6 +455,21 @@ window.translations = {
         ctrl_terms: "Términos",
         ctrl_speed: "Velocidad",
         ctrl_amplitude: "Amplitud",
+        // Extra Controls
+        ctrl_diffusion: "Difusión",
+        ctrl_trails: "Rastro",
+        ctrl_trace_opacity: "Opacidad Rastro",
+        ctrl_color_hue: "Color (Hue)",
+        ctrl_harmonic_k: "Rigidez (k)",
+        ctrl_harmonic_count: "Cant. Partículas",
+        ctrl_chaos_vertices: "Vértices",
+        ctrl_chaos_size: "Tamaño Punto",
+        ctrl_lissajous_trail: "Rastro",
+        ctrl_lissajous_width: "Grosor",
+        theme_toggle_aria: "Alternar modo oscuro",
+        // Theme labels
+        theme_dark: "Modo Oscuro",
+        theme_light: "Modo Claro",
         // Hire Me - General
         hire_header_title: "Contrátame",
         hire_role: "Elige el servicio ideal para tu momento",
@@ -468,6 +574,19 @@ function setLanguage(lang) {
         }
     });
 
+    // Ensure theme button shows localized text for current theme state
+    (function updateThemeButtonForLang() {
+        const isDark = document.documentElement.classList.contains('dark');
+        const t = (window.translations && window.translations[lang]) ? window.translations[lang] : window.translations.pt;
+        document.querySelectorAll('.theme-btn-mobile').forEach(btn => {
+            btn.textContent = isDark ? (t.theme_light || 'Modo Claro') : (t.theme_dark || 'Modo Escuro');
+        });
+        // Update aria-label for desktop theme toggle(s)
+        document.querySelectorAll('.theme-toggle').forEach(btn => {
+            if (t.theme_toggle_aria) btn.setAttribute('aria-label', t.theme_toggle_aria);
+        });
+    })();
+
     // Update Hire Me View if active
     if (window.HireMe && document.getElementById('hire-me-view').style.display !== 'none') {
         window.HireMe.init();
@@ -506,9 +625,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         themeToggleBtns.forEach(btn => {
             btn.setAttribute('aria-pressed', isDark ? 'true' : 'false');
-            // Optional: Update text for mobile button if needed
+            // Update mobile theme button text using current translations
             if (btn.classList.contains('theme-btn-mobile')) {
-                btn.textContent = isDark ? 'Modo Claro' : 'Modo Escuro';
+                const lang = document.documentElement.lang || 'pt';
+                const t = (window.translations && window.translations[lang]) ? window.translations[lang] : window.translations.pt;
+                btn.textContent = isDark ? (t.theme_light || 'Modo Claro') : (t.theme_dark || 'Modo Escuro');
             }
         });
         window.dispatchEvent(new CustomEvent('themechange', { detail: { isDark } }));
