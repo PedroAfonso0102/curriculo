@@ -1,5 +1,5 @@
 # JULES AI: PROTOCOLOS DE PROMPT & ENGENHARIA
-**Versão:** 4.0 (Exponential Expansion)
+**Versão:** 4.1 (Reorganized & Consolidated)
 **Foco:** Abrangência Total, Granularidade Técnica e Automação Cognitiva.
 
 ---
@@ -70,8 +70,8 @@ A eficácia do agente é proporcional à precisão da instrução. Adote a postu
 
 ---
 
-## 4. DESENVOLVIMENTO & IMPLEMENTAÇÃO (CODE)
-*Execução técnica, frameworks específicos e ferramentas auxiliares.*
+## 4. DESIGN SYSTEM, UI & UX
+*Criação, padronização e refinamento visual.*
 
 ### Frontend & UI (Vibecoding)
 - **Design System "On-the-Fly" (Tailwind):**
@@ -83,158 +83,7 @@ A eficácia do agente é proporcional à precisão da instrução. Adote a postu
 - **Micro-Interações (Juice):**
   > `// Atue como Motion Designer. "Juice it up!" Adicione feedback visual a este componente. Planeje as animações: Entrada, Hover, Click, Feedback. Use CSS transitions para performance. Exemplo: 'transform: scale(0.98)' no click e 'fade-in-up' na entrada.`
 
-### Backend & Lógica
-- **API RESTful Boilerplate:**
-  > `// Atue como Backend Architect. Crie um controller [Node/Python] para a entidade [Nome]. Implemente CRUD completo. Chain-of-Thought: 1. Defina o Schema/Model. 2. Planeje as rotas e verbos HTTP. 3. Implemente a lógica com validação e tratamento de erros (Try/Catch).`
-
-- **Otimização de Query SQL:**
-  > `// Atue como DBA. Analise esta query SQL. Identifique gargalos de performance. Explique o Plano de Execução (Explain Plan) teórico. Reescreva utilizando JOINs otimizados e sugira índices compostos necessários.`
-
-- **Gerador de Regex:**
-  > `// Atue como Regex Expert. Crie uma Regex robusta para validar [Padrão]. Explique a lógica de cada token/grupo de captura. Forneça uma tabela de casos de teste: 3 positivos (match) e 3 negativos (no-match).`
-
-### Scripts & Automação
-- **Automação de Arquivos (Node/Python):**
-  > `// Escreva um script para varrer o diretório [Dir], encontrar arquivos [Extensão] modificados há mais de [X] dias e movê-los para uma pasta de arquivamento compactada (ZIP).`
-
-- **Web Scraping (Ético):**
-  > `// Crie um script Puppeteer/Selenium para extrair [Dados] de [Site]. Inclua tratativa de paginação, espera por seletores dinâmicos e delay aleatório para evitar bloqueio (Rate Limiting).`
-
----
-
-## 5. QUALIDADE, SEGURANÇA & OPERAÇÃO (POST-CODE)
-*Garantia de robustez, confiabilidade e manutenção.*
-
-### Debugging & Performance
-- **Análise de Complexidade (Big O):**
-  > `// Atue como Computer Scientist. Analise a complexidade (Big O) desta função. Passo-a-passo: 1. Identifique loops e recursão. 2. Calcule o custo de cada operação. 3. Determine o pior caso. Proponha otimização para O(n) ou O(log n) usando estruturas de dados adequadas.`
-
-- **Caça a Memory Leaks (JS):**
-  > `// Atue como Performance Engineer. Analise este código. Rastreie o ciclo de vida dos objetos. Identifique Event Listeners não removidos, Intervalos órfãos ou Closures que retêm referências. Explique o impacto no Heap e corrija.`
-
-- **Auditoria de Acessibilidade (a11y):**
-  > `// Atue como Especialista em Acessibilidade (WCAG). Audite este HTML. Verifique: Contraste, Semântica, ARIA e Navegação por Teclado. Para cada violação, cite o critério WCAG correspondente e a correção.`
-
-- **Análise de Bundle (Webpack/Vite):**
-  > `// Analise o output de build (stats.json) ou a estrutura de imports. Identifique chunks gigantes (>500kb) e dependências duplicadas. Sugira pontos de 'Code Splitting' (Lazy Loading) para rotas ou componentes pesados para melhorar o Time-to-Interactive.`
-
-- **Otimização de Renderização (React/Vue):**
-  > `// Analise este componente. Identifique props ou estados que causam re-renderizações desnecessárias (objetos/funções recriados a cada render). Sugira uso de useMemo/useCallback ou React.memo onde apropriado para estabilizar a referência.`
-
-### Testes & Segurança
-- **Geração de Testes Unitários (Jest/Pytest):**
-  > `// Atue como QA Engineer. Escreva testes unitários para [Função]. Estratégia: 1. Defina os casos de teste (Caminho Feliz, Entradas Inválidas, Limites). 2. Configure Mocks para I/O. 3. Implemente as asserções. Garanta alta cobertura.`
-
-- **Auditoria de Segurança (AppSec):**
-  > `// Atue como Security Researcher. Realize um Code Review focado em segurança (OWASP Top 10). Procure por: XSS, SQL Injection, Deserialização Insegura e Secrets. Explique o vetor de ataque e a mitigação.`
-
-- **Testes End-to-End (Cypress/Playwright):**
-  > `// Escreva um cenário de teste E2E para o fluxo de [Fluxo: Checkout/Login]. Cubra: Navegação inicial, Preenchimento de Form, Clique em CTA e Validação da URL final ou Mensagem de Sucesso. Inclua screenshots em caso de falha.`
-
-- **Auditoria de Dependências (Supply Chain):**
-  > `// Analise o 'package.json'. Identifique pacotes obsoletos ou com histórico de vulnerabilidades conhecidas. Sugira atualizações seguras (minor/patch) e alternativas para pacotes abandonados.`
-
-### Observabilidade & Monitoramento
-- **Logs Estruturados (JSON):**
-  > `// Refatore os 'console.log' espalhados. Crie um Logger utilitário que formate a saída em JSON com: Timestamp, Nível (INFO/ERROR), Contexto (Módulo/Função) e Mensagem. Isso facilitará a ingestão em ferramentas de monitoramento.`
-
-- **Health Check Endpoint:**
-  > `// Crie uma rota '/health' ou '/status' para a API. Ela deve retornar 200 OK se a aplicação estiver viva, e incluir no corpo o status das conexões vitais (Banco de Dados, Redis, APIs Externas) para monitoramento de uptime.`
-
----
-
-## 6. DEVOPS & INFRAESTRUTURA
-*Deploy, CI/CD e Containerização.*
-
-- **Dockerfile Otimizado:**
-  > `// Atue como DevOps Engineer. Crie um Dockerfile Multi-Stage para [Node/Python]. Chain-of-Thought: 1. Base Image (Alpine). 2. Build Stage (Instalação de deps + Compilação). 3. Production Stage (Cópia apenas dos artefatos + Remoção de deps de dev). 4. Segurança (Usuário não-root).`
-
-- **GitHub Actions (CI/CD):**
-  > `// Atue como CI/CD Specialist. Gere um workflow do GitHub Actions. Pipeline: 1. Trigger (Push/PR). 2. Setup (Cache de deps). 3. Quality Gate (Lint + Testes Unitários). 4. Build. 5. Deploy (apenas na main). Se falhar em qualquer etapa, bloqueie.`
-
-- **Nginx Reverse Proxy:**
-  > `// Atue como SysAdmin. Gere configuração Nginx para servir esta aplicação. Requisitos: 1. Redirecionamento forçado HTTP->HTTPS. 2. Otimização (Gzip/Brotli). 3. Caching de estáticos (Long-term caching). 4. Hardening (Headers de segurança: HSTS, CSP, X-Frame).`
-
----
-
-## 7. DADOS & ANALYTICS
-*Manipulação, análise e visualização de dados.*
-
-- **Análise Exploratória (Pandas):**
-  > `// Atue como Data Scientist. Tenho um CSV com colunas [Colunas]. Gere código Python (Pandas). Plano: 1. Data Cleaning (Tratar nulos/duplicados). 2. Feature Engineering (Criar novas colunas derivadas). 3. Agregação (Groupby + Sum/Mean). 4. Cálculo de KPI (MoM Growth).`
-
-- **Visualização de Dados (D3/Chart.js):**
-  > `// Atue como Data Visualization Expert. Crie um gráfico [Tipo] usando [Lib]. Dados: [JSON]. Requisitos UX: 1. Tooltips informativos no hover. 2. Eixos legíveis e formatados. 3. Paleta de cores acessível (Colorblind-safe). 4. Responsividade.`
-
-- **SQL para Business Intelligence:**
-  > `// Atue como BI Analyst. Escreva uma query SQL para calcular o LTV (Lifetime Value). Lógica: 1. Unir tabelas Users/Orders. 2. Calcular receita total por usuário. 3. Agrupar por coorte (mês de cadastro). 4. Retornar média de LTV por coorte.`
-
----
-
-## 8. COMUNICAÇÃO & NEGOCIAÇÃO (SOFT SKILLS)
-*Templates para gestão comercial e situações críticas.*
-
-- **Negociação de Escopo (Scope Creep):**
-  > `// Atue como Project Manager Sênior. Escreva um e-mail para um cliente pedindo alterações fora do escopo. Estrutura: 1. Agradecimento e Validação ("Ótima ideia"). 2. Choque de Realidade ("Isso impacta o prazo em X dias"). 3. Solução ("Podemos fazer na Fase 2 ou orçar extra agora"). Tom: Profissional, Firme e Colaborativo.`
-
-- **Comunicado de Incidente (Post-Mortem):**
-  > `// Atue como CTO. Escreva um Post-Mortem para stakeholders não-técnicos sobre [Incidente]. Seções: 1. O que aconteceu (Sintoma). 2. Por que aconteceu (Causa Raiz Técnica). 3. O que fizemos (Correção Imediata). 4. Como evitar recorrência (Plano de Ação). Tom: Transparente e Responsável.`
-
-- **Cold Mail (Prospecção B2B):**
-  > `// Atue como Copywriter B2B. Crie um Cold Mail para [Nicho]. Framework AIDA: 1. Atenção (Gancho personalizado sobre a empresa deles). 2. Interesse (Problema latente do setor). 3. Desejo (Nossa solução única). 4. Ação (CTA "Soft" para call rápida).`
-
----
-
-## 9. CATÁLOGO DE SERVIÇOS (BOILERPLATES COMERCIAIS)
-*Prompts prontos para execução dos serviços do portfólio "Me Contrate".*
-
-### 🚀 Performance & Conversão
-- **Landing Page "Speed-First" (<1s):**
-  > `// Atue como Web Performance Engineer. Crie estrutura para Landing Page. Meta: Lighthouse 100/100. Restrições: 1. CSS Inline Crítico (Critical Path). 2. Imagens WebP/AVIF com Lazy-Load e dimensões explícitas. 3. Zero Blocking JS. 4. Fontes com 'font-display: swap'.`
-
-- **Landing Page AIDA (Conversão):**
-  > `// Atue como Conversion Rate Optimization (CRO) Specialist. Estruture uma Landing Page. Framework: 1. Hero (Headline + Subhead + CTA). 2. Problema (Agitação da dor). 3. Solução (Benefícios > Features). 4. Prova Social (Testemunhos reais). 5. Garantia (Risco Zero).`
-
-### 🛍️ E-commerce & Varejo
-- **Storefront Headless (Experience):**
-  > `// Atue como Creative Developer. Projete um Storefront Headless. Features: 1. View Transitions API para navegação fluida. 2. Carrinho Optimistic UI (atualiza antes da API). 3. Micro-animações de "Adicionar ao Carrinho". Foco em Percepção de Performance.`
-
-- **E-commerce MVP (WhatsApp):**
-  > `// Atue como Fullstack Dev. Crie uma Loja "No-Code" Style. Stack: JSON (Catálogo) + JS Vanilla. Fluxo: 1. Renderiza Grid de Produtos. 2. Adiciona ao Carrinho (LocalStorage). 3. Checkout: Monta string URL do WhatsApp com o pedido formatado e abre o app.`
-
-- **Customização Nuvemshop/Shopify:**
-  > `// Atue como Frontend Specialist em E-commerce. Gere CSS (Sass) para override de tema. Objetivo: "Premium Feel". Ações: 1. Refinar tipografia (Line-height/Spacing). 2. Suavizar sombras e bordas. 3. Fixar Header com efeito Blur (Glassmorphism).`
-
-### 🎨 Consultoria & Design
-- **Relatório de Auditoria UX:**
-  > `// Atue como UX Researcher Sênior. Gere um template Markdown para Auditoria Heurística. Estrutura: 1. Resumo Executivo. 2. Avaliação das 10 Heurísticas de Nielsen (Score 0-4). 3. Matriz de Priorização (Esforço x Impacto). 4. Recomendações de "Quick Wins".`
-
-- **Organizador de Assets (Script):**
-  > `// Atue como Automation Engineer. Crie script Node.js para organização de arquivos. Lógica: 1. Scan recursivo de diretório. 2. Extração de metadados (Data de criação). 3. Renomeação padronizada (YYYY-MM-DD_Nome). 4. Movimentação para estrutura de pastas por Ano/Mês.`
-
-### 💼 Gestão & Recorrência
-- **Relatório Mensal (Freelance):**
-  > `// Gere template de Relatório de Atividades. Tabela: Data, Tarefa, Categoria (Dev/Reunião/Bugfix), Duração. Gráfico ASCII simples de distribuição de tempo. Seção: "Impedimentos e Riscos".`
-
----
-
-## 10. REFATORAÇÃO, PADRONIZAÇÃO & DESIGN SYSTEM
-*Prompts para manutenção de escala, consistência visual e arquitetura de pastas.*
-
-### 🏗️ Análise & Reestruturação de Código
-- **Análise Estrutural e Sugestão de Arquitetura:**
-  > `// Atue como Arquiteto de Software. Analise a estrutura atual. Identifique padrões (Monólito vs Modular). Proponha uma reorganização de pastas baseada em Domínio ou Features. Justifique cada mudança com foco em escalabilidade e desacoplamento.`
-
-- **Refatoração de Monólito para Modular:**
-  > `// Atue como Senior Developer. Refatore este arquivo monolítico. Plano: 1. Mapeie as responsabilidades. 2. Crie interfaces/contratos. 3. Extraia para módulos coesos (CSS, JS, HTML separados). Apresente a nova estrutura de arquivos antes do código.`
-
-- **Detecção de Código Morto (Dead Code):**
-  > `// Atue como Code Janitor. Varra o projeto estaticamente. Liste classes CSS e funções JS não referenciadas. Confirme se não há uso dinâmico. Gere um relatório de itens seguros para remoção.`
-
-- **Extração de Componentes Repetidos (DRY):**
-  > `// Atue como Lead Dev. Analise o código em busca de duplicação (DRY). Identifique padrões de UI/Lógica repetidos. Proponha a criação de componentes reutilizáveis. Mostre o 'Antes' e 'Depois' da refatoração.`
-
-### 📐 Padronização de Layout & UI
+### Padronização de Layout & UI
 - **Auditoria e Unificação de Design System:**
   > `// Atue como Design Ops Lead. Analise os estilos do projeto. Identifique fragmentação (ex: 50 tons de cinza diferentes). Crie um plano de unificação: 1. Extrair Tokens (Cores, Tipografia, Espaços). 2. Mapear componentes legados para os novos tokens. 3. Definir estratégia de migração gradual.`
 
@@ -247,7 +96,7 @@ A eficácia do agente é proporcional à precisão da instrução. Adote a postu
 - **Gestão de Z-Index (Camadas):**
   > `// Atue como CSS Specialist. Resolva os conflitos de empilhamento (z-index wars). Crie um sistema de camadas semântico: 1. Base (0). 2. Dropdowns (100). 3. Sticky Headers (200). 4. Modais/Overlays (300). 5. Toasts/Tooltips (400). Substitua valores arbitrários por variáveis.`
 
-### 🎨 Modificação de Estilo & Temas
+### Modificação de Estilo & Temas
 - **Migração de Estilo (Re-skinning):**
   > `// Atue como Theme Specialist. Planeje a migração visual de [Estilo A] para [Estilo B]. Estratégia: 1. Mapear variáveis globais afetadas. 2. Criar novo arquivo de tema (theme-b.css). 3. Ajustar border-radius, sombras e tipografia. Mantenha o layout estrutural intacto.`
 
@@ -260,7 +109,7 @@ A eficácia do agente é proporcional à precisão da instrução. Adote a postu
 - **Conversão para Unidades Relativas (Acessibilidade):**
   > `// Atue como A11y Advocate. Refatore o CSS. Substitua unidades absolutas (px) por relativas (rem/em) para fontes e espaçamentos. Objetivo: Permitir que o usuário escale a interface via configurações do navegador sem quebrar o layout.`
 
-### 🧩 Consistência de UX
+### Consistência de UX
 - **Injeção de Padrões de UX (Global):**
   > `// Atue como UX Architect. Analise a aplicação em busca de "Anti-Patterns". Identifique falta de Feedback de Estado (Loading/Empty/Error). Proponha um plano de padronização: 1. Componente de Loading Universal. 2. Empty States ilustrativos. 3. Tratamento de erro amigável.`
 
@@ -282,7 +131,7 @@ A eficácia do agente é proporcional à precisão da instrução. Adote a postu
 - **Padrões de Loading (Skeleton vs Spinner):**
   > `// Atue como Frontend Performance Expert. Defina estratégia de Loading. Regra: 1. Carregamento de Página/Bloco -> Skeleton Screen (percepção de velocidade). 2. Ação de Botão -> Spinner interno. Substitua loaders genéricos por essa abordagem contextual.`
 
-### 🌟 Implementação de Features de UX
+### Implementação de Features de UX
 - **Modo Escuro (Dark Mode System):**
   > `// Atue como UI Engineer. Implemente Dark Mode. Requisitos: 1. Media Query (prefers-color-scheme). 2. Toggle manual com persistência (localStorage). 3. Variáveis CSS semânticas (ex: --bg-surface). 4. Script de inicialização para evitar "Flash of Incorrect Theme" (FOUC).`
 
@@ -295,43 +144,13 @@ A eficácia do agente é proporcional à precisão da instrução. Adote a postu
 - **Sistema de 'Undo/Redo' (Desfazer):**
   > `// Atue como UX Interaction Designer. Substitua confirmações modais ("Tem certeza?") por padrão "Undo". Fluxo: 1. Usuário deleta item. 2. Item some visualmente. 3. Toast aparece: "Item deletado. [Desfazer]". 4. Se clicar, restaura estado. Se timeout, confirma deleção.`
 
----
-
-## 11. CICLO DE VIDA & GESTÃO ESTRATÉGICA
-*Lacunas estratégicas: Documentação, Gestão, Aprendizado e Crise.*
-
-### 📚 Documentação Viva & Engenharia de Conhecimento
-- **Auto-Doc (Técnico):**
-  > `// Atue como Technical Writer. Analise este módulo. Gere documentação JSDoc/Docstring. Padrão: 1. Descrição do propósito. 2. Parâmetros (Tipos e Restrições). 3. Retorno. 4. Exemplo de uso prático. Crie também um README.md resumindo a arquitetura.`
-
-- **Manual do Usuário (Final):**
-  > `// Atue como Customer Success. Escreva um Guia Rápido para o usuário final sobre esta funcionalidade. Linguagem: Simples, sem tecniquês. Estrutura: "Como [Realizar Tarefa] em 3 passos". Inclua dicas de "Troubleshooting" básico.`
-
-### ⏱️ Gestão de Projeto & Estimativa
-- **Estimativa PERT (Anti-Prejuízo):**
-  > `// Atue como Tech Lead Sênior. Analise a feature [Descrição]. Decomponha em tarefas (WBS). Para cada tarefa, estime: Otimista (O), Pessimista (P), Provável (M). Calcule PERT = (O + 4M + P) / 6. Adicione 20% de margem de risco.`
-
-- **Definição de Pronto (DoD):**
-  > `// Atue como Agile Coach. Defina o "Definition of Done" para esta tarefa. Checklist: 1. Código compilando? 2. Testes passando? 3. Code Review aprovado? 4. Critérios de aceitação de UX atendidos? 5. Documentação atualizada? Nada sobe sem isso.`
-
-### 🎓 Aprendizado Acelerado & Mentor Híbrido
-- **Explain Like I'm Junior (Conceitual):**
-  > `// Atue como Mentor Sênior. Explique a solução implementada. Use a Técnica Feynman: 1. Analogia do mundo real. 2. Explicação técnica simplificada. 3. Por que escolhemos isso e não a alternativa X? Foco em transferir conhecimento, não apenas entregar código.`
-
-- **Plano de Estudo JIT (Just-in-Time):**
-  > `// Atue como Career Coach. Analise o código que acabamos de escrever. Identifique 3 conceitos chave (ex: Promises, Flexbox, SQL Joins) que eu preciso dominar. Para cada um, sugira um exercício prático de 15 minutos para fixação.`
-
-### 🚨 Gestão de Crise & SRE
-- **Protocolo de Triagem (War Room):**
-  > `// Atue como SRE Commander. Estamos com um incidente: [Sintoma]. Guie a War Room. Protocolo: 1. Estancar o sangramento (Rollback? Restart?). 2. Isolamento (É Rede? Banco? Código?). 3. Análise de Logs/Métricas. 4. Correção. Não adivinhe, valide hipóteses.`
-
-### 🎨 Design Handoff & Fidelidade
+### Design Handoff & Fidelidade
 - **Figma to Code Logic (Pixel Perfect):**
   > `// Atue como Frontend Developer Detalhista. Compare o Design (Imagem/Figma) com o Código Atual. Liste discrepâncias visuais: 1. Espaçamentos (Padding/Margin). 2. Tipografia (Weight/Size/Line-height). 3. Cores e Sombras. Gere o CSS Delta para corrigir.`
 
 ---
 
-## 12. ENGENHARIA DE COMPONENTES (MEGA-PROMPTS)
+## 5. ENGENHARIA DE COMPONENTES (MEGA-PROMPTS)
 *Caixa de Ferramentas para Componentes "First-Class" em Vanilla JS + Alta Performance.*
 
 ### 1. A GÊNESE: Criação de Componente Robusto
@@ -421,7 +240,184 @@ A eficácia do agente é proporcional à precisão da instrução. Adote a postu
 
 ---
 
-## 13. CONTRIBUIÇÃO
+## 6. DESENVOLVIMENTO BACKEND & ARQUITETURA
+*Lógica de servidor, scripts, refatoração e estrutura de código.*
+
+### Backend & Lógica
+- **API RESTful Boilerplate:**
+  > `// Atue como Backend Architect. Crie um controller [Node/Python] para a entidade [Nome]. Implemente CRUD completo. Chain-of-Thought: 1. Defina o Schema/Model. 2. Planeje as rotas e verbos HTTP. 3. Implemente a lógica com validação e tratamento de erros (Try/Catch).`
+
+- **Otimização de Query SQL:**
+  > `// Atue como DBA. Analise esta query SQL. Identifique gargalos de performance. Explique o Plano de Execução (Explain Plan) teórico. Reescreva utilizando JOINs otimizados e sugira índices compostos necessários.`
+
+- **Gerador de Regex:**
+  > `// Atue como Regex Expert. Crie uma Regex robusta para validar [Padrão]. Explique a lógica de cada token/grupo de captura. Forneça uma tabela de casos de teste: 3 positivos (match) e 3 negativos (no-match).`
+
+### Scripts & Automação
+- **Automação de Arquivos (Node/Python):**
+  > `// Escreva um script para varrer o diretório [Dir], encontrar arquivos [Extensão] modificados há mais de [X] dias e movê-los para uma pasta de arquivamento compactada (ZIP).`
+
+- **Web Scraping (Ético):**
+  > `// Crie um script Puppeteer/Selenium para extrair [Dados] de [Site]. Inclua tratativa de paginação, espera por seletores dinâmicos e delay aleatório para evitar bloqueio (Rate Limiting).`
+
+### Análise Estrutural & Refatoração
+- **Análise Estrutural e Sugestão de Arquitetura:**
+  > `// Atue como Arquiteto de Software. Analise a estrutura atual. Identifique padrões (Monólito vs Modular). Proponha uma reorganização de pastas baseada em Domínio ou Features. Justifique cada mudança com foco em escalabilidade e desacoplamento.`
+
+- **Refatoração de Monólito para Modular:**
+  > `// Atue como Senior Developer. Refatore este arquivo monolítico. Plano: 1. Mapeie as responsabilidades. 2. Crie interfaces/contratos. 3. Extraia para módulos coesos (CSS, JS, HTML separados). Apresente a nova estrutura de arquivos antes do código.`
+
+- **Detecção de Código Morto (Dead Code):**
+  > `// Atue como Code Janitor. Varra o projeto estaticamente. Liste classes CSS e funções JS não referenciadas. Confirme se não há uso dinâmico. Gere um relatório de itens seguros para remoção.`
+
+- **Extração de Componentes Repetidos (DRY):**
+  > `// Atue como Lead Dev. Analise o código em busca de duplicação (DRY). Identifique padrões de UI/Lógica repetidos. Proponha a criação de componentes reutilizáveis. Mostre o 'Antes' e 'Depois' da refatoração.`
+
+---
+
+## 7. QUALIDADE, SEGURANÇA & OPERAÇÃO
+*Garantia de robustez, confiabilidade e manutenção.*
+
+### Debugging & Performance
+- **Análise de Complexidade (Big O):**
+  > `// Atue como Computer Scientist. Analise a complexidade (Big O) desta função. Passo-a-passo: 1. Identifique loops e recursão. 2. Calcule o custo de cada operação. 3. Determine o pior caso. Proponha otimização para O(n) ou O(log n) usando estruturas de dados adequadas.`
+
+- **Caça a Memory Leaks (JS):**
+  > `// Atue como Performance Engineer. Analise este código. Rastreie o ciclo de vida dos objetos. Identifique Event Listeners não removidos, Intervalos órfãos ou Closures que retêm referências. Explique o impacto no Heap e corrija.`
+
+- **Auditoria de Acessibilidade (a11y):**
+  > `// Atue como Especialista em Acessibilidade (WCAG). Audite este HTML. Verifique: Contraste, Semântica, ARIA e Navegação por Teclado. Para cada violação, cite o critério WCAG correspondente e a correção.`
+
+- **Análise de Bundle (Webpack/Vite):**
+  > `// Analise o output de build (stats.json) ou a estrutura de imports. Identifique chunks gigantes (>500kb) e dependências duplicadas. Sugira pontos de 'Code Splitting' (Lazy Loading) para rotas ou componentes pesados para melhorar o Time-to-Interactive.`
+
+- **Otimização de Renderização (React/Vue):**
+  > `// Analise este componente. Identifique props ou estados que causam re-renderizações desnecessárias (objetos/funções recriados a cada render). Sugira uso de useMemo/useCallback ou React.memo onde apropriado para estabilizar a referência.`
+
+### Testes & Segurança
+- **Geração de Testes Unitários (Jest/Pytest):**
+  > `// Atue como QA Engineer. Escreva testes unitários para [Função]. Estratégia: 1. Defina os casos de teste (Caminho Feliz, Entradas Inválidas, Limites). 2. Configure Mocks para I/O. 3. Implemente as asserções. Garanta alta cobertura.`
+
+- **Auditoria de Segurança (AppSec):**
+  > `// Atue como Security Researcher. Realize um Code Review focado em segurança (OWASP Top 10). Procure por: XSS, SQL Injection, Deserialização Insegura e Secrets. Explique o vetor de ataque e a mitigação.`
+
+- **Testes End-to-End (Cypress/Playwright):**
+  > `// Escreva um cenário de teste E2E para o fluxo de [Fluxo: Checkout/Login]. Cubra: Navegação inicial, Preenchimento de Form, Clique em CTA e Validação da URL final ou Mensagem de Sucesso. Inclua screenshots em caso de falha.`
+
+- **Auditoria de Dependências (Supply Chain):**
+  > `// Analise o 'package.json'. Identifique pacotes obsoletos ou com histórico de vulnerabilidades conhecidas. Sugira atualizações seguras (minor/patch) e alternativas para pacotes abandonados.`
+
+### Observabilidade & Monitoramento
+- **Logs Estruturados (JSON):**
+  > `// Refatore os 'console.log' espalhados. Crie um Logger utilitário que formate a saída em JSON com: Timestamp, Nível (INFO/ERROR), Contexto (Módulo/Função) e Mensagem. Isso facilitará a ingestão em ferramentas de monitoramento.`
+
+- **Health Check Endpoint:**
+  > `// Crie uma rota '/health' ou '/status' para a API. Ela deve retornar 200 OK se a aplicação estiver viva, e incluir no corpo o status das conexões vitais (Banco de Dados, Redis, APIs Externas) para monitoramento de uptime.`
+
+---
+
+## 8. DEVOPS & INFRAESTRUTURA
+*Deploy, CI/CD e Containerização.*
+
+- **Dockerfile Otimizado:**
+  > `// Atue como DevOps Engineer. Crie um Dockerfile Multi-Stage para [Node/Python]. Chain-of-Thought: 1. Base Image (Alpine). 2. Build Stage (Instalação de deps + Compilação). 3. Production Stage (Cópia apenas dos artefatos + Remoção de deps de dev). 4. Segurança (Usuário não-root).`
+
+- **GitHub Actions (CI/CD):**
+  > `// Atue como CI/CD Specialist. Gere um workflow do GitHub Actions. Pipeline: 1. Trigger (Push/PR). 2. Setup (Cache de deps). 3. Quality Gate (Lint + Testes Unitários). 4. Build. 5. Deploy (apenas na main). Se falhar em qualquer etapa, bloqueie.`
+
+- **Nginx Reverse Proxy:**
+  > `// Atue como SysAdmin. Gere configuração Nginx para servir esta aplicação. Requisitos: 1. Redirecionamento forçado HTTP->HTTPS. 2. Otimização (Gzip/Brotli). 3. Caching de estáticos (Long-term caching). 4. Hardening (Headers de segurança: HSTS, CSP, X-Frame).`
+
+---
+
+## 9. DADOS & ANALYTICS
+*Manipulação, análise e visualização de dados.*
+
+- **Análise Exploratória (Pandas):**
+  > `// Atue como Data Scientist. Tenho um CSV com colunas [Colunas]. Gere código Python (Pandas). Plano: 1. Data Cleaning (Tratar nulos/duplicados). 2. Feature Engineering (Criar novas colunas derivadas). 3. Agregação (Groupby + Sum/Mean). 4. Cálculo de KPI (MoM Growth).`
+
+- **Visualização de Dados (D3/Chart.js):**
+  > `// Atue como Data Visualization Expert. Crie um gráfico [Tipo] usando [Lib]. Dados: [JSON]. Requisitos UX: 1. Tooltips informativos no hover. 2. Eixos legíveis e formatados. 3. Paleta de cores acessível (Colorblind-safe). 4. Responsividade.`
+
+- **SQL para Business Intelligence:**
+  > `// Atue como BI Analyst. Escreva uma query SQL para calcular o LTV (Lifetime Value). Lógica: 1. Unir tabelas Users/Orders. 2. Calcular receita total por usuário. 3. Agrupar por coorte (mês de cadastro). 4. Retornar média de LTV por coorte.`
+
+---
+
+## 10. GESTÃO, DOCUMENTAÇÃO & SOFT SKILLS
+*Documentação, gestão de projetos, aprendizado e comunicação.*
+
+### Documentação Viva & Engenharia de Conhecimento
+- **Auto-Doc (Técnico):**
+  > `// Atue como Technical Writer. Analise este módulo. Gere documentação JSDoc/Docstring. Padrão: 1. Descrição do propósito. 2. Parâmetros (Tipos e Restrições). 3. Retorno. 4. Exemplo de uso prático. Crie também um README.md resumindo a arquitetura.`
+
+- **Manual do Usuário (Final):**
+  > `// Atue como Customer Success. Escreva um Guia Rápido para o usuário final sobre esta funcionalidade. Linguagem: Simples, sem tecniquês. Estrutura: "Como [Realizar Tarefa] em 3 passos". Inclua dicas de "Troubleshooting" básico.`
+
+### Gestão de Projeto & Estimativa
+- **Estimativa PERT (Anti-Prejuízo):**
+  > `// Atue como Tech Lead Sênior. Analise a feature [Descrição]. Decomponha em tarefas (WBS). Para cada tarefa, estime: Otimista (O), Pessimista (P), Provável (M). Calcule PERT = (O + 4M + P) / 6. Adicione 20% de margem de risco.`
+
+- **Definição de Pronto (DoD):**
+  > `// Atue como Agile Coach. Defina o "Definition of Done" para esta tarefa. Checklist: 1. Código compilando? 2. Testes passando? 3. Code Review aprovado? 4. Critérios de aceitação de UX atendidos? 5. Documentação atualizada? Nada sobe sem isso.`
+
+### Aprendizado Acelerado & Mentor Híbrido
+- **Explain Like I'm Junior (Conceitual):**
+  > `// Atue como Mentor Sênior. Explique a solução implementada. Use a Técnica Feynman: 1. Analogia do mundo real. 2. Explicação técnica simplificada. 3. Por que escolhemos isso e não a alternativa X? Foco em transferir conhecimento, não apenas entregar código.`
+
+- **Plano de Estudo JIT (Just-in-Time):**
+  > `// Atue como Career Coach. Analise o código que acabamos de escrever. Identifique 3 conceitos chave (ex: Promises, Flexbox, SQL Joins) que eu preciso dominar. Para cada um, sugira um exercício prático de 15 minutos para fixação.`
+
+### Gestão de Crise & SRE
+- **Protocolo de Triagem (War Room):**
+  > `// Atue como SRE Commander. Estamos com um incidente: [Sintoma]. Guie a War Room. Protocolo: 1. Estancar o sangramento (Rollback? Restart?). 2. Isolamento (É Rede? Banco? Código?). 3. Análise de Logs/Métricas. 4. Correção. Não adivinhe, valide hipóteses.`
+
+### Comunicação & Negociação
+- **Negociação de Escopo (Scope Creep):**
+  > `// Atue como Project Manager Sênior. Escreva um e-mail para um cliente pedindo alterações fora do escopo. Estrutura: 1. Agradecimento e Validação ("Ótima ideia"). 2. Choque de Realidade ("Isso impacta o prazo em X dias"). 3. Solução ("Podemos fazer na Fase 2 ou orçar extra agora"). Tom: Profissional, Firme e Colaborativo.`
+
+- **Comunicado de Incidente (Post-Mortem):**
+  > `// Atue como CTO. Escreva um Post-Mortem para stakeholders não-técnicos sobre [Incidente]. Seções: 1. O que aconteceu (Sintoma). 2. Por que aconteceu (Causa Raiz Técnica). 3. O que fizemos (Correção Imediata). 4. Como evitar recorrência (Plano de Ação). Tom: Transparente e Responsável.`
+
+- **Cold Mail (Prospecção B2B):**
+  > `// Atue como Copywriter B2B. Crie um Cold Mail para [Nicho]. Framework AIDA: 1. Atenção (Gancho personalizado sobre a empresa deles). 2. Interesse (Problema latente do setor). 3. Desejo (Nossa solução única). 4. Ação (CTA "Soft" para call rápida).`
+
+---
+
+## 11. CATÁLOGO DE SERVIÇOS (BOILERPLATES COMERCIAIS)
+*Prompts prontos para execução dos serviços do portfólio "Me Contrate".*
+
+### 🚀 Performance & Conversão
+- **Landing Page "Speed-First" (<1s):**
+  > `// Atue como Web Performance Engineer. Crie estrutura para Landing Page. Meta: Lighthouse 100/100. Restrições: 1. CSS Inline Crítico (Critical Path). 2. Imagens WebP/AVIF com Lazy-Load e dimensões explícitas. 3. Zero Blocking JS. 4. Fontes com 'font-display: swap'.`
+
+- **Landing Page AIDA (Conversão):**
+  > `// Atue como Conversion Rate Optimization (CRO) Specialist. Estruture uma Landing Page. Framework: 1. Hero (Headline + Subhead + CTA). 2. Problema (Agitação da dor). 3. Solução (Benefícios > Features). 4. Prova Social (Testemunhos reais). 5. Garantia (Risco Zero).`
+
+### 🛍️ E-commerce & Varejo
+- **Storefront Headless (Experience):**
+  > `// Atue como Creative Developer. Projete um Storefront Headless. Features: 1. View Transitions API para navegação fluida. 2. Carrinho Optimistic UI (atualiza antes da API). 3. Micro-animações de "Adicionar ao Carrinho". Foco em Percepção de Performance.`
+
+- **E-commerce MVP (WhatsApp):**
+  > `// Atue como Fullstack Dev. Crie uma Loja "No-Code" Style. Stack: JSON (Catálogo) + JS Vanilla. Fluxo: 1. Renderiza Grid de Produtos. 2. Adiciona ao Carrinho (LocalStorage). 3. Checkout: Monta string URL do WhatsApp com o pedido formatado e abre o app.`
+
+- **Customização Nuvemshop/Shopify:**
+  > `// Atue como Frontend Specialist em E-commerce. Gere CSS (Sass) para override de tema. Objetivo: "Premium Feel". Ações: 1. Refinar tipografia (Line-height/Spacing). 2. Suavizar sombras e bordas. 3. Fixar Header com efeito Blur (Glassmorphism).`
+
+### 🎨 Consultoria & Design
+- **Relatório de Auditoria UX:**
+  > `// Atue como UX Researcher Sênior. Gere um template Markdown para Auditoria Heurística. Estrutura: 1. Resumo Executivo. 2. Avaliação das 10 Heurísticas de Nielsen (Score 0-4). 3. Matriz de Priorização (Esforço x Impacto). 4. Recomendações de "Quick Wins".`
+
+- **Organizador de Assets (Script):**
+  > `// Atue como Automation Engineer. Crie script Node.js para organização de arquivos. Lógica: 1. Scan recursivo de diretório. 2. Extração de metadados (Data de criação). 3. Renomeação padronizada (YYYY-MM-DD_Nome). 4. Movimentação para estrutura de pastas por Ano/Mês.`
+
+### 💼 Gestão & Recorrência
+- **Relatório Mensal (Freelance):**
+  > `// Gere template de Relatório de Atividades. Tabela: Data, Tarefa, Categoria (Dev/Reunião/Bugfix), Duração. Gráfico ASCII simples de distribuição de tempo. Seção: "Impedimentos e Riscos".`
+
+---
+
+## 12. CONTRIBUIÇÃO
 *Protocolo para atualização deste documento.*
 
 *   **Pull Requests:** Aceitos apenas com testes de prompt validados.
