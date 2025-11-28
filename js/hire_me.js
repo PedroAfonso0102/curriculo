@@ -253,37 +253,30 @@ const HireMe = {
     renderCatalog() {
         this.state.currentStep = 'catalog';
 
-        // Intro Block: Expectations (Green/Red Flags)
+        // Intro Block: Expectations (Green/Red Flags) - Minimalist Version
         const expectationsHTML = `
-            <div class="expectations-block" style="margin-bottom: var(--space-2xl); background: var(--bg-subtle); padding: var(--space-lg); border-radius: var(--radius-md);">
-                <div class="expectations-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg);">
-                    <div class="green-flags">
-                        <h3 style="color: var(--color-success); margin-bottom: var(--space-sm); font-size: var(--font-md);">
-                            <span style="margin-right: 8px;">✓</span> ${this.t('hire_exp_green_title')}
-                        </h3>
-                        <ul style="list-style: none; padding: 0; color: var(--text-secondary); font-size: var(--font-base);">
-                            <li style="margin-bottom: 4px;">• ${this.t('hire_exp_green_1')}</li>
-                            <li style="margin-bottom: 4px;">• ${this.t('hire_exp_green_2')}</li>
-                            <li style="margin-bottom: 4px;">• ${this.t('hire_exp_green_3')}</li>
-                        </ul>
-                    </div>
-                    <div class="red-flags">
-                         <h3 style="color: #FF3B30; margin-bottom: var(--space-sm); font-size: var(--font-md);">
-                            <span style="margin-right: 8px;">×</span> ${this.t('hire_exp_red_title')}
-                        </h3>
-                        <ul style="list-style: none; padding: 0; color: var(--text-secondary); font-size: var(--font-base);">
-                            <li style="margin-bottom: 4px;">• ${this.t('hire_exp_red_1')}</li>
-                            <li style="margin-bottom: 4px;">• ${this.t('hire_exp_red_2')}</li>
-                            <li style="margin-bottom: 4px;">• ${this.t('hire_exp_red_3')}</li>
-                        </ul>
-                    </div>
+            <div class="expectations-minimal fade-in-up">
+                <div class="exp-col">
+                    <h3>
+                        <span style="color: var(--color-success);">✓</span> ${this.t('hire_exp_green_title')}
+                    </h3>
+                    <ul>
+                        <li>${this.t('hire_exp_green_1')}</li>
+                        <li>${this.t('hire_exp_green_2')}</li>
+                        <li>${this.t('hire_exp_green_3')}</li>
+                    </ul>
+                </div>
+                <div class="exp-col">
+                     <h3>
+                        <span style="color: #FF3B30;">×</span> ${this.t('hire_exp_red_title')}
+                    </h3>
+                    <ul>
+                        <li>${this.t('hire_exp_red_1')}</li>
+                        <li>${this.t('hire_exp_red_2')}</li>
+                        <li>${this.t('hire_exp_red_3')}</li>
+                    </ul>
                 </div>
             </div>
-            <style>
-                @media (max-width: 600px) {
-                    .expectations-grid { grid-template-columns: 1fr !important; }
-                }
-            </style>
         `;
 
         this.container.innerHTML = `
@@ -296,7 +289,7 @@ const HireMe = {
 
             <div class="services-grid">
                 ${servicesData.map(service => `
-                    <div class="service-card card-interactive" onclick="HireMe.openDetails('${service.id}')">
+                    <div class="service-card card-interactive fade-in-up" style="animation-delay: 0.1s" onclick="HireMe.openDetails('${service.id}')">
                         <div class="service-card-cover" style="background: ${service.gradient}"></div>
                         <div class="service-info">
                             <h3>${this.t(service.titleKey)}</h3>
