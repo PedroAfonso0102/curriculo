@@ -109,20 +109,20 @@ window.translations = {
         theme_toggle_aria: "Alternar modo noturno",
         // Hire Me - General
         hire_header_title: "Me Contrate",
-        hire_role: "Escolha o serviço ideal para o seu momento",
+        hire_role: "Escolha um serviço e solicite orçamento via WhatsApp",
         hire_back: "← Voltar",
         hire_invest: "Investimento",
         hire_deadline: "Prazo Estimado",
         hire_included: "O que está incluso",
         hire_not_included: "O que não está incluso",
-        hire_btn_budget: "Solicitar Orçamento",
-        hire_btn_schedule: "Ver Horários",
-        hire_form_title: "Formulário de Qualificação",
-        hire_form_name: "Seu Nome",
-        hire_form_budget: "Qual o orçamento disponível?",
-        hire_form_deadline: "Qual o prazo ideal?",
-        hire_form_link: "Link do projeto atual (se houver)?",
-        hire_form_submit: "Enviar via WhatsApp",
+        hire_btn_budget: "Pedir Orçamento",
+        hire_btn_schedule: "Agendar",
+        hire_form_title: "Qualifique o projeto",
+        hire_form_name: "Nome",
+        hire_form_budget: "Orçamento (R$)",
+        hire_form_deadline: "Prazo (dias)",
+        hire_form_link: "Link do projeto (opcional)",
+        hire_form_submit: "Enviar (WhatsApp)",
         hire_schedule_title: "Escolha uma Data",
         hire_schedule_desc: "Selecione um dia de preferência. Confirmaremos o horário exato pelo WhatsApp.",
         hire_schedule_next: "Próximos Dias Úteis",
@@ -130,9 +130,9 @@ window.translations = {
         hire_period_morning: "Manhã",
         hire_period_afternoon: "Tarde",
         hire_period_night: "Noite",
-        hire_conf_title: "Solicitação Iniciada!",
-        hire_conf_desc: "Você foi redirecionado para o WhatsApp. Caso a janela não tenha aberto, verifique seu bloqueador de pop-ups.",
-        hire_conf_btn: "Voltar ao Início",
+        hire_conf_title: "Solicitação enviada",
+        hire_conf_desc: "Redirecionado ao WhatsApp. Se não abrir, verifique bloqueadores.",
+        hire_conf_btn: "Voltar",
         // Hire Me - Services
         service_landing_title: "Landing Page",
         service_landing_desc: "Página de alta conversão focada em um único objetivo (venda, captura de lead, etc). Design persuasivo e otimizado.",
@@ -189,7 +189,43 @@ window.translations = {
         hire_dead_hour: "Por hora",
         hire_dead_session: "Sessão 1h",
         hire_dead_recur: "Recorrente",
-        hire_day_unit: "dias úteis"
+        hire_day_unit: "dias úteis",
+
+        // New Services (v2.1)
+        service_speed_landing_title: "Landing Page — Speed-First",
+        service_speed_landing_desc: "Carregamento <1s. Código leve e otimizado para anúncios.",
+        service_speed_landing_inc1: "HTML5 + CSS otimizado",
+        service_speed_landing_inc2: "Vanilla JS, sem libs",
+        service_speed_landing_inc3: "Design aprovado (Figma)",
+        service_speed_landing_inc4: "Otimização para mobile",
+        service_speed_landing_exc1: "Mudanças estruturais pós-aprovação",
+
+        service_storefront_title: "Storefront Customizado",
+        service_storefront_desc: "Vitrine custom, foco em UX e performance.",
+        service_storefront_inc1: "Frontend custom (Vanilla)",
+        service_storefront_inc2: "Integração de pagamentos",
+        service_storefront_inc3: "Carrinho visual e vitrine",
+        service_storefront_inc4: "Base de identidade visual",
+        service_storefront_exc1: "Checkout transacional (terceiro)",
+
+        service_platform_setup_title: "Setup de Plataforma",
+        service_platform_setup_desc: "Configuração Nuvemshop/Shopify com CSS custom.",
+        service_platform_setup_inc1: "Configuração da loja",
+        service_platform_setup_inc2: "CSS personalizado",
+        service_platform_setup_inc3: "Ajuste visual final",
+        service_platform_setup_exc1: "Entrega de templates sem custom",
+
+        service_visual_asset_title: "Pacote Visual Asset",
+        service_visual_asset_desc: "Fotografia e vídeo para uso no site e anúncios.",
+        service_visual_asset_inc1: "Fotografia de produto",
+        service_visual_asset_inc2: "Vídeos curtos (reels)",
+        service_visual_asset_inc3: "Edição e direção de arte",
+        service_visual_asset_exc1: "Material amador sem edição",
+
+        hire_price_landing: "R$ 2.500 - R$ 3.500",
+        hire_price_storefront: "R$ 5.000 - R$ 7.000",
+        hire_price_setup: "R$ 2.000 + Setup",
+        hire_price_visual: "R$ 3.500+"
     },
     en: {
         role: "Commercial Management & Digital Development",
@@ -373,7 +409,43 @@ window.translations = {
         hire_dead_hour: "Per hour",
         hire_dead_session: "1h Session",
         hire_dead_recur: "Recurring",
-        hire_day_unit: "business days"
+        hire_day_unit: "business days",
+
+        // New Services (v2.1)
+        service_speed_landing_title: "\"Speed-First\" Landing Page",
+        service_speed_landing_desc: "Instant loading (< 1s). Surgical optimization for Quality Score (Google/Facebook Ads).",
+        service_speed_landing_inc1: "Semantic HTML5 + Modern CSS3",
+        service_speed_landing_inc2: "Zero dependencies (Vanilla JS)",
+        service_speed_landing_inc3: "Rigorous Design approval",
+        service_speed_landing_inc4: "Non-negotiable performance",
+        service_speed_landing_exc1: "Structural changes after approval",
+
+        service_storefront_title: "Custom Storefront",
+        service_storefront_desc: "An immersive showcase, far from the rigidity of \"ready-made stores\". Navigation fluidity of giants.",
+        service_storefront_inc1: "Vanilla JS Frontend",
+        service_storefront_inc2: "API/SDK Integration",
+        service_storefront_inc3: "Visual Storefront & Cart",
+        service_storefront_inc4: "Exclusive brand identity",
+        service_storefront_exc1: "Checkout (third-party secure env)",
+
+        service_platform_setup_title: "Platform Setup",
+        service_platform_setup_desc: "Advanced Nuvemshop/Shopify configuration + Custom CSS. Inseparable from the photography package.",
+        service_platform_setup_inc1: "Nuvemshop/Shopify Configuration",
+        service_platform_setup_inc2: "Custom CSS",
+        service_platform_setup_inc3: "Elite visual identity",
+        service_platform_setup_exc1: "Standard templates without customization",
+
+        service_visual_asset_title: "\"Visual Asset\" Package",
+        service_visual_asset_desc: "The raw material needed for the site to work. Product Photography and Institutional Video.",
+        service_visual_asset_inc1: "Product Photography (Still/Ambient)",
+        service_visual_asset_inc2: "Institutional Video/Reels",
+        service_visual_asset_inc3: "Art Direction",
+        service_visual_asset_exc1: "Amateur material",
+
+        hire_price_landing: "R$ 2.500 - R$ 3.500",
+        hire_price_storefront: "R$ 5.000 - R$ 7.000",
+        hire_price_setup: "R$ 2.000 + Setup",
+        hire_price_visual: "R$ 3.500+"
     },
     es: {
         role: "Gestión Comercial y Desarrollo Digital",
@@ -557,14 +629,45 @@ window.translations = {
         hire_dead_hour: "Por hora",
         hire_dead_session: "Sesión 1h",
         hire_dead_recur: "Recurrente",
-        hire_day_unit: "días hábiles"
+        hire_day_unit: "días hábiles",
+
+        // New Services (v2.1)
+        service_speed_landing_title: "Landing Page \"Speed-First\"",
+        service_speed_landing_desc: "Carga instantánea (< 1s). Optimización quirúrgica para el Nivel de Calidad (Google/Facebook Ads).",
+        service_speed_landing_inc1: "HTML5 Semántico + CSS3 Moderno",
+        service_speed_landing_inc2: "Cero dependencias (Vanilla JS)",
+        service_speed_landing_inc3: "Aprobación rigurosa de Diseño",
+        service_speed_landing_inc4: "Rendimiento no negociable",
+        service_speed_landing_exc1: "Cambios estructurales post-aprobación",
+
+        service_storefront_title: "Storefront Personalizado",
+        service_storefront_desc: "Una vitrina inmersiva, lejos de la rigidez de las \"tiendas listas\". Fluidez de navegación de gigantes.",
+        service_storefront_inc1: "Frontend Vanilla JS",
+        service_storefront_inc2: "Integración API/SDK",
+        service_storefront_inc3: "Vitrina y Carrito Visual",
+        service_storefront_inc4: "Identidad de marca exclusiva",
+        service_storefront_exc1: "Checkout (entorno seguro de terceros)",
+
+        service_platform_setup_title: "Configuración de Plataforma",
+        service_platform_setup_desc: "Configuración avanzada de Nuvemshop/Shopify + CSS Personalizado. Inseparable del paquete de fotografía.",
+        service_platform_setup_inc1: "Configuración Nuvemshop/Shopify",
+        service_platform_setup_inc2: "CSS Personalizado",
+        service_platform_setup_inc3: "Identidad visual de élite",
+        service_platform_setup_exc1: "Plantillas estándar sin personalización",
+
+        service_visual_asset_title: "Paquete \"Visual Asset\"",
+        service_visual_asset_desc: "La materia prima necesaria para que el sitio funcione. Fotografía de Producto y Video Institucional.",
+        service_visual_asset_inc1: "Fotografía de Producto (Still/Ambientada)",
+        service_visual_asset_inc2: "Video Institucional/Reels",
+        service_visual_asset_inc3: "Dirección de Arte",
+        service_visual_asset_exc1: "Material amateur",
+
+        hire_price_landing: "R$ 2.500 - R$ 3.500",
+        hire_price_storefront: "R$ 5.000 - R$ 7.000",
+        hire_price_setup: "R$ 2.000 + Setup",
+        hire_price_visual: "R$ 3.500+"
     }
 };
-
-/**
- * Sets the current language of the application and updates the UI text.
- * @param {string} lang - The language code (e.g., 'pt', 'en', 'es').
- */
 function setLanguage(lang) {
     document.documentElement.lang = lang;
 
@@ -664,7 +767,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Initialize language
-    const initialLang = navigator.language ? navigator.language.slice(0,2) : 'pt';
+    const initialLang = navigator.language ? navigator.language.slice(0, 2) : 'pt';
     setLanguage(window.translations[initialLang] ? initialLang : 'pt');
 });
 
@@ -677,7 +780,7 @@ function switchView(viewName) {
     const resumeView = document.getElementById('resume-view');
     const playgroundView = document.getElementById('playground-view');
     const hireMeView = document.getElementById('hire-me-view');
-    
+
     // Update Top Bar & Mobile Links
     const updateLinks = (selector) => {
         document.querySelectorAll(selector).forEach(btn => {
@@ -698,7 +801,7 @@ function switchView(viewName) {
     };
 
     const showEl = views[viewName];
-    
+
     // Simple toggle for now, can be animated
     Object.values(views).forEach(el => {
         if (el && el !== showEl) el.style.display = 'none';
@@ -708,7 +811,7 @@ function switchView(viewName) {
         showEl.style.display = 'block';
         showEl.style.opacity = '0';
         showEl.style.transform = 'translateY(10px)';
-        
+
         // Force Reflow
         void showEl.offsetWidth;
 
@@ -737,7 +840,7 @@ function switchView(viewName) {
  */
 function debounce(fn, wait) {
     let t;
-    return function(...args) {
+    return function (...args) {
         clearTimeout(t);
         t = setTimeout(() => fn.apply(this, args), wait);
     };
@@ -769,87 +872,87 @@ function openExperiment(type) {
  * @param {HTMLElement} view - The DOM element containing the experiment view.
  */
 function initExperimentLogic(type, view) {
-        // Initialize experiment with options from controls
-        const formatVal = (v) => {
-            if (typeof v !== 'number') return v;
-            if (Math.abs(v) >= 100) return Math.round(v);
-            if (Math.abs(v) >= 1) return Math.round(v * 100) / 100;
-            return parseFloat(v.toPrecision(4));
-        };
+    // Initialize experiment with options from controls
+    const formatVal = (v) => {
+        if (typeof v !== 'number') return v;
+        if (Math.abs(v) >= 100) return Math.round(v);
+        if (Math.abs(v) >= 1) return Math.round(v * 100) / 100;
+        return parseFloat(v.toPrecision(4));
+    };
 
-        const readOptions = () => {
-            const opts = {};
-            const controls = view.querySelectorAll('.exp-control');
-            controls.forEach(ctrl => {
-                const name = ctrl.name;
-                let val = ctrl.value;
-                if (val !== undefined && val !== null && val !== '') {
-                    val = parseFloat(val);
-                }
-                opts[name] = val;
-                const label = view.querySelector(`#${type}-${name}-label`);
-                if (label) label.textContent = formatVal(val);
-            });
-            return opts;
-        };
-
-        const startWithOptions = (opts) => {
-            if (Experiments && Experiments[type]) {
-                Experiments.stopCurrent();
-                const result = Experiments[type](`${type}Canvas`, opts);
-
-                if (typeof result === 'function') {
-                    Experiments.currentInstance = { cleanup: result, setOptions: null };
-                } else if (result && typeof result === 'object') {
-                    Experiments.currentInstance = result;
-                } else {
-                    Experiments.currentInstance = null;
-                }
-
-                Experiments.activeId = type;
+    const readOptions = () => {
+        const opts = {};
+        const controls = view.querySelectorAll('.exp-control');
+        controls.forEach(ctrl => {
+            const name = ctrl.name;
+            let val = ctrl.value;
+            if (val !== undefined && val !== null && val !== '') {
+                val = parseFloat(val);
             }
-        };
-
-        // Initial start
-        startWithOptions(readOptions());
-
-        // Cleanup old listeners
-        if (view._expBound && Array.isArray(view._expBound)) {
-            view._expBound.forEach(b => b.el.removeEventListener('input', b.handler));
-        }
-        
-        const bound = [];
-        
-        // Debounced logic update
-        const updateLogic = debounce((opts) => {
-            if (Experiments && Experiments.currentInstance && typeof Experiments.currentInstance.setOptions === 'function') {
-                try {
-                    const res = Experiments.currentInstance.setOptions(opts);
-                    if (res && res.requiresReinit) {
-                        startWithOptions(opts);
-                    }
-                    return;
-                } catch (err) {
-                    console.warn('setOptions failed, reinitializing:', err);
-                    startWithOptions(opts);
-                    return;
-                }
-            }
-            startWithOptions(opts);
-        }, 250);
-
-        // Bind controls
-        view.querySelectorAll('.exp-control').forEach(ctrl => {
-            const handler = () => {
-                const opts = readOptions(); // Updates labels immediately
-                updateLogic(opts);          // Updates simulation with delay
-            };
-            ctrl.addEventListener('input', handler);
-            bound.push({ el: ctrl, handler });
+            opts[name] = val;
+            const label = view.querySelector(`#${type}-${name}-label`);
+            if (label) label.textContent = formatVal(val);
         });
-        
-        view._expBound = bound;
+        return opts;
+    };
+
+    const startWithOptions = (opts) => {
+        if (Experiments && Experiments[type]) {
+            Experiments.stopCurrent();
+            const result = Experiments[type](`${type}Canvas`, opts);
+
+            if (typeof result === 'function') {
+                Experiments.currentInstance = { cleanup: result, setOptions: null };
+            } else if (result && typeof result === 'object') {
+                Experiments.currentInstance = result;
+            } else {
+                Experiments.currentInstance = null;
+            }
+
+            Experiments.activeId = type;
+        }
+    };
+
+    // Initial start
+    startWithOptions(readOptions());
+
+    // Cleanup old listeners
+    if (view._expBound && Array.isArray(view._expBound)) {
+        view._expBound.forEach(b => b.el.removeEventListener('input', b.handler));
     }
+
+    const bound = [];
+
+    // Debounced logic update
+    const updateLogic = debounce((opts) => {
+        if (Experiments && Experiments.currentInstance && typeof Experiments.currentInstance.setOptions === 'function') {
+            try {
+                const res = Experiments.currentInstance.setOptions(opts);
+                if (res && res.requiresReinit) {
+                    startWithOptions(opts);
+                }
+                return;
+            } catch (err) {
+                console.warn('setOptions failed, reinitializing:', err);
+                startWithOptions(opts);
+                return;
+            }
+        }
+        startWithOptions(opts);
+    }, 250);
+
+    // Bind controls
+    view.querySelectorAll('.exp-control').forEach(ctrl => {
+        const handler = () => {
+            const opts = readOptions(); // Updates labels immediately
+            updateLogic(opts);          // Updates simulation with delay
+        };
+        ctrl.addEventListener('input', handler);
+        bound.push({ el: ctrl, handler });
+    });
+
+    view._expBound = bound;
+}
 
 /**
  * Closes the currently active experiment and returns to the dashboard.
@@ -857,7 +960,7 @@ function initExperimentLogic(type, view) {
 function closeExperiment() {
     const dashboard = document.getElementById('playground-dashboard');
     const container = document.getElementById('experiment-container');
-    
+
     animateTransition(container, dashboard, () => {
         const prevActive = Experiments ? Experiments.activeId : null;
         if (Experiments) Experiments.stopCurrent();

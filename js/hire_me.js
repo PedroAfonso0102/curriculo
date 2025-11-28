@@ -6,88 +6,48 @@
  */
 const servicesData = [
     {
-        id: 'landing-page',
-        titleKey: 'service_landing_title',
-        priceKey: 'hire_price_consult', // Changed to match "Sob Consulta" or fixed price? Original was R$ 2.500.
-        // Wait, original prices were specific. I need to keep them or add keys for them.
-        // For simplicity and consistency, I will use specific keys or just keep price hardcoded if it's universal currency?
-        // Currency format varies (R$ 2.500 vs R$ 2,500). Let's use keys or format.
-        // Actually, for "Translate every other page", I should probably translate price format if needed, but numbers are numbers.
-        // "R$" is BRL. If user switches to EN, maybe they want USD?
-        // The prompt didn't ask for currency conversion. I will stick to BRL but maybe the label "R$ 2.500" is fine.
-        // However, "Sob Consulta", "Mensal", "Por hora" need translation.
-        // I will use keys for the text parts of price/deadline.
-        priceDisplay: 'R$ 2.500',
-        deadlineDisplay: '10 dias úteis', // This needs translation. "10 business days"
-        // I will use a deadlineKey and params? Or just deadlineKey for the unit?
-        // Let's use `deadlineKey: 'hire_day_unit'`, `deadlineValue: 10`.
-        // But some are "Variável".
-        // Let's use specific keys for the full string or construct it.
-        // Construct: `${10} ${t('hire_day_unit')}`.
-        deadlineValue: '10',
-        deadlineUnitKey: 'hire_day_unit',
-
-        descriptionKey: 'service_landing_desc',
-        includedKeys: ['service_landing_inc1', 'service_landing_inc2', 'service_landing_inc3', 'service_landing_inc4'],
-        notIncludedKeys: ['service_landing_exc1', 'service_landing_exc2'],
+        id: 'speed-landing',
+        titleKey: 'service_speed_landing_title',
+        priceDisplayKey: 'hire_price_landing',
+        deadlineDisplayKey: 'hire_dead_variable',
+        descriptionKey: 'service_speed_landing_desc',
+        includedKeys: ['service_speed_landing_inc1', 'service_speed_landing_inc2', 'service_speed_landing_inc3', 'service_speed_landing_inc4'],
+        notIncludedKeys: ['service_speed_landing_exc1'],
         type: 'contract',
         gradient: 'linear-gradient(135deg, #FF9A9E 0%, #FECFEF 100%)'
     },
     {
-        id: 'ecommerce-basico',
-        titleKey: 'service_ecommerce_title',
-        priceDisplay: 'R$ 4.500',
-        deadlineValue: '20',
-        deadlineUnitKey: 'hire_day_unit',
-        descriptionKey: 'service_ecommerce_desc',
-        includedKeys: ['service_ecommerce_inc1', 'service_ecommerce_inc2', 'service_ecommerce_inc3', 'service_ecommerce_inc4'],
-        notIncludedKeys: ['service_ecommerce_exc1', 'service_ecommerce_exc2'],
+        id: 'custom-storefront',
+        titleKey: 'service_storefront_title',
+        priceDisplayKey: 'hire_price_storefront',
+        deadlineDisplayKey: 'hire_dead_variable',
+        descriptionKey: 'service_storefront_desc',
+        includedKeys: ['service_storefront_inc1', 'service_storefront_inc2', 'service_storefront_inc3', 'service_storefront_inc4'],
+        notIncludedKeys: ['service_storefront_exc1'],
         type: 'contract',
         gradient: 'linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)'
     },
     {
-        id: 'app-web',
-        titleKey: 'service_app_title',
-        priceDisplayKey: 'hire_price_consult',
+        id: 'platform-setup',
+        titleKey: 'service_platform_setup_title',
+        priceDisplayKey: 'hire_price_setup',
         deadlineDisplayKey: 'hire_dead_variable',
-        descriptionKey: 'service_app_desc',
-        includedKeys: ['service_app_inc1', 'service_app_inc2', 'service_app_inc3', 'service_app_inc4'],
-        notIncludedKeys: ['service_app_exc1'],
+        descriptionKey: 'service_platform_setup_desc',
+        includedKeys: ['service_platform_setup_inc1', 'service_platform_setup_inc2', 'service_platform_setup_inc3'],
+        notIncludedKeys: ['service_platform_setup_exc1'],
         type: 'contract',
         gradient: 'linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%)'
     },
     {
-        id: 'consultoria-ux',
-        titleKey: 'service_ux_title',
-        priceDisplayKey: 'hire_price_hour',
-        deadlineDisplayKey: 'hire_dead_hour',
-        descriptionKey: 'service_ux_desc',
-        includedKeys: ['service_ux_inc1', 'service_ux_inc2', 'service_ux_inc3'],
-        notIncludedKeys: ['service_ux_exc1'],
-        type: 'schedule',
-        gradient: 'linear-gradient(135deg, #fccb90 0%, #d57eeb 100%)'
-    },
-    {
-        id: 'mentoria-audiovisual',
-        titleKey: 'service_mentor_title',
-        priceDisplayKey: 'hire_price_hour_mentor',
-        deadlineDisplayKey: 'hire_dead_session',
-        descriptionKey: 'service_mentor_desc',
-        includedKeys: ['service_mentor_inc1', 'service_mentor_inc2', 'service_mentor_inc3'],
-        notIncludedKeys: ['service_mentor_exc1'],
-        type: 'schedule',
-        gradient: 'linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%)'
-    },
-    {
-        id: 'freelance-fixo',
-        titleKey: 'service_freelance_title',
-        priceDisplayKey: 'hire_price_monthly',
-        deadlineDisplayKey: 'hire_dead_recur',
-        descriptionKey: 'service_freelance_desc',
-        includedKeys: ['service_freelance_inc1', 'service_freelance_inc2', 'service_freelance_inc3'],
-        notIncludedKeys: ['service_freelance_exc1'],
+        id: 'visual-asset',
+        titleKey: 'service_visual_asset_title',
+        priceDisplayKey: 'hire_price_visual',
+        deadlineDisplayKey: 'hire_dead_variable',
+        descriptionKey: 'service_visual_asset_desc',
+        includedKeys: ['service_visual_asset_inc1', 'service_visual_asset_inc2', 'service_visual_asset_inc3'],
+        notIncludedKeys: ['service_visual_asset_exc1'],
         type: 'contract',
-        gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)'
+        gradient: 'linear-gradient(135deg, #fccb90 0%, #d57eeb 100%)'
     }
 ];
 
@@ -195,11 +155,11 @@ const HireMe = {
             const weekDays = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
             weekDay = weekDays[date.getDay()];
         } else if (lang === 'es') {
-             const weekDays = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
-             weekDay = weekDays[date.getDay()];
+            const weekDays = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+            weekDay = weekDays[date.getDay()];
         } else {
-             const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-             weekDay = weekDays[date.getDay()];
+            const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            weekDay = weekDays[date.getDay()];
         }
 
         return `${dd}/${mm} - ${weekDay}`;
@@ -223,20 +183,20 @@ const HireMe = {
         // Pedro seems to speak EN/ES.
 
         if (lang === 'en') {
-             if (this.state.selectedService.type === 'contract') {
-                 const budget = this.state.formData.budget || 'N/A';
-                 const deadline = this.state.formData.deadline || 'N/A';
-                 msg = `Hello! My name is ${name}. I would like to request a quote for *${serviceName}*.\nBudget: ${budget}\nDeadline: ${deadline}`;
+            if (this.state.selectedService.type === 'contract') {
+                const budget = this.state.formData.budget || 'N/A';
+                const deadline = this.state.formData.deadline || 'N/A';
+                msg = `Hello! My name is ${name}. I would like to request a quote for *${serviceName}*.\nBudget: ${budget}\nDeadline: ${deadline}`;
             } else {
                 const date = this.state.formData.date || 'N/A';
                 const time = this.state.formData.time || 'N/A';
                 msg = `Hello! My name is ${name}. I would like to schedule a *${serviceName}* for ${date} at ${time}.`;
             }
         } else if (lang === 'es') {
-             if (this.state.selectedService.type === 'contract') {
-                 const budget = this.state.formData.budget || 'N/A';
-                 const deadline = this.state.formData.deadline || 'N/A';
-                 msg = `¡Hola! Mi nombre es ${name}. Me gustaría solicitar un presupuesto para *${serviceName}*.\nPresupuesto: ${budget}\nPlazo: ${deadline}`;
+            if (this.state.selectedService.type === 'contract') {
+                const budget = this.state.formData.budget || 'N/A';
+                const deadline = this.state.formData.deadline || 'N/A';
+                msg = `¡Hola! Mi nombre es ${name}. Me gustaría solicitar un presupuesto para *${serviceName}*.\nPresupuesto: ${budget}\nPlazo: ${deadline}`;
             } else {
                 const date = this.state.formData.date || 'N/A';
                 const time = this.state.formData.time || 'N/A';
@@ -245,9 +205,9 @@ const HireMe = {
         } else {
             // PT
             if (this.state.selectedService.type === 'contract') {
-                 const budget = this.state.formData.budget || 'N/A';
-                 const deadline = this.state.formData.deadline || 'N/A';
-                 msg = `Olá! Meu nome é ${name}. Gostaria de solicitar um orçamento para *${serviceName}*.\nOrçamento: ${budget}\nPrazo: ${deadline}`;
+                const budget = this.state.formData.budget || 'N/A';
+                const deadline = this.state.formData.deadline || 'N/A';
+                msg = `Olá! Meu nome é ${name}. Gostaria de solicitar um orçamento para *${serviceName}*.\nOrçamento: ${budget}\nPrazo: ${deadline}`;
             } else {
                 const date = this.state.formData.date || 'N/A';
                 const time = this.state.formData.time || 'N/A';
