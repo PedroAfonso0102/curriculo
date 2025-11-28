@@ -217,6 +217,30 @@ A diferença entre um código "que funciona" e um código "de produção" está 
 
 ---
 
+### 🔍 Pesquisa & Estratégia de Mercado
+
+- **Análise de Concorrente (Engenharia Reversa)**
+  > `// Atue como um Analista de Produto Sênior. Analise o site [URL do Concorrente] (ou a descrição do produto). Liste: 1. A Proposta de Valor Única (UVP) deles. 2. Três pontos fracos na UX/UI que podemos explorar. 3. A provável stack tecnológica que estão usando (baseado em padrões visuais/comportamentais).`
+
+- **Validação de Ideia (Advogado do Diabo)**
+  > `// Atue como um Investidor Cético de Venture Capital. Eu vou apresentar minha ideia de feature/produto: [Descrição da Ideia]. Quero que você a destrua. Encontre todas as falhas lógicas, riscos de mercado, dificuldades técnicas e motivos pelos quais ela falharia. Seja brutalmente honesto.`
+
+- **Geração de Persona (Dados Sintéticos)**
+  > `// Crie 3 Personas de Usuário detalhadas para o produto [Nome do Produto]. Para cada uma, inclua: Nome, Idade, Cargo, "Job to be Done" (o que eles realmente querem resolver), Dores Atuais, Objeções de Compra e um "Quote" (frase típica).`
+
+### 🧠 Meta-Prompts (Otimização do Agente)
+
+- **Refinamento de Prompt (O "Prompt para criar Prompts")**
+  > `// Atue como um Engenheiro de Prompt Especialista. Eu preciso de um prompt para pedir ao Jules que [Descreva a Tarefa, ex: crie um sistema de login]. Escreva o MELHOR prompt possível para essa tarefa, garantindo que ele inclua contexto, restrições, formato de saída e personas. Não execute a tarefa, apenas me dê o prompt.`
+
+- **Análise de Brechas (Gap Analysis)**
+  > `// Analise a minha última solicitação e o código que você gerou. Identifique se houve algum requisito implícito que eu esqueci de pedir ou se há algum "Edge Case" (caso de borda) que o código atual não cobre. Liste-os.`
+
+- **Explicação para Leigos (Feynman Technique)**
+  > `// Explique o funcionamento deste bloco de código complexo como se eu fosse um estudante de 12 anos. Use analogias do mundo real e evite jargões técnicos excessivos.`
+
+---
+
 ## Contribuindo
 
 Suas contribuições são bem-vindas! Adicione novos prompts avançados, corrija formatações ou sugira novas categorias de engenharia de prompt.
