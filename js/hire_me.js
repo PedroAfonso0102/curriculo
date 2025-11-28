@@ -252,11 +252,48 @@ const HireMe = {
      */
     renderCatalog() {
         this.state.currentStep = 'catalog';
+
+        // Intro Block: Expectations (Green/Red Flags)
+        const expectationsHTML = `
+            <div class="expectations-block" style="margin-bottom: var(--space-2xl); background: var(--bg-subtle); padding: var(--space-lg); border-radius: var(--radius-md);">
+                <div class="expectations-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg);">
+                    <div class="green-flags">
+                        <h3 style="color: var(--color-success); margin-bottom: var(--space-sm); font-size: var(--font-md);">
+                            <span style="margin-right: 8px;">✓</span> ${this.t('hire_exp_green_title')}
+                        </h3>
+                        <ul style="list-style: none; padding: 0; color: var(--text-secondary); font-size: var(--font-base);">
+                            <li style="margin-bottom: 4px;">• ${this.t('hire_exp_green_1')}</li>
+                            <li style="margin-bottom: 4px;">• ${this.t('hire_exp_green_2')}</li>
+                            <li style="margin-bottom: 4px;">• ${this.t('hire_exp_green_3')}</li>
+                        </ul>
+                    </div>
+                    <div class="red-flags">
+                         <h3 style="color: #FF3B30; margin-bottom: var(--space-sm); font-size: var(--font-md);">
+                            <span style="margin-right: 8px;">×</span> ${this.t('hire_exp_red_title')}
+                        </h3>
+                        <ul style="list-style: none; padding: 0; color: var(--text-secondary); font-size: var(--font-base);">
+                            <li style="margin-bottom: 4px;">• ${this.t('hire_exp_red_1')}</li>
+                            <li style="margin-bottom: 4px;">• ${this.t('hire_exp_red_2')}</li>
+                            <li style="margin-bottom: 4px;">• ${this.t('hire_exp_red_3')}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <style>
+                @media (max-width: 600px) {
+                    .expectations-grid { grid-template-columns: 1fr !important; }
+                }
+            </style>
+        `;
+
         this.container.innerHTML = `
             <header class="hire-header">
                 <h1>${this.t('hire_header_title')}</h1>
                 <div class="role">${this.t('hire_role')}</div>
             </header>
+
+            ${expectationsHTML}
+
             <div class="services-grid">
                 ${servicesData.map(service => `
                     <div class="service-card card-interactive" onclick="HireMe.openDetails('${service.id}')">
