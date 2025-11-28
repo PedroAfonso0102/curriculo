@@ -1,58 +1,96 @@
-﻿**Currículo  Pedro Afonso Pinheiro de Paula**
+# Currículo & Portfólio Digital - Pedro Afonso Pinheiro de Paula
 
-Este repositório contém a versão web pública do meu currículo  uma apresentação objetiva das minhas competências, experiência e informações de contato.
+Bem-vindo ao repositório do meu currículo e portfólio digital. Este projeto é uma aplicação web interativa que combina minha experiência profissional com uma área de experimentação técnica ("Playground") e um catálogo de serviços ("Me Contrate").
 
-**Como Visualizar**
+## 📋 Visão Geral
 
-Clique no link: https://pedroafonso.com/curriculo
+Este projeto foi desenvolvido com tecnologias web nativas (Vanilla JavaScript, HTML5 e CSS3) para garantir alta performance, sem dependência de frameworks pesados. Ele serve três propósitos principais:
 
-**Contato Rápido**
-- **Localização:** Campinas, SP
-- **Telefone:** +55 19 99441-8294
-- **Email:** pedro.app1@proton.me
-- **GitHub:** https://github.com/PedroAfonso0102
+1.  **Currículo:** Apresentação profissional da minha carreira, habilidades e formação.
+2.  **Playground:** Uma área de demonstração técnica com simulações físicas e matemáticas interativas (Fluidos, Gravidade, Pêndulo Duplo, etc.).
+3.  **Me Contrate:** Um catálogo de serviços onde clientes podem solicitar orçamentos diretamente via WhatsApp.
 
-**Resumo Profissional**
-- Profissional de Gestão Comercial e Projetos Digitais com vivência em vendas consultivas e liderança de equipes. Desenvolve projetos autônomos e busca recolocação no mercado para somar resultados com expertise em negociação e criação de materiais estratégicos de venda.
+🔗 **Acesse online:** [https://pedroafonso.com/curriculo](https://pedroafonso.com/curriculo)
 
-**Experiência Profissional**
-- **Analista de Vendas e Processos  Wise Inteligência Imobiliária (Operação BTG Pactual)** (2023)
-  - Vendas consultivas: gestão do ciclo de vendas de ativos imobiliários de alto valor.
-  - Processos: implementação de análise de dados para qualificação de leads e otimização do funil.
-- **Presidente e Fundador  CARI PUCCAMP (Centro Acadêmico)** (20222023)
-  - Liderança executiva de equipe multidisciplinar (30 membros); definição de metas estratégicas e rotinas operacionais.
-  - Reestruturação financeira e captação estratégica de recursos, garantindo superávit operacional.
-- **Produtor Digital e Gestor de Projetos  Autônomo** (2020Atual)
-  - Gestão e execução de projetos digitais end-to-end; desenvolvimento de interfaces web focadas em performance e conversão.
-  - Produção audiovisual para eventos corporativos; criação de ferramentas de automação de processos.
-- **Assistente de Importação  INDISA** (20182019)
-  - Operacionalização de processos de importação/exportação e gestão de relacionamento com a cadeia de suprimentos internacional.
+## 🚀 Tecnologias Utilizadas
 
-**Habilidades Técnicas**
-- **Design e Audiovisual:** Photoshop, Lightroom, Premiere Pro, After Effects, Motion Graphics.
-- **Negócios e Ferramentas:** Excel (dashboards), CRM, Negociação B2B, HTML/CSS, JavaScript.
+*   **HTML5:** Estrutura semântica e acessível.
+*   **CSS3:** Estilização com variáveis CSS (Custom Properties) para temas Claro/Escuro e design responsivo (Mobile First).
+*   **JavaScript (ES6+):** Lógica de aplicação, roteamento SPA (Single Page Application) simples, simulações em Canvas API e gerenciamento de estado.
 
-**Formação Acadêmica**
-- **Relações Internacionais (Bacharelado)**  PUC-Campinas (2020  Atual)
-- **Técnico em Administração**  ETEC Bento Quirino (2014  2016)
+## 📂 Estrutura do Projeto
 
-**Idiomas**
-- Português  Nativo
-- Inglês  Fluente
-- Espanhol  Intermediário
-- Africâner  Básico
+```
+.
+├── index.html          # Ponto de entrada da aplicação e conteúdo base (PT-BR)
+├── main.js             # Lógica principal: Roteamento, Traduções, Temas
+├── styles.css          # Estilos globais e componentes
+├── js/
+│   ├── experiments.js  # Lógica das simulações do Playground (Canvas)
+│   └── hire_me.js      # Lógica da seção "Me Contrate" (Catálogo e Formulários)
+└── PROTOTIPAGEM.../    # Arquivos de design e protótipos visuais
+```
 
-**Atividades Extracurriculares**
-- **Rotary International** (20152019): gestão estratégica de imagem pública e comunicação para Interact/Rotaract.
-- **Intercâmbio (Rotary Youth Exchange)** (20172018): África do Sul.
+## 🛠️ Configuração e Execução
 
-**Como atualizar**
-- Edite o arquivo `curriculo/index.html` para alterar o conteúdo exibido no site.
-- Para alterações públicas via GitHub: faça fork, crie uma branch e abra um pull request.
+Como este projeto utiliza apenas tecnologias nativas, não é necessário `npm install` ou processos de build complexos para rodá-lo localmente.
 
-**Licença**
-- Se desejar aplicar uma licença, adicione um arquivo `LICENSE` com os termos escolhidos (por exemplo, MIT).
+1.  **Clone o repositório:**
+    ```bash
+    git clone https://github.com/PedroAfonso0102/seu-repo.git
+    cd seu-repo
+    ```
+
+2.  **Execute:**
+    Basta abrir o arquivo `index.html` em qualquer navegador moderno.
+    *   Recomendado: Use uma extensão como "Live Server" no VS Code para desenvolvimento.
+
+## 🌍 Sistema de Traduções (i18n)
+
+O projeto suporta múltiplos idiomas (PT, EN, ES). O sistema de tradução funciona através de um processo de "Dual Update" para garantir SEO e performance:
+
+1.  **HTML Hardcoded (index.html):** O conteúdo em Português é mantido diretamente no HTML para carregamento inicial rápido e indexação por motores de busca.
+2.  **Objeto de Traduções (main.js):** O objeto `window.translations` contém as strings para todos os idiomas suportados.
+3.  **Atributos de Dados:** Elementos que requerem tradução possuem o atributo `data-i18n="chave_da_traducao"`.
+
+**Como adicionar uma nova tradução:**
+1.  Adicione o texto em Português no `index.html` (se for novo conteúdo).
+2.  Adicione o atributo `data-i18n="nova_chave"` ao elemento HTML.
+3.  No arquivo `main.js`, adicione a chave `nova_chave` e suas traduções dentro do objeto `window.translations` para `pt`, `en` e `es`.
+
+## 🧪 Playground (Experimentos)
+
+A seção Playground (`js/experiments.js`) contém simulações interativas renderizadas em `<canvas>`.
+
+*   **Arquitetura:** Cada experimento é uma função que aceita um ID de canvas e um objeto de opções.
+*   **Gerenciamento:** O objeto `Experiments` gerencia o ciclo de vida (início, parada, limpeza) para garantir que loops de animação não consumam recursos em segundo plano.
+*   **Temas:** O módulo `ExperimentTheme` sincroniza as cores das simulações com as variáveis CSS do tema atual (Claro/Escuro).
+
+**Como adicionar um novo experimento:**
+1.  Crie a função do experimento em `Experiments` no `js/experiments.js`.
+2.  Garanta que a função retorne um objeto com método `cleanup()` (para `cancelAnimationFrame` e remoção de listeners).
+3.  Adicione a interface de controle no HTML (dentro de `#playground-view`).
+4.  Registre a chamada em `main.js` ou na interface de usuário.
+
+## 💼 Seção "Me Contrate"
+
+A lógica desta seção está em `js/hire_me.js`. Ela gerencia:
+*   Renderização do catálogo de serviços baseada em `servicesData`.
+*   Formulários de qualificação e agendamento.
+*   Redirecionamento para WhatsApp com mensagem pré-formatada e traduzida.
+
+## 🤝 Contribuição
+
+Contribuições são bem-vindas!
+1.  Faça um Fork do projeto.
+2.  Crie uma Branch para sua feature (`git checkout -b feature/NovaFeature`).
+3.  Faça o Commit (`git commit -m 'Adiciona NovaFeature'`).
+4.  Faça o Push (`git push origin feature/NovaFeature`).
+5.  Abra um Pull Request.
+
+## 📄 Licença
+
+Este projeto é de uso pessoal e profissional de Pedro Afonso Pinheiro de Paula. O código fonte está disponível para fins de estudo e referência.
 
 ---
-
-Conteúdo atualizado automaticamente a partir de `curriculo/index.html`.
+**Contato:** pedro.app1@proton.me
