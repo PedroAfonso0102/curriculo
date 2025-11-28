@@ -53,6 +53,8 @@
 
     /* --- TYPOGRAPHY (Readable) --- */
     --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-family-mono: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+    --font-family-serif: New York, 'Times New Roman', Times, serif;
 
     /* Escala Atualizada (Visual Hierarchy Normalized) */
     --font-xs: 12px;
@@ -1398,16 +1400,13 @@ html.dark input[type=range]::-webkit-slider-thumb {
 /* On dark mode, it's already dark. On light mode, maybe a slightly technical font stack or border? */
 .lab-aesthetic .playground-header h1,
 .lab-aesthetic .playground-header .role {
-    font-family: 'JetBrains Mono', 'Fira Code', monospace;
-    /* Fallback to monospace if fonts aren't loaded, but Inter is standard.
-       Let's stick to system monospace for the "Lab" feel */
-    font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+    font-family: var(--font-family-mono);
 }
 
 .lab-aesthetic h2,
 .lab-aesthetic h3,
 .lab-aesthetic .app-info h3 {
-    font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+    font-family: var(--font-family-mono);
     letter-spacing: -0.02em;
 }
 
@@ -1420,10 +1419,7 @@ html.dark input[type=range]::-webkit-slider-thumb {
 }
 
 .log-aesthetic h2 {
-    font-family: 'Inter', sans-serif;
-    /* Keep Inter but maybe lighter or serif if available */
-    /* Using system serif for "Book" feel */
-    font-family: New York, 'Times New Roman', Times, serif;
+    font-family: var(--font-family-serif);
     font-weight: 700;
     letter-spacing: -0.01em;
     text-transform: none;
@@ -1432,15 +1428,14 @@ html.dark input[type=range]::-webkit-slider-thumb {
 }
 
 .log-aesthetic .body-text {
-    font-family: New York, 'Times New Roman', Times, serif;
-    font-size: 18px;
-    /* Slightly larger for reading */
+    font-family: var(--font-family-serif);
+    font-size: var(--font-md); /* Standardized from 18px */
     line-height: 1.7;
     color: var(--text-primary);
 }
 
 .log-aesthetic .insight-item h3 {
-    font-family: New York, 'Times New Roman', Times, serif;
+    font-family: var(--font-family-serif);
 }
 
 .insight-list-minimal {
@@ -1473,7 +1468,7 @@ html.dark input[type=range]::-webkit-slider-thumb {
 }
 
 .insight-title {
-    font-family: New York, 'Times New Roman', Times, serif;
+    font-family: var(--font-family-serif);
     font-size: var(--font-md);
     color: var(--text-primary);
     font-weight: 500;
