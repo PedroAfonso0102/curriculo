@@ -285,8 +285,6 @@ const HireMe = {
                 <div class="role">${this.t('hire_role')}</div>
             </header>
 
-            ${expectationsHTML}
-
             <div class="services-grid">
                 ${servicesData.map(service => `
                     <div class="service-card card-interactive fade-in-up" style="animation-delay: 0.1s" onclick="HireMe.openDetails('${service.id}')">
@@ -298,6 +296,8 @@ const HireMe = {
                     </div>
                 `).join('')}
             </div>
+
+            ${expectationsHTML}
         `;
     },
 
