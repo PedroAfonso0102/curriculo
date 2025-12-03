@@ -54,7 +54,7 @@ const Experiments = {
     /**
      * Stops and cleans up the currently running experiment.
      */
-    stopCurrent: function() {
+    stopCurrent: function () {
         if (this.currentInstance) {
             try {
                 if (typeof this.currentInstance.cleanup === 'function') this.currentInstance.cleanup();
@@ -80,7 +80,7 @@ const Experiments = {
      * @param {number} [options.decay=0.995] - Density decay factor.
      * @returns {{cleanup: Function, setOptions: Function}} Control object.
      */
-    fluid: function(canvasId, options = {}) {
+    fluid: function (canvasId, options = {}) {
         const canvas = document.getElementById(canvasId);
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
@@ -233,7 +233,7 @@ const Experiments = {
                     for (let sy = 0; sy < scale; sy++) {
                         for (let sx = 0; sx < scale; sx++) {
                             if (x + sx >= canvas.width || y + sy >= canvas.height) continue;
-                            
+
                             const idx = ((y + sy) * canvas.width + (x + sx)) * 4;
                             // Google Blue-ish smoke
                             data[idx] = Math.min(255, d * 26);     // R
@@ -327,7 +327,7 @@ const Experiments = {
         canvas.addEventListener('mousedown', onMouseDown);
         window.addEventListener('mouseup', onMouseUp);
         canvas.addEventListener('mousemove', onMouseMove);
-        
+
         canvas.addEventListener('touchstart', onTouchStart, { passive: false });
         window.addEventListener('touchend', onMouseUp);
         canvas.addEventListener('touchmove', onTouchMove, { passive: false });
@@ -387,11 +387,11 @@ const Experiments = {
      * @param {number} [options.trails=1] - Whether trails are enabled (1) or not (0).
      * @returns {{cleanup: Function, setOptions: Function}} Control object.
      */
-    gravity: function(canvasId, options = {}) {
+    gravity: function (canvasId, options = {}) {
         const canvas = document.getElementById(canvasId);
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
-        
+
         canvas.width = canvas.clientWidth || 800;
         canvas.height = canvas.clientHeight || 400;
 
@@ -461,8 +461,8 @@ const Experiments = {
 
         // Init
         particles.push(new Particle(canvas.width / 2, canvas.height / 2, 0, 0, 1000, '#fbbc04')); // Google Yellow
-            const orbCount = Math.max(0, params.particleCount - 1);
-            for (let i = 0; i < orbCount; i++) {
+        const orbCount = Math.max(0, params.particleCount - 1);
+        for (let i = 0; i < orbCount; i++) {
             let x = canvas.width / 2 + Math.random() * 200 - 100;
             let y = canvas.height / 2 + Math.random() * 200 - 100;
             if (Math.abs(x - canvas.width / 2) < 50) x += 100;
@@ -471,7 +471,7 @@ const Experiments = {
             let dy = y - canvas.height / 2;
             let dist = Math.sqrt(dx * dx + dy * dy);
             let v = Math.sqrt(params.G * 1000 / dist);
-                let vx = -dy / dist * v;
+            let vx = -dy / dist * v;
             let vy = dx / dist * v;
 
             const colors = ['#4285f4', '#ea4335', '#34a853']; // Google Blue, Red, Green
@@ -543,7 +543,7 @@ const Experiments = {
 
         canvas.addEventListener('mousedown', onMouseDown);
         window.addEventListener('mouseup', onMouseUp);
-        
+
         canvas.addEventListener('touchstart', onTouchStart, { passive: false });
         window.addEventListener('touchend', onTouchEnd);
 
@@ -585,11 +585,11 @@ const Experiments = {
      * @param {number} [options.traceOpacity=0.3] - Opacity of the motion trace.
      * @returns {{cleanup: Function, setOptions: Function}} Control object.
      */
-    pendulum: function(canvasId, options = {}) {
+    pendulum: function (canvasId, options = {}) {
         const canvas = document.getElementById(canvasId);
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
-        
+
         canvas.width = canvas.clientWidth || 800;
         canvas.height = canvas.clientHeight || 400;
 
@@ -701,11 +701,11 @@ const Experiments = {
      * @param {number} [options.hue=0] - Color hue (0-360).
      * @returns {{cleanup: Function, setOptions: Function}} Control object.
      */
-    fourier: function(canvasId, options = {}) {
+    fourier: function (canvasId, options = {}) {
         const canvas = document.getElementById(canvasId);
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
-        
+
         canvas.width = canvas.clientWidth || 800;
         canvas.height = canvas.clientHeight || 400;
 
@@ -727,7 +727,7 @@ const Experiments = {
                 let prevx = x;
                 let prevy = y;
                 let n = i * 2 + 1;
-                    let radius = params.amplitude * (4 / (n * Math.PI));
+                let radius = params.amplitude * (4 / (n * Math.PI));
                 x += radius * Math.cos(n * time + rotation);
                 y += radius * Math.sin(n * time + rotation);
 
@@ -807,7 +807,7 @@ const Experiments = {
      * @param {number} [options.count=5] - Number of particles.
      * @returns {{cleanup: Function, setOptions: Function}} Control object.
      */
-    harmonic: function(canvasId, options = {}) {
+    harmonic: function (canvasId, options = {}) {
         const canvas = document.getElementById(canvasId);
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
@@ -827,11 +827,11 @@ const Experiments = {
         const spacing = 50;
 
         // Initialize chain
-        for(let i=0; i<params.count; i++) {
+        for (let i = 0; i < params.count; i++) {
             particles.push({
-                x: canvas.width/2,
+                x: canvas.width / 2,
                 y: 50 + i * spacing,
-                oldX: canvas.width/2,
+                oldX: canvas.width / 2,
                 oldY: 50 + i * spacing,
                 pinned: i === 0
             });
@@ -840,10 +840,10 @@ const Experiments = {
         let dragNode = null;
 
         function update() {
-            for(let i=0; i<particles.length; i++) {
+            for (let i = 0; i < particles.length; i++) {
                 let p = particles[i];
-                if(p.pinned) continue;
-                if(p === dragNode) continue;
+                if (p.pinned) continue;
+                if (p === dragNode) continue;
 
                 let vx = (p.x - p.oldX) * params.damping;
                 let vy = (p.y - p.oldY) * params.damping;
@@ -858,23 +858,23 @@ const Experiments = {
 
             // Constraints (Springs)
             // Iterate multiple times for stability if needed, but once is fine for soft springs
-            for(let i=0; i<particles.length-1; i++) {
+            for (let i = 0; i < particles.length - 1; i++) {
                 let p1 = particles[i];
-                let p2 = particles[i+1];
+                let p2 = particles[i + 1];
                 let dx = p2.x - p1.x;
                 let dy = p2.y - p1.y;
-                let dist = Math.sqrt(dx*dx + dy*dy);
+                let dist = Math.sqrt(dx * dx + dy * dy);
                 let diff = dist - spacing;
                 let percent = (diff / dist) / 2 * params.k; // Stiffness
-                
+
                 let offsetX = dx * percent;
                 let offsetY = dy * percent;
 
-                if(!p1.pinned && p1 !== dragNode) {
+                if (!p1.pinned && p1 !== dragNode) {
                     p1.x += offsetX;
                     p1.y += offsetY;
                 }
-                if(!p2.pinned && p2 !== dragNode) {
+                if (!p2.pinned && p2 !== dragNode) {
                     p2.x -= offsetX;
                     p2.y -= offsetY;
                 }
@@ -883,21 +883,21 @@ const Experiments = {
 
         function draw() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
+
             ctx.beginPath();
             ctx.strokeStyle = '#333';
             ctx.lineWidth = 2;
             ctx.moveTo(particles[0].x, particles[0].y);
-            for(let i=1; i<particles.length; i++) {
+            for (let i = 1; i < particles.length; i++) {
                 ctx.lineTo(particles[i].x, particles[i].y);
             }
             ctx.stroke();
 
-            for(let i=0; i<particles.length; i++) {
+            for (let i = 0; i < particles.length; i++) {
                 let p = particles[i];
                 ctx.beginPath();
-                ctx.arc(p.x, p.y, params.mass, 0, Math.PI*2); 
-                ctx.fillStyle = i===0 ? '#000' : '#1a73e8';
+                ctx.arc(p.x, p.y, params.mass, 0, Math.PI * 2);
+                ctx.fillStyle = i === 0 ? '#000' : '#1a73e8';
                 ctx.fill();
             }
         }
@@ -914,18 +914,18 @@ const Experiments = {
             const rect = canvas.getBoundingClientRect();
             const mx = e.clientX - rect.left;
             const my = e.clientY - rect.top;
-            
-            for(let p of particles) {
+
+            for (let p of particles) {
                 let dx = mx - p.x;
                 let dy = my - p.y;
-                if(dx*dx + dy*dy < 400) { // Hit radius
+                if (dx * dx + dy * dy < 400) { // Hit radius
                     dragNode = p;
                     break;
                 }
             }
         };
         const onMouseMove = (e) => {
-            if(dragNode) {
+            if (dragNode) {
                 const rect = canvas.getBoundingClientRect();
                 dragNode.x = e.clientX - rect.left;
                 dragNode.y = e.clientY - rect.top;
@@ -966,7 +966,7 @@ const Experiments = {
      * @param {number} [options.size=1] - Size of each point.
      * @returns {{cleanup: Function, setOptions: Function}} Control object.
      */
-    chaos: function(canvasId, options = {}) {
+    chaos: function (canvasId, options = {}) {
         const canvas = document.getElementById(canvasId);
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
@@ -982,15 +982,15 @@ const Experiments = {
 
         let animationId;
         let points = []; // Vertices
-        let currentPoint = { x: canvas.width/2, y: canvas.height/2 };
+        let currentPoint = { x: canvas.width / 2, y: canvas.height / 2 };
 
         // Init Vertices
         const radius = Math.min(canvas.width, canvas.height) / 2 - 20;
         const cx = canvas.width / 2;
         const cy = canvas.height / 2;
-        
-        for(let i=0; i<params.vertices; i++) {
-            const angle = (i * 2 * Math.PI) / params.vertices - Math.PI/2;
+
+        for (let i = 0; i < params.vertices; i++) {
+            const angle = (i * 2 * Math.PI) / params.vertices - Math.PI / 2;
             points.push({
                 x: cx + Math.cos(angle) * radius,
                 y: cy + Math.sin(angle) * radius
@@ -999,15 +999,15 @@ const Experiments = {
 
         // Draw vertices once
         ctx.fillStyle = '#000';
-        for(let p of points) {
+        for (let p of points) {
             ctx.beginPath();
-            ctx.arc(p.x, p.y, 4, 0, Math.PI*2);
+            ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
             ctx.fill();
         }
 
         function loop() {
             ctx.fillStyle = 'rgba(26, 115, 232, 0.5)';
-            for(let i=0; i<params.speed; i++) {
+            for (let i = 0; i < params.speed; i++) {
                 const target = points[Math.floor(Math.random() * points.length)];
                 currentPoint.x = currentPoint.x + (target.x - currentPoint.x) * params.ratio;
                 currentPoint.y = currentPoint.y + (target.y - currentPoint.y) * params.ratio;
@@ -1020,7 +1020,7 @@ const Experiments = {
         return {
             cleanup: () => cancelAnimationFrame(animationId),
             setOptions: (newOpts) => {
-                if(newOpts.vertices !== params.vertices || newOpts.ratio !== params.ratio) {
+                if (newOpts.vertices !== params.vertices || newOpts.ratio !== params.ratio) {
                     params = Object.assign(params, newOpts);
                     return { requiresReinit: true };
                 }
@@ -1042,7 +1042,7 @@ const Experiments = {
      * @param {number} [options.width=2] - Line width.
      * @returns {{cleanup: Function, setOptions: Function}} Control object.
      */
-    lissajous: function(canvasId, options = {}) {
+    lissajous: function (canvasId, options = {}) {
         const canvas = document.getElementById(canvasId);
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
@@ -1064,33 +1064,33 @@ const Experiments = {
 
         function loop() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
+
             const cx = canvas.width / 2;
             const cy = canvas.height / 2;
             const scale = Math.min(cx, cy) - 20;
 
             phase += params.speed;
-            t += 0.05; 
-            
+            t += 0.05;
+
             const px = cx + Math.sin(params.freqX * t + phase) * scale;
             const py = cy + Math.sin(params.freqY * t) * scale;
-            
-            path.push({x: px, y: py});
-            if(path.length > params.trail) path.shift();
-            
-            if(path.length > 1) {
+
+            path.push({ x: px, y: py });
+            if (path.length > params.trail) path.shift();
+
+            if (path.length > 1) {
                 ctx.beginPath();
                 ctx.strokeStyle = '#1a73e8';
                 ctx.lineWidth = params.width;
                 ctx.moveTo(path[0].x, path[0].y);
-                for(let i=1; i<path.length; i++) {
+                for (let i = 1; i < path.length; i++) {
                     ctx.lineTo(path[i].x, path[i].y);
                 }
                 ctx.stroke();
             }
-            
+
             ctx.beginPath();
-            ctx.arc(px, py, 5, 0, Math.PI*2);
+            ctx.arc(px, py, 5, 0, Math.PI * 2);
             ctx.fillStyle = '#000';
             ctx.fill();
 
@@ -1102,7 +1102,7 @@ const Experiments = {
             cleanup: () => cancelAnimationFrame(animationId),
             setOptions: (newOpts) => {
                 params = Object.assign(params, newOpts);
-                if(newOpts.freqX !== params.freqX || newOpts.freqY !== params.freqY) {
+                if (newOpts.freqX !== params.freqX || newOpts.freqY !== params.freqY) {
                     path = [];
                 }
                 return { requiresReinit: false };
@@ -1110,3 +1110,5 @@ const Experiments = {
         };
     }
 };
+
+window.Experiments = Experiments;
