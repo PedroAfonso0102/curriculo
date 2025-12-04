@@ -22,43 +22,178 @@
             font-size: var(--font-sm);
             color: var(--text-secondary);
         }
-        .lang-links a {
-            color: var(--text-secondary);
+        /* iPad Tab Bar - Language Selector */
+        .lang-tab-bar {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 3px;
+            position: relative;
+            width: 116px;
+            height: 32px;
+            background: linear-gradient(0deg, #F7F7F7, #F7F7F7), 
+                        linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5));
+            background-blend-mode: plus-darker, normal;
+            border-radius: 296px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        html.dark .lang-tab-bar {
+            background: linear-gradient(0deg, #2C2C2E, #2C2C2E), 
+                        linear-gradient(0deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.08));
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .lang-tab-bar .tab-stretch {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 26px;
+            gap: 0;
+        }
+
+        .lang-tab-bar .tab-item {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 4px 10px;
+            height: 26px;
+            border-radius: 100px;
             text-decoration: none;
-            margin: 0 4px;
+            position: relative;
+            isolation: isolate;
+            flex: 1;
+            transition: all 0.2s ease;
         }
-        .lang-links a:hover {
-            color: var(--color-accent);
-            text-decoration: underline;
+
+        .lang-tab-bar .tab-item .tab-label {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', 'Inter', sans-serif;
+            font-style: normal;
+            font-weight: 510;
+            font-size: 12px;
+            line-height: 16px;
+            text-align: center;
+            letter-spacing: -0.2px;
+            color: #404040;
+            mix-blend-mode: plus-darker;
+            transition: all 0.2s ease;
         }
-        .lang-links span {
-            font-weight: 600;
-            color: var(--text-primary);
-            margin: 0 4px;
+
+        html.dark .lang-tab-bar .tab-item .tab-label {
+            color: #ABABAB;
+            mix-blend-mode: normal;
+        }
+
+        .lang-tab-bar .tab-item:hover .tab-label {
+            color: #0088FF;
+        }
+
+        .lang-tab-bar .tab-item.active {
+            background: #EDEDED;
+            mix-blend-mode: plus-darker;
+        }
+
+        html.dark .lang-tab-bar .tab-item.active {
+            background: #3A3A3C;
+            mix-blend-mode: normal;
+        }
+
+        .lang-tab-bar .tab-item.active .tab-label {
+            font-weight: 700;
+            color: #0088FF;
+            mix-blend-mode: normal;
+        }
+
+        html.dark .lang-tab-bar .tab-item.active .tab-label {
+            color: #0A84FF;
         }
         /* Hide SPA elements that might leak from CSS */
         .view-container { display: block !important; opacity: 1 !important; transform: none !important; }
-        /* Theme Toggle: smaller & sleeker */
-        .theme-toggle {
-            display: inline-grid;
-            place-items: center;
-            width: 28px;
-            height: 28px;
-            border-radius: 8px;
-            border: 1px solid transparent;
+        
+        /* Header Actions - Unified Pill Style */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            padding: 3px;
+            gap: 2px;
+            height: 32px;
+            background: linear-gradient(0deg, #F7F7F7, #F7F7F7), 
+                        linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5));
+            background-blend-mode: plus-darker, normal;
+            border-radius: 296px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        
+        html.dark .header-actions {
+            background: linear-gradient(0deg, #2C2C2E, #2C2C2E), 
+                        linear-gradient(0deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.08));
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+        
+        .header-actions .action-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px 10px;
+            height: 26px;
+            border-radius: 100px;
+            border: none;
             background: transparent;
             cursor: pointer;
-            transition: background-color 0.18s ease, border-color 0.18s ease, transform 0.12s ease;
-            padding: 0;
+            text-decoration: none;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', 'Inter', sans-serif;
+            font-weight: 510;
+            font-size: 12px;
+            line-height: 16px;
+            letter-spacing: -0.2px;
+            color: #404040;
+            mix-blend-mode: plus-darker;
+            transition: all 0.2s ease;
         }
-        .theme-toggle:active { transform: scale(0.98); }
-        .theme-toggle:hover { border-color: var(--border); background: rgba(0,0,0,0.02); }
-        .theme-toggle svg { width: 14px; height: 14px; fill: none; stroke: var(--text-primary); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; transition: stroke 0.18s, transform 0.18s; }
+        
+        html.dark .header-actions .action-item {
+            color: #ABABAB;
+            mix-blend-mode: normal;
+        }
+        
+        .header-actions .action-item:hover {
+            color: #0088FF;
+        }
+        
+        .header-actions .action-item.active {
+            background: #EDEDED;
+        }
+        
+        html.dark .header-actions .action-item.active {
+            background: #3A3A3C;
+        }
+        
+        /* Theme Toggle Icon */
+        .theme-toggle svg {
+            width: 14px;
+            height: 14px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.6;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: stroke 0.18s, transform 0.18s;
+        }
         .theme-toggle .icon-sun { display: none; }
         .theme-toggle .icon-moon { display: block; }
         html.dark .theme-toggle .icon-sun { display: block; }
         html.dark .theme-toggle .icon-moon { display: none; }
-        .header-actions { display: flex; align-items: center; gap: 8px; }
     </style>
 </head>
 <body>
@@ -73,17 +208,19 @@
 
     <!-- Production Header -->
     <nav class="prod-header">
-        <div class="lang-links">
-            <a href="index.html">PT</a>
-            <a href="index-en.html">EN</a>
-            <span>ES</span>
+        <div class="lang-tab-bar">
+            <div class="tab-stretch">
+                <a href="index.html" class="tab-item"><span class="tab-label">PT</span></a>
+                <span class="tab-item active"><span class="tab-label">ES</span></span>
+                <a href="index-en.html" class="tab-item"><span class="tab-label">EN</span></a>
+            </div>
         </div>
         <div class="header-actions">
-            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+            <button class="action-item theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
                 <svg class="icon-sun" viewBox="0 0 24 24"><path d="M12 7a5 5 0 100 10 5 5 0 000-10zM12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
                 <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
             </button>
-            <a href="mailto:pedro.app1@proton.me" class="btn btn-ghost" style="padding: 4px 8px;">Contacto</a>
+            <a href="mailto:pedro.app1@proton.me" class="action-item">Contacto</a>
         </div>
     </nav>
     <script>
