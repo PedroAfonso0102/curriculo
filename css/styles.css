@@ -180,12 +180,15 @@ html.dark {
 }
 
 body {
-    font-family: var(--font-family);
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro', 'Inter', var(--font-family);
     background-color: var(--bg-app);
     color: var(--text-primary);
     font-size: var(--font-base);
-    line-height: 1.5;
+    line-height: 1.47;
+    letter-spacing: -0.022em;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
     min-height: 100vh;
 }
 
@@ -438,10 +441,11 @@ input {
 }
 
 .icon {
-    width: var(--space-md);
-    height: var(--space-md);
+    width: 14px;
+    height: 14px;
     fill: currentColor;
     display: block;
+    flex-shrink: 0;
     transition: color 0.2s ease;
 }
 
@@ -452,14 +456,12 @@ input {
 .sheet-container {
     width: 100%;
     max-width: var(--width-page);
-    /* A4-ish digital width */
-    margin: var(--space-2xl) auto;
-    padding: var(--space-2xl) var(--space-3xl);
-    min-height: calc(100vh - 130px);
+    margin: var(--space-xl) auto var(--space-2xl);
+    padding: var(--space-xl) var(--space-2xl);
+    min-height: calc(100vh - 120px);
 
     background-color: var(--bg-surface);
     border-radius: var(--radius-md);
-    /* 10px */
     box-shadow: var(--shadow-card);
     border: 1px solid var(--border-subtle);
 }
@@ -468,8 +470,8 @@ input {
 
     .page-container,
     .sheet-container {
-        padding: 30px 20px;
-        margin: 20px auto;
+        padding: var(--space-lg) var(--space-md);
+        margin: var(--space-md) auto;
         border-radius: 0;
         box-shadow: none;
         max-width: 100%;
@@ -510,52 +512,55 @@ input {
 
 /* Header Area */
 header.resume-header {
-    margin-bottom: var(--space-3xl);
+    margin-bottom: var(--space-2xl);
     display: flex;
     flex-direction: column;
 }
 
 h1 {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro', 'Inter', var(--font-family);
     font-size: var(--font-xxl);
     font-weight: 700;
     color: var(--text-primary);
-    letter-spacing: -0.03em;
-    line-height: 1.1;
+    letter-spacing: -0.022em;
+    line-height: 1.12;
     margin-bottom: var(--space-sm);
 }
 
 .role {
     font-size: var(--font-md);
-    font-weight: 500;
+    font-weight: 510;
     color: var(--text-secondary);
     margin-bottom: var(--space-sm);
-    letter-spacing: -0.01em;
+    letter-spacing: -0.014em;
+    line-height: 1.26;
 }
 
 .header-gradient-bar {
-    height: 0.8px;
+    height: 1px;
     width: 100%;
-    background: var(--gradient-header);
+    background: var(--border);
     border-radius: 1px;
-    margin-bottom: var(--space-lg);
-    margin-top: var(--space-sm-md);
+    margin-bottom: var(--space-md);
+    margin-top: var(--space-md);
 }
 
 .header-gradient-bar-bottom {
-    height: 0.8px;
+    height: 1px;
     width: 100%;
-    background: var(--gradient-header);
+    background: var(--border);
     border-radius: 1px;
-    margin-top: var(--space-lg);
+    margin-top: var(--space-md);
 }
 
 .contact-info {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-lg);
-    row-gap: var(--space-sm);
-    font-size: var(--font-sm);
+    row-gap: var(--space-sm-md);
+    font-size: 14px;
     font-weight: 400;
+    letter-spacing: -0.016em;
     color: var(--text-secondary);
 }
 
@@ -563,7 +568,7 @@ h1 {
     color: var(--text-secondary);
     display: flex;
     align-items: center;
-    gap: var(--space-xs);
+    gap: 6px;
 }
 
 .contact-item a {
@@ -583,20 +588,24 @@ h1 {
 
 /* Sections */
 section {
-    margin-bottom: var(--space-3xl);
+    margin-bottom: var(--space-2xl);
+}
+
+section:last-of-type {
+    margin-bottom: 0;
 }
 
 h2 {
-    font-size: var(--font-lg);
-    /* 24px */
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro', 'Inter', var(--font-family);
+    font-size: 20px;
     font-weight: 600;
-    color: var(--text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    color: var(--text-primary);
+    letter-spacing: -0.017em;
+    line-height: 1.2;
     padding-bottom: var(--space-sm);
     border-bottom: 1px solid var(--border);
-    margin-bottom: var(--space-lg);
-    margin-top: var(--space-3xl);
+    margin-bottom: var(--space-md);
+    margin-top: var(--space-2xl);
 }
 
 section:first-of-type h2 {
@@ -604,17 +613,22 @@ section:first-of-type h2 {
 }
 
 .body-text {
-    font-size: var(--font-base);
+    font-size: 15px;
     color: var(--text-primary);
     line-height: 1.6;
+    letter-spacing: -0.016em;
 }
 
 /* Experience Items */
 .experience-item {
-    margin-bottom: var(--space-xl);
-    padding: var(--space-md);
-    border-radius: var(--radius-sm);
+    margin-bottom: var(--space-lg);
+    padding: var(--space-sm-md) var(--space-md);
+    border-radius: var(--radius-md);
     transition: background-color 0.2s ease;
+}
+
+.experience-item:last-child {
+    margin-bottom: 0;
 }
 
 .experience-item:hover {
@@ -625,58 +639,78 @@ section:first-of-type h2 {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    margin-bottom: var(--space-xs);
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-bottom: 2px;
 }
 
 .job-title {
-    font-size: var(--font-md);
-    /* 18px */
-    font-weight: 600;
+    font-size: 17px;
+    font-weight: 590;
     color: var(--text-primary);
+    letter-spacing: -0.022em;
+    line-height: 1.29;
 }
 
 .job-date {
-    font-size: var(--font-sm);
+    font-size: 13px;
+    font-weight: 400;
     color: var(--text-secondary);
+    letter-spacing: -0.006em;
     font-variant-numeric: tabular-nums;
 }
 
 .job-company {
     display: block;
-    font-size: var(--font-sm);
+    font-size: 14px;
+    font-weight: 400;
     color: var(--text-secondary);
-    margin-bottom: var(--space-sm);
+    letter-spacing: -0.016em;
+    margin-bottom: var(--space-sm-md);
 }
 
 .job-details {
     list-style: none;
     padding-left: 0;
+    margin-top: var(--space-xs);
 }
 
 .job-details li {
-    font-size: var(--font-base);
-    /* 15px */
+    font-size: 15px;
     color: var(--text-primary);
     line-height: 1.5;
-    margin-bottom: var(--space-xs);
+    letter-spacing: -0.016em;
+    margin-bottom: var(--space-sm);
     position: relative;
-    padding-left: var(--space-sm-md);
+    padding-left: var(--space-md);
+}
+
+.job-details li:last-child {
+    margin-bottom: 0;
 }
 
 .job-details li::before {
     content: "•";
     position: absolute;
-    left: 0;
+    left: 2px;
     color: var(--text-secondary);
-    font-size: var(--font-xs);
-    top: 1px;
+    font-size: 12px;
+    font-weight: 600;
+    top: 4px;
+    line-height: 1;
+}
+
+/* Strong text in job details */
+.job-details li strong {
+    font-weight: 600;
+    color: var(--text-primary);
 }
 
 /* Skills (Tags) */
 .skills-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--space-lg);
+    gap: var(--space-xl);
 }
 
 @media (min-width: 600px) {
@@ -686,26 +720,29 @@ section:first-of-type h2 {
 }
 
 .skill-group h3 {
-    font-size: var(--font-md);
-    /* Updated from base */
+    font-size: 14px;
+    font-weight: 600;
     color: var(--text-secondary);
+    letter-spacing: -0.016em;
     margin-bottom: var(--space-sm);
-    font-weight: 500;
+    text-transform: none;
 }
 
 .skill-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-xs);
+    gap: var(--space-sm);
 }
 
 .tag {
-    font-size: var(--font-sm);
+    font-size: 13px;
+    font-weight: 510;
+    letter-spacing: -0.006em;
     color: var(--text-primary);
     background-color: var(--bg-subtle);
-    padding: var(--space-xs) var(--space-sm);
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--border-transparent);
+    padding: 6px 12px;
+    border-radius: 100px;
+    border: none;
     cursor: default;
     transition: all 0.2s ease;
 }
@@ -718,24 +755,28 @@ section:first-of-type h2 {
 /* Languages */
 .languages-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(var(--grid-min-sm), 1fr));
-    gap: var(--space-md);
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: var(--space-lg) var(--space-xl);
 }
 
 .lang-item {
     display: flex;
     flex-direction: column;
+    gap: 2px;
 }
 
 .lang-name {
-    font-size: var(--font-base);
-    font-weight: 500;
+    font-size: 15px;
+    font-weight: 510;
     color: var(--text-primary);
+    letter-spacing: -0.022em;
 }
 
 .lang-level {
-    font-size: var(--font-sm);
+    font-size: 13px;
+    font-weight: 400;
     color: var(--text-secondary);
+    letter-spacing: -0.006em;
 }
 
 /* ------------------------------------------------------------------
@@ -1602,7 +1643,7 @@ html.dark .lang-tab-bar {
     text-align: center;
     letter-spacing: -0.2px;
     color: #404040;
-    mix-blend-mode: plus-darker;
+    mix-blend-mode: normal;
     transition: all 0.2s ease;
 }
 
@@ -1653,7 +1694,7 @@ html.dark .lang-tab-bar .tab-item.active .tab-label {
     height: 32px;
     background: linear-gradient(0deg, #F7F7F7, #F7F7F7),
                 linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5));
-    background-blend-mode: plus-darker, normal;
+    background-blend-mode: normal;
     border-radius: 296px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05),
                 inset 0 1px 0 rgba(255, 255, 255, 0.8);
@@ -1685,7 +1726,7 @@ html.dark .header-actions {
     line-height: 16px;
     letter-spacing: -0.2px;
     color: #404040;
-    mix-blend-mode: plus-darker;
+    mix-blend-mode: normal;
     transition: all 0.2s ease;
 }
 
