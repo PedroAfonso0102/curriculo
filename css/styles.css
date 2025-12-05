@@ -1722,66 +1722,42 @@ html.dark .theme-toggle .icon-moon { display: none; }
 
 /* ============================================
    HAMBURGER MENU - LIQUID GLASS iOS 26
-   Exact replica of iOS/iPadOS 26 style
+   Integrated with header-actions bar
    ============================================ */
 
-/* Hamburger Button - Liquid Glass Symbol */
+/* Hamburger Button - Integrated Style */
 .hamburger-btn {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
     align-items: center;
-    padding: 0;
-    gap: 4px;
-    isolation: isolate;
-    position: relative;
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
+    justify-content: center;
+    padding: 4px 8px;
+    height: 26px;
+    width: 26px;
+    border-radius: 100px;
     border: none;
-    /* iOS 26 Liquid Glass button effect */
-    background: 
-        linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 100%),
-        linear-gradient(180deg, rgba(247, 247, 247, 0.95) 0%, rgba(235, 235, 240, 0.9) 100%);
-    background-blend-mode: overlay, normal;
-    backdrop-filter: blur(30px) saturate(180%);
-    -webkit-backdrop-filter: blur(30px) saturate(180%);
-    box-shadow: 
-        0 0 0 0.5px rgba(0, 0, 0, 0.06),
-        0 1px 2px rgba(0, 0, 0, 0.04),
-        0 4px 8px rgba(0, 0, 0, 0.06),
-        inset 0 0.5px 0 rgba(255, 255, 255, 0.9),
-        inset 0 -0.5px 0 rgba(0, 0, 0, 0.03);
+    background: transparent;
     cursor: pointer;
-    transition: all 0.2s cubic-bezier(0.32, 0.72, 0, 1);
+    transition: background 0.2s ease, color 0.2s ease;
 }
 
 .hamburger-btn:hover {
-    transform: scale(1.06);
-    box-shadow: 
-        0 0 0 0.5px rgba(0, 0, 0, 0.08),
-        0 2px 4px rgba(0, 0, 0, 0.06),
-        0 6px 12px rgba(0, 0, 0, 0.1),
-        inset 0 0.5px 0 rgba(255, 255, 255, 0.9),
-        inset 0 -0.5px 0 rgba(0, 0, 0, 0.03);
+    color: #0088FF;
 }
 
 .hamburger-btn:active {
-    transform: scale(0.96);
-    transition: transform 0.1s ease;
+    background: rgba(0, 0, 0, 0.06);
 }
 
-html.dark .hamburger-btn {
-    background: 
-        linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 100%),
-        linear-gradient(180deg, rgba(58, 58, 60, 0.9) 0%, rgba(44, 44, 46, 0.85) 100%);
-    background-blend-mode: overlay, normal;
-    box-shadow: 
-        0 0 0 0.5px rgba(255, 255, 255, 0.08),
-        0 1px 2px rgba(0, 0, 0, 0.2),
-        0 4px 8px rgba(0, 0, 0, 0.25),
-        inset 0 0.5px 0 rgba(255, 255, 255, 0.1),
-        inset 0 -0.5px 0 rgba(0, 0, 0, 0.15);
+.hamburger-btn.active {
+    background: #EDEDED;
+}
+
+html.dark .hamburger-btn:active {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+html.dark .hamburger-btn.active {
+    background: #3A3A3C;
 }
 
 /* Hamburger Icon (2 bars) */
@@ -1790,31 +1766,36 @@ html.dark .hamburger-btn {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 4px;
-    width: 14px;
-    height: 14px;
+    gap: 3px;
+    width: 12px;
+    height: 12px;
 }
 
 .hamburger-icon .bar {
     display: block;
-    width: 14px;
-    height: 2px;
+    width: 12px;
+    height: 1.5px;
     background: #404040;
-    border-radius: 2px;
-    transition: all 0.3s ease;
+    border-radius: 1px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    transform-origin: center;
 }
 
 html.dark .hamburger-icon .bar {
     background: #ABABAB;
 }
 
-/* Hamburger Active State (X icon) */
+.hamburger-btn:hover .hamburger-icon .bar {
+    background: #0088FF;
+}
+
+/* Hamburger Active State (X icon) - Smooth transition */
 .hamburger-btn.active .hamburger-icon .bar:first-child {
-    transform: translateY(3px) rotate(45deg);
+    transform: translateY(2.25px) rotate(45deg);
 }
 
 .hamburger-btn.active .hamburger-icon .bar:last-child {
-    transform: translateY(-3px) rotate(-45deg);
+    transform: translateY(-2.25px) rotate(-45deg);
 }
 
 /* ============================================
@@ -1829,16 +1810,16 @@ html.dark .hamburger-icon .bar {
     padding: 10px 8px;
     isolation: isolate;
     position: absolute;
-    top: calc(100% + 8px);
+    top: calc(100% + 6px);
     right: 0;
     width: 238px;
     min-height: auto;
-    border-radius: 26px;
+    border-radius: 18px;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-10px) scale(0.95);
+    transform: translateY(-4px);
     transform-origin: top right;
-    transition: all 0.28s cubic-bezier(0.32, 0.72, 0, 1);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
     z-index: var(--z-dropdown);
     overflow: visible;
 }
@@ -1846,49 +1827,39 @@ html.dark .hamburger-icon .bar {
 .hamburger-menu.open {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
 }
 
-/* Glass Background Effect - iOS 26 Liquid Glass */
+/* Glass Background Effect - Liquid Glass */
 .menu-glass-bg {
     position: absolute;
     left: 0;
     right: 0;
     top: 0;
     bottom: 0;
-    border-radius: 26px;
-    /* iOS 26 Liquid Glass - Multi-layer effect */
+    border-radius: 18px;
+    /* Liquid Glass - refined */
     background: 
-        linear-gradient(180deg, rgba(255, 255, 255, 0.72) 0%, rgba(255, 255, 255, 0.48) 100%),
-        linear-gradient(180deg, rgba(245, 245, 245, 0.9) 0%, rgba(235, 235, 240, 0.85) 100%);
-    background-blend-mode: overlay, normal;
-    backdrop-filter: blur(50px) saturate(180%);
-    -webkit-backdrop-filter: blur(50px) saturate(180%);
-    /* iOS-style shadow with subtle inner glow */
+        linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.7) 100%);
+    backdrop-filter: blur(40px) saturate(150%);
+    -webkit-backdrop-filter: blur(40px) saturate(150%);
+    /* Subtle shadow */
     box-shadow: 
-        0 0 0 0.5px rgba(0, 0, 0, 0.08),
-        0 2px 4px rgba(0, 0, 0, 0.04),
-        0 8px 24px rgba(0, 0, 0, 0.12),
-        0 24px 48px rgba(0, 0, 0, 0.08),
-        inset 0 0.5px 0 rgba(255, 255, 255, 0.9),
-        inset 0 -0.5px 0 rgba(0, 0, 0, 0.05);
+        0 0 0 0.5px rgba(0, 0, 0, 0.06),
+        0 4px 16px rgba(0, 0, 0, 0.1),
+        inset 0 0.5px 0 rgba(255, 255, 255, 0.9);
     z-index: 0;
 }
 
 html.dark .menu-glass-bg {
     background: 
-        linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 100%),
-        linear-gradient(180deg, rgba(38, 38, 40, 0.92) 0%, rgba(28, 28, 30, 0.88) 100%);
-    background-blend-mode: overlay, normal;
-    backdrop-filter: blur(50px) saturate(150%);
-    -webkit-backdrop-filter: blur(50px) saturate(150%);
+        linear-gradient(180deg, rgba(58, 58, 60, 0.95) 0%, rgba(44, 44, 46, 0.9) 100%);
+    backdrop-filter: blur(40px) saturate(130%);
+    -webkit-backdrop-filter: blur(40px) saturate(130%);
     box-shadow: 
-        0 0 0 0.5px rgba(255, 255, 255, 0.1),
-        0 2px 4px rgba(0, 0, 0, 0.2),
-        0 8px 24px rgba(0, 0, 0, 0.4),
-        0 24px 48px rgba(0, 0, 0, 0.3),
-        inset 0 0.5px 0 rgba(255, 255, 255, 0.12),
-        inset 0 -0.5px 0 rgba(0, 0, 0, 0.2);
+        0 0 0 0.5px rgba(255, 255, 255, 0.08),
+        0 4px 16px rgba(0, 0, 0, 0.35),
+        inset 0 0.5px 0 rgba(255, 255, 255, 0.1);
 }
 
 /* Menu Content Container */
@@ -1921,11 +1892,11 @@ html.dark .menu-glass-bg {
     gap: 2px;
     flex: 1;
     height: 53px;
-    border-radius: 16px;
+    border-radius: 12px;
     border: none;
     background: transparent;
     cursor: pointer;
-    transition: all 0.18s cubic-bezier(0.32, 0.72, 0, 1);
+    transition: background 0.18s ease;
     position: relative;
     text-decoration: none;
 }
@@ -1936,7 +1907,6 @@ html.dark .menu-glass-bg {
 
 .quick-action:active {
     background: rgba(0, 0, 0, 0.08);
-    transform: scale(0.97);
 }
 
 .quick-action.active {
@@ -2022,7 +1992,7 @@ html.dark .menu-separator::after {
     background: rgba(84, 84, 88, 0.65);
 }
 
-/* Menu Items - iOS 26 style */
+/* Menu Items */
 .menu-item {
     display: flex;
     flex-direction: row;
@@ -2030,10 +2000,10 @@ html.dark .menu-separator::after {
     padding: 0 10px;
     gap: 10px;
     width: 100%;
-    height: 44px;
+    height: 40px;
     text-decoration: none;
-    border-radius: 10px;
-    transition: all 0.15s cubic-bezier(0.32, 0.72, 0, 1);
+    border-radius: 8px;
+    transition: background 0.15s ease;
     cursor: pointer;
 }
 
@@ -2043,7 +2013,6 @@ html.dark .menu-separator::after {
 
 .menu-item:active {
     background: rgba(0, 0, 0, 0.08);
-    transform: scale(0.98);
 }
 
 html.dark .menu-item:hover {
