@@ -9,192 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Production Header Styles */
-        .prod-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: var(--space-md) 0;
-            max-width: var(--width-page);
-            margin: 0 auto;
-            font-size: var(--font-sm);
-            color: var(--text-secondary);
-        }
-        /* iPad Tab Bar - Language Selector */
-        .lang-tab-bar {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            padding: 3px;
-            position: relative;
-            width: 116px;
-            height: 32px;
-            background: linear-gradient(0deg, #F7F7F7, #F7F7F7), 
-                        linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5));
-            background-blend-mode: plus-darker, normal;
-            border-radius: 296px;
-            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-        }
-
-        html.dark .lang-tab-bar {
-            background: linear-gradient(0deg, #2C2C2E, #2C2C2E), 
-                        linear-gradient(0deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.08));
-            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        }
-
-        .lang-tab-bar .tab-stretch {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 26px;
-            gap: 0;
-        }
-
-        .lang-tab-bar .tab-item {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            padding: 4px 10px;
-            height: 26px;
-            border-radius: 100px;
-            text-decoration: none;
-            position: relative;
-            isolation: isolate;
-            flex: 1;
-            transition: all 0.2s ease;
-        }
-
-        .lang-tab-bar .tab-item .tab-label {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', 'Inter', sans-serif;
-            font-style: normal;
-            font-weight: 510;
-            font-size: 12px;
-            line-height: 16px;
-            text-align: center;
-            letter-spacing: -0.2px;
-            color: #404040;
-            mix-blend-mode: plus-darker;
-            transition: all 0.2s ease;
-        }
-
-        html.dark .lang-tab-bar .tab-item .tab-label {
-            color: #ABABAB;
-            mix-blend-mode: normal;
-        }
-
-        .lang-tab-bar .tab-item:hover .tab-label {
-            color: #0088FF;
-        }
-
-        .lang-tab-bar .tab-item.active {
-            background: #EDEDED;
-            mix-blend-mode: plus-darker;
-        }
-
-        html.dark .lang-tab-bar .tab-item.active {
-            background: #3A3A3C;
-            mix-blend-mode: normal;
-        }
-
-        .lang-tab-bar .tab-item.active .tab-label {
-            font-weight: 700;
-            color: #0088FF;
-            mix-blend-mode: normal;
-        }
-
-        html.dark .lang-tab-bar .tab-item.active .tab-label {
-            color: #0A84FF;
-        }
-        /* Hide SPA elements that might leak from CSS */
-        .view-container { display: block !important; opacity: 1 !important; transform: none !important; }
-        
-        /* Header Actions - Unified Pill Style */
-        .header-actions {
-            display: flex;
-            align-items: center;
-            padding: 3px;
-            gap: 2px;
-            height: 32px;
-            background: linear-gradient(0deg, #F7F7F7, #F7F7F7), 
-                        linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5));
-            background-blend-mode: plus-darker, normal;
-            border-radius: 296px;
-            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-        }
-        
-        html.dark .header-actions {
-            background: linear-gradient(0deg, #2C2C2E, #2C2C2E), 
-                        linear-gradient(0deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.08));
-            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        }
-        
-        .header-actions .action-item {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 4px 10px;
-            height: 26px;
-            border-radius: 100px;
-            border: none;
-            background: transparent;
-            cursor: pointer;
-            text-decoration: none;
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', 'Inter', sans-serif;
-            font-weight: 510;
-            font-size: 12px;
-            line-height: 16px;
-            letter-spacing: -0.2px;
-            color: #404040;
-            mix-blend-mode: plus-darker;
-            transition: all 0.2s ease;
-        }
-        
-        html.dark .header-actions .action-item {
-            color: #ABABAB;
-            mix-blend-mode: normal;
-        }
-        
-        .header-actions .action-item:hover {
-            color: #0088FF;
-        }
-        
-        .header-actions .action-item.active {
-            background: #EDEDED;
-        }
-        
-        html.dark .header-actions .action-item.active {
-            background: #3A3A3C;
-        }
-        
-        /* Theme Toggle Icon */
-        .theme-toggle svg {
-            width: 14px;
-            height: 14px;
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 1.6;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            transition: stroke 0.18s, transform 0.18s;
-        }
-        .theme-toggle .icon-sun { display: none; }
-        .theme-toggle .icon-moon { display: block; }
-        html.dark .theme-toggle .icon-sun { display: block; }
-        html.dark .theme-toggle .icon-moon { display: none; }
-    </style>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <!-- Essential SVGs for Resume -->
@@ -223,19 +38,7 @@
             <a href="mailto:pedro.app1@proton.me" class="action-item">Contacto</a>
         </div>
     </nav>
-    <script>
-        function toggleTheme() {
-            document.documentElement.classList.toggle('dark');
-            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
-        }
-        // Initialize theme
-        (function() {
-            const saved = localStorage.getItem('theme');
-            if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark');
-            }
-        })();
-    </script>
+    <script src="js/theme.js"></script>
 
     <!-- Content -->
     <div class="sheet-container">
@@ -272,7 +75,7 @@
 
             <section>
                 <h2 data-i18n="section_summary">Resumen</h2>
-                <p class="body-text" data-i18n="summary_text">Soy un profesional con actuación híbrida en Gestión Comercial y Desarrollo Digital. Combino experiencia práctica en ventas consultivas de alto valor con competencia técnica en desarrollo de herramientas digitales y producción audiovisual. Mi enfoque está en la ejecución, uso datos para calificar leads, creo herramientas digitales para optimizar procesos y produzco contenido visual para soporte directo a ventas. Orientado a la eficiencia operativa y resultados financieros.</p>
+                <p class="body-text" data-i18n="summary_text">Soy un profesional con actuación híbrida en Gestión Comercial y Desarrollo Digital. Combino experiencia práctica en ventas consultivas de alto valor con competencia técnica en desarrollo de herramientas digitales y producción audiovisual. Mi foco está en la ejecución: uso datos para cualificar leads, creo herramientas digitales para optimizar procesos y produzco contenido visual para soporte directo a ventas. Orientado a la eficiencia operativa y resultados financieros.</p>
             </section>
 
             <section>
@@ -296,11 +99,11 @@
                         <span class="job-title" data-i18n="job2_title">Fundador y Presidente</span>
                         <span class="job-date">2022 – 2023</span>
                     </div>
-                    <span class="job-company" data-i18n="job2_company">Centro Académico de Relaciones Internacionales "XXVI de Setembro" - PUCCAMP</span>
+                    <span class="job-company" data-i18n="job2_company">CARI PUCCAMP</span>
                     <ul class="job-details">
                         <li data-i18n="job2_desc1"><strong>Gestión Institucional:</strong> Fundación y estructuración jurídica de la entidad, liderando un equipo operativo de 30 miembros.</li>
-                        <li data-i18n="job2_desc2"><strong>Control Financiero:</strong> Caja desde cero y cierre de gestión con superávit neto de +R$ 4.000 mediante control de costos e ingresos.</li>
-                        <li data-i18n="job2_desc3"><strong>Ejecución de Proyectos:</strong> Organización y supervisión de la ejecución de eventos y proyectos académicos con enfoque en viabilidad económica para construcción de caja.</li>
+                        <li data-i18n="job2_desc2"><strong>Control Financiero:</strong> Inicio con caja cero y cierre de gestión con superávit neto de +R$ 4.000 mediante control de costos e ingresos.</li>
+                        <li data-i18n="job2_desc3"><strong>Ejecución de Proyectos:</strong> Organización y supervisión de eventos y proyectos académicos con foco en viabilidad económica.</li>
                     </ul>
                 </div>
 
@@ -324,7 +127,7 @@
                     </div>
                     <span class="job-company" data-i18n="job4_company">INDISA</span>
                     <ul class="job-details">
-                        <li data-i18n="job4_desc1"><strong>Comercio Exterior:</strong> Operacionalización de procesos de importación/exportación y gestión de relaciones con cadena de proveedores internacionales.</li>
+                        <li data-i18n="job4_desc1"><strong>Comercio Exterior:</strong> Operacionalización de procesos de importación/exportación y gestión de relaciones con la cadena de suministro internacional.</li>
                     </ul>
                 </div>
             </section>

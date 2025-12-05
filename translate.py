@@ -12,32 +12,53 @@ def translate_html(html_content, translations, lang_code):
     # Update HTML lang attribute
     new_html = re.sub(r'<html lang="pt-BR">', f'<html lang="{lang_code}">', new_html)
 
-    # Update Header Links
-    lang_block = ""
-    if lang_code == 'en':
-        lang_block = '<a href="index.html">PT</a>\n            <span>EN</span>\n            <a href="index-es.html">ES</a>'
+    # --- Update Header Navigation (Active State) ---
+    # The source (index.html) has PT active:
+    # <span class="tab-item active"><span class="tab-label">PT</span></span>
+    # <a href="index-es.html" class="tab-item"><span class="tab-label">ES</span></a>
+    # <a href="index-en.html" class="tab-item"><span class="tab-label">EN</span></a>
+
+    # We need to construct the block for the target language.
+
+    tab_pt = '<a href="index.html" class="tab-item"><span class="tab-label">PT</span></a>'
+    tab_es = '<a href="index-es.html" class="tab-item"><span class="tab-label">ES</span></a>'
+    tab_en = '<a href="index-en.html" class="tab-item"><span class="tab-label">EN</span></a>'
+
+    if lang_code == 'pt':
+        tab_pt = '<span class="tab-item active"><span class="tab-label">PT</span></span>'
     elif lang_code == 'es':
-        lang_block = '<a href="index.html">PT</a>\n            <a href="index-en.html">EN</a>\n            <span>ES</span>'
+        tab_es = '<span class="tab-item active"><span class="tab-label">ES</span></span>'
+    elif lang_code == 'en':
+        tab_en = '<span class="tab-item active"><span class="tab-label">EN</span></span>'
 
-    if lang_block:
-        new_html = re.sub(
-            r'(<div class="lang-links">)([\s\S]*?)(</div>)',
-            f'\\1\n            {lang_block}\n        \\3',
-            new_html
-        )
+    # Regex to replace the content inside <div class="tab-stretch">...</div>
+    # Pattern looks for the div and replaces everything inside it.
 
+    new_tabs_content = f'\n                {tab_pt}\n                {tab_es}\n                {tab_en}\n            '
+
+    new_html = re.sub(
+        r'(<div class="tab-stretch">)([\s\S]*?)(</div>)',
+        f'\\1{new_tabs_content}\\3',
+        new_html
+    )
+
+    # --- Translate "Contato" Button ---
+    # The button is: <a href="mailto:..." class="action-item">Contato</a>
+    # We verify if we have a translation for it. Usually it's hardcoded in HTML but we can regex it.
+    contact_translation = "Contact" if lang_code == 'en' else "Contacto" if lang_code == 'es' else "Contato"
+
+    new_html = re.sub(
+        r'(<a href="mailto:[^"]+" class="action-item">)(.*?)(</a>)',
+        f'\\1{contact_translation}\\3',
+        new_html
+    )
+
+    # --- General Data-i18n Replacement ---
     lang_data = translations.get(lang_code, {})
 
     for key, text in lang_data.items():
         if not text:
             continue
-
-        # Regex to find the element with this data-i18n key and its matching closing tag.
-        # We capture the tag name in group 2 (\w+).
-        # Then we match content (group 3) until we find </tagname>.
-        # Note: This simple regex approach assumes we don't have the same tag nested directly inside itself
-        # without sufficient separation, but for this specific HTML content (p, h1, li), it should be safe.
-        # Pattern: (<(\w+)[^>]*data-i18n=["']{key}["'][^>]*>)(.*?)(</\2>)
 
         pattern = re.compile(
             r'(<(\w+)[^>]*data-i18n=["\']' + re.escape(key) + r'["\'][^>]*>)(.*?)(</\2>)',
@@ -45,10 +66,6 @@ def translate_html(html_content, translations, lang_code):
         )
 
         def replace_match(match):
-            # match.group(1): Opening tag
-            # match.group(2): Tag name (internal use)
-            # match.group(3): Old Content
-            # match.group(4): Closing tag
             return f"{match.group(1)}{text}{match.group(4)}"
 
         new_html = pattern.sub(replace_match, new_html)
