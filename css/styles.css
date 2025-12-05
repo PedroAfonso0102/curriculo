@@ -132,6 +132,11 @@
     --anim-scale-active: 0.98;
 }
 
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
 /* Dark Mode (Harmonized) */
 html.dark {
     --bg-app: #1C1C1E;
@@ -1714,3 +1719,454 @@ html.dark .header-actions .action-item.active {
 .theme-toggle .icon-moon { display: block; }
 html.dark .theme-toggle .icon-sun { display: block; }
 html.dark .theme-toggle .icon-moon { display: none; }
+
+/* ============================================
+   HAMBURGER MENU - LIQUID GLASS iOS 26
+   Exact replica of iOS/iPadOS 26 style
+   ============================================ */
+
+/* Hamburger Button - Liquid Glass Symbol */
+.hamburger-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    gap: 4px;
+    isolation: isolate;
+    position: relative;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: none;
+    /* iOS 26 Liquid Glass button effect */
+    background: 
+        linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 100%),
+        linear-gradient(180deg, rgba(247, 247, 247, 0.95) 0%, rgba(235, 235, 240, 0.9) 100%);
+    background-blend-mode: overlay, normal;
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    box-shadow: 
+        0 0 0 0.5px rgba(0, 0, 0, 0.06),
+        0 1px 2px rgba(0, 0, 0, 0.04),
+        0 4px 8px rgba(0, 0, 0, 0.06),
+        inset 0 0.5px 0 rgba(255, 255, 255, 0.9),
+        inset 0 -0.5px 0 rgba(0, 0, 0, 0.03);
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.hamburger-btn:hover {
+    transform: scale(1.06);
+    box-shadow: 
+        0 0 0 0.5px rgba(0, 0, 0, 0.08),
+        0 2px 4px rgba(0, 0, 0, 0.06),
+        0 6px 12px rgba(0, 0, 0, 0.1),
+        inset 0 0.5px 0 rgba(255, 255, 255, 0.9),
+        inset 0 -0.5px 0 rgba(0, 0, 0, 0.03);
+}
+
+.hamburger-btn:active {
+    transform: scale(0.96);
+    transition: transform 0.1s ease;
+}
+
+html.dark .hamburger-btn {
+    background: 
+        linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 100%),
+        linear-gradient(180deg, rgba(58, 58, 60, 0.9) 0%, rgba(44, 44, 46, 0.85) 100%);
+    background-blend-mode: overlay, normal;
+    box-shadow: 
+        0 0 0 0.5px rgba(255, 255, 255, 0.08),
+        0 1px 2px rgba(0, 0, 0, 0.2),
+        0 4px 8px rgba(0, 0, 0, 0.25),
+        inset 0 0.5px 0 rgba(255, 255, 255, 0.1),
+        inset 0 -0.5px 0 rgba(0, 0, 0, 0.15);
+}
+
+/* Hamburger Icon (2 bars) */
+.hamburger-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    width: 14px;
+    height: 14px;
+}
+
+.hamburger-icon .bar {
+    display: block;
+    width: 14px;
+    height: 2px;
+    background: #404040;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+html.dark .hamburger-icon .bar {
+    background: #ABABAB;
+}
+
+/* Hamburger Active State (X icon) */
+.hamburger-btn.active .hamburger-icon .bar:first-child {
+    transform: translateY(3px) rotate(45deg);
+}
+
+.hamburger-btn.active .hamburger-icon .bar:last-child {
+    transform: translateY(-3px) rotate(-45deg);
+}
+
+/* ============================================
+   DROPDOWN MENU - LIQUID GLASS iOS 26
+   Exact replica of iPadOS 26 Liquid Glass style
+   ============================================ */
+
+.hamburger-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 8px;
+    isolation: isolate;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    width: 238px;
+    min-height: auto;
+    border-radius: 26px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px) scale(0.95);
+    transform-origin: top right;
+    transition: all 0.28s cubic-bezier(0.32, 0.72, 0, 1);
+    z-index: var(--z-dropdown);
+    overflow: visible;
+}
+
+.hamburger-menu.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+/* Glass Background Effect - iOS 26 Liquid Glass */
+.menu-glass-bg {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 26px;
+    /* iOS 26 Liquid Glass - Multi-layer effect */
+    background: 
+        linear-gradient(180deg, rgba(255, 255, 255, 0.72) 0%, rgba(255, 255, 255, 0.48) 100%),
+        linear-gradient(180deg, rgba(245, 245, 245, 0.9) 0%, rgba(235, 235, 240, 0.85) 100%);
+    background-blend-mode: overlay, normal;
+    backdrop-filter: blur(50px) saturate(180%);
+    -webkit-backdrop-filter: blur(50px) saturate(180%);
+    /* iOS-style shadow with subtle inner glow */
+    box-shadow: 
+        0 0 0 0.5px rgba(0, 0, 0, 0.08),
+        0 2px 4px rgba(0, 0, 0, 0.04),
+        0 8px 24px rgba(0, 0, 0, 0.12),
+        0 24px 48px rgba(0, 0, 0, 0.08),
+        inset 0 0.5px 0 rgba(255, 255, 255, 0.9),
+        inset 0 -0.5px 0 rgba(0, 0, 0, 0.05);
+    z-index: 0;
+}
+
+html.dark .menu-glass-bg {
+    background: 
+        linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 100%),
+        linear-gradient(180deg, rgba(38, 38, 40, 0.92) 0%, rgba(28, 28, 30, 0.88) 100%);
+    background-blend-mode: overlay, normal;
+    backdrop-filter: blur(50px) saturate(150%);
+    -webkit-backdrop-filter: blur(50px) saturate(150%);
+    box-shadow: 
+        0 0 0 0.5px rgba(255, 255, 255, 0.1),
+        0 2px 4px rgba(0, 0, 0, 0.2),
+        0 8px 24px rgba(0, 0, 0, 0.4),
+        0 24px 48px rgba(0, 0, 0, 0.3),
+        inset 0 0.5px 0 rgba(255, 255, 255, 0.12),
+        inset 0 -0.5px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Menu Content Container */
+.menu-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* Quick Actions Row */
+.menu-quick-actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 2px;
+    gap: 6px;
+    width: 100%;
+    height: 53px;
+}
+
+.quick-action {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 9px 4px 6px;
+    gap: 2px;
+    flex: 1;
+    height: 53px;
+    border-radius: 16px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.18s cubic-bezier(0.32, 0.72, 0, 1);
+    position: relative;
+    text-decoration: none;
+}
+
+.quick-action:hover {
+    background: rgba(0, 0, 0, 0.04);
+}
+
+.quick-action:active {
+    background: rgba(0, 0, 0, 0.08);
+    transform: scale(0.97);
+}
+
+.quick-action.active {
+    background: transparent;
+}
+
+html.dark .quick-action:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+html.dark .quick-action:active {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.quick-action-icon {
+    width: 22px;
+    height: 22px;
+    color: #3C3C43;
+    stroke: currentColor;
+    fill: none;
+    opacity: 0.8;
+}
+
+.quick-action.active .quick-action-icon {
+    color: #FF453A;
+    opacity: 1;
+}
+
+html.dark .quick-action-icon {
+    color: #EBEBF5;
+    opacity: 0.6;
+}
+
+html.dark .quick-action.active .quick-action-icon {
+    color: #FF453A;
+    opacity: 1;
+}
+
+.quick-action-label {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 13px;
+    text-align: center;
+    color: #3C3C43;
+    opacity: 0.85;
+}
+
+.quick-action.active .quick-action-label {
+    color: #FF453A;
+    opacity: 1;
+    font-weight: 600;
+}
+
+html.dark .quick-action-label {
+    color: #EBEBF5;
+    opacity: 0.6;
+}
+
+html.dark .quick-action.active .quick-action-label {
+    color: #FF453A;
+    opacity: 1;
+}
+
+/* Menu Separator - iOS style */
+.menu-separator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 12px;
+    width: 100%;
+}
+
+.menu-separator::after {
+    content: '';
+    width: 100%;
+    height: 0.5px;
+    background: rgba(60, 60, 67, 0.12);
+    border-radius: 0;
+}
+
+html.dark .menu-separator::after {
+    background: rgba(84, 84, 88, 0.65);
+}
+
+/* Menu Items - iOS 26 style */
+.menu-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 10px;
+    gap: 10px;
+    width: 100%;
+    height: 44px;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: all 0.15s cubic-bezier(0.32, 0.72, 0, 1);
+    cursor: pointer;
+}
+
+.menu-item:hover {
+    background: rgba(0, 0, 0, 0.04);
+}
+
+.menu-item:active {
+    background: rgba(0, 0, 0, 0.08);
+    transform: scale(0.98);
+}
+
+html.dark .menu-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+html.dark .menu-item:active {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.menu-item.disabled {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+.menu-item.disabled .menu-item-icon,
+.menu-item.disabled .menu-item-label,
+.menu-item.disabled .menu-item-disclosure {
+    color: #3C3C43;
+}
+
+html.dark .menu-item.disabled .menu-item-icon,
+html.dark .menu-item.disabled .menu-item-label,
+html.dark .menu-item.disabled .menu-item-disclosure {
+    color: #EBEBF5;
+}
+
+.menu-item-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #3C3C43;
+    flex-shrink: 0;
+    opacity: 0.7;
+}
+
+/* SVG icon styling */
+.menu-item-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+html.dark .menu-item-icon {
+    color: #EBEBF5;
+    opacity: 0.6;
+}
+
+.menu-item-label {
+    flex: 1;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    letter-spacing: -0.23px;
+    color: #1C1C1E;
+    padding-left: 2px;
+}
+
+html.dark .menu-item-label {
+    color: #FFFFFF;
+}
+
+.menu-item-disclosure {
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #C7C7CC;
+    flex-shrink: 0;
+}
+
+.menu-item-disclosure svg {
+    width: 14px;
+    height: 14px;
+    stroke-width: 2.5;
+}
+
+html.dark .menu-item-disclosure {
+    color: #48484A;
+}
+
+/* Section Title - iOS style */
+.menu-section-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 4px 12px 6px;
+    gap: 10px;
+    width: 100%;
+    height: auto;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: -0.08px;
+    color: rgba(60, 60, 67, 0.6);
+    text-transform: uppercase;
+}
+
+html.dark .menu-section-title {
+    color: rgba(235, 235, 245, 0.6);
+}
+
+/* Menu Overlay */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: transparent;
+    z-index: calc(var(--z-dropdown) - 1);
+    display: none;
+}
+
+.menu-overlay.active {
+    display: block;
+}
+
+/* Position header for dropdown context */
+.prod-header {
+    position: relative;
+}
