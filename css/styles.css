@@ -135,6 +135,173 @@
 /* Smooth scrolling */
 html {
     scroll-behavior: smooth;
+    overflow-y: scroll; /* Always show scrollbar to prevent layout shift */
+}
+
+/* Custom Scrollbar - Light Mode */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-app);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(134, 134, 139, 0.4) 0%, rgba(134, 134, 139, 0.6) 100%);
+    border-radius: 10px;
+    border: 2px solid var(--bg-app);
+    transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, rgba(134, 134, 139, 0.6) 0%, rgba(134, 134, 139, 0.8) 100%);
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: linear-gradient(180deg, rgba(0, 122, 255, 0.5) 0%, rgba(0, 122, 255, 0.7) 100%);
+}
+
+::-webkit-scrollbar-corner {
+    background: var(--bg-app);
+}
+
+/* Firefox Scrollbar */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(134, 134, 139, 0.5) var(--bg-app);
+}
+
+/* Dark Mode Scrollbar */
+html.dark::-webkit-scrollbar-track {
+    background: #1C1C1E;
+}
+
+html.dark::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(142, 142, 147, 0.4) 0%, rgba(142, 142, 147, 0.6) 100%);
+    border: 2px solid #1C1C1E;
+}
+
+html.dark::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, rgba(142, 142, 147, 0.6) 0%, rgba(142, 142, 147, 0.8) 100%);
+}
+
+html.dark::-webkit-scrollbar-thumb:active {
+    background: linear-gradient(180deg, rgba(10, 132, 255, 0.5) 0%, rgba(10, 132, 255, 0.7) 100%);
+}
+
+html.dark::-webkit-scrollbar-corner {
+    background: #1C1C1E;
+}
+
+html.dark * {
+    scrollbar-color: rgba(142, 142, 147, 0.5) #1C1C1E;
+}
+
+/* ============================================
+   SCROLL TO TOP BUTTON - iOS/macOS Style
+   ============================================ */
+.scroll-to-top {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: var(--z-sticky);
+    
+    /* Liquid Glass Effect - Light */
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.75) 100%);
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    box-shadow: 
+        0 0 0 0.5px rgba(0, 0, 0, 0.08),
+        0 4px 16px rgba(0, 0, 0, 0.12),
+        inset 0 0.5px 0 rgba(255, 255, 255, 0.9);
+    
+    /* Hidden by default */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px) scale(0.9);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.scroll-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+.scroll-to-top:hover {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.85) 100%);
+    box-shadow: 
+        0 0 0 0.5px rgba(0, 0, 0, 0.1),
+        0 6px 20px rgba(0, 0, 0, 0.15),
+        inset 0 0.5px 0 rgba(255, 255, 255, 1);
+    transform: translateY(-2px) scale(1.05);
+}
+
+.scroll-to-top:active {
+    transform: translateY(0) scale(0.95);
+    transition: transform 0.1s ease;
+}
+
+.scroll-to-top svg {
+    width: 20px;
+    height: 20px;
+    color: #1D1D1F;
+    transition: color 0.2s ease;
+}
+
+.scroll-to-top:hover svg {
+    color: #007AFF;
+}
+
+/* Dark Mode */
+html.dark .scroll-to-top {
+    background: linear-gradient(180deg, rgba(58, 58, 60, 0.9) 0%, rgba(44, 44, 46, 0.85) 100%);
+    box-shadow: 
+        0 0 0 0.5px rgba(255, 255, 255, 0.1),
+        0 4px 16px rgba(0, 0, 0, 0.4),
+        inset 0 0.5px 0 rgba(255, 255, 255, 0.15);
+}
+
+html.dark .scroll-to-top:hover {
+    background: linear-gradient(180deg, rgba(68, 68, 70, 0.95) 0%, rgba(54, 54, 56, 0.9) 100%);
+    box-shadow: 
+        0 0 0 0.5px rgba(255, 255, 255, 0.15),
+        0 6px 20px rgba(0, 0, 0, 0.5),
+        inset 0 0.5px 0 rgba(255, 255, 255, 0.2);
+}
+
+html.dark .scroll-to-top svg {
+    color: #FFFFFF;
+}
+
+html.dark .scroll-to-top:hover svg {
+    color: #0A84FF;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .scroll-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+    }
+    
+    .scroll-to-top svg {
+        width: 18px;
+        height: 18px;
+    }
 }
 
 /* Dark Mode (Harmonized) */
@@ -194,6 +361,17 @@ body {
 
 body.menu-open {
     overflow: hidden;
+}
+
+/* Blur effect on content when menu is open */
+body.menu-open .sheet-container {
+    filter: blur(8px);
+    transition: filter 0.3s ease;
+    pointer-events: none;
+}
+
+.sheet-container {
+    transition: filter 0.3s ease;
 }
 
 :focus-visible {

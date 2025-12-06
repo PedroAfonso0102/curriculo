@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
         hamburgerBtn.classList.add('active');
         hamburgerBtn.setAttribute('aria-expanded', 'true');
         hamburgerMenu.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('menu-open');
     }
     
     function closeMenu() {
@@ -60,6 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
         hamburgerBtn.classList.remove('active');
         hamburgerBtn.setAttribute('aria-expanded', 'false');
         hamburgerMenu.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('menu-open');
     }
     
     // Close menu when clicking a menu item (for internal navigation)
@@ -69,4 +71,41 @@ document.addEventListener('DOMContentLoaded', function() {
             closeMenu();
         });
     });
+});
+
+// ============================================
+// SCROLL TO TOP BUTTON
+// ============================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    const scrollToTopBtn = document.getElementById('scrollToTop');
+    
+    if (!scrollToTopBtn) return;
+    
+    // Show/hide button based on scroll position
+    function toggleScrollButton() {
+        const scrollY = window.scrollY || window.pageYOffset;
+        const threshold = 300; // Show after scrolling 300px
+        
+        if (scrollY > threshold) {
+            scrollToTopBtn.classList.add('visible');
+        } else {
+            scrollToTopBtn.classList.remove('visible');
+        }
+    }
+    
+    // Scroll to top with smooth animation
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+    
+    // Event listeners
+    window.addEventListener('scroll', toggleScrollButton, { passive: true });
+    scrollToTopBtn.addEventListener('click', scrollToTop);
+    
+    // Initial check
+    toggleScrollButton();
 });
