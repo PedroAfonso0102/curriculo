@@ -286,8 +286,10 @@ h2::before {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: var(--space-4) 0;
-    margin-bottom: var(--space-8);
+    padding: var(--space-4) var(--space-4);
+    margin: 0 auto var(--space-8) auto;
+    max-width: 900px;
+    width: 100%;
 }
 
 .lang-tab-bar {
@@ -579,7 +581,8 @@ html.dark .job-date {
 .header-actions {
     display: flex;
     align-items: center;
-    gap: var(--space-2);
+    gap: var(--space-4);
+    /* Increased from space-2 for better breathing room */
 }
 
 .action-item,
@@ -591,6 +594,15 @@ html.dark .job-date {
     padding: var(--space-2);
     border-radius: var(--radius-sm);
     transition: color var(--duration-fast);
+}
+
+/* Hide redundant language switcher in menu on desktop */
+@media (min-width: 640px) {
+
+    .menu-quick-actions,
+    .menu-separator {
+        display: none;
+    }
 }
 
 .action-item:hover,
