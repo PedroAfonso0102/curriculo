@@ -32,7 +32,7 @@ const Components = {
 
         return `
             <div class="app-item card-interactive" onclick="openExperiment('${item.id}')">
-                <div class="app-icon">
+                <div class="app-icon" style="background: ${item.gradient || 'var(--bg-app)'}">
                     ${this.icon(item.iconId, 'icon-lg')}
                 </div>
                 <div class="app-info">

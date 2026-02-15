@@ -39,6 +39,15 @@
     --font-lg: 24px;   /* Section Headers, H2 (Increased from 20px) */
     --font-xl: 32px;   /* Major highlights */
     --font-xxl: 36px;  /* Page Title H1 (Decreased from 40px for balance) */
+
+    /* --- Z-INDEX LAYERS --- */
+    --z-below: -1;
+    --z-base: 1;
+    --z-sticky: 100;    /* Headers, sticky elements */
+    --z-dropdown: 200;
+    --z-overlay: 300;   /* Backdrops */
+    --z-modal: 400;     /* Dialogs, Mobile Menus */
+    --z-toast: 500;     /* Notifications */
     
     /* --- LAYOUT & SHAPE --- */
     --radius-sm: 6px;
@@ -141,7 +150,7 @@ a, button, input {
 .site-header {
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: var(--z-sticky);
     background: var(--bg-overlay);
     backdrop-filter: saturate(180%) blur(20px);
     -webkit-backdrop-filter: saturate(180%) blur(20px);
@@ -258,7 +267,7 @@ a, button, input {
     width: 100%;
     height: 100%;
     background: var(--bg-app);
-    z-index: 2000;
+    z-index: var(--z-modal);
     display: none;
     opacity: 0;
     transition: opacity 0.2s ease;
@@ -707,28 +716,46 @@ section:first-of-type h2 {
     group: hover;
 }
 
+/* Override default card-interactive for app-item to be transparent/borderless */
+.app-item.card-interactive {
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    overflow: visible;
+}
+.app-item.card-interactive:hover {
+    box-shadow: none;
+    transform: none;
+    border-color: transparent;
+}
+.app-item.card-interactive:active {
+    transform: scale(var(--anim-scale-active));
+}
+
 .app-icon {
     width: var(--space-3xl);
     height: var(--space-3xl);
-    background-color: var(--bg-app);
-    border: 1px solid var(--exp-thumb-border);
+    background-color: var(--bg-app); /* Fallback */
+    border: none;
     border-radius: var(--radius-app);
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: var(--space-sm);
-    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .app-item:hover .app-icon {
     transform: translateY(-4px);
-    border-color: var(--color-accent);
-    background-color: var(--bg-app);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.app-item .icon-lg {
+    color: white; /* Contrast against gradient */
 }
 
 .app-item:hover .icon-lg {
-    color: var(--color-accent);
+    color: white;
 }
 
 .icon-lg {
