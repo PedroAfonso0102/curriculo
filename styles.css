@@ -18,6 +18,7 @@
     
     /* Ação (Call to Action) */
     --color-accent: #007AFF; /* Apple Blue */
+    --color-accent-business: #002244; /* Business Navy */
     --color-accent-hover: #0056B3;
     --color-success: #34C759; /* Success Green */
     --color-success-bg: rgba(52, 199, 89, 0.1);
@@ -117,6 +118,7 @@ html.dark {
     --text-tertiary: #48484A;
 
     --color-accent: #0A84FF; /* iOS Dark Mode Blue */
+    --color-accent-business: #4FC3F7; /* Lighter Business Blue for Dark Mode */
     --color-accent-hover: #409CFF;
     --color-success-bg: rgba(52, 199, 89, 0.2);
     --color-accent-subtle: rgba(10, 132, 255, 0.2);
@@ -255,6 +257,19 @@ a, button, input {
 .btn-primary:hover {
     background-color: var(--color-accent-hover);
 }
+
+.btn-business {
+    background-color: var(--color-accent-business);
+    color: white;
+    font-size: var(--font-base);
+    font-weight: 600;
+    padding: var(--btn-padding-md);
+}
+
+.btn-business:hover {
+    filter: brightness(1.2);
+}
+
 
 .nav-link {
     /* Kept for JS hooks, style is now provided by .btn .btn-ghost */
@@ -603,6 +618,12 @@ section:first-of-type h2 {
     font-size: var(--font-xs);
     top: 1px;
 }
+
+.text-emphasis {
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
 
 /* Skills (Tags) */
 .skills-grid {
@@ -1258,4 +1279,120 @@ html.dark input[type=range]::-webkit-slider-thumb {
 
 .fade-in {
     animation: fadeIn 0.3s ease;
+}
+
+/* Article Cards */
+.article-card {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-lg);
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    margin-bottom: var(--space-md);
+}
+
+.article-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card);
+    border-color: var(--color-accent);
+}
+
+.article-meta {
+    font-size: var(--font-xs);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.article-title {
+    font-size: var(--font-md);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-sm);
+}
+
+.article-excerpt {
+    font-size: var(--font-sm);
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.articles-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    max-width: var(--width-content);
+    margin: 0 auto;
+}
+
+/* Hire Me Split Layout */
+.hire-split-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    max-width: var(--width-page);
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .hire-split-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.hire-column h3 {
+    font-size: var(--font-lg);
+    margin-bottom: var(--space-md);
+    color: var(--text-primary);
+}
+
+.hire-list {
+    list-style: none;
+    padding: 0;
+}
+
+.hire-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+    font-size: var(--font-base);
+    line-height: 1.5;
+}
+
+.hire-list li .icon-check {
+    color: var(--color-success);
+    min-width: 20px;
+}
+
+.hire-list li .icon-cross {
+    color: var(--text-tertiary);
+    min-width: 20px;
+}
+
+.hire-cta-container {
+    margin-top: var(--space-2xl);
+    text-align: center;
+}
+
+.cta-main-btn {
+    background-color: var(--color-accent-business);
+    color: white;
+    font-size: var(--font-lg);
+    font-weight: 700;
+    padding: var(--space-md) var(--space-2xl);
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 14px rgba(0, 34, 68, 0.3);
+    transition: all 0.2s ease;
+}
+
+.cta-main-btn:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(0, 34, 68, 0.4);
 }
